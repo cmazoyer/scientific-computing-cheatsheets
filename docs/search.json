@@ -61,5 +61,12 @@
     "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
     "section": "IDRIS",
     "text": "IDRIS\n\nhttp://www.idris.fr\ncheat sheet ici=&gt; http://www.idris.fr/media/su/idrismemento1.pdf\nUtilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html"
+  },
+  {
+    "objectID": "sheets/config_globale_ubuntu.html",
+    "href": "sheets/config_globale_ubuntu.html",
+    "title": "Configurer son ordi Ubuntu pour le calcul scientifique",
+    "section": "",
+    "text": "Installations via apt_get / aptitude:\nsudo apt-get install aptitude\nsudo aptitude install vim-gtk3\nsudo aptitude install stow git gfortran libnetcdff-dev\nsudo aptitude install libopenmpi-dev openmpi-bin\n\n\nInstallation de Anaconda\n\n\nInstallation d’un environnement Anaconda pour PyFerret:\nInstallation de pyferret (doc à faire)\n\n\nMatlab\n\nTéléchargement de matlab via le site officiel en créant un compte avec votre email univ-tln.fr. L’installation doit se faire via le wifi ou de chez soi à cause du proxy.\nPour Luminy, voir matlab à Luminy\n\n\n\nPenser aussi à:\ncréer une clef SSH et la diffuser sur d’autres ordinateurs pour éviter de taper son mot de passe (voir doc Générer une clef ssh )"
   }
 ]

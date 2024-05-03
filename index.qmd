@@ -14,7 +14,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 # Configuration globale  
 
 
-- Configurer son ordi Ubuntu pour le calcul scientifique
+- [Configurer son ordi Ubuntu pour le calcul scientifique](sheets/config_globale_ubuntu.html)
 
 - Configurer son ordi Mac pour le calcul scientifique (à faire)
 

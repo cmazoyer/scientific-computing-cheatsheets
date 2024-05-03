@@ -1,0 +1,29 @@
+---
+title: "Configurer son ordi Ubuntu pour le calcul scientifique"
+---
+
+# Installations via apt_get / aptitude:
+
+```
+sudo apt-get install aptitude
+sudo aptitude install vim-gtk3
+sudo aptitude install stow git gfortran libnetcdff-dev
+sudo aptitude install libopenmpi-dev openmpi-bin
+```
+
+# Installation de Anaconda
+
+# Installation d'un environnement Anaconda pour PyFerret:
+
+Installation de pyferret (doc à faire)
+
+# Matlab
+
+- Téléchargement de matlab via le site officiel en créant un compte avec votre email univ-tln.fr. L'installation doit se faire via le wifi ou de chez soi à cause du proxy.
+
+- Pour Luminy, voir [matlab à Luminy](https://documentation.osupytheas.fr/?s=matlab)
+
+
+# Penser aussi à:
+
+créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc Générer une clef ssh )
