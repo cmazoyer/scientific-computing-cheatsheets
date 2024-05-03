@@ -1,0 +1,124 @@
+---
+title: "Scientific computing cheatsheets at the laboratory MIO in oceanography"
+---
+
+
+
+auteur: Camille Mazoyer, camille.mazoyer@ird.fr
+
+maj: janvier 2024
+
+Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour que j'améliore la documentation. 
+
+
+# Configuration globale  
+
+
+- Configurer son ordi Ubuntu pour le calcul scientifique
+
+- Configurer son ordi Mac pour le calcul scientifique (à faire)
+
+- Travailler à l'université de Toulon sous proxy
+
+
+# Informatique (divers)
+
+- Connexion à un ordinateur via un tunnel
+
+- Générer une clef ssh
+
+- screen : détacher des processus / nohup
+
+- rsync (local ou via ssh)
+
+- Garder une connexion ssh persistante (éviter les déconnexions trop rapides)
+
+- Connexion à distance à Tools
+
+
+# Fiches logiciels 
+
+- Mémos, raccourcis et améliorations de VIM/GVIM
+
+- Mémos, raccourcis et améliorations de GIT
+
+- Utilisation de GDB avec exemple de CROCO sur le cluster de l'OSU
+
+- Utilisation de Visual Studio Code, éditeur de code
+
+- Installation et configuration de x2go
+
+- Motuclient: outil de récupération de fichiers netcdf via Copernicus
+
+
+## Anaconda
+
+- Installation de pyferret avec Anaconda
+
+- Installation d'un environnement Anaconda pour l'océanographie
+
+- Partager un environnement Anaconda entre deux utilisateurs d'une même machine
+
+## Ferret
+
+-  Premiers pas en ferret ( à faire)
+
+## Fortran
+
+- Options de compilation pour debugger en Fortran
+
+- utilisation du debugger gdb avec croco (sur le cluster OSU)
+
+- Listing des erreurs de compilations rencontrées lors d'installations de CROCO ou ROMS sur les machines de TP ou laptop 
+
+
+## Matlab
+
+- Créer un exécutable sous matlab: exemple sur le cluster de l'OSU
+
+
+## Python
+
+- Utilisation de google collab pour des jupyter notebook python
+
+- CROCO avec Python . 
+
+- la bibliothèque XOA gère les sorties CROCO et est documentée ici:   https://xoa.readthedocs.io/en/latest/index.html
+
+- la bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n'est plus à jour)
+
+- How to Make Python Code Run Incredibly Fast
+
+- Utilisation de xarray conseillée (à faire)
+
+
+# Utilisation de clusters locaux, régionaux, nationaux
+
+## Cluster de l'OSU Pytheas
+
+- cluster de l'osupytheas :https://calcul.osupytheas.fr/
+
+- Documentation pour une Connexion à distance à Tools
+
+## Cluster régional CCAMU Marseille
+
+- Mésocentre CCAMU de Marseille: https://mesocentre.univ-amu.fr/les-tutoriaux/
+
+- Utilisation du cluster CCAMU avec CROCO, MARS3D-ECO3M, ....
+
+## IDRIS
+
+-  http://www.idris.fr
+  
+-  cheat sheet ici=>  http://www.idris.fr/media/su/idrismemento1.pdf
+
+- Utilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html
+
+
+
+
+
+
+
+
+

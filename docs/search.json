@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "",
+    "text": "auteur: Camille Mazoyer, camille.mazoyer@ird.fr\nmaj: janvier 2024\nMerci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation."
+  },
+  {
+    "objectID": "index.html#anaconda",
+    "href": "index.html#anaconda",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "Anaconda",
+    "text": "Anaconda\n\nInstallation de pyferret avec Anaconda\nInstallation d’un environnement Anaconda pour l’océanographie\nPartager un environnement Anaconda entre deux utilisateurs d’une même machine"
+  },
+  {
+    "objectID": "index.html#ferret",
+    "href": "index.html#ferret",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "Ferret",
+    "text": "Ferret\n\nPremiers pas en ferret ( à faire)"
+  },
+  {
+    "objectID": "index.html#fortran",
+    "href": "index.html#fortran",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "Fortran",
+    "text": "Fortran\n\nOptions de compilation pour debugger en Fortran\nutilisation du debugger gdb avec croco (sur le cluster OSU)\nListing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop"
+  },
+  {
+    "objectID": "index.html#matlab",
+    "href": "index.html#matlab",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "Matlab",
+    "text": "Matlab\n\nCréer un exécutable sous matlab: exemple sur le cluster de l’OSU"
+  },
+  {
+    "objectID": "index.html#python",
+    "href": "index.html#python",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "Python",
+    "text": "Python\n\nUtilisation de google collab pour des jupyter notebook python\nCROCO avec Python .\nla bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html\nla bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n’est plus à jour)\nHow to Make Python Code Run Incredibly Fast\nUtilisation de xarray conseillée (à faire)"
+  },
+  {
+    "objectID": "index.html#cluster-de-losu-pytheas",
+    "href": "index.html#cluster-de-losu-pytheas",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "Cluster de l’OSU Pytheas",
+    "text": "Cluster de l’OSU Pytheas\n\ncluster de l’osupytheas :https://calcul.osupytheas.fr/\nDocumentation pour une Connexion à distance à Tools"
+  },
+  {
+    "objectID": "index.html#cluster-régional-ccamu-marseille",
+    "href": "index.html#cluster-régional-ccamu-marseille",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "Cluster régional CCAMU Marseille",
+    "text": "Cluster régional CCAMU Marseille\n\nMésocentre CCAMU de Marseille: https://mesocentre.univ-amu.fr/les-tutoriaux/\nUtilisation du cluster CCAMU avec CROCO, MARS3D-ECO3M, …."
+  },
+  {
+    "objectID": "index.html#idris",
+    "href": "index.html#idris",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "IDRIS",
+    "text": "IDRIS\n\nhttp://www.idris.fr\ncheat sheet ici=&gt; http://www.idris.fr/media/su/idrismemento1.pdf\nUtilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html"
+  }
+]
