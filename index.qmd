@@ -48,7 +48,9 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 - Installation et configuration de x2go
 
-- Motuclient: outil de récupération de fichiers netcdf via Copernicus
+- Récupération de fichiers netcdf via Copernicus
+  - Motuclient (deprecated?)
+  - [Copernicusmarine](sheets/copernicusmarine.html)
 
 
 ## Anaconda
