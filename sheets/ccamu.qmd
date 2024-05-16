@@ -11,7 +11,7 @@ maj : janvier 2024
 
 - Changer le mot de passe comme demandé
 
-- ajouter sa clef SSH via l'interface avec le bouton "upload ssh key", voir la doc: Générer une clef ssh: donner le fichier .ssh/id_xxxx.pub
+- ajouter sa clef SSH via l'interface avec le bouton "upload ssh key", voir la doc [Générer une clef ssh](sheets/clef_ssh.html): donner le fichier .ssh/id_xxxx.pub
 
 
 # 2.  Connexion directe (pas valable pour le cluster de l'OSU):

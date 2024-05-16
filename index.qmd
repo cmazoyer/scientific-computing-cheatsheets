@@ -25,7 +25,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 - Connexion à un ordinateur via un tunnel
 
-- Générer une clef ssh
+- [Générer une clef ssh](sheets/clef_ssh.html)
 
 - screen : détacher des processus / nohup
 

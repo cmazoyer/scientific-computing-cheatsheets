@@ -1,0 +1,88 @@
+---
+title: Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l'IDRIS sans mot de passe
+---
+
+# 1.Générer la clef
+
+```bash
+ssh-keygen -t ed25519 -C "prenom.nom@monemail.fr"
+```
+
+Il est maintenant conseillé de générer une clef ed255 plutôt que rsa.
+Indiquer une passphrase qui remplacera votre mot de passe et que votre ordinateur vous demandera qu'une seule fois par démarrage.
+
+Sur mac:
+Ajouter dans le  ~/.ssh/config :
+```bash
+Host *
+    UseKeychain yes
+```
+
+# 2. l'envoyer sur la machine distante:
+
+
+## Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)
+
+Changer "monlogin" avec votre login.
+
+
+### Toulon
+
+```bash
+ssh-copy-id -i ~/.ssh/id_ed25519 monlogin@lseet.univ-tln.fr
+ssh monlogin@lseet.univ-tln.fr  #=> que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation
+ssh-copy-id -i ~/.ssh/id_ed25519 monlogin@respore
+```
+
+### Luminy : penser à lancer le VPN de Luminy !!!!
+
+```bash
+ssh-copy-id -i ~/.ssh/id_ed25519 monlogin@ssh.osupytheas.fr
+ssh-copy-id -i ~/.ssh/id_ed25519 monlogin@cluster.osupytheas.fr
+```
+
+Si la copie a fonctionné, vous devriez voir apparaitre: "number of key added: 1" et vous devriez pouvoir vous connecter sans mot de passe (Ubuntu va vous demander un mot de passe, votre passphrase à la première connexion ssh).
+
+## Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef "à la main":
+
+### Toulon
+
+```bash
+cat ~/.ssh/id_ed25519.pub | ssh monlogin@lseet.univ-tln.fr "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+ssh monlogin@lseet.univ-tln.fr # => que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation
+cat ~/.ssh/id_ed25519.pub | ssh monlogin@respore.univ-tln.fr "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+```
+
+### Luminy : penser à lancer le VPN de Luminy !!!!
+
+```bash
+cat ~/.ssh/id_ed25519.pub | ssh monlogin@meduse.osupytheas.fr "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+cat ~/.ssh/id_ed25519.pub | ssh monlogin@cluster.osupytheas.fr "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+```
+
+si cela ne fonctionne pas, chmod 700 -R ~/.ssh
+
+# 3. Se connecter sur la machine distante, sans mettre de mot de passe 
+
+```bash
+ssh monlogin@lseet.univ-tln.fr  # par exemple, ou tout autre machine
+```
+
+# 4.Gitlab, Mesocentre CCAMU, ...
+
+Cette passphrase sera à copier coller aussi dans le gitlab de l'osupytheas, ou github par exemple.
+
+
+# 5.Problèmes éventuels (voir avec un informaticien, Didier, Camille, Céline, ...)
+
+Si on veut faire des rebonds avec des tunnels, il se peut qu'il y ait un souci. Une solution peut être de créer le fichier .ssh/config et écrire dedans
+
+```bash
+host *
+  ForwardAgent yes
+  ForwardX11 yes
+  ForwardX11Trusted yes
+```
+
+Dans le cas de rebond à travers , il est aussi possible de créer à nouveau une clef ssh sur la machine sur laquelle on rebondit.
+

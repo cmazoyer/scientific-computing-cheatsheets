@@ -105,6 +105,27 @@
     "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
   },
   {
+    "objectID": "sheets/clef_ssh.html",
+    "href": "sheets/clef_ssh.html",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "section": "",
+    "text": "ssh-keygen -t ed25519 -C \"prenom.nom@monemail.fr\"\nIl est maintenant conseillé de générer une clef ed255 plutôt que rsa. Indiquer une passphrase qui remplacera votre mot de passe et que votre ordinateur vous demandera qu’une seule fois par démarrage.\nSur mac: Ajouter dans le ~/.ssh/config :\nHost *\n    UseKeychain yes"
+  },
+  {
+    "objectID": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
+    "href": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "section": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)",
+    "text": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)\nChanger “monlogin” avec votre login.\n\nToulon\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@lseet.univ-tln.fr\nssh monlogin@lseet.univ-tln.fr  #=&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@respore\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@ssh.osupytheas.fr\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@cluster.osupytheas.fr\nSi la copie a fonctionné, vous devriez voir apparaitre: “number of key added: 1” et vous devriez pouvoir vous connecter sans mot de passe (Ubuntu va vous demander un mot de passe, votre passphrase à la première connexion ssh)."
+  },
+  {
+    "objectID": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
+    "href": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "section": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:",
+    "text": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:\n\nToulon\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@lseet.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nssh monlogin@lseet.univ-tln.fr # =&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@respore.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@meduse.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@cluster.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nsi cela ne fonctionne pas, chmod 700 -R ~/.ssh"
+  },
+  {
     "objectID": "sheets/config_globale_ubuntu.html",
     "href": "sheets/config_globale_ubuntu.html",
     "title": "Configurer son ordi Ubuntu pour le calcul scientifique",
