@@ -53,7 +53,7 @@
     "href": "index.html#cluster-régional-ccamu-marseille",
     "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
     "section": "Cluster régional CCAMU Marseille",
-    "text": "Cluster régional CCAMU Marseille\n\nMésocentre CCAMU de Marseille: https://mesocentre.univ-amu.fr/les-tutoriaux/\nUtilisation du cluster CCAMU avec CROCO, MARS3D-ECO3M, …."
+    "text": "Cluster régional CCAMU Marseille\n\nMes docs sur l’utilisation du Mésocentre CCAMU de Marseille\ntutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/"
   },
   {
     "objectID": "index.html#idris",
@@ -61,6 +61,41 @@
     "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
     "section": "IDRIS",
     "text": "IDRIS\n\nhttp://www.idris.fr\ncheat sheet ici=&gt; http://www.idris.fr/media/su/idrismemento1.pdf\nUtilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html"
+  },
+  {
+    "objectID": "sheets/ccamu.html",
+    "href": "sheets/ccamu.html",
+    "title": "Utilisation du cluster régional du CCAMU de Marseille",
+    "section": "",
+    "text": "auteur: camille.mazoyer@ird.fr maj : janvier 2024"
+  },
+  {
+    "objectID": "sheets/ccamu.html#sftp",
+    "href": "sheets/ccamu.html#sftp",
+    "title": "Utilisation du cluster régional du CCAMU de Marseille",
+    "section": "SFTP",
+    "text": "SFTP\nSur la machine ssh ou chez vous, vous pouvez utiliser un alias à insérer dans le fichier .bashrc:\nalias sftpccamu='sftp -P 8822 votrelogin@login.mesocentre.univ-amu.fr'\nsi vous utilisez une connexion via un tunnel\nalias sftptunnelccamu='sftp -P 5535 cmazoyer@localhost'\nEnsuite, la connection se fait avec la commande:\nsftpccamu\nou par le tunnel:\nsftptunnelccamu\nPuis utiliser les commandes get ou put pour recevoir ou envoyer des fichiers entre les deux machines"
+  },
+  {
+    "objectID": "sheets/ccamu.html#scp",
+    "href": "sheets/ccamu.html#scp",
+    "title": "Utilisation du cluster régional du CCAMU de Marseille",
+    "section": "SCP",
+    "text": "SCP\nVous pouvez aussi utiliser la commande suivante, en se plaçant sur la machine locale (cluster de l’OSU).\nscp -P 8822 fichierlocal monlogin@login.mesocentre.univ-amu.fr:repertoireccamu/. \nsi vous utilisez une connexion via un tunnel\nscp -P 5535 fichierlocal monlogin@localhost:repertoireccamu/."
+  },
+  {
+    "objectID": "sheets/ccamu.html#rsync",
+    "href": "sheets/ccamu.html#rsync",
+    "title": "Utilisation du cluster régional du CCAMU de Marseille",
+    "section": "Rsync",
+    "text": "Rsync\nRechercher ma doc sur rsync (local ou via ssh), en se plaçant sur la machine locale (cluster de l’OSU).\nrsync -uave 'ssh -p 8822' votrelogin@login.mesocentre.univ-amu.fr:repertoireccamu/.\nsi vous utilisez une connexion via un tunnel\nrsync -uave 'ssh -p 5535' votrelogin@localhost:repertoireccamu/."
+  },
+  {
+    "objectID": "sheets/ccamu.html#si-la-durée-de-transfert-est-supérieure-à-30-min",
+    "href": "sheets/ccamu.html#si-la-durée-de-transfert-est-supérieure-à-30-min",
+    "title": "Utilisation du cluster régional du CCAMU de Marseille",
+    "section": "Si la durée de transfert est supérieure à 30 min",
+    "text": "Si la durée de transfert est supérieure à 30 min\nSe référer à la doc https://mesocentre.univ-amu.fr/sauvegarde-donnees/ et la suivre. Une fois connecté à un noeud de calcul comme proposé dans la doc, il faut créer un tunnel avec la machine cluster puis s’y connecter avec une des 3 méthodes plus haut (attention, le port est le 5530 et la machine est localhost):\nssh -X -C -N -f votrelogin@ssh.osupytheas.fr -L5530:cluster.osupytheas.fr:22\nsftp -P 5530 votrelogin@localhost"
   },
   {
     "objectID": "sheets/copernicusmarine.html",

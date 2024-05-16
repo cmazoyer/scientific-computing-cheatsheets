@@ -104,9 +104,9 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## Cluster régional CCAMU Marseille
 
-- Mésocentre CCAMU de Marseille: https://mesocentre.univ-amu.fr/les-tutoriaux/
-
-- Utilisation du cluster CCAMU avec CROCO, MARS3D-ECO3M, ....
+- [Mes docs sur l'utilisation du Mésocentre CCAMU de Marseille](sheets/ccamu.html)
+  
+- tutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/
 
 ## IDRIS
 

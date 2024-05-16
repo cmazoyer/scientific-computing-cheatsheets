@@ -1,0 +1,177 @@
+---
+title : Utilisation du cluster régional du CCAMU de Marseille
+---
+
+auteur: camille.mazoyer@ird.fr
+maj : janvier 2024
+
+# 1. A faire à la première connexion:
+
+- Se connecter ici: https://mesocentre.univ-amu.fr/copernicus/user.html, mettre le mot de passe qui est indiqué dans un email.  
+
+- Changer le mot de passe comme demandé
+
+- ajouter sa clef SSH via l'interface avec le bouton "upload ssh key", voir la doc: Générer une clef ssh: donner le fichier .ssh/id_xxxx.pub
+
+
+# 2.  Connexion directe (pas valable pour le cluster de l'OSU):
+
+Si vous êtes à Luminy en filaire, le cluster de l'OSU n'a pas accès au mesocentr e et il faut forcément passer par la machine ssh (voir section suivante).
+Se connecter au cluster CCAMU avec votre login "votrelogin", voir la doc https://mesocentre.univ-amu.fr/connexion .  Vous pouvez vous connecter directement au mesocentre via la commande:
+```bash
+ssh -p 8822 votrelogin@login.mesocentre.univ-amu.fr
+```
+
+Vous pouvez aussi créer un alias à insérer dans le fichier .bashrc: 
+
+```bash
+alias hccamu='ssh -p 8822 -X votrelogin@login.mesocentre.univ-amu.fr'
+```
+
+# 3. Connexion via un tunnel  (valable pour le cluster de l'OSU):
+
+Se connecter au cluster CCAMU avec votre login "votrelogin", voir la doc https://mesocentre.univ-amu.fr/connexion .  
+
+Création d'un alias pour un  tunnel, à insérer dans votre .bashrc:
+
+```bash
+alias tunnelccamu='ssh -X -C -N -f mazoyer@ssh.osupytheas.fr -L5535:login.mesocentre.univ-amu.fr:8822'
+```
+
+Utiliser la commande 'tunnelccamu' une seule fois pour créer le tunnel 
+
+```bash
+tunnelccamu
+```
+
+Création d'un alias pour la connexion ssh via ce tunnel:
+
+```bash
+alias htunnelccamu='ssh -X -C -p 5535 cmazoyer@localhost'
+```
+
+Utiliser la commande htunnelccamu pour vous connecter au mesocentre:
+
+```bash
+htunnelccamu
+```
+
+
+# 4. Modules à charger sur le mesocentre:
+
+Sur la machine du mesocentre, ajouter dans le fichier .bashrc les commandes de module suivant, puis relancer un nouveau terminal
+
+```bash
+module purge
+module load userspace/all
+module load netcdf/intel/openmpi/4.5.3-fortran
+```
+
+# 5. Compilation et run de CROCO
+Un exemple de configuration CROCO est disponible dans mon compte : /home/cmazoyer/CROCO/CONFIGS/MAYOTTE/HUGO186
+Vous trouverez les fichiers suivants:
+
+- jobcomp_ifort_ccamu_avec_mio , un jobcomp adapté au ccamu
+- run_ifort_CCAMU_mpi24.sh, un fichier batch pour lancer des run sur le ccamu
+
+Pour plus d'informations sur les espaces disques, les queues de calcul, .... se rendre sur les tutoriaux officiels:  https://mesocentre.univ-amu.fr/tutoriauxn/
+
+# 6. Echange des fichiers entre le cluster et le ccamu
+
+Voir le tutorial: https://mesocentre.univ-amu.fr/sauvegarde-donnees/
+
+Les commandes sftp, scp  ou rsync sont autorisées que si elles ne durent pas plus de 30 min!
+
+## SFTP 
+
+Sur la machine ssh ou chez vous, vous pouvez utiliser un alias à insérer dans le fichier .bashrc: 
+
+```bash
+alias sftpccamu='sftp -P 8822 votrelogin@login.mesocentre.univ-amu.fr'
+```
+
+si vous utilisez une connexion via un tunnel
+
+```bash
+alias sftptunnelccamu='sftp -P 5535 cmazoyer@localhost'
+```
+
+Ensuite, la connection se fait avec la commande: 
+
+```bash
+sftpccamu
+```
+
+ou par le tunnel:
+
+```bash
+sftptunnelccamu
+```
+
+Puis utiliser les commandes get ou put pour recevoir ou envoyer des fichiers entre les deux machines
+
+## SCP
+
+Vous pouvez aussi utiliser la commande suivante, en se plaçant sur la machine locale (cluster de l'OSU).
+
+```bash
+scp -P 8822 fichierlocal monlogin@login.mesocentre.univ-amu.fr:repertoireccamu/. 
+```
+
+si vous utilisez une connexion via un tunnel
+
+```bash
+scp -P 5535 fichierlocal monlogin@localhost:repertoireccamu/. 
+```
+
+## Rsync
+
+Rechercher ma doc sur rsync (local ou via ssh),  en se plaçant sur la machine locale (cluster de l'OSU).
+
+```bash
+rsync -uave 'ssh -p 8822' votrelogin@login.mesocentre.univ-amu.fr:repertoireccamu/.
+```
+
+si vous utilisez une connexion via un tunnel
+
+```bash
+rsync -uave 'ssh -p 5535' votrelogin@localhost:repertoireccamu/.
+```
+
+## Si la durée de transfert est supérieure à 30 min 
+
+Se référer à la doc https://mesocentre.univ-amu.fr/sauvegarde-donnees/  et la suivre. Une fois connecté à un noeud de calcul comme proposé dans la doc, il faut créer un tunnel avec la machine cluster puis s'y connecter avec une des 3 méthodes plus haut (attention, le port est le 5530 et la machine est localhost):
+
+```bash
+ssh -X -C -N -f votrelogin@ssh.osupytheas.fr -L5530:cluster.osupytheas.fr:22
+sftp -P 5530 votrelogin@localhost
+```
+
+# 7. Visualisation de résultats avec le serveur 
+
+Suivre la doc du CCAMU: https://mesocentre.univ-amu.fr/visu/
+Pour info, le noeud de visualisation a les caractéristiques suivantes:
+
+- Dell PowerEdge R740 (32 coeurs).
+- Processeur Intel(R) Xeon(R) Gold 6130.
+- 192 Go de RAM.
+- Carte Quadro P4000.
+
+"Sans paramètres additionnels, la commande réservera une session en utilisation partielle (accès à 6 cœurs et 36 Go de RAM du nœud de visu), pour un walltime de 30 minutes, utilisant le gestionnaire de fenêtres fluxbox et le projet par défaut de l’utilisateur (utilisé pour le décompte du temps d’utilisation du nœud)"
+
+Sur la frontale du CCAMU:
+
+```bash
+module load svisu
+svisu -A b314 --time=168:00:00
+```
+
+Sur votre laptop, installation et lancement du logiciel de type VNC:
+Sous linux:
+```bash
+sudo aptitude install tigervnc-viewer
+```
+puis lancer 
+```bash
+vncviewer
+```
