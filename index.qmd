@@ -52,6 +52,8 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
   - Motuclient (deprecated?)
   - [Copernicusmarine](sheets/copernicusmarine.html)
 
+- [Utilisation de Zenodo et Github pour mettre son code sous DOI](sheets/zenodo_github.html)
+
 
 ## Anaconda
 

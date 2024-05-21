@@ -1,0 +1,64 @@
+---
+title : Utilisation de Zenodo et Github pour mettre son code sous DOI
+---
+
+# 1. Création d'une organisation et d'un dépôt sous Github
+
+## 1.1 Création d'une organisation
+
+- se créer un compte sur github
+- si vous travaillez à plusieurs et que le logiciel a vocation à être diffuser, je vous conseille de créer une organisation sous Github (gestion de projet à plusieurs). Sinon, vous pouvez juste créer un projet sous votre compte. voir [creating-a-new-organization-from-scratch](https://docs.github.com/fr/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch)
+- Choisir une organisation "plan Free" et remplir les informations de créer de l'organisation. 
+- Si le nom choisi est Tao-Soft par ex, l'url est alors https://github.com/TAO-Soft . 
+
+## 1.2 Création d'un dépôt
+
+- Créer un dépot (repository) à l'intérieur de cette organisation. Il pourra y en avoir plusieurs pour les différents outils (pré, post processing, le software, ...). Dans notre exemple, cela donne: [https://github.com/orgs/TAO-Soft/repositories](https://github.com/orgs/TAO-Soft/repositories)
+- Choisir un dépôt public et indiquer la licence GNU General Public Licence V3.0 par ex
+
+# 2. Mise en ligne du code 
+
+- cloner le code dans votre ordinateur et ajouter vos fichiers (commandes git standard). Dans un terminal de votre laptop:
+  ``` bash
+  git clone git@github.com:TAO-Soft/TAO-Soft.git 
+  ```
+Puis ajouter de fichiers avec git add, git commit, git push ...
+- Créer un tag qui servira pour Zenodo, par exemple: 
+  ``` bash
+  git tag -a v0.1.0 -m "Initial version 0.1.0"
+  git push origin v0.1.0
+  ```
+
+# 3. Connexion entre Zenodo et Github
+
+## 3.1 Autoriser Zenodo à accéder à votre organisation
+
+- Accéder au lien url de votre organisation, ici pour mon exemple: [https://github.com/TAO-Soft](https://github.com/TAO-Soft) (attention pas le lien de votre dépôt). 
+- Cliquer sur "Settings"
+- Puis dans le panel de gauche, cliquer sur "OAuth Application Policy"
+- Puis "Remove restrictions". Cela permettra que depuis votre compte zenodo personel, vous ayez accès aux dépôts de votre organisation. Vous vous callez sur les restrictions liées à votre compte personnel sans ajouter de blocage aussi via l'organisation.
+
+## 3.2 Sur Zenodo
+Se référer à la [documentation github sur Zenodo](https://docs.github.com/fr/repositories/archiving-a-github-repository/referencing-and-citing-content). 
+
+- Se rendre sur Zenodo et se connecter à Zenodo avec son compte Github, le lien sera ainsi fait entre les deux sites web.
+- Dans la page settings, [https://zenodo.org/account/settings/github/](https://zenodo.org/account/settings/github/), cliquer sur "Sync Now"
+- Rafraichir la page avec F5
+- Positionner le bouton sur "ON" sur le dépôt de votre organisation (ici TAO-Soft/Tao-Soft)
+- Rafraichir la page avec F5
+- Dans la section "Enabled Repositories", le nouveau dépôt devrait apparaitre. Cliquer dessus. 
+- On est alors sur la page [https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft](https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft), dans mon exemple. 
+- Cliquer sur "Create release", on se déplace alors sur une page du dépôt TAO-Soft du site  Github
+- Dans "Choose a tag", sélectioner le tag qui nous intéresse, par ex: v0.1.0. 
+- Indiquer le titre de la release. Par exemple: "Initial release v0.1.0"
+- Il est conseiller de décrire la release (amélioration, bug fixed, ...)
+- Cliquer sur le bouton vert "Publish release"
+- Cette release ayant été faite à partir de Zenodo, elle sera visible sur celui-ci. Rafraichir la page du dépôt sur Zenodo [https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft](https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft)
+- Toutes les informations apparaissent, dont le DOI
+  
+# Améliorer la page Zenodo de notre code source 
+Il est ensuite nécessaire de modifier les noms des auteurs, leurs affiliations, et ajouter un résumé par ex. 
+
+En cliquant sur "my dashboard" dans son profil, on a accès à nos codes et possibilité de modifier les pages Zenodo: [https://zenodo.org/me/uploads?q=&l=list&p=1&s=10&sort=newest](https://zenodo.org/me/uploads?q=&l=list&p=1&s=10&sort=newest). 
+
+Cliquer sur "Edit" et modifier le nécessaire. 

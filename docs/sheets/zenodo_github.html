@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Camille Mazoyer - Scientific computing cheatsheets at the laboratory MIO in oceanography</title>
+<title>Camille Mazoyer - Utilisation de Zenodo et Github pour mettre son code sous DOI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Camille Mazoyer</span>
     </a>
   </div>
@@ -89,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -108,22 +142,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#configuration-globale" id="toc-configuration-globale" class="nav-link active" data-scroll-target="#configuration-globale">Configuration globale</a></li>
-  <li><a href="#informatique-divers" id="toc-informatique-divers" class="nav-link" data-scroll-target="#informatique-divers">Informatique (divers)</a></li>
-  <li><a href="#fiches-logiciels" id="toc-fiches-logiciels" class="nav-link" data-scroll-target="#fiches-logiciels">Fiches logiciels</a>
+  <li><a href="#création-dune-organisation-et-dun-dépôt-sous-github" id="toc-création-dune-organisation-et-dun-dépôt-sous-github" class="nav-link active" data-scroll-target="#création-dune-organisation-et-dun-dépôt-sous-github">1. Création d’une organisation et d’un dépôt sous Github</a>
   <ul class="collapse">
-  <li><a href="#anaconda" id="toc-anaconda" class="nav-link" data-scroll-target="#anaconda">Anaconda</a></li>
-  <li><a href="#ferret" id="toc-ferret" class="nav-link" data-scroll-target="#ferret">Ferret</a></li>
-  <li><a href="#fortran" id="toc-fortran" class="nav-link" data-scroll-target="#fortran">Fortran</a></li>
-  <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
-  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  <li><a href="#création-dune-organisation" id="toc-création-dune-organisation" class="nav-link" data-scroll-target="#création-dune-organisation">1.1 Création d’une organisation</a></li>
+  <li><a href="#création-dun-dépôt" id="toc-création-dun-dépôt" class="nav-link" data-scroll-target="#création-dun-dépôt">1.2 Création d’un dépôt</a></li>
   </ul></li>
-  <li><a href="#utilisation-de-clusters-locaux-régionaux-nationaux" id="toc-utilisation-de-clusters-locaux-régionaux-nationaux" class="nav-link" data-scroll-target="#utilisation-de-clusters-locaux-régionaux-nationaux">Utilisation de clusters locaux, régionaux, nationaux</a>
+  <li><a href="#mise-en-ligne-du-code" id="toc-mise-en-ligne-du-code" class="nav-link" data-scroll-target="#mise-en-ligne-du-code">2. Mise en ligne du code</a></li>
+  <li><a href="#connexion-entre-zenodo-et-github" id="toc-connexion-entre-zenodo-et-github" class="nav-link" data-scroll-target="#connexion-entre-zenodo-et-github">3. Connexion entre Zenodo et Github</a>
   <ul class="collapse">
-  <li><a href="#cluster-de-losu-pytheas" id="toc-cluster-de-losu-pytheas" class="nav-link" data-scroll-target="#cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</a></li>
-  <li><a href="#cluster-régional-ccamu-marseille" id="toc-cluster-régional-ccamu-marseille" class="nav-link" data-scroll-target="#cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</a></li>
-  <li><a href="#idris" id="toc-idris" class="nav-link" data-scroll-target="#idris">IDRIS</a></li>
+  <li><a href="#autoriser-zenodo-à-accéder-à-votre-organisation" id="toc-autoriser-zenodo-à-accéder-à-votre-organisation" class="nav-link" data-scroll-target="#autoriser-zenodo-à-accéder-à-votre-organisation">3.1 Autoriser Zenodo à accéder à votre organisation</a></li>
+  <li><a href="#sur-zenodo" id="toc-sur-zenodo" class="nav-link" data-scroll-target="#sur-zenodo">3.2 Sur Zenodo</a></li>
   </ul></li>
+  <li><a href="#améliorer-la-page-zenodo-de-notre-code-source" id="toc-améliorer-la-page-zenodo-de-notre-code-source" class="nav-link" data-scroll-target="#améliorer-la-page-zenodo-de-notre-code-source">Améliorer la page Zenodo de notre code source</a></li>
   </ul>
 </nav>
     </div>
@@ -132,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Scientific computing cheatsheets at the laboratory MIO in oceanography</h1>
+<h1 class="title">Utilisation de Zenodo et Github pour mettre son code sous DOI</h1>
 </div>
 
 
@@ -149,109 +179,75 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>auteur: Camille Mazoyer, camille.mazoyer@ird.fr</p>
-<p>maj: janvier 2024</p>
-<p>Merci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation.</p>
-<section id="configuration-globale" class="level1">
-<h1>Configuration globale</h1>
+<section id="création-dune-organisation-et-dun-dépôt-sous-github" class="level1">
+<h1>1. Création d’une organisation et d’un dépôt sous Github</h1>
+<section id="création-dune-organisation" class="level2">
+<h2 class="anchored" data-anchor-id="création-dune-organisation">1.1 Création d’une organisation</h2>
 <ul>
-<li><p><a href="sheets/config_globale_ubuntu.html">Configurer son ordi Ubuntu pour le calcul scientifique</a></p></li>
-<li><p>Configurer son ordi Mac pour le calcul scientifique (à faire)</p></li>
-<li><p>Travailler à l’université de Toulon sous proxy</p></li>
+<li>se créer un compte sur github</li>
+<li>si vous travaillez à plusieurs et que le logiciel a vocation à être diffuser, je vous conseille de créer une organisation sous Github (gestion de projet à plusieurs). Sinon, vous pouvez juste créer un projet sous votre compte. voir <a href="https://docs.github.com/fr/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch">creating-a-new-organization-from-scratch</a></li>
+<li>Choisir une organisation “plan Free” et remplir les informations de créer de l’organisation.</li>
+<li>Si le nom choisi est Tao-Soft par ex, l’url est alors https://github.com/TAO-Soft .</li>
 </ul>
 </section>
-<section id="informatique-divers" class="level1">
-<h1>Informatique (divers)</h1>
+<section id="création-dun-dépôt" class="level2">
+<h2 class="anchored" data-anchor-id="création-dun-dépôt">1.2 Création d’un dépôt</h2>
 <ul>
-<li><p>Connexion à un ordinateur via un tunnel</p></li>
-<li><p><a href="sheets/clef_ssh.html">Générer une clef ssh</a></p></li>
-<li><p>screen : détacher des processus / nohup</p></li>
-<li><p>rsync (local ou via ssh)</p></li>
-<li><p>Garder une connexion ssh persistante (éviter les déconnexions trop rapides)</p></li>
-<li><p>Connexion à distance à Tools</p></li>
-</ul>
-</section>
-<section id="fiches-logiciels" class="level1">
-<h1>Fiches logiciels</h1>
-<ul>
-<li><p>Mémos, raccourcis et améliorations de VIM/GVIM</p></li>
-<li><p>Mémos, raccourcis et améliorations de GIT</p></li>
-<li><p>Utilisation de GDB avec exemple de CROCO sur le cluster de l’OSU</p></li>
-<li><p>Utilisation de Visual Studio Code, éditeur de code</p></li>
-<li><p>Installation et configuration de x2go</p></li>
-<li><p>Récupération de fichiers netcdf via Copernicus</p>
-<ul>
-<li>Motuclient (deprecated?)</li>
-<li><a href="sheets/copernicusmarine.html">Copernicusmarine</a></li>
-</ul></li>
-<li><p><a href="sheets/zenodo_github.html">Utilisation de Zenodo et Github pour mettre son code sous DOI</a></p></li>
-</ul>
-<section id="anaconda" class="level2">
-<h2 class="anchored" data-anchor-id="anaconda">Anaconda</h2>
-<ul>
-<li><p>Installation de pyferret avec Anaconda</p></li>
-<li><p>Installation d’un environnement Anaconda pour l’océanographie</p></li>
-<li><p>Partager un environnement Anaconda entre deux utilisateurs d’une même machine</p></li>
-</ul>
-</section>
-<section id="ferret" class="level2">
-<h2 class="anchored" data-anchor-id="ferret">Ferret</h2>
-<ul>
-<li>Premiers pas en ferret ( à faire)</li>
-</ul>
-</section>
-<section id="fortran" class="level2">
-<h2 class="anchored" data-anchor-id="fortran">Fortran</h2>
-<ul>
-<li><p>Options de compilation pour debugger en Fortran</p></li>
-<li><p>utilisation du debugger gdb avec croco (sur le cluster OSU)</p></li>
-<li><p>Listing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop</p></li>
-</ul>
-</section>
-<section id="matlab" class="level2">
-<h2 class="anchored" data-anchor-id="matlab">Matlab</h2>
-<ul>
-<li>Créer un exécutable sous matlab: exemple sur le cluster de l’OSU</li>
-</ul>
-</section>
-<section id="python" class="level2">
-<h2 class="anchored" data-anchor-id="python">Python</h2>
-<ul>
-<li><p>Utilisation de google collab pour des jupyter notebook python</p></li>
-<li><p>CROCO avec Python .</p></li>
-<li><p>la bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html</p></li>
-<li><p>la bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n’est plus à jour)</p></li>
-<li><p>How to Make Python Code Run Incredibly Fast</p></li>
-<li><p>Utilisation de xarray conseillée (à faire)</p></li>
+<li>Créer un dépot (repository) à l’intérieur de cette organisation. Il pourra y en avoir plusieurs pour les différents outils (pré, post processing, le software, …). Dans notre exemple, cela donne: <a href="https://github.com/orgs/TAO-Soft/repositories">https://github.com/orgs/TAO-Soft/repositories</a></li>
+<li>Choisir un dépôt public et indiquer la licence GNU General Public Licence V3.0 par ex</li>
 </ul>
 </section>
 </section>
-<section id="utilisation-de-clusters-locaux-régionaux-nationaux" class="level1">
-<h1>Utilisation de clusters locaux, régionaux, nationaux</h1>
-<section id="cluster-de-losu-pytheas" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</h2>
+<section id="mise-en-ligne-du-code" class="level1">
+<h1>2. Mise en ligne du code</h1>
 <ul>
-<li><p>cluster de l’osupytheas :https://calcul.osupytheas.fr/</p></li>
-<li><p>Documentation pour une Connexion à distance à Tools</p></li>
+<li><p>cloner le code dans votre ordinateur et ajouter vos fichiers (commandes git standard). Dans un terminal de votre laptop:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone git@github.com:TAO-Soft/TAO-Soft.git </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puis ajouter de fichiers avec git add, git commit, git push …</p></li>
+<li><p>Créer un tag qui servira pour Zenodo, par exemple:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v0.1.0 <span class="at">-m</span> <span class="st">"Initial version 0.1.0"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin v0.1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
-<section id="cluster-régional-ccamu-marseille" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</h2>
+<section id="connexion-entre-zenodo-et-github" class="level1">
+<h1>3. Connexion entre Zenodo et Github</h1>
+<section id="autoriser-zenodo-à-accéder-à-votre-organisation" class="level2">
+<h2 class="anchored" data-anchor-id="autoriser-zenodo-à-accéder-à-votre-organisation">3.1 Autoriser Zenodo à accéder à votre organisation</h2>
 <ul>
-<li><p><a href="sheets/ccamu.html">Mes docs sur l’utilisation du Mésocentre CCAMU de Marseille</a></p></li>
-<li><p>tutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/</p></li>
+<li>Accéder au lien url de votre organisation, ici pour mon exemple: <a href="https://github.com/TAO-Soft">https://github.com/TAO-Soft</a> (attention pas le lien de votre dépôt).</li>
+<li>Cliquer sur “Settings”</li>
+<li>Puis dans le panel de gauche, cliquer sur “OAuth Application Policy”</li>
+<li>Puis “Remove restrictions”. Cela permettra que depuis votre compte zenodo personel, vous ayez accès aux dépôts de votre organisation. Vous vous callez sur les restrictions liées à votre compte personnel sans ajouter de blocage aussi via l’organisation.</li>
 </ul>
 </section>
-<section id="idris" class="level2">
-<h2 class="anchored" data-anchor-id="idris">IDRIS</h2>
+<section id="sur-zenodo" class="level2">
+<h2 class="anchored" data-anchor-id="sur-zenodo">3.2 Sur Zenodo</h2>
+<p>Se référer à la <a href="https://docs.github.com/fr/repositories/archiving-a-github-repository/referencing-and-citing-content">documentation github sur Zenodo</a>.</p>
 <ul>
-<li><p>http://www.idris.fr</p></li>
-<li><p>cheat sheet ici=&gt; http://www.idris.fr/media/su/idrismemento1.pdf</p></li>
-<li><p>Utilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html</p></li>
+<li>Se rendre sur Zenodo et se connecter à Zenodo avec son compte Github, le lien sera ainsi fait entre les deux sites web.</li>
+<li>Dans la page settings, <a href="https://zenodo.org/account/settings/github/">https://zenodo.org/account/settings/github/</a>, cliquer sur “Sync Now”</li>
+<li>Rafraichir la page avec F5</li>
+<li>Positionner le bouton sur “ON” sur le dépôt de votre organisation (ici TAO-Soft/Tao-Soft)</li>
+<li>Rafraichir la page avec F5</li>
+<li>Dans la section “Enabled Repositories”, le nouveau dépôt devrait apparaitre. Cliquer dessus.</li>
+<li>On est alors sur la page <a href="https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft">https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft</a>, dans mon exemple.</li>
+<li>Cliquer sur “Create release”, on se déplace alors sur une page du dépôt TAO-Soft du site Github</li>
+<li>Dans “Choose a tag”, sélectioner le tag qui nous intéresse, par ex: v0.1.0.</li>
+<li>Indiquer le titre de la release. Par exemple: “Initial release v0.1.0”</li>
+<li>Il est conseiller de décrire la release (amélioration, bug fixed, …)</li>
+<li>Cliquer sur le bouton vert “Publish release”</li>
+<li>Cette release ayant été faite à partir de Zenodo, elle sera visible sur celui-ci. Rafraichir la page du dépôt sur Zenodo <a href="https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft">https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft</a></li>
+<li>Toutes les informations apparaissent, dont le DOI</li>
 </ul>
+</section>
+</section>
+<section id="améliorer-la-page-zenodo-de-notre-code-source" class="level1">
+<h1>Améliorer la page Zenodo de notre code source</h1>
+<p>Il est ensuite nécessaire de modifier les noms des auteurs, leurs affiliations, et ajouter un résumé par ex.</p>
+<p>En cliquant sur “my dashboard” dans son profil, on a accès à nos codes et possibilité de modifier les pages Zenodo: <a href="https://zenodo.org/me/uploads?q=&amp;l=list&amp;p=1&amp;s=10&amp;sort=newest">https://zenodo.org/me/uploads?q=&amp;l=list&amp;p=1&amp;s=10&amp;sort=newest</a>.</p>
+<p>Cliquer sur “Edit” et modifier le nécessaire.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
