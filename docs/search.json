@@ -98,34 +98,6 @@
     "text": "3.2 Sur Zenodo\nSe référer à la documentation github sur Zenodo.\n\nSe rendre sur Zenodo et se connecter à Zenodo avec son compte Github, le lien sera ainsi fait entre les deux sites web.\nDans la page settings, https://zenodo.org/account/settings/github/, cliquer sur “Sync Now”\nRafraichir la page avec F5\nPositionner le bouton sur “ON” sur le dépôt de votre organisation (ici TAO-Soft/Tao-Soft)\nRafraichir la page avec F5\nDans la section “Enabled Repositories”, le nouveau dépôt devrait apparaitre. Cliquer dessus.\nOn est alors sur la page https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft, dans mon exemple.\nCliquer sur “Create release”, on se déplace alors sur une page du dépôt TAO-Soft du site Github\nDans “Choose a tag”, sélectioner le tag qui nous intéresse, par ex: v0.1.0.\nIndiquer le titre de la release. Par exemple: “Initial release v0.1.0”\nIl est conseiller de décrire la release (amélioration, bug fixed, …)\nCliquer sur le bouton vert “Publish release”\nCette release ayant été faite à partir de Zenodo, elle sera visible sur celui-ci. Rafraichir la page du dépôt sur Zenodo https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft\nToutes les informations apparaissent, dont le DOI"
   },
   {
-    "objectID": "sheets/clef_ssh.html",
-    "href": "sheets/clef_ssh.html",
-    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
-    "section": "",
-    "text": "ssh-keygen -t ed25519 -C \"prenom.nom@monemail.fr\"\nIl est maintenant conseillé de générer une clef ed255 plutôt que rsa. Indiquer une passphrase qui remplacera votre mot de passe et que votre ordinateur vous demandera qu’une seule fois par démarrage.\nSur mac: Ajouter dans le ~/.ssh/config :\nHost *\n    UseKeychain yes"
-  },
-  {
-    "objectID": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
-    "href": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
-    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
-    "section": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)",
-    "text": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)\nChanger “monlogin” avec votre login.\n\nToulon\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@lseet.univ-tln.fr\nssh monlogin@lseet.univ-tln.fr  #=&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@respore\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@ssh.osupytheas.fr\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@cluster.osupytheas.fr\nSi la copie a fonctionné, vous devriez voir apparaitre: “number of key added: 1” et vous devriez pouvoir vous connecter sans mot de passe (Ubuntu va vous demander un mot de passe, votre passphrase à la première connexion ssh)."
-  },
-  {
-    "objectID": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
-    "href": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
-    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
-    "section": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:",
-    "text": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:\n\nToulon\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@lseet.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nssh monlogin@lseet.univ-tln.fr # =&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@respore.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@meduse.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@cluster.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nsi cela ne fonctionne pas, chmod 700 -R ~/.ssh"
-  },
-  {
-    "objectID": "sheets/copernicusmarine.html",
-    "href": "sheets/copernicusmarine.html",
-    "title": "Comment utiliser l’outil Copernicusmarine",
-    "section": "",
-    "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
-  },
-  {
     "objectID": "sheets/ccamu.html",
     "href": "sheets/ccamu.html",
     "title": "Utilisation du cluster régional du CCAMU de Marseille",
@@ -159,6 +131,41 @@
     "title": "Utilisation du cluster régional du CCAMU de Marseille",
     "section": "Si la durée de transfert est supérieure à 30 min",
     "text": "Si la durée de transfert est supérieure à 30 min\nSe référer à la doc https://mesocentre.univ-amu.fr/sauvegarde-donnees/ et la suivre. Une fois connecté à un noeud de calcul comme proposé dans la doc, il faut créer un tunnel avec la machine cluster puis s’y connecter avec une des 3 méthodes plus haut (attention, le port est le 5530 et la machine est localhost):\nssh -X -C -N -f votrelogin@ssh.osupytheas.fr -L5530:cluster.osupytheas.fr:22\nsftp -P 5530 votrelogin@localhost"
+  },
+  {
+    "objectID": "sheets/copernicusmarine.html",
+    "href": "sheets/copernicusmarine.html",
+    "title": "Comment utiliser l’outil Copernicusmarine",
+    "section": "",
+    "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
+  },
+  {
+    "objectID": "sheets/clef_ssh.html",
+    "href": "sheets/clef_ssh.html",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "section": "",
+    "text": "ssh-keygen -t ed25519 -C \"prenom.nom@monemail.fr\"\nIl est maintenant conseillé de générer une clef ed255 plutôt que rsa. Indiquer une passphrase qui remplacera votre mot de passe et que votre ordinateur vous demandera qu’une seule fois par démarrage.\nSur mac: Ajouter dans le ~/.ssh/config :\nHost *\n    UseKeychain yes"
+  },
+  {
+    "objectID": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
+    "href": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "section": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)",
+    "text": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)\nChanger “monlogin” avec votre login.\n\nToulon\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@lseet.univ-tln.fr\nssh monlogin@lseet.univ-tln.fr  #=&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@respore\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@ssh.osupytheas.fr\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@cluster.osupytheas.fr\nSi la copie a fonctionné, vous devriez voir apparaitre: “number of key added: 1” et vous devriez pouvoir vous connecter sans mot de passe (Ubuntu va vous demander un mot de passe, votre passphrase à la première connexion ssh)."
+  },
+  {
+    "objectID": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
+    "href": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "section": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:",
+    "text": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:\n\nToulon\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@lseet.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nssh monlogin@lseet.univ-tln.fr # =&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@respore.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@meduse.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@cluster.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nsi cela ne fonctionne pas, chmod 700 -R ~/.ssh"
+  },
+  {
+    "objectID": "sheets/anaconda_oceanographie.html",
+    "href": "sheets/anaconda_oceanographie.html",
+    "title": "Anaconda pour l’oceanographie",
+    "section": "",
+    "text": "Suivre cette doc pour l’installation de Anaconda de manière générale:A FAIRE Installation de pyferret avec Anaconda\n\nInstallation de Anaconda\nIl est d’abord nécesaire d’installer Anaconda\n\n\nCréation d’un environnement pour l’océanographie\nconda create --name oceano\nconda activate oceano\nconda install pandas numpy xarray netCDF4 dask scipy ipython jupyter cartopy numba\nconda install matplotlib ipykernel cloudpickle ipykernel\nconda install -c conda-forge xgcm hdf5storage\n\n\nCréation d’un autre environnement avec pyferret\nSi on veut aussi installer pyferret dans le même environnement\nconda create --name FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets --yes\nconda activate FERRET\nconda install -c conda-forge xgcm hdf5storage xarray \nconda install matplotlib netCDF4 ipython jupyter cartopy numba ipykernel\nremarque:\n- numpy est installé automatiquement par dépendance de pyferret - pandas, dask, cloudpickle, scipy sont installés automatiquement aussi par dépendances.\n\n\nUtilisation de ces environnements\nPour utiliser cet environnement:\nconda activate oceano\nPour désactiver cet environnement lorsqu’on le souhaite:\nconda deactivate\nremarque: - pas d’installation de spyder (incompatibilités, … si quelqu’un a une solution, je suis preneuse…)\n\n\nInstallation d’un environnement conda pour Copernicus:\nVoir la doc Documentation sur Copernicus Marine ."
   },
   {
     "objectID": "sheets/config_globale_ubuntu.html",
