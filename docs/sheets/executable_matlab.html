@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Camille Mazoyer - Scientific computing cheatsheets at the laboratory MIO in oceanography</title>
+<title>Camille Mazoyer - Créer un exécutable Matlab</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Camille Mazoyer</span>
     </a>
   </div>
@@ -89,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -108,22 +142,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#configuration-globale" id="toc-configuration-globale" class="nav-link active" data-scroll-target="#configuration-globale">Configuration globale</a></li>
-  <li><a href="#informatique-divers" id="toc-informatique-divers" class="nav-link" data-scroll-target="#informatique-divers">Informatique (divers)</a></li>
-  <li><a href="#fiches-logiciels" id="toc-fiches-logiciels" class="nav-link" data-scroll-target="#fiches-logiciels">Fiches logiciels</a>
-  <ul class="collapse">
-  <li><a href="#anaconda" id="toc-anaconda" class="nav-link" data-scroll-target="#anaconda">Anaconda</a></li>
-  <li><a href="#ferret" id="toc-ferret" class="nav-link" data-scroll-target="#ferret">Ferret</a></li>
-  <li><a href="#fortran" id="toc-fortran" class="nav-link" data-scroll-target="#fortran">Fortran</a></li>
-  <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
-  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
-  </ul></li>
-  <li><a href="#utilisation-de-clusters-locaux-régionaux-nationaux" id="toc-utilisation-de-clusters-locaux-régionaux-nationaux" class="nav-link" data-scroll-target="#utilisation-de-clusters-locaux-régionaux-nationaux">Utilisation de clusters locaux, régionaux, nationaux</a>
-  <ul class="collapse">
-  <li><a href="#cluster-de-losu-pytheas" id="toc-cluster-de-losu-pytheas" class="nav-link" data-scroll-target="#cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</a></li>
-  <li><a href="#cluster-régional-ccamu-marseille" id="toc-cluster-régional-ccamu-marseille" class="nav-link" data-scroll-target="#cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</a></li>
-  <li><a href="#idris" id="toc-idris" class="nav-link" data-scroll-target="#idris">IDRIS</a></li>
-  </ul></li>
+  <li><a href="#suivre-la-doc-du-sip" id="toc-suivre-la-doc-du-sip" class="nav-link active" data-scroll-target="#suivre-la-doc-du-sip">1. Suivre la doc du SIP</a></li>
+  <li><a href="#etape-1-création-de-lexécutable-choix-des-arguments" id="toc-etape-1-création-de-lexécutable-choix-des-arguments" class="nav-link" data-scroll-target="#etape-1-création-de-lexécutable-choix-des-arguments">2. Etape 1: création de l’exécutable, choix des arguments</a></li>
+  <li><a href="#lancement-du-code-via-slurm" id="toc-lancement-du-code-via-slurm" class="nav-link" data-scroll-target="#lancement-du-code-via-slurm">3. Lancement du code via slurm</a></li>
   </ul>
 </nav>
     </div>
@@ -132,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Scientific computing cheatsheets at the laboratory MIO in oceanography</h1>
+<h1 class="title">Créer un exécutable Matlab</h1>
 </div>
 
 
@@ -149,109 +170,42 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>auteur: Camille Mazoyer, camille.mazoyer@ird.fr</p>
-<p>maj: janvier 2024</p>
-<p>Merci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation.</p>
-<section id="configuration-globale" class="level1">
-<h1>Configuration globale</h1>
-<ul>
-<li><p><a href="sheets/config_globale_ubuntu.html">Configurer son ordi Ubuntu pour le calcul scientifique</a></p></li>
-<li><p>Configurer son ordi Mac pour le calcul scientifique (à faire)</p></li>
-<li><p>Travailler à l’université de Toulon sous proxy</p></li>
-</ul>
+<p>But: pouvoir utiliser son script matlab sur une machine qui n’a pas de licence matlab</p>
+<p>Inconvénients: il faut créer l’éxécutable sur la même architecture que l’architecture cible (ex: linux pour linux, …)</p>
+<section id="suivre-la-doc-du-sip" class="level1">
+<h1>1. Suivre la doc du SIP</h1>
+<p><a href="https://calcul.osupytheas.fr/?p=478">https://calcul.osupytheas.fr/?p=478</a></p>
 </section>
-<section id="informatique-divers" class="level1">
-<h1>Informatique (divers)</h1>
-<ul>
-<li><p>Connexion à un ordinateur via un tunnel</p></li>
-<li><p><a href="sheets/clef_ssh.html">Générer une clef ssh</a></p></li>
-<li><p>screen : détacher des processus / nohup</p></li>
-<li><p>rsync (local ou via ssh)</p></li>
-<li><p>Garder une connexion ssh persistante (éviter les déconnexions trop rapides)</p></li>
-<li><p>Connexion à distance à Tools</p></li>
-</ul>
+<section id="etape-1-création-de-lexécutable-choix-des-arguments" class="level1">
+<h1>2. Etape 1: création de l’exécutable, choix des arguments</h1>
+<p>On peut choisir des arguments de notre code matlab flottants et non de type chaine de charactere: Avant la phrase du SIP ” Une fois vos codes et modules ajoutés, vous devez créer le package en cliquant sur Package.”, c’est important de dire que les arguments donnés au code peuvent être indiqués en chaines de caractères (par défault) ou en flottants (ce dont moi j’avais besoin). Il y a une case à cocher. Tous les arguments doivent être du même type (flottant ou string)</p>
 </section>
-<section id="fiches-logiciels" class="level1">
-<h1>Fiches logiciels</h1>
+<section id="lancement-du-code-via-slurm" class="level1">
+<h1>3. Lancement du code via slurm</h1>
+<p>Pour la Deuxième étape indiquée sur <a href="https://calcul.osupytheas.fr/?p=478">calcul.osupytheas.fr</a>, je propose une autre solution que je trouve plus lisible quand on a des arguments. Mais c’est à vous de voir si vous préférez le tutorial du SIP ou cette possibilité: - 1. Copier le script run_xxx.sh contenu dans le répertoire for_testing vers notre répertoire de travail et modifier la ligne pointant vers l’exécutable, si besoin : <code>bash     exe_dir=/home/mazoyer/matlab_to_exe/rep_exe</code> - 2. Créer un fichier run.slurm de lancement batch comme suit, si l’on a un script matlab avec 3 arguments qui seront ici arg1, arg2, arg3 (à remplacer dans votre cas). Le répertoire Matlab /usr/local/MATLAB/MATLAB_Runtime/v910 est le répertoire racine de Matlab contenant par exemple le répertoire runtime/glnxa64.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">#!/bin/sh</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># script pour l'exécution des codes Matlab packages.</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Environnement MATLAB Runtime</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SBATCH --job-name=matlab_MCR</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SBATCH --time=240:00:00</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SBATCH --mail-user=xxx.yyy@ird.fr</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SBATCH --partition=seq</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SBATCH --output=resultslumr.log</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">'start matlab'</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">time</span> sh run_xxx.sh /usr/local/MATLAB/MATLAB_Runtime/v910 arg1 arg2 arg3</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">'end matlab'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><p>Mémos, raccourcis et améliorations de VIM/GVIM</p></li>
-<li><p>Mémos, raccourcis et améliorations de GIT</p></li>
-<li><p>Utilisation de GDB avec exemple de CROCO sur le cluster de l’OSU</p></li>
-<li><p>Utilisation de Visual Studio Code, éditeur de code</p></li>
-<li><p>Installation et configuration de x2go</p></li>
-<li><p>Récupération de fichiers netcdf via Copernicus</p>
-<ul>
-<li>Motuclient (deprecated?)</li>
-<li><a href="sheets/copernicusmarine.html">Copernicusmarine</a></li>
-</ul></li>
-<li><p><a href="sheets/zenodo_github.html">Utilisation de Zenodo et Github pour mettre son code sous DOI</a></p></li>
+<li><ol start="3" type="1">
+<li>Pour lancer ensuite l’exécutable, taper la commande:</li>
+</ol></li>
 </ul>
-<section id="anaconda" class="level2">
-<h2 class="anchored" data-anchor-id="anaconda">Anaconda</h2>
-<ul>
-<li><p>Installation de pyferret avec Anaconda</p></li>
-<li><p><a href="sheets/anaconda_oceanographie.html">Installation d’un environnement Anaconda pour l’océanographie</a></p></li>
-<li><p>Partager un environnement Anaconda entre deux utilisateurs d’une même machine</p></li>
-</ul>
-</section>
-<section id="ferret" class="level2">
-<h2 class="anchored" data-anchor-id="ferret">Ferret</h2>
-<ul>
-<li>Premiers pas en ferret ( à faire)</li>
-</ul>
-</section>
-<section id="fortran" class="level2">
-<h2 class="anchored" data-anchor-id="fortran">Fortran</h2>
-<ul>
-<li><p>Options de compilation pour debugger en Fortran</p></li>
-<li><p>utilisation du debugger gdb avec croco (sur le cluster OSU)</p></li>
-<li><p>Listing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop</p></li>
-</ul>
-</section>
-<section id="matlab" class="level2">
-<h2 class="anchored" data-anchor-id="matlab">Matlab</h2>
-<ul>
-<li><a href="sheets/executable_matlab.html">Créer un exécutable sous matlab: exemple sur le cluster de l’OSU</a></li>
-</ul>
-</section>
-<section id="python" class="level2">
-<h2 class="anchored" data-anchor-id="python">Python</h2>
-<ul>
-<li><p>Utilisation de google collab pour des jupyter notebook python</p></li>
-<li><p>CROCO avec Python .</p></li>
-<li><p>la bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html</p></li>
-<li><p>la bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n’est plus à jour)</p></li>
-<li><p>How to Make Python Code Run Incredibly Fast</p></li>
-<li><p>Utilisation de xarray conseillée (à faire)</p></li>
-</ul>
-</section>
-</section>
-<section id="utilisation-de-clusters-locaux-régionaux-nationaux" class="level1">
-<h1>Utilisation de clusters locaux, régionaux, nationaux</h1>
-<section id="cluster-de-losu-pytheas" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</h2>
-<ul>
-<li><p>cluster de l’osupytheas :https://calcul.osupytheas.fr/</p></li>
-<li><p>Documentation pour une Connexion à distance à Tools</p></li>
-</ul>
-</section>
-<section id="cluster-régional-ccamu-marseille" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</h2>
-<ul>
-<li><p><a href="sheets/ccamu.html">Mes docs sur l’utilisation du Mésocentre CCAMU de Marseille</a></p></li>
-<li><p>tutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/</p></li>
-</ul>
-</section>
-<section id="idris" class="level2">
-<h2 class="anchored" data-anchor-id="idris">IDRIS</h2>
-<ul>
-<li><p>http://www.idris.fr</p></li>
-<li><p>cheat sheet ici=&gt; http://www.idris.fr/media/su/idrismemento1.pdf</p></li>
-<li><p>Utilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html</p></li>
-</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sbatch</span> run.slurm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Attention! le run batch ne s’arrête pas une fois la fin de l’éxécution matlab, il faut penser à killer le job evéntuellement.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

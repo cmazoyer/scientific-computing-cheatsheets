@@ -1,0 +1,46 @@
+---
+title: Créer un exécutable Matlab
+---
+
+But: pouvoir utiliser son script matlab sur une machine qui n'a pas de licence matlab
+
+Inconvénients: il faut créer l'éxécutable sur la même architecture que l'architecture cible (ex: linux pour linux, ...)
+
+# 1. Suivre la doc du SIP
+
+[https://calcul.osupytheas.fr/?p=478](https://calcul.osupytheas.fr/?p=478)
+   
+# 2. Etape 1: création de l'exécutable, choix des arguments 
+On peut choisir des arguments de notre code matlab flottants et non de type chaine de charactere: 
+Avant la phrase du SIP " Une fois vos codes et modules ajoutés, vous devez créer le package en cliquant sur Package.", c'est important de dire que les arguments donnés au code peuvent être indiqués en chaines de caractères (par défault) ou en flottants (ce dont moi j'avais besoin). Il y a une case à cocher. Tous les arguments doivent être du même type (flottant ou string)
+   
+# 3. Lancement du code via slurm
+Pour la Deuxième étape indiquée sur [calcul.osupytheas.fr](https://calcul.osupytheas.fr/?p=478), je propose une autre solution que je trouve plus lisible quand on a des arguments. Mais c'est à vous de voir si vous préférez le tutorial du SIP ou cette possibilité:
+- 1. Copier le script run_xxx.sh contenu dans le répertoire for_testing vers notre répertoire de travail et modifier la ligne pointant vers l'exécutable, si besoin : 
+    ```bash
+    exe_dir=/home/mazoyer/matlab_to_exe/rep_exe
+    ```
+- 2. Créer un fichier run.slurm de lancement batch comme suit, si l'on a un script matlab avec 3 arguments qui seront ici arg1, arg2, arg3 (à remplacer dans votre cas).
+Le répertoire Matlab /usr/local/MATLAB/MATLAB_Runtime/v910 est le répertoire racine de Matlab contenant par exemple le répertoire runtime/glnxa64.  
+```bash
+    #!/bin/sh
+    # script pour l'exécution des codes Matlab packages.
+    #
+    #Environnement MATLAB Runtime
+
+    #SBATCH --job-name=matlab_MCR
+    #SBATCH --time=240:00:00
+    #SBATCH --mail-user=xxx.yyy@ird.fr
+    #SBATCH --partition=seq
+    #SBATCH --output=resultslumr.log
+
+    echo 'start matlab'
+    time sh run_xxx.sh /usr/local/MATLAB/MATLAB_Runtime/v910 arg1 arg2 arg3
+    echo 'end matlab'
+```
+
+- 3. Pour lancer ensuite l'exécutable, taper la commande: 
+```bash
+	sbatch run.slurm
+```
+Attention! le run batch ne s'arrête pas une fois la fin de l'éxécution matlab, il faut penser à killer le job evéntuellement.  
