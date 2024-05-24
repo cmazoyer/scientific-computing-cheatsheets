@@ -1,0 +1,60 @@
+---
+title: Rsync (local ou via ssh)
+---
+
+# rsync ssh exemple 1: synchronizer deux repertoires locaux
+
+```bash
+rsync -uav /home/.../2015 mon_nouveau_rep/.
+-a, --archive              archive mode; equals -rlptgoD (no -H,-A,-X)
+-u, --update                skip files that are newer on the receiver
+-v, --verbose              increase verbosity
+```
+
+# rsync ssh exemple 2: synchronizer le répertoire 2015 de la machine distante dans repertoire courant
+
+```bash
+rsync -uave ssh user@machine:/home/.../2015 .
+-a, --archive              archive mode; equals -rlptgoD (no -H,-A,-X)
+-u, --update                skip files that are newer on the receiver
+-v, --verbose              increase verbosity
+-e, --rsh=COMMAND          specify the remote shell to use
+```
+
+# rsync ssh exemple 3:  ssh et port différent du port 22 (par ex via un tunnel)
+
+```bash
+rsync -uave 'ssh -p 5530' mazoyer@localhost:/home/mazoyer/CROCO/SRC/croco/croco_git_dev_2021_MIO_for_MUSTANG .
+```
+
+recuperation de jean-zay sur respore:
+
+```bash
+tunneljeanzay
+rsync -uave 'ssh -p 5129' rutv918@localhost:/gpfsstore/rech/utv/rutv918/ergon/output_mitgcm/2020_PHYS_ARPEGE/TBAY_20* .
+```
+
+# rsync ssh exemple 4: script IDRIS vers ordi local
+
+```bash
+#script de recuperation des netcdf de l'IDRIS vers le repertoire /mnt/BIOPHY-RW/Vincent/Camille_IDRIS_OFC sur ssh
+
+# projet : Ocean Front Change
+# avec : Vincent Rossi
+# date : janvier 2020
+
+# u : avoid copying the files that we already have in the destination folder that have not been modified in the source folder
+# v : verbose
+# a :  archive
+# r : recursive
+
+cd /mnt/BIOPHY-RW/Vincent/Camille_IDRIS_OFC
+cd average 
+rsync -uave ssh rutv918@jean-zay.idris.fr:/gpfsstore/rech/khe/ryff001/WOES_OUT/SCRATCH_RUN_MOZ1/roms_avg_*.nc .
+
+cd ../diagnostics 
+rsync -uave ssh rutv918@jean-zay.idris.fr:/gpfsstore/rech/khe/ryff001/WOES_OUT/SCRATCH_RUN_MOZ1/roms_avg_*.nc .
+
+cd ../surface_average
+rsync -uave ssh rutv918@jean-zay.idris.Fr:/gpfsstore/rech/khe/ryff001/WOES_OUT/SCRATCH_RUN_MOZ1/roms_surf_avg_* .
+```

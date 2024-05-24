@@ -24,7 +24,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [screen : détacher des processus / nohup](sheets/detacher_processus_nohup.html)
 
--   rsync (local ou via ssh)
+-   [rsync (local ou via ssh)](sheets/rsync.html)
 
 -   Garder une connexion ssh persistante (éviter les déconnexions trop rapides)
 
