@@ -154,6 +154,13 @@
     "text": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:\n\nToulon\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@lseet.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nssh monlogin@lseet.univ-tln.fr # =&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@respore.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@meduse.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@cluster.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nsi cela ne fonctionne pas, chmod 700 -R ~/.ssh"
   },
   {
+    "objectID": "sheets/universite_toulon_proxy.html",
+    "href": "sheets/universite_toulon_proxy.html",
+    "title": "Travailler à l’université de Toulon sous proxy",
+    "section": "",
+    "text": "A faire uniquement lorsque l’on est derrière un proxy avec authentification, connecté en RJ45. Attention, il faut éviter de mettre des “!” ou “@” dans son mot de passe, cela peut poser problème en ligne de commande ensuite.\n\n1. Git\nCréer le fichier ~/.gitconfig s’il n’existe pas. Y ajouter les infos sur le proxy:\n[https]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n[http]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n        proxyAuthMethod = basic\n\n\n2. Wget\nconfigurer Wget pour les proxy selon stackoverflow.com.\nexemple:\nindiquer dans le fichier .bashrc:\nexport http_proxy=cache.univ-tln.fr:3128\nexport https_proxy=cache.univ-tln.fr:3128\npuis en ligne de commande, suivant ce qu’on veut télécharger:\nwget --proxy-user=\"tonlogin\" --proxy-password=\"tonmotdepasse\" \"https://xxxx.tar.gz\"\n\n\n3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi …)\nCréer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la doc de Anaconda.\nfichier .condarc\nproxy_servers:\n    http: http://user:pass@cache.univ-tln.fr:3128\n    https: https://user:pass@cache.univ-tln.fr:3128"
+  },
+  {
     "objectID": "sheets/copernicusmarine.html",
     "href": "sheets/copernicusmarine.html",
     "title": "Comment utiliser l’outil Copernicusmarine",

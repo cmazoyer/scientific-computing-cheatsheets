@@ -1,0 +1,48 @@
+---
+title: Travailler à l'université de Toulon sous proxy
+---
+
+A faire uniquement lorsque l'on est derrière un proxy avec authentification, connecté en RJ45.
+Attention, il faut éviter de mettre des "!" ou "@" dans son mot de passe, cela peut poser problème en ligne de commande ensuite.
+
+# 1. Git
+
+Créer le fichier ~/.gitconfig s'il n'existe pas. Y ajouter les infos sur le proxy:
+```bash
+[https]
+        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128
+        sslVerify = false
+[http]
+        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128
+        sslVerify = false
+        proxyAuthMethod = basic
+```
+
+# 2. Wget
+
+configurer Wget pour les proxy selon [stackoverflow.com](https://stackoverflow.com/questions/11211705/how-to-set-proxy-for-wget).
+
+exemple:
+
+indiquer dans le fichier .bashrc:
+
+```bash
+export http_proxy=cache.univ-tln.fr:3128
+export https_proxy=cache.univ-tln.fr:3128
+```
+puis en ligne de commande, suivant ce qu'on veut télécharger:
+```bash
+wget --proxy-user="tonlogin" --proxy-password="tonmotdepasse" "https://xxxx.tar.gz"
+```
+
+# 3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi ...)
+
+Créer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la [doc de Anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html#config-proxy).
+
+fichier .condarc
+
+```bash
+proxy_servers:
+    http: http://user:pass@cache.univ-tln.fr:3128
+    https: https://user:pass@cache.univ-tln.fr:3128
+```
