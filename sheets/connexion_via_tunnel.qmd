@@ -1,0 +1,123 @@
+---
+title: Connexion à un ordinateur via un tunnel
+---
+
+3 exemples ci-dessous:
+
+- vers respore à Toulon
+  
+- vers jean-zay à l'IDRIS
+  
+- vers cluster à Luminy 
+
+
+# Example 1: son laptop vers respore (via lseet.univ-tln.fr)
+
+## Mise en place des scripts 
+
+à écrire dans .bash_aliases :
+```bash
+        alias hrespore="ssh mazoyer@respore"
+        alias tunnelrespore='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5533:respore:22'
+        alias htunnelrespore='ssh -X -p 5533 mazoyer@localhost'
+        alias sftprespore='sftp -P 5533 mazoyer@localhost'
+        # kill tunnel si besoin
+        alias ps="ps aux"
+        killtunnelrespore(){
+          idtunnel=`ps | grep -i respore | grep -i ssh | awk '{print $2}'`
+          kill -9 $idtunnel
+        }
+```
+
+## Creation du tunnel 
+
+A faire une seule fois au démarrage de son ordinateur, pour créer le tunnel:  
+```bash
+tunnelrespore
+```
+
+## utilisation
+A chaque fois qu'on veut se connecter à respore: 
+
+```bash
+htunnelrespore  (pour home by tunnelrespore)
+```
+
+Pour échanger des fichiers entre son ordi et respore: 
+```bash
+sftprespore
+```
+
+puis pour envoyer un fichier vers le répertoire repertoire_sur_respore de Respore:
+```bash
+put monfichier repertoire_sur_respore/.
+```
+
+pour récupérer un fichier de repertoire_sur_respore vers mon ordi:
+```bash
+get repertoire_sur_respore/monfichier .
+```
+
+Si le tunnel ne fonctionne plus, il faut le détruire puis le recréer. La commande killtunnelrespore gère la destruction de manière automatique: 
+```bash
+killtunnelrespore
+tunnelrespore
+```
+
+# Example 2: son laptop vers jean-zay à l'IDRIS (via lseet.univ-tln.fr)
+
+à écrire dans .bash_aliases :
+```bash
+# tunnel idris JEAN ZAY
+        alias tunneljeanzay='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5129:jean-zay.idris.fr:22'
+        alias htunneljeanzay='ssh -X -p 5129 rutv918@localhost'
+        alias sftpjeanzayByLseet='sftp -P 5129 rutv918@localhost'
+        # kill tunnel si besoin
+        alias ps="ps aux"
+        killtunneljeanzay(){
+          idtunnel=`ps | grep -i zay | grep -i ssh | awk '{print $2}'`
+          kill -9 $idtunnel
+        }
+```
+
+idem pour les explications que le 1.
+
+# Example 3: son laptop vers le cluster de l'OSU (cluster.osupytheas.fr) (via ssh.osupytheas.fr)
+
+à écrire dans .bash_aliases :
+```bash
+        alias tunnelcluster='ssh -X -N -f mazoyer@ssh.osupytheas.fr -L5530:cluster.osupytheas.fr:22'
+        alias htunnelcluster='ssh -X -p 5530 mazoyer@localhost'
+        alias sftpcluster='sftp -P 5530 mazoyer@localhost'
+        # kill tunnel si besoin
+        alias ps="ps aux"
+        killtunnelcluster(){
+          idtunnel=`ps | grep -i cluster | grep -i ssh | awk '{print $2}'`
+          kill -9 $idtunnel
+        }
+```
+
+# Example 4: son laptop vers la machine tools de l'OSU (via ssh.osupytheas.fr)
+
+à écrire dans .bash_aliases :
+```bash
+        alias tunneltools='ssh -X -N -f mazoyer@ssh.osupytheas.fr -L5531:tools.osupytheas.fr:22'
+        alias htunneltools='ssh -X -p 5531 mazoyer@localhost'
+        alias sftptools='sftp -P 5531 mazoyer@localhost'
+        # kill tunnel si besoin
+        alias ps="ps aux"
+        killtunneltools(){
+          idtunnel=`ps | grep -i tools.osupytheas | grep -i ssh | awk '{print $2}'`
+          kill -9 $idtunnel
+        }
+```
+
+# attention : sur Mac, le killtunnel est un peu différent:
+
+```bash
+        # kill tunnel si besoin
+        killtunneltools(){
+          idtunnel=`ps -A | grep -i tools.osupytheas | grep -i ssh | awk '{print $1}'`
+          kill -9 $idtunnel
+        }
+```

@@ -18,7 +18,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 # Informatique (divers)
 
--   Connexion à un ordinateur via un tunnel
+-   [Connexion à un ordinateur via un tunnel](sheets/connexion_via_tunnel.html)
 
 -   [Générer une clef ssh](sheets/clef_ssh.html)
 
