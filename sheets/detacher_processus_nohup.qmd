@@ -1,0 +1,86 @@
+---
+title: détacher des processus avec la commande nohup
+---
+
+But: pouvoir detacher un processus et le faire tourner meme si on n'est pas connecté:
+(voir [https://www.tecmint.com/keep-remote-ssh-sessions-running-after-disconnection/](https://www.tecmint.com/keep-remote-ssh-sessions-running-after-disconnection/) )
+
+Fonctionnement
+======================
+
+Pour créer un screen (nommé nomduscreen)
+```bash
+screen -S nomduscreen
+```
+
+Pour sortir du screen, le détacher:
+"To detach a screen from the remote terminal, just press “Ctrl+a” immediately followed by “d”"
+ctrl+a puis d
+
+pour voir tous les screen qu'on a, dans un terminal normal:
+```bash
+screen -r
+There are several suitable screens on:
+    2283.pts-100.service7    (Detached)
+    2221.testcamille    (Detached)
+```
+    s'il n'y a qu'un screen, screen -r permet de revenir au screen 
+   
+    si plusieurs screen, cela les liste
+
+
+Pour aller dedans:
+
+```bash
+# si le résultat de la commande est un tableau
+screen -r 2221.testcamille
+  # si on veut se connecter au screen avec ce numéro
+```
+
+Pour en supprimer un, aller dedans puis:
+```bash
+exit 
+```
+
+Autres infos à trier:
+======================
+
+Execution de son programme : 
+
+ ```bash
+screen -S session_julien ./monprog >output.txt 2>&1&
+```
+
+→ et on ferme la fenetre (on peut egalement fermer sa session cela ne pose pas de pb)
+
+
+Pour voir si il y a des screens qui tournent : 
+
+```bash
+screen -ls
+```
+
+De chez soi on se connecte sur la machine sur laquelle on a des scripts qui tournent en nohup et on recupere le shell via la commande : 
+```bash
+screen -r session_julien
+```
+
+screen et le shell multi-utilisateur 
+pour travailler avec un collegue de travail sur un meme shell ! 
+```bash
+Moi (utilisateur root)
+Moi : chmod u+s /usr/bin/screen
+Moi : screen -S test
+
+Lui : screen -r root/ (bien specifier le "/" a la fin)
+```
+
+et voila !
+
+Quelques commandes utiles
+
+- Taper screen pour lancer un shell screen
+- Ctrl-a c : cree un nouveau shell screen
+- Ctrl-a 0 : Passe au shell numero 0
+- Ctrl-a 1 : Passe au shell numero 1
+- Ctrl-a ? : Voir les raccourcis 

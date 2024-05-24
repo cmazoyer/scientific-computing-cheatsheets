@@ -22,7 +22,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [Générer une clef ssh](sheets/clef_ssh.html)
 
--   screen : détacher des processus / nohup
+-   [screen : détacher des processus / nohup](sheets/detacher_processus_nohup.html)
 
 -   rsync (local ou via ssh)
 
