@@ -26,9 +26,9 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [rsync (local ou via ssh)](sheets/rsync.html)
 
--   Garder une connexion ssh persistante (éviter les déconnexions trop rapides)
+-   [Garder une connexion ssh persistante](sheets/connexion_longue_ssh.html) (éviter les déconnexions trop rapides)
 
--   Connexion à distance à Tools
+-   [Connexion à distance à Tools](sheets/connexion_distance_tools.html)
 
 # Fiches logiciels
 

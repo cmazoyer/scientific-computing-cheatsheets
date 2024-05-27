@@ -1,0 +1,24 @@
+---
+title: Connexion à distance à Tools
+---
+
+# Via un tunnel SSH
+Voir la documentation: [Connexion à un ordinateur via un tunnel](connexion_via_tunnel.html)
+
+# Via le VPN de l'OSU pytheas
+Se référer à la [Documentation du VPN](https://documentation.osupytheas.fr/?p=4373).
+Une fois le VPN lancé, il suffit de se connecter à tools.osupytheas.fr en ssh par ex, ou avec putty pour windows.
+
+# Via Rdesktop (pas fonctionnel ou fonctionnel?)
+Installation sous ubuntu via:
+```bash
+apt-get install rdesktop
+```
+
+Utilisation
+```bash
+rdesktop -u votrelogin 172.20.9.140
+```
+
+# Via x2go
+Solution possible. A compléter.

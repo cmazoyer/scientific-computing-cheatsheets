@@ -1,0 +1,9 @@
+---
+title: Garder une connexion ssh persistante (éviter les déconnexions trop rapides)
+---
+
+Il faut editer votre fichier de config ssh qui se trouve dans votre $home. Le fichier est : ~/.ssh/config
+```bash
+Host *
+    ServerAliveInterval 240 
+```

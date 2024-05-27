@@ -63,6 +63,13 @@
     "text": "IDRIS\n\nhttp://www.idris.fr\ncheat sheet ici=&gt; http://www.idris.fr/media/su/idrismemento1.pdf\nUtilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html"
   },
   {
+    "objectID": "sheets/connexion_longue_ssh.html",
+    "href": "sheets/connexion_longue_ssh.html",
+    "title": "Garder une connexion ssh persistante (éviter les déconnexions trop rapides)",
+    "section": "",
+    "text": "Il faut editer votre fichier de config ssh qui se trouve dans votre $home. Le fichier est : ~/.ssh/config\nHost *\n    ServerAliveInterval 240"
+  },
+  {
     "objectID": "sheets/rsync.html",
     "href": "sheets/rsync.html",
     "title": "Rsync (local ou via ssh)",
@@ -222,6 +229,13 @@
     "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
     "section": "3.2 Sur Zenodo",
     "text": "3.2 Sur Zenodo\nSe référer à la documentation github sur Zenodo.\n\nSe rendre sur Zenodo et se connecter à Zenodo avec son compte Github, le lien sera ainsi fait entre les deux sites web.\nDans la page settings, https://zenodo.org/account/settings/github/, cliquer sur “Sync Now”\nRafraichir la page avec F5\nPositionner le bouton sur “ON” sur le dépôt de votre organisation (ici TAO-Soft/Tao-Soft)\nRafraichir la page avec F5\nDans la section “Enabled Repositories”, le nouveau dépôt devrait apparaitre. Cliquer dessus.\nOn est alors sur la page https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft, dans mon exemple.\nCliquer sur “Create release”, on se déplace alors sur une page du dépôt TAO-Soft du site Github\nDans “Choose a tag”, sélectioner le tag qui nous intéresse, par ex: v0.1.0.\nIndiquer le titre de la release. Par exemple: “Initial release v0.1.0”\nIl est conseiller de décrire la release (amélioration, bug fixed, …)\nCliquer sur le bouton vert “Publish release”\nCette release ayant été faite à partir de Zenodo, elle sera visible sur celui-ci. Rafraichir la page du dépôt sur Zenodo https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft\nToutes les informations apparaissent, dont le DOI"
+  },
+  {
+    "objectID": "sheets/connexion_distance_tools.html",
+    "href": "sheets/connexion_distance_tools.html",
+    "title": "Connexion à distance à Tools",
+    "section": "",
+    "text": "Via un tunnel SSH\nVoir la documentation: Connexion à un ordinateur via un tunnel\n\n\nVia le VPN de l’OSU pytheas\nSe référer à la Documentation du VPN. Une fois le VPN lancé, il suffit de se connecter à tools.osupytheas.fr en ssh par ex, ou avec putty pour windows.\n\n\nVia Rdesktop (pas fonctionnel ou fonctionnel?)\nInstallation sous ubuntu via:\napt-get install rdesktop\nUtilisation\nrdesktop -u votrelogin 172.20.9.140\n\n\nVia x2go\nSolution possible. A compléter."
   },
   {
     "objectID": "sheets/config_globale_ubuntu.html",
