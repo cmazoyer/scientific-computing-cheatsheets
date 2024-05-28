@@ -1,0 +1,82 @@
+---
+title: Utilisation de Visual Studio Code
+---
+
+# 1. Configuration
+
+- Générer une clefs ssh (voir Générer une clef ssh ). Ici, j'utilise la clef id_rsa pour respore et id_ed25519 pour le mesocentre CCAMU.
+- Créer le fichier .ssh/config qui contient vos configurations.  
+
+Ici, Respore, cluster.osupytheas.fr et tools.osupytheas.fr sont des machines auxquelles j'accède via un tunnel (voir Connexion à un ordinateur via un tunnel). Par conséquence, leur hostname est localhost et non leur nom réél. Si vous utilisez localhost, comme ici, pensez à lancer le tunnel dans un terminal avant d'utiliser Visual Studio Code, sinon, cela ne fonctionnera pas.
+```bash
+Host *
+  ForwardAgent yes
+  ForwardX11 yes
+  ForwardX11Trusted yes
+  ServerAliveInterval 1920
+
+Host Respore
+  HostName localhost
+  ForwardX11Trusted yes
+  user mazoyer
+  IdentityFile ~/.ssh/id_rsa
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 600
+  Port 5533
+
+Host ClusterOSU
+  HostName localhost
+  ForwardX11Trusted yes
+  user mazoyer
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 600
+  Port 5530
+
+Host ToolsOSU
+  HostName localhost
+  ForwardX11Trusted yes
+  user mazoyer
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 600
+  Port 5531
+
+Host CCAMU
+  HostName login.mesocentre.univ-amu.fr
+  ForwardX11Trusted yes
+  user cmazoyer
+  PubkeyAuthentication yes
+  IdentityFile ~/.ssh/id_ed25519
+  ControlMaster auto
+  ControlPath ~/.ssh/sockets/%r@%h-%p
+  ControlPersist 600
+  port 22
+```
+
+- créer ensuite le répertoire sockets :
+```bash
+mkdir .ssh/sockets
+```
+
+- lancer le tunnel sur la machine sur laquelle on veut se connecter (ex: tunnelrespore) si nécessaire.
+- lancer Visual Studio Code
+- Installer l'extension "Remote ssh"
+- Redémarrer Visual Studio et sélectionner en bas à gauche le texte en vert (SSH ...). 
+
+![](../images/visual_studio_code_01.png)
+
+- Puis cliquer sur "Se connecter à l'hôte". 
+
+![](../images/visual_studio_code_02.png)
+
+- Vous devez voir apparaître toutes les machines que vous avez indiquées dans votre .ssh/config. Cliquer sur celle que vous souhaitez (pensez à bien activer un tunnel ssh si nécessaire, dans un terminal). 
+
+![](../images/visual_studio_code_03.png)
+
+# 2. Utilisation de Jupyter à distance
+
+- Sur la machine distante, il faut installer python (via anaconda par exemple) et la librairie jupyter.
+- Se connecter avec Visual Studio sur la machine distante  (voir section 1).
+- créer un fichier .ipynb  

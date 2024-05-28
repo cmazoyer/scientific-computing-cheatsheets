@@ -38,7 +38,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   Utilisation de GDB avec exemple de CROCO sur le cluster de l'OSU
 
--   Utilisation de Visual Studio Code, éditeur de code
+-   [Utilisation de Visual Studio Code, éditeur de code](sheets/visual_studio_code.html)
 
 -   Installation et configuration de x2go
 
