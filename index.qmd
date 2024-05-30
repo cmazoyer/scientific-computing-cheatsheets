@@ -51,7 +51,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## Anaconda
 
--   Installation de pyferret avec Anaconda
+-   [Installation de pyferret avec Anaconda](sheets/installation_pyferret.html)
 
 -   [Installation d'un environnement Anaconda pour l'océanographie](sheets/anaconda_oceanographie.html)
 

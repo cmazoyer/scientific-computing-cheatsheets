@@ -126,6 +126,34 @@
     "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
   },
   {
+    "objectID": "sheets/installation_pyferret.html",
+    "href": "sheets/installation_pyferret.html",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "",
+    "text": "Suivre les explications du README de pyferret: https://github.com/NOAA-PMEL/PyFerret/blob/master/README.md"
+  },
+  {
+    "objectID": "sheets/installation_pyferret.html#dernière-version-de-pyferret-pour-ubuntu-20.04",
+    "href": "sheets/installation_pyferret.html#dernière-version-de-pyferret-pour-ubuntu-20.04",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "Dernière version de Pyferret pour ubuntu > 20.04",
+    "text": "Dernière version de Pyferret pour ubuntu &gt; 20.04\nPour avoir la dernière version de PyFerret:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes"
+  },
+  {
+    "objectID": "sheets/installation_pyferret.html#pyferret-pour-ubuntu-20.04",
+    "href": "sheets/installation_pyferret.html#pyferret-pour-ubuntu-20.04",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "Pyferret pour ubuntu 20.04",
+    "text": "Pyferret pour ubuntu 20.04\nAttention! Pour installer PyFerret avec Ubuntu 20.04 TLS, choisir une version de 2020 (https://www.pmel.noaa.gov/maillists/tmap/ferret_users/fu_2019/msg01061.html)\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
+  },
+  {
+    "objectID": "sheets/installation_pyferret.html#usage-de-python-3.9-au-lieu-de-3.10",
+    "href": "sheets/installation_pyferret.html#usage-de-python-3.9-au-lieu-de-3.10",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "Usage de python 3.9 au lieu de 3.10",
+    "text": "Usage de python 3.9 au lieu de 3.10\nPyferret peut ne pas fonctionner avec python 3.10 (erreur: https://github.com/conda-forge/pyferret-feedstock/issues/94 ). Si c’est le cas, spécifier la version de python:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes\nou\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
+  },
+  {
     "objectID": "sheets/universite_toulon_proxy.html",
     "href": "sheets/universite_toulon_proxy.html",
     "title": "Travailler à l’université de Toulon sous proxy",
