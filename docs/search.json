@@ -126,6 +126,20 @@
     "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
   },
   {
+    "objectID": "sheets/partager_env_anaconda.html",
+    "href": "sheets/partager_env_anaconda.html",
+    "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
+    "section": "",
+    "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
+  },
+  {
+    "objectID": "sheets/universite_toulon_proxy.html",
+    "href": "sheets/universite_toulon_proxy.html",
+    "title": "Travailler à l’université de Toulon sous proxy",
+    "section": "",
+    "text": "A faire uniquement lorsque l’on est derrière un proxy avec authentification, connecté en RJ45. Attention, il faut éviter de mettre des “!” ou “@” dans son mot de passe, cela peut poser problème en ligne de commande ensuite.\n\n1. Git\nCréer le fichier ~/.gitconfig s’il n’existe pas. Y ajouter les infos sur le proxy:\n[https]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n[http]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n        proxyAuthMethod = basic\n\n\n2. Wget\nconfigurer Wget pour les proxy selon stackoverflow.com.\nexemple:\nindiquer dans le fichier .bashrc:\nexport http_proxy=cache.univ-tln.fr:3128\nexport https_proxy=cache.univ-tln.fr:3128\npuis en ligne de commande, suivant ce qu’on veut télécharger:\nwget --proxy-user=\"tonlogin\" --proxy-password=\"tonmotdepasse\" \"https://xxxx.tar.gz\"\n\n\n3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi …)\nCréer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la doc de Anaconda.\nfichier .condarc\nproxy_servers:\n    http: http://user:pass@cache.univ-tln.fr:3128\n    https: https://user:pass@cache.univ-tln.fr:3128"
+  },
+  {
     "objectID": "sheets/installation_pyferret.html",
     "href": "sheets/installation_pyferret.html",
     "title": "Installation de pyferret avec Anaconda",
@@ -152,13 +166,6 @@
     "title": "Installation de pyferret avec Anaconda",
     "section": "Usage de python 3.9 au lieu de 3.10",
     "text": "Usage de python 3.9 au lieu de 3.10\nPyferret peut ne pas fonctionner avec python 3.10 (erreur: https://github.com/conda-forge/pyferret-feedstock/issues/94 ). Si c’est le cas, spécifier la version de python:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes\nou\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
-  },
-  {
-    "objectID": "sheets/universite_toulon_proxy.html",
-    "href": "sheets/universite_toulon_proxy.html",
-    "title": "Travailler à l’université de Toulon sous proxy",
-    "section": "",
-    "text": "A faire uniquement lorsque l’on est derrière un proxy avec authentification, connecté en RJ45. Attention, il faut éviter de mettre des “!” ou “@” dans son mot de passe, cela peut poser problème en ligne de commande ensuite.\n\n1. Git\nCréer le fichier ~/.gitconfig s’il n’existe pas. Y ajouter les infos sur le proxy:\n[https]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n[http]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n        proxyAuthMethod = basic\n\n\n2. Wget\nconfigurer Wget pour les proxy selon stackoverflow.com.\nexemple:\nindiquer dans le fichier .bashrc:\nexport http_proxy=cache.univ-tln.fr:3128\nexport https_proxy=cache.univ-tln.fr:3128\npuis en ligne de commande, suivant ce qu’on veut télécharger:\nwget --proxy-user=\"tonlogin\" --proxy-password=\"tonmotdepasse\" \"https://xxxx.tar.gz\"\n\n\n3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi …)\nCréer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la doc de Anaconda.\nfichier .condarc\nproxy_servers:\n    http: http://user:pass@cache.univ-tln.fr:3128\n    https: https://user:pass@cache.univ-tln.fr:3128"
   },
   {
     "objectID": "sheets/visual_studio_code.html",

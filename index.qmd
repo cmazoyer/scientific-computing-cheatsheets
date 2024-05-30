@@ -55,7 +55,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [Installation d'un environnement Anaconda pour l'océanographie](sheets/anaconda_oceanographie.html)
 
--   Partager un environnement Anaconda entre deux utilisateurs d'une même machine
+-   [Partager un environnement Anaconda entre deux utilisateurs d'une même machine](sheets/partager_env_anaconda.html)
 
 ## Ferret
 

@@ -1,0 +1,40 @@
+---
+title: Partager un environnement Anaconda entre deux utilisateurs d'une même machine
+---
+
+# sur tout ordinateur
+
+L'utilisateur 1 "user1" a un environnement anaconda qui intéresse l'utilisateur 2 "user2" sur la même machine. Le partage de son environnement peut se faire de cette manière:
+
+le home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:
+```bash
+chmod 755 /home/user1
+chmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)
+                                  (il le voit en regardant son ~/.condarc)
+```
+
+user2 doit aller chercher l'environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:
+```bash
+envs_dirs:
+  - /home/user1/.conda/envs
+channels:
+  - conda-forge
+  - defaults
+```
+
+Apres avoir relancer un terminal, le user2 peut se servir de l'environnement anaconda de user1 nommé ici "environnementuser1":
+```bash
+conda activate environnementuser1
+```
+
+# Sur la machine tools : 
+Partager un répertoire ouvert en lecture à tous:
+```bash
+conda create -p /MODELISATION/ocean/CONDA/copernicus
+conda activate /MODELISATION/ocean/CONDA/copernicus
+```
+
+puis se créer l'alias :
+```bash
+alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'
+```
