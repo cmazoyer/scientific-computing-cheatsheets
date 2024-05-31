@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Camille Mazoyer - Scientific computing cheatsheets at the laboratory MIO in oceanography</title>
+<title>Camille Mazoyer - Mémos, raccourcis et améliorations de GIT</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Camille Mazoyer</span>
     </a>
   </div>
@@ -89,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -108,21 +142,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#configuration-globale" id="toc-configuration-globale" class="nav-link active" data-scroll-target="#configuration-globale">Configuration globale</a></li>
-  <li><a href="#informatique-divers" id="toc-informatique-divers" class="nav-link" data-scroll-target="#informatique-divers">Informatique (divers)</a></li>
-  <li><a href="#fiches-logiciels" id="toc-fiches-logiciels" class="nav-link" data-scroll-target="#fiches-logiciels">Fiches logiciels</a>
+  <li><a href="#commandes-de-base-informations-sur-git" id="toc-commandes-de-base-informations-sur-git" class="nav-link active" data-scroll-target="#commandes-de-base-informations-sur-git">1.Commandes de base, informations sur Git</a></li>
+  <li><a href="#git-à-travers-le-proxy-de-la-fac-de-toulon" id="toc-git-à-travers-le-proxy-de-la-fac-de-toulon" class="nav-link" data-scroll-target="#git-à-travers-le-proxy-de-la-fac-de-toulon">2.Git à travers le proxy de la fac de Toulon</a>
   <ul class="collapse">
-  <li><a href="#anaconda" id="toc-anaconda" class="nav-link" data-scroll-target="#anaconda">Anaconda</a></li>
-  <li><a href="#ferret" id="toc-ferret" class="nav-link" data-scroll-target="#ferret">Ferret</a></li>
-  <li><a href="#fortran" id="toc-fortran" class="nav-link" data-scroll-target="#fortran">Fortran</a></li>
-  <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
-  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  <li><a href="#gestion-du-proxy" id="toc-gestion-du-proxy" class="nav-link" data-scroll-target="#gestion-du-proxy">2.1 Gestion du proxy</a></li>
   </ul></li>
-  <li><a href="#utilisation-de-clusters-locaux-régionaux-nationaux" id="toc-utilisation-de-clusters-locaux-régionaux-nationaux" class="nav-link" data-scroll-target="#utilisation-de-clusters-locaux-régionaux-nationaux">Utilisation de clusters locaux, régionaux, nationaux</a>
+  <li><a href="#pour-aller-plus-loin-améliorations-git" id="toc-pour-aller-plus-loin-améliorations-git" class="nav-link" data-scroll-target="#pour-aller-plus-loin-améliorations-git">3 Pour aller plus loin, améliorations GIT</a>
   <ul class="collapse">
-  <li><a href="#cluster-de-losu-pytheas" id="toc-cluster-de-losu-pytheas" class="nav-link" data-scroll-target="#cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</a></li>
-  <li><a href="#cluster-régional-ccamu-marseille" id="toc-cluster-régional-ccamu-marseille" class="nav-link" data-scroll-target="#cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</a></li>
-  <li><a href="#idris" id="toc-idris" class="nav-link" data-scroll-target="#idris">IDRIS</a></li>
+  <li><a href="#faire-référence-à-des-bug-dans-un-commentaire-git" id="toc-faire-référence-à-des-bug-dans-un-commentaire-git" class="nav-link" data-scroll-target="#faire-référence-à-des-bug-dans-un-commentaire-git">3.1 Faire référence à des bug dans un commentaire git</a></li>
+  <li><a href="#différences-plus-visuels-avec-git--d-file" id="toc-différences-plus-visuels-avec-git--d-file" class="nav-link" data-scroll-target="#différences-plus-visuels-avec-git--d-file">3.2 Différences plus visuels avec git -d file</a></li>
+  <li><a href="#outil-pour-faciliter-la-fusion-de-modifications-le-merge" id="toc-outil-pour-faciliter-la-fusion-de-modifications-le-merge" class="nav-link" data-scroll-target="#outil-pour-faciliter-la-fusion-de-modifications-le-merge">3.3 Outil pour faciliter la fusion de modifications, le “merge”</a></li>
+  <li><a href="#comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers" id="toc-comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers" class="nav-link" data-scroll-target="#comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers">3.4 Comment ne pas tenir compte des changements de permissions sur les fichiers</a></li>
+  <li><a href="#commande-log-plus-visuelle" id="toc-commande-log-plus-visuelle" class="nav-link" data-scroll-target="#commande-log-plus-visuelle">3.5 Commande “log” plus visuelle</a></li>
+  <li><a href="#commande-hist" id="toc-commande-hist" class="nav-link" data-scroll-target="#commande-hist">3.6 Commande “hist”</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -132,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Scientific computing cheatsheets at the laboratory MIO in oceanography</h1>
+<h1 class="title">Mémos, raccourcis et améliorations de GIT</h1>
 </div>
 
 
@@ -149,105 +181,75 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>auteur: Camille Mazoyer, camille.mazoyer@ird.fr</p>
-<p>maj: janvier 2024</p>
-<p>Merci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation.</p>
-<section id="configuration-globale" class="level1">
-<h1>Configuration globale</h1>
-<ul>
-<li><p><a href="sheets/config_globale_ubuntu.html">Configurer son ordi Ubuntu pour le calcul scientifique</a></p></li>
-<li><p>Configurer son ordi Mac pour le calcul scientifique (à faire)</p></li>
-<li><p><a href="sheets/universite_toulon_proxy.html">Travailler à l’université de Toulon sous proxy</a></p></li>
-</ul>
+<section id="commandes-de-base-informations-sur-git" class="level1">
+<h1>1.Commandes de base, informations sur Git</h1>
+<p>mettre le pdf en téléchargement</p>
 </section>
-<section id="informatique-divers" class="level1">
-<h1>Informatique (divers)</h1>
-<ul>
-<li><p><a href="sheets/connexion_via_tunnel.html">Connexion à un ordinateur via un tunnel</a></p></li>
-<li><p><a href="sheets/clef_ssh.html">Générer une clef ssh</a></p></li>
-<li><p><a href="sheets/detacher_processus_nohup.html">screen : détacher des processus / nohup</a></p></li>
-<li><p><a href="sheets/rsync.html">rsync (local ou via ssh)</a></p></li>
-<li><p><a href="sheets/connexion_longue_ssh.html">Garder une connexion ssh persistante</a> (éviter les déconnexions trop rapides)</p></li>
-<li><p><a href="sheets/connexion_distance_tools.html">Connexion à distance à Tools</a></p></li>
-</ul>
-</section>
-<section id="fiches-logiciels" class="level1">
-<h1>Fiches logiciels</h1>
-<ul>
-<li><p>Mémos, raccourcis et améliorations de VIM/GVIM</p></li>
-<li><p><a href="sheets/git.html">Mémos, raccourcis et améliorations de GIT</a></p></li>
-<li><p>Utilisation de GDB avec exemple de CROCO sur le cluster de l’OSU</p></li>
-<li><p><a href="sheets/visual_studio_code.html">Utilisation de Visual Studio Code, éditeur de code</a></p></li>
-<li><p>Installation et configuration de x2go</p></li>
-<li><p>Récupération de fichiers netcdf via Copernicus</p>
-<ul>
-<li>Motuclient (deprecated?)</li>
-<li><a href="sheets/copernicusmarine.html">Copernicusmarine</a></li>
-</ul></li>
-<li><p><a href="sheets/zenodo_github.html">Utilisation de Zenodo et Github pour mettre son code sous DOI</a></p></li>
-</ul>
-<section id="anaconda" class="level2">
-<h2 class="anchored" data-anchor-id="anaconda">Anaconda</h2>
-<ul>
-<li><p><a href="sheets/installation_pyferret.html">Installation de pyferret avec Anaconda</a></p></li>
-<li><p><a href="sheets/anaconda_oceanographie.html">Installation d’un environnement Anaconda pour l’océanographie</a></p></li>
-<li><p><a href="sheets/partager_env_anaconda.html">Partager un environnement Anaconda entre deux utilisateurs d’une même machine</a></p></li>
-</ul>
-</section>
-<section id="ferret" class="level2">
-<h2 class="anchored" data-anchor-id="ferret">Ferret</h2>
-<ul>
-<li>Premiers pas en ferret ( à faire)</li>
-</ul>
-</section>
-<section id="fortran" class="level2">
-<h2 class="anchored" data-anchor-id="fortran">Fortran</h2>
-<ul>
-<li><p>Options de compilation pour debugger en Fortran</p></li>
-<li><p>utilisation du debugger gdb avec croco (sur le cluster OSU)</p></li>
-<li><p>Listing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop</p></li>
-</ul>
-</section>
-<section id="matlab" class="level2">
-<h2 class="anchored" data-anchor-id="matlab">Matlab</h2>
-<ul>
-<li><a href="sheets/executable_matlab.html">Créer un exécutable sous matlab: exemple sur le cluster de l’OSU</a></li>
-</ul>
-</section>
-<section id="python" class="level2">
-<h2 class="anchored" data-anchor-id="python">Python</h2>
-<ul>
-<li><p>Utilisation de google collab pour des jupyter notebook python</p></li>
-<li><p>CROCO avec Python .</p></li>
-<li><p>la bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html</p></li>
-<li><p>la bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n’est plus à jour)</p></li>
-<li><p>How to Make Python Code Run Incredibly Fast</p></li>
-<li><p>Utilisation de xarray conseillée (à faire)</p></li>
-</ul>
+<section id="git-à-travers-le-proxy-de-la-fac-de-toulon" class="level1">
+<h1>2.Git à travers le proxy de la fac de Toulon</h1>
+<section id="gestion-du-proxy" class="level2">
+<h2 class="anchored" data-anchor-id="gestion-du-proxy">2.1 Gestion du proxy</h2>
+<p>Privilégier l’accès à des dépôts git via https pour éviter des soucis avec le proxy.</p>
+<p>Cependant, si on a l’erreur suivante lors d’un git clone, ou git push par exemple:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fatal:</span> unable to access <span class="st">'https://gitlab.osupytheas.fr/mazoyer/medoc/'</span>: Received HTTP code 407 from proxy after CONNECT</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Il faut alors passer en ssh sur son projet (que l’on nommera ici myproject). Attention, penser à changer mylogin en votre propre login:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin git@gitlab.osupytheas.fr:mylogin/myproject.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si les deux solutions ne sont pas satisfaisantes, nous sommes preneurs de votre retour (camille.mazoyer@ird.fr)</p>
 </section>
 </section>
-<section id="utilisation-de-clusters-locaux-régionaux-nationaux" class="level1">
-<h1>Utilisation de clusters locaux, régionaux, nationaux</h1>
-<section id="cluster-de-losu-pytheas" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</h2>
-<ul>
-<li><p>cluster de l’osupytheas :https://calcul.osupytheas.fr/</p></li>
-<li><p>Documentation pour une Connexion à distance à Tools</p></li>
-</ul>
+<section id="pour-aller-plus-loin-améliorations-git" class="level1">
+<h1>3 Pour aller plus loin, améliorations GIT</h1>
+<section id="faire-référence-à-des-bug-dans-un-commentaire-git" class="level2">
+<h2 class="anchored" data-anchor-id="faire-référence-à-des-bug-dans-un-commentaire-git">3.1 Faire référence à des bug dans un commentaire git</h2>
+<p>On peut lister et noter les bugs dans un bug tracker dans le projet git de gitlab (rubrique Issues de votre gitlab). Ensuite, dans un commentaire de git commit (voir <a href="https://stackoverflow.com/questions/1687262/link-to-the-issue-number-on-github-within-a-commit-message">link-to-the-issue-number-on-github-within-a-commit-message</a>), on y fait référence avec les mots clefs suivants (pour le bug numéro 5 par ex):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[debug]</span> Résolution du bug empechant la fermeture des fichiers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="cluster-régional-ccamu-marseille" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</h2>
-<ul>
-<li><p><a href="sheets/ccamu.html">Mes docs sur l’utilisation du Mésocentre CCAMU de Marseille</a></p></li>
-<li><p>tutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/</p></li>
-</ul>
+<section id="différences-plus-visuels-avec-git--d-file" class="level2">
+<h2 class="anchored" data-anchor-id="différences-plus-visuels-avec-git--d-file">3.2 Différences plus visuels avec git -d file</h2>
+<p>Pour voir les git diff a travers vimdiff, beaucoup plus visuel. Ensuite, on peut taper git d fichier.F90 pour voir la différence entre la version pushée et les modif locales.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> diff.tool vimdiff</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> difftool.prompt false</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> alias.d difftool</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> d <span class="at">--color-words</span>  file.F</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="idris" class="level2">
-<h2 class="anchored" data-anchor-id="idris">IDRIS</h2>
+<section id="outil-pour-faciliter-la-fusion-de-modifications-le-merge" class="level2">
+<h2 class="anchored" data-anchor-id="outil-pour-faciliter-la-fusion-de-modifications-le-merge">3.3 Outil pour faciliter la fusion de modifications, le “merge”</h2>
+<p>Voir <a href="https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git-repository">how-to-resolve-merge-conflicts-in-git-repository</a> :</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config merge.tool vimdiff</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config merge.conflictstyle diff3</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config mergetool.prompt false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers" class="level2">
+<h2 class="anchored" data-anchor-id="comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers">3.4 Comment ne pas tenir compte des changements de permissions sur les fichiers</h2>
+<p>Cela peut être utile si on utilise notre dépôt Git sur plusieurs machines et que tous les comptes n’ont pas les mêmes permissions. Je recommande de taper cette commande (une seule fois ) dans chacun de vos projets (voir <a href="https://www.sebastien-gandossi.fr/blog/git-comment-faire-pour-ignorer-les-changements-de-mode-de-fichier-chmod">git-comment-faire-pour-ignorer-les-changements-de-mode-de-fichier-chmod</a>).</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config core.fileMode false</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="commande-log-plus-visuelle" class="level2">
+<h2 class="anchored" data-anchor-id="commande-log-plus-visuelle">3.5 Commande “log” plus visuelle</h2>
+<p>Voir <a href="https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs">pretty-git-branch-graphs</a>.</p>
+<p>Taper (une seule fois) la commande suivante dans un terminal</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> alias.adog <span class="st">"log --all --decorate --oneline --graph"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puis vous pouvez l’utiliser quand nécessaire via:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> log <span class="at">--graph</span> <span class="at">--abbrev-commit</span> <span class="at">--decorate</span> <span class="at">--date</span><span class="op">=</span>relative <span class="at">--all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="commande-hist" class="level2">
+<h2 class="anchored" data-anchor-id="commande-hist">3.6 Commande “hist”</h2>
+<p>Taper (une seule fois) la commande suivante dans un terminal</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> alias.hist <span class="st">"log --graph --date-order --date=short </span><span class="dt">\</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">--pretty=format:'%C(auto)%h%d %C(reset)%s %C(bold blue)%ce %C(reset)%C(green)%cr (%cd)'"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>L’utilisation se fait de la manière suivante:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> hist <span class="co"># Show the history of current branch</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> hist <span class="at">--all</span> <span class="co"># Show the graph of all branches (including remotes)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> hist master devel <span class="co"># Show the relationship between two or more branches</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> hist <span class="at">--branches</span> <span class="co"># Show all local branches</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Add --topo-order to sort commits topologically, instead of by date (default in this alias)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Par exemple: <img src="../images/git_01.png" class="img-fluid"> Les avantages de cette commande sont les suivants:</p>
 <ul>
-<li><p>http://www.idris.fr</p></li>
-<li><p>cheat sheet ici=&gt; http://www.idris.fr/media/su/idrismemento1.pdf</p></li>
-<li><p>Utilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html</p></li>
+<li>ressemble à “plain –decorate” avec des couleurs différentes pour chaque branche</li>
+<li>ajout de l’email de la personne qui commit</li>
+<li>ajout des dates</li>
+<li>tri des commits par dates</li>
 </ul>
 
 

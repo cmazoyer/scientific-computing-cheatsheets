@@ -119,25 +119,32 @@
     "text": "But: pouvoir utiliser son script matlab sur une machine qui n’a pas de licence matlab\nInconvénients: il faut créer l’éxécutable sur la même architecture que l’architecture cible (ex: linux pour linux, …)\n\n1. Suivre la doc du SIP\nhttps://calcul.osupytheas.fr/?p=478\n\n\n2. Etape 1: création de l’exécutable, choix des arguments\nOn peut choisir des arguments de notre code matlab flottants et non de type chaine de charactere: Avant la phrase du SIP ” Une fois vos codes et modules ajoutés, vous devez créer le package en cliquant sur Package.”, c’est important de dire que les arguments donnés au code peuvent être indiqués en chaines de caractères (par défault) ou en flottants (ce dont moi j’avais besoin). Il y a une case à cocher. Tous les arguments doivent être du même type (flottant ou string)\n\n\n3. Lancement du code via slurm\nPour la Deuxième étape indiquée sur calcul.osupytheas.fr, je propose une autre solution que je trouve plus lisible quand on a des arguments. Mais c’est à vous de voir si vous préférez le tutorial du SIP ou cette possibilité: - 1. Copier le script run_xxx.sh contenu dans le répertoire for_testing vers notre répertoire de travail et modifier la ligne pointant vers l’exécutable, si besoin : bash     exe_dir=/home/mazoyer/matlab_to_exe/rep_exe - 2. Créer un fichier run.slurm de lancement batch comme suit, si l’on a un script matlab avec 3 arguments qui seront ici arg1, arg2, arg3 (à remplacer dans votre cas). Le répertoire Matlab /usr/local/MATLAB/MATLAB_Runtime/v910 est le répertoire racine de Matlab contenant par exemple le répertoire runtime/glnxa64.\n    #!/bin/sh\n    # script pour l'exécution des codes Matlab packages.\n    #\n    #Environnement MATLAB Runtime\n\n    #SBATCH --job-name=matlab_MCR\n    #SBATCH --time=240:00:00\n    #SBATCH --mail-user=xxx.yyy@ird.fr\n    #SBATCH --partition=seq\n    #SBATCH --output=resultslumr.log\n\n    echo 'start matlab'\n    time sh run_xxx.sh /usr/local/MATLAB/MATLAB_Runtime/v910 arg1 arg2 arg3\n    echo 'end matlab'\n\n\nPour lancer ensuite l’exécutable, taper la commande:\n\n\n    sbatch run.slurm\nAttention! le run batch ne s’arrête pas une fois la fin de l’éxécution matlab, il faut penser à killer le job evéntuellement."
   },
   {
-    "objectID": "sheets/copernicusmarine.html",
-    "href": "sheets/copernicusmarine.html",
-    "title": "Comment utiliser l’outil Copernicusmarine",
+    "objectID": "sheets/clef_ssh.html",
+    "href": "sheets/clef_ssh.html",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
     "section": "",
-    "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
+    "text": "ssh-keygen -t ed25519 -C \"prenom.nom@monemail.fr\"\nIl est maintenant conseillé de générer une clef ed255 plutôt que rsa. Indiquer une passphrase qui remplacera votre mot de passe et que votre ordinateur vous demandera qu’une seule fois par démarrage.\nSur mac: Ajouter dans le ~/.ssh/config :\nHost *\n    UseKeychain yes"
   },
   {
-    "objectID": "sheets/partager_env_anaconda.html",
-    "href": "sheets/partager_env_anaconda.html",
-    "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
-    "section": "",
-    "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
+    "objectID": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
+    "href": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "section": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)",
+    "text": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)\nChanger “monlogin” avec votre login.\n\nToulon\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@lseet.univ-tln.fr\nssh monlogin@lseet.univ-tln.fr  #=&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@respore\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@ssh.osupytheas.fr\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@cluster.osupytheas.fr\nSi la copie a fonctionné, vous devriez voir apparaitre: “number of key added: 1” et vous devriez pouvoir vous connecter sans mot de passe (Ubuntu va vous demander un mot de passe, votre passphrase à la première connexion ssh)."
   },
   {
-    "objectID": "sheets/universite_toulon_proxy.html",
-    "href": "sheets/universite_toulon_proxy.html",
-    "title": "Travailler à l’université de Toulon sous proxy",
+    "objectID": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
+    "href": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "section": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:",
+    "text": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:\n\nToulon\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@lseet.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nssh monlogin@lseet.univ-tln.fr # =&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@respore.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@meduse.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@cluster.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nsi cela ne fonctionne pas, chmod 700 -R ~/.ssh"
+  },
+  {
+    "objectID": "sheets/visual_studio_code.html",
+    "href": "sheets/visual_studio_code.html",
+    "title": "Utilisation de Visual Studio Code",
     "section": "",
-    "text": "A faire uniquement lorsque l’on est derrière un proxy avec authentification, connecté en RJ45. Attention, il faut éviter de mettre des “!” ou “@” dans son mot de passe, cela peut poser problème en ligne de commande ensuite.\n\n1. Git\nCréer le fichier ~/.gitconfig s’il n’existe pas. Y ajouter les infos sur le proxy:\n[https]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n[http]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n        proxyAuthMethod = basic\n\n\n2. Wget\nconfigurer Wget pour les proxy selon stackoverflow.com.\nexemple:\nindiquer dans le fichier .bashrc:\nexport http_proxy=cache.univ-tln.fr:3128\nexport https_proxy=cache.univ-tln.fr:3128\npuis en ligne de commande, suivant ce qu’on veut télécharger:\nwget --proxy-user=\"tonlogin\" --proxy-password=\"tonmotdepasse\" \"https://xxxx.tar.gz\"\n\n\n3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi …)\nCréer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la doc de Anaconda.\nfichier .condarc\nproxy_servers:\n    http: http://user:pass@cache.univ-tln.fr:3128\n    https: https://user:pass@cache.univ-tln.fr:3128"
+    "text": "1. Configuration\n\nGénérer une clefs ssh (voir Générer une clef ssh ). Ici, j’utilise la clef id_rsa pour respore et id_ed25519 pour le mesocentre CCAMU.\nCréer le fichier .ssh/config qui contient vos configurations.\n\nIci, Respore, cluster.osupytheas.fr et tools.osupytheas.fr sont des machines auxquelles j’accède via un tunnel (voir Connexion à un ordinateur via un tunnel). Par conséquence, leur hostname est localhost et non leur nom réél. Si vous utilisez localhost, comme ici, pensez à lancer le tunnel dans un terminal avant d’utiliser Visual Studio Code, sinon, cela ne fonctionnera pas.\nHost *\n  ForwardAgent yes\n  ForwardX11 yes\n  ForwardX11Trusted yes\n  ServerAliveInterval 1920\n\nHost Respore\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  IdentityFile ~/.ssh/id_rsa\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5533\n\nHost ClusterOSU\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5530\n\nHost ToolsOSU\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5531\n\nHost CCAMU\n  HostName login.mesocentre.univ-amu.fr\n  ForwardX11Trusted yes\n  user cmazoyer\n  PubkeyAuthentication yes\n  IdentityFile ~/.ssh/id_ed25519\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  port 22\n\ncréer ensuite le répertoire sockets :\n\nmkdir .ssh/sockets\n\nlancer le tunnel sur la machine sur laquelle on veut se connecter (ex: tunnelrespore) si nécessaire.\nlancer Visual Studio Code\nInstaller l’extension “Remote ssh”\nRedémarrer Visual Studio et sélectionner en bas à gauche le texte en vert (SSH …).\n\n\n\nPuis cliquer sur “Se connecter à l’hôte”.\n\n\n\nVous devez voir apparaître toutes les machines que vous avez indiquées dans votre .ssh/config. Cliquer sur celle que vous souhaitez (pensez à bien activer un tunnel ssh si nécessaire, dans un terminal).\n\n\n\n\n2. Utilisation de Jupyter à distance\n\nSur la machine distante, il faut installer python (via anaconda par exemple) et la librairie jupyter.\nSe connecter avec Visual Studio sur la machine distante (voir section 1).\ncréer un fichier .ipynb"
   },
   {
     "objectID": "sheets/installation_pyferret.html",
@@ -168,32 +175,81 @@
     "text": "Usage de python 3.9 au lieu de 3.10\nPyferret peut ne pas fonctionner avec python 3.10 (erreur: https://github.com/conda-forge/pyferret-feedstock/issues/94 ). Si c’est le cas, spécifier la version de python:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes\nou\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
   },
   {
-    "objectID": "sheets/visual_studio_code.html",
-    "href": "sheets/visual_studio_code.html",
-    "title": "Utilisation de Visual Studio Code",
+    "objectID": "sheets/universite_toulon_proxy.html",
+    "href": "sheets/universite_toulon_proxy.html",
+    "title": "Travailler à l’université de Toulon sous proxy",
     "section": "",
-    "text": "1. Configuration\n\nGénérer une clefs ssh (voir Générer une clef ssh ). Ici, j’utilise la clef id_rsa pour respore et id_ed25519 pour le mesocentre CCAMU.\nCréer le fichier .ssh/config qui contient vos configurations.\n\nIci, Respore, cluster.osupytheas.fr et tools.osupytheas.fr sont des machines auxquelles j’accède via un tunnel (voir Connexion à un ordinateur via un tunnel). Par conséquence, leur hostname est localhost et non leur nom réél. Si vous utilisez localhost, comme ici, pensez à lancer le tunnel dans un terminal avant d’utiliser Visual Studio Code, sinon, cela ne fonctionnera pas.\nHost *\n  ForwardAgent yes\n  ForwardX11 yes\n  ForwardX11Trusted yes\n  ServerAliveInterval 1920\n\nHost Respore\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  IdentityFile ~/.ssh/id_rsa\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5533\n\nHost ClusterOSU\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5530\n\nHost ToolsOSU\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5531\n\nHost CCAMU\n  HostName login.mesocentre.univ-amu.fr\n  ForwardX11Trusted yes\n  user cmazoyer\n  PubkeyAuthentication yes\n  IdentityFile ~/.ssh/id_ed25519\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  port 22\n\ncréer ensuite le répertoire sockets :\n\nmkdir .ssh/sockets\n\nlancer le tunnel sur la machine sur laquelle on veut se connecter (ex: tunnelrespore) si nécessaire.\nlancer Visual Studio Code\nInstaller l’extension “Remote ssh”\nRedémarrer Visual Studio et sélectionner en bas à gauche le texte en vert (SSH …).\n\n\n\nPuis cliquer sur “Se connecter à l’hôte”.\n\n\n\nVous devez voir apparaître toutes les machines que vous avez indiquées dans votre .ssh/config. Cliquer sur celle que vous souhaitez (pensez à bien activer un tunnel ssh si nécessaire, dans un terminal).\n\n\n\n\n2. Utilisation de Jupyter à distance\n\nSur la machine distante, il faut installer python (via anaconda par exemple) et la librairie jupyter.\nSe connecter avec Visual Studio sur la machine distante (voir section 1).\ncréer un fichier .ipynb"
+    "text": "A faire uniquement lorsque l’on est derrière un proxy avec authentification, connecté en RJ45. Attention, il faut éviter de mettre des “!” ou “@” dans son mot de passe, cela peut poser problème en ligne de commande ensuite.\n\n1. Git\nCréer le fichier ~/.gitconfig s’il n’existe pas. Y ajouter les infos sur le proxy:\n[https]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n[http]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n        proxyAuthMethod = basic\n\n\n2. Wget\nconfigurer Wget pour les proxy selon stackoverflow.com.\nexemple:\nindiquer dans le fichier .bashrc:\nexport http_proxy=cache.univ-tln.fr:3128\nexport https_proxy=cache.univ-tln.fr:3128\npuis en ligne de commande, suivant ce qu’on veut télécharger:\nwget --proxy-user=\"tonlogin\" --proxy-password=\"tonmotdepasse\" \"https://xxxx.tar.gz\"\n\n\n3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi …)\nCréer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la doc de Anaconda.\nfichier .condarc\nproxy_servers:\n    http: http://user:pass@cache.univ-tln.fr:3128\n    https: https://user:pass@cache.univ-tln.fr:3128"
   },
   {
-    "objectID": "sheets/clef_ssh.html",
-    "href": "sheets/clef_ssh.html",
-    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "objectID": "sheets/partager_env_anaconda.html",
+    "href": "sheets/partager_env_anaconda.html",
+    "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
     "section": "",
-    "text": "ssh-keygen -t ed25519 -C \"prenom.nom@monemail.fr\"\nIl est maintenant conseillé de générer une clef ed255 plutôt que rsa. Indiquer une passphrase qui remplacera votre mot de passe et que votre ordinateur vous demandera qu’une seule fois par démarrage.\nSur mac: Ajouter dans le ~/.ssh/config :\nHost *\n    UseKeychain yes"
+    "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
   },
   {
-    "objectID": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
-    "href": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
-    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
-    "section": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)",
-    "text": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)\nChanger “monlogin” avec votre login.\n\nToulon\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@lseet.univ-tln.fr\nssh monlogin@lseet.univ-tln.fr  #=&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@respore\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@ssh.osupytheas.fr\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@cluster.osupytheas.fr\nSi la copie a fonctionné, vous devriez voir apparaitre: “number of key added: 1” et vous devriez pouvoir vous connecter sans mot de passe (Ubuntu va vous demander un mot de passe, votre passphrase à la première connexion ssh)."
+    "objectID": "sheets/copernicusmarine.html",
+    "href": "sheets/copernicusmarine.html",
+    "title": "Comment utiliser l’outil Copernicusmarine",
+    "section": "",
+    "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
   },
   {
-    "objectID": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
-    "href": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
-    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
-    "section": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:",
-    "text": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:\n\nToulon\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@lseet.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nssh monlogin@lseet.univ-tln.fr # =&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@respore.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@meduse.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@cluster.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nsi cela ne fonctionne pas, chmod 700 -R ~/.ssh"
+    "objectID": "sheets/git.html",
+    "href": "sheets/git.html",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "",
+    "text": "mettre le pdf en téléchargement"
+  },
+  {
+    "objectID": "sheets/git.html#gestion-du-proxy",
+    "href": "sheets/git.html#gestion-du-proxy",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "2.1 Gestion du proxy",
+    "text": "2.1 Gestion du proxy\nPrivilégier l’accès à des dépôts git via https pour éviter des soucis avec le proxy.\nCependant, si on a l’erreur suivante lors d’un git clone, ou git push par exemple:\nfatal: unable to access 'https://gitlab.osupytheas.fr/mazoyer/medoc/': Received HTTP code 407 from proxy after CONNECT\nIl faut alors passer en ssh sur son projet (que l’on nommera ici myproject). Attention, penser à changer mylogin en votre propre login:\ngit remote -v\ngit remote set-url origin git@gitlab.osupytheas.fr:mylogin/myproject.git\nSi les deux solutions ne sont pas satisfaisantes, nous sommes preneurs de votre retour (camille.mazoyer@ird.fr)"
+  },
+  {
+    "objectID": "sheets/git.html#faire-référence-à-des-bug-dans-un-commentaire-git",
+    "href": "sheets/git.html#faire-référence-à-des-bug-dans-un-commentaire-git",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.1 Faire référence à des bug dans un commentaire git",
+    "text": "3.1 Faire référence à des bug dans un commentaire git\nOn peut lister et noter les bugs dans un bug tracker dans le projet git de gitlab (rubrique Issues de votre gitlab). Ensuite, dans un commentaire de git commit (voir link-to-the-issue-number-on-github-within-a-commit-message), on y fait référence avec les mots clefs suivants (pour le bug numéro 5 par ex):\n[debug] Résolution du bug empechant la fermeture des fichiers"
+  },
+  {
+    "objectID": "sheets/git.html#différences-plus-visuels-avec-git--d-file",
+    "href": "sheets/git.html#différences-plus-visuels-avec-git--d-file",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.2 Différences plus visuels avec git -d file",
+    "text": "3.2 Différences plus visuels avec git -d file\nPour voir les git diff a travers vimdiff, beaucoup plus visuel. Ensuite, on peut taper git d fichier.F90 pour voir la différence entre la version pushée et les modif locales.\ngit config --global diff.tool vimdiff\ngit config --global difftool.prompt false\ngit config --global alias.d difftool\ngit d --color-words  file.F"
+  },
+  {
+    "objectID": "sheets/git.html#outil-pour-faciliter-la-fusion-de-modifications-le-merge",
+    "href": "sheets/git.html#outil-pour-faciliter-la-fusion-de-modifications-le-merge",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.3 Outil pour faciliter la fusion de modifications, le “merge”",
+    "text": "3.3 Outil pour faciliter la fusion de modifications, le “merge”\nVoir how-to-resolve-merge-conflicts-in-git-repository :\ngit config merge.tool vimdiff\ngit config merge.conflictstyle diff3\ngit config mergetool.prompt false"
+  },
+  {
+    "objectID": "sheets/git.html#comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers",
+    "href": "sheets/git.html#comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.4 Comment ne pas tenir compte des changements de permissions sur les fichiers",
+    "text": "3.4 Comment ne pas tenir compte des changements de permissions sur les fichiers\nCela peut être utile si on utilise notre dépôt Git sur plusieurs machines et que tous les comptes n’ont pas les mêmes permissions. Je recommande de taper cette commande (une seule fois ) dans chacun de vos projets (voir git-comment-faire-pour-ignorer-les-changements-de-mode-de-fichier-chmod).\ngit config core.fileMode false"
+  },
+  {
+    "objectID": "sheets/git.html#commande-log-plus-visuelle",
+    "href": "sheets/git.html#commande-log-plus-visuelle",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.5 Commande “log” plus visuelle",
+    "text": "3.5 Commande “log” plus visuelle\nVoir pretty-git-branch-graphs.\nTaper (une seule fois) la commande suivante dans un terminal\ngit config --global alias.adog \"log --all --decorate --oneline --graph\"\nPuis vous pouvez l’utiliser quand nécessaire via:\ngit log --graph --abbrev-commit --decorate --date=relative --all"
+  },
+  {
+    "objectID": "sheets/git.html#commande-hist",
+    "href": "sheets/git.html#commande-hist",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.6 Commande “hist”",
+    "text": "3.6 Commande “hist”\nTaper (une seule fois) la commande suivante dans un terminal\ngit config --global alias.hist \"log --graph --date-order --date=short \\\n--pretty=format:'%C(auto)%h%d %C(reset)%s %C(bold blue)%ce %C(reset)%C(green)%cr (%cd)'\"\nL’utilisation se fait de la manière suivante:\ngit hist # Show the history of current branch\ngit hist --all # Show the graph of all branches (including remotes)\ngit hist master devel # Show the relationship between two or more branches\ngit hist --branches # Show all local branches\n#Add --topo-order to sort commits topologically, instead of by date (default in this alias)\nPar exemple:  Les avantages de cette commande sont les suivants:\n\nressemble à “plain –decorate” avec des couleurs différentes pour chaque branche\najout de l’email de la personne qui commit\najout des dates\ntri des commits par dates"
   },
   {
     "objectID": "sheets/ccamu.html",
