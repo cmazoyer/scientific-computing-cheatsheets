@@ -32,7 +32,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 # Fiches logiciels
 
--   Mémos, raccourcis et améliorations de VIM/GVIM
+-   [Mémos, raccourcis et améliorations de VIM/GVIM](sheets/vim.html)
 
 -   [Mémos, raccourcis et améliorations de GIT](sheets/git.html)
 

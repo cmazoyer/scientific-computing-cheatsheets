@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Camille Mazoyer - Scientific computing cheatsheets at the laboratory MIO in oceanography</title>
+<title>Camille Mazoyer - Mémos, raccourcis et améliorations de VIM/GVIM</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +112,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Camille Mazoyer</span>
     </a>
   </div>
@@ -89,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -108,21 +142,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#configuration-globale" id="toc-configuration-globale" class="nav-link active" data-scroll-target="#configuration-globale">Configuration globale</a></li>
-  <li><a href="#informatique-divers" id="toc-informatique-divers" class="nav-link" data-scroll-target="#informatique-divers">Informatique (divers)</a></li>
-  <li><a href="#fiches-logiciels" id="toc-fiches-logiciels" class="nav-link" data-scroll-target="#fiches-logiciels">Fiches logiciels</a>
+  <li><a href="#quelques-astuces-une-fois-les-bases-acquises" id="toc-quelques-astuces-une-fois-les-bases-acquises" class="nav-link active" data-scroll-target="#quelques-astuces-une-fois-les-bases-acquises">1. Quelques astuces une fois les bases acquises:</a></li>
+  <li><a href="#améliorations-de-linterface-de-vim" id="toc-améliorations-de-linterface-de-vim" class="nav-link" data-scroll-target="#améliorations-de-linterface-de-vim">2. Améliorations de l’interface de VIM</a>
   <ul class="collapse">
-  <li><a href="#anaconda" id="toc-anaconda" class="nav-link" data-scroll-target="#anaconda">Anaconda</a></li>
-  <li><a href="#ferret" id="toc-ferret" class="nav-link" data-scroll-target="#ferret">Ferret</a></li>
-  <li><a href="#fortran" id="toc-fortran" class="nav-link" data-scroll-target="#fortran">Fortran</a></li>
-  <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
-  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
-  </ul></li>
-  <li><a href="#utilisation-de-clusters-locaux-régionaux-nationaux" id="toc-utilisation-de-clusters-locaux-régionaux-nationaux" class="nav-link" data-scroll-target="#utilisation-de-clusters-locaux-régionaux-nationaux">Utilisation de clusters locaux, régionaux, nationaux</a>
-  <ul class="collapse">
-  <li><a href="#cluster-de-losu-pytheas" id="toc-cluster-de-losu-pytheas" class="nav-link" data-scroll-target="#cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</a></li>
-  <li><a href="#cluster-régional-ccamu-marseille" id="toc-cluster-régional-ccamu-marseille" class="nav-link" data-scroll-target="#cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</a></li>
-  <li><a href="#idris" id="toc-idris" class="nav-link" data-scroll-target="#idris">IDRIS</a></li>
+  <li><a href="#couleur-du-thème" id="toc-couleur-du-thème" class="nav-link" data-scroll-target="#couleur-du-thème">2.1 Couleur du thème:</a></li>
+  <li><a href="#un-thème-adapté-au-vimdiff" id="toc-un-thème-adapté-au-vimdiff" class="nav-link" data-scroll-target="#un-thème-adapté-au-vimdiff">2.2 Un thème adapté au vimdiff</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -132,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Scientific computing cheatsheets at the laboratory MIO in oceanography</h1>
+<h1 class="title">Mémos, raccourcis et améliorations de VIM/GVIM</h1>
 </div>
 
 
@@ -149,106 +173,56 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>auteur: Camille Mazoyer, camille.mazoyer@ird.fr</p>
-<p>maj: janvier 2024</p>
-<p>Merci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation.</p>
-<section id="configuration-globale" class="level1">
-<h1>Configuration globale</h1>
+<p>Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM :</p>
 <ul>
-<li><p><a href="sheets/config_globale_ubuntu.html">Configurer son ordi Ubuntu pour le calcul scientifique</a></p></li>
-<li><p>Configurer son ordi Mac pour le calcul scientifique (à faire)</p></li>
-<li><p><a href="sheets/universite_toulon_proxy.html">Travailler à l’université de Toulon sous proxy</a></p></li>
+<li><p><a href="https://www.cs.cmu.edu/~15131/f17/topics/vim/vim-cheatsheet.pdf">https://www.cs.cmu.edu/~15131/f17/topics/vim/vim-cheatsheet.pdf</a></p></li>
+<li><p><a href="https://linuxhandbook.com/vim-cheat-sheet/">https://linuxhandbook.com/vim-cheat-sheet/</a></p></li>
+<li><p>et n’hésitez pas à regarder des tutos sur youtube : <a href="https://www.youtube.com/results?search_query=tutorial+vim+">https://www.youtube.com/results?search_query=tutorial+vim+</a></p></li>
+</ul>
+<section id="quelques-astuces-une-fois-les-bases-acquises" class="level1">
+<h1>1. Quelques astuces une fois les bases acquises:</h1>
+<ul>
+<li><p>Comparer deux fichiers: <code>vim -d fichier1.txt fichier2.txt</code></p></li>
+<li><p>Aller à la fin d’un fichier : maj G</p></li>
+<li><p>Indenter plusieurs lignes en même temps:</p></li>
+</ul>
+<p>ctrl v pour sélectionner les lignes</p>
+<p>puis = ou &lt; ou &gt;</p>
+<ul>
+<li>Sélectionner N lignes:</li>
+</ul>
+<p>shift+v, puis fleches du haut ou du bas.</p>
+<p>On peut ensuite copier ces lignes avec “yy”</p>
+<ul>
+<li>recopier d’une fenêtre à l’autre avec un vim -d</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">:diffget</span>  <span class="er">(</span><span class="ex">en</span> positionnant le curseur en dessous ce qu<span class="st">'on veut copier)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cela fonctionne depuis le fichier de droite si on est dans la fenêtre de gauche (et inversement).</p>
+<ul>
+<li><p>Dans vimdiff, pour passer d’une fenêtre à une autre: ctrl w w</p></li>
+<li><p>Aller à la ligne N: <code>:N</code> ou aller à la dernière ligne: <code>:$</code></p></li>
+<li><p>Copier N ligne: Nyy puis coller p</p></li>
+<li><p>Undo: u</p></li>
+<li><p><code>:sp file.txt</code> : split pour creer une nouvelle fenetre avec le fichier file.txt</p></li>
+<li><p>extraire uniquement une colonne : ctrl v, on descend puis fleche vers la droite, on supprime ce qu’on veut avec d</p></li>
+<li><p>insérer une chaine de charactères sur plusieurs lignes dans une colonne : ctrl v, on selectionne les colonnes et les lignes qu’on veut remplacer, I (i majuscule), on ecrit ce qu’on veut insérer.</p></li>
 </ul>
 </section>
-<section id="informatique-divers" class="level1">
-<h1>Informatique (divers)</h1>
-<ul>
-<li><p><a href="sheets/connexion_via_tunnel.html">Connexion à un ordinateur via un tunnel</a></p></li>
-<li><p><a href="sheets/clef_ssh.html">Générer une clef ssh</a></p></li>
-<li><p><a href="sheets/detacher_processus_nohup.html">screen : détacher des processus / nohup</a></p></li>
-<li><p><a href="sheets/rsync.html">rsync (local ou via ssh)</a></p></li>
-<li><p><a href="sheets/connexion_longue_ssh.html">Garder une connexion ssh persistante</a> (éviter les déconnexions trop rapides)</p></li>
-<li><p><a href="sheets/connexion_distance_tools.html">Connexion à distance à Tools</a></p></li>
-</ul>
+<section id="améliorations-de-linterface-de-vim" class="level1">
+<h1>2. Améliorations de l’interface de VIM</h1>
+<section id="couleur-du-thème" class="level2">
+<h2 class="anchored" data-anchor-id="couleur-du-thème">2.1 Couleur du thème:</h2>
+<p>Pour <a href="https://vi.stackexchange.com/questions/13458/make-vim-show-all-the-colors">changer de couleur de theme et avoir quelque chose de plus visible</a>, créer ou ouvrir s’il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">colorscheme</span> darkblue</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="fiches-logiciels" class="level1">
-<h1>Fiches logiciels</h1>
-<ul>
-<li><p><a href="sheets/vim.html">Mémos, raccourcis et améliorations de VIM/GVIM</a></p></li>
-<li><p><a href="sheets/git.html">Mémos, raccourcis et améliorations de GIT</a></p></li>
-<li><p>Utilisation de GDB avec exemple de CROCO sur le cluster de l’OSU</p></li>
-<li><p><a href="sheets/visual_studio_code.html">Utilisation de Visual Studio Code, éditeur de code</a></p></li>
-<li><p>Installation et configuration de x2go</p></li>
-<li><p>Récupération de fichiers netcdf via Copernicus</p>
-<ul>
-<li>Motuclient (deprecated?)</li>
-<li><a href="sheets/copernicusmarine.html">Copernicusmarine</a></li>
-</ul></li>
-<li><p><a href="sheets/zenodo_github.html">Utilisation de Zenodo et Github pour mettre son code sous DOI</a></p></li>
-</ul>
-<section id="anaconda" class="level2">
-<h2 class="anchored" data-anchor-id="anaconda">Anaconda</h2>
-<ul>
-<li><p><a href="sheets/installation_pyferret.html">Installation de pyferret avec Anaconda</a></p></li>
-<li><p><a href="sheets/anaconda_oceanographie.html">Installation d’un environnement Anaconda pour l’océanographie</a></p></li>
-<li><p><a href="sheets/partager_env_anaconda.html">Partager un environnement Anaconda entre deux utilisateurs d’une même machine</a></p></li>
-</ul>
-</section>
-<section id="ferret" class="level2">
-<h2 class="anchored" data-anchor-id="ferret">Ferret</h2>
-<ul>
-<li>Premiers pas en ferret ( à faire)</li>
-</ul>
-</section>
-<section id="fortran" class="level2">
-<h2 class="anchored" data-anchor-id="fortran">Fortran</h2>
-<ul>
-<li><p>Options de compilation pour debugger en Fortran</p></li>
-<li><p>utilisation du debugger gdb avec croco (sur le cluster OSU)</p></li>
-<li><p>Listing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop</p></li>
-</ul>
-</section>
-<section id="matlab" class="level2">
-<h2 class="anchored" data-anchor-id="matlab">Matlab</h2>
-<ul>
-<li><a href="sheets/executable_matlab.html">Créer un exécutable sous matlab: exemple sur le cluster de l’OSU</a></li>
-</ul>
-</section>
-<section id="python" class="level2">
-<h2 class="anchored" data-anchor-id="python">Python</h2>
-<ul>
-<li><p>Utilisation de google collab pour des jupyter notebook python</p></li>
-<li><p>CROCO avec Python .</p></li>
-<li><p>la bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html</p></li>
-<li><p>la bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n’est plus à jour)</p></li>
-<li><p>How to Make Python Code Run Incredibly Fast</p></li>
-<li><p>Utilisation de xarray conseillée (à faire)</p></li>
-</ul>
-</section>
-</section>
-<section id="utilisation-de-clusters-locaux-régionaux-nationaux" class="level1">
-<h1>Utilisation de clusters locaux, régionaux, nationaux</h1>
-<section id="cluster-de-losu-pytheas" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</h2>
-<ul>
-<li><p>cluster de l’osupytheas :https://calcul.osupytheas.fr/</p></li>
-<li><p>Documentation pour une Connexion à distance à Tools</p></li>
-</ul>
-</section>
-<section id="cluster-régional-ccamu-marseille" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</h2>
-<ul>
-<li><p><a href="sheets/ccamu.html">Mes docs sur l’utilisation du Mésocentre CCAMU de Marseille</a></p></li>
-<li><p>tutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/</p></li>
-</ul>
-</section>
-<section id="idris" class="level2">
-<h2 class="anchored" data-anchor-id="idris">IDRIS</h2>
-<ul>
-<li><p>http://www.idris.fr</p></li>
-<li><p>cheat sheet ici=&gt; http://www.idris.fr/media/su/idrismemento1.pdf</p></li>
-<li><p>Utilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html</p></li>
-</ul>
+<section id="un-thème-adapté-au-vimdiff" class="level2">
+<h2 class="anchored" data-anchor-id="un-thème-adapté-au-vimdiff">2.2 Un thème adapté au vimdiff</h2>
+<p>Voir <a href="https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff">Post stackoverflow</a>:</p>
+<p><img src="../images/vim_01.png" class="img-fluid"> (image issue de l’url de statckoverflow ci-dessus)</p>
+<p>Dans un terminal:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fLo</span> ~/.vim/colors/github.vim <span class="at">--create-dirs</span> https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>puis dans vim, en mode édition:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">:colorscheme</span> github</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

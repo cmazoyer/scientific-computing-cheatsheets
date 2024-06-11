@@ -1,0 +1,83 @@
+---
+title: Mémos, raccourcis et améliorations de VIM/GVIM
+---
+
+Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM : 
+
+- [https://www.cs.cmu.edu/~15131/f17/topics/vim/vim-cheatsheet.pdf](https://www.cs.cmu.edu/~15131/f17/topics/vim/vim-cheatsheet.pdf)
+
+- [https://linuxhandbook.com/vim-cheat-sheet/](https://linuxhandbook.com/vim-cheat-sheet/)
+
+- et n'hésitez pas à regarder des tutos sur youtube : [https://www.youtube.com/results?search_query=tutorial+vim+](https://www.youtube.com/results?search_query=tutorial+vim+)
+
+
+# 1. Quelques astuces une fois les bases acquises:
+
+
+- Comparer deux fichiers: `vim -d fichier1.txt fichier2.txt`
+
+- Aller à la fin d'un fichier : maj G
+
+- Indenter plusieurs lignes en même temps:
+
+ctrl v pour sélectionner les lignes
+
+puis = ou < ou >
+
+- Sélectionner N lignes: 
+
+shift+v, puis fleches du haut ou du bas. 
+
+On peut ensuite copier ces lignes avec "yy"
+
+- recopier d'une fenêtre à l'autre avec un vim -d 
+```bash
+:diffget  (en positionnant le curseur en dessous ce qu'on veut copier)
+```
+
+Cela fonctionne depuis le fichier de droite si on est dans la fenêtre de gauche (et inversement).
+
+- Dans vimdiff, pour passer d'une fenêtre à une autre:
+ctrl w w 
+
+- Aller à la ligne N:  `:N` ou aller à la dernière ligne: `:$`
+
+- Copier N ligne: Nyy puis coller p
+
+- Undo: u
+
+- `:sp file.txt` : split pour creer une nouvelle fenetre avec le fichier file.txt
+
+- extraire uniquement une colonne : ctrl v, on descend puis fleche vers la droite, on supprime ce qu'on veut avec d 
+
+- insérer une chaine de charactères sur plusieurs lignes dans  une colonne : ctrl v, on selectionne les colonnes et les lignes qu'on veut remplacer, I (i majuscule), on ecrit ce qu'on veut insérer. 
+
+
+
+
+# 2. Améliorations de l'interface de VIM
+
+
+## 2.1 Couleur du thème:
+
+Pour [changer de couleur de theme et avoir quelque chose de plus visible](https://vi.stackexchange.com/questions/13458/make-vim-show-all-the-colors), 
+créer ou ouvrir s'il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):
+```bash
+colorscheme darkblue
+```
+
+## 2.2 Un thème adapté au vimdiff
+
+Voir [Post stackoverflow](https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff):
+
+![](../images/vim_01.png)
+(image issue de l'url de statckoverflow ci-dessus)
+
+Dans un terminal:
+```bash
+curl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim
+```
+puis dans vim, en mode édition:
+```bash
+:colorscheme github
+```
