@@ -13,7 +13,7 @@ L'outil est installé sur tools accessible à tous.
 
 - si vous n'utilisez pas la machine tools, installer l'environnement anaconda copernicus:
  ```bash
-  conda install copernicusmarine
+  conda install -c conda-forge copernicusmarine
 ``` 
 
 - Si vous utilisez la machine tools, créer son alias dans .bashrc:
