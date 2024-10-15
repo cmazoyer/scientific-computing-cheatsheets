@@ -7,6 +7,13 @@
     "text": "auteur: Camille Mazoyer, camille.mazoyer@ird.fr\nmaj: janvier 2024\nMerci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation."
   },
   {
+    "objectID": "index.html#git",
+    "href": "index.html#git",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "Git",
+    "text": "Git\n\nMémos, raccourcis et améliorations de GIT\nCreer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas\nUtilisation de Github Copilot dans Visual Studio Code"
+  },
+  {
     "objectID": "index.html#anaconda",
     "href": "index.html#anaconda",
     "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
@@ -77,151 +84,53 @@
     "text": "rsync ssh exemple 1: synchronizer deux repertoires locaux\nrsync -uav /home/.../2015 mon_nouveau_rep/.\n-a, --archive              archive mode; equals -rlptgoD (no -H,-A,-X)\n-u, --update                skip files that are newer on the receiver\n-v, --verbose              increase verbosity\n\n\nrsync ssh exemple 2: synchronizer le répertoire 2015 de la machine distante dans repertoire courant\nrsync -uave ssh user@machine:/home/.../2015 .\n-a, --archive              archive mode; equals -rlptgoD (no -H,-A,-X)\n-u, --update                skip files that are newer on the receiver\n-v, --verbose              increase verbosity\n-e, --rsh=COMMAND          specify the remote shell to use\n\n\nrsync ssh exemple 3: ssh et port différent du port 22 (par ex via un tunnel)\nrsync -uave 'ssh -p 5530' mazoyer@localhost:/home/mazoyer/CROCO/SRC/croco/croco_git_dev_2021_MIO_for_MUSTANG .\nrecuperation de jean-zay sur respore:\ntunneljeanzay\nrsync -uave 'ssh -p 5129' rutv918@localhost:/gpfsstore/rech/utv/rutv918/ergon/output_mitgcm/2020_PHYS_ARPEGE/TBAY_20* .\n\n\nrsync ssh exemple 4: script IDRIS vers ordi local\n#script de recuperation des netcdf de l'IDRIS vers le repertoire /mnt/BIOPHY-RW/Vincent/Camille_IDRIS_OFC sur ssh\n\n# projet : Ocean Front Change\n# avec : Vincent Rossi\n# date : janvier 2020\n\n# u : avoid copying the files that we already have in the destination folder that have not been modified in the source folder\n# v : verbose\n# a :  archive\n# r : recursive\n\ncd /mnt/BIOPHY-RW/Vincent/Camille_IDRIS_OFC\ncd average \nrsync -uave ssh rutv918@jean-zay.idris.fr:/gpfsstore/rech/khe/ryff001/WOES_OUT/SCRATCH_RUN_MOZ1/roms_avg_*.nc .\n\ncd ../diagnostics \nrsync -uave ssh rutv918@jean-zay.idris.fr:/gpfsstore/rech/khe/ryff001/WOES_OUT/SCRATCH_RUN_MOZ1/roms_avg_*.nc .\n\ncd ../surface_average\nrsync -uave ssh rutv918@jean-zay.idris.Fr:/gpfsstore/rech/khe/ryff001/WOES_OUT/SCRATCH_RUN_MOZ1/roms_surf_avg_* ."
   },
   {
-    "objectID": "sheets/connexion_via_tunnel.html",
-    "href": "sheets/connexion_via_tunnel.html",
-    "title": "Connexion à un ordinateur via un tunnel",
+    "objectID": "sheets/create_mkdocs_documentation.html",
+    "href": "sheets/create_mkdocs_documentation.html",
+    "title": "Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas [en construction]",
     "section": "",
-    "text": "3 exemples ci-dessous:"
+    "text": "S’assurer que vous avez mkdocs installé sur votre ordinateur. Si ce n’est pas le cas, l’installer avec anaconda par exemple ( conda install conda-forge::mkdocs ).\n\nCréer un répertoire test-mkdocs:\n\nmkdocs new test-mkdocs\n\nVérifier en local le site web avec :\n\nmkdocs serve \n\nCreer le deployement pour vérifier\n\nmkdocs build\n\nPréparer le fichier .gitlab-ci.yml, en faisant attention aux indentations:\n\nimage: python:3.8\n\nstages:\n  - build\n\npages:\n  stage: build\n  only:\n    - master\n  script:\n    - mkdocs build --clean\n    - mv site public\n  artifacts:\n    paths:\n      - public\n\nPusher le projet\n\ngit add, git commit, git push …\n\nLe projet doit etre en public?\nLe pipeline doit retourner un status positif\n\nimage"
   },
   {
-    "objectID": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
-    "href": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "Mise en place des scripts",
-    "text": "Mise en place des scripts\nà écrire dans .bash_aliases :\n        alias hrespore=\"ssh mazoyer@respore\"\n        alias tunnelrespore='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5533:respore:22'\n        alias htunnelrespore='ssh -X -p 5533 mazoyer@localhost'\n        alias sftprespore='sftp -P 5533 mazoyer@localhost'\n        # kill tunnel si besoin\n        alias ps=\"ps aux\"\n        killtunnelrespore(){\n          idtunnel=`ps | grep -i respore | grep -i ssh | awk '{print $2}'`\n          kill -9 $idtunnel\n        }"
-  },
-  {
-    "objectID": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
-    "href": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "Creation du tunnel",
-    "text": "Creation du tunnel\nA faire une seule fois au démarrage de son ordinateur, pour créer le tunnel:\ntunnelrespore"
-  },
-  {
-    "objectID": "sheets/connexion_via_tunnel.html#utilisation",
-    "href": "sheets/connexion_via_tunnel.html#utilisation",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "utilisation",
-    "text": "utilisation\nA chaque fois qu’on veut se connecter à respore:\nhtunnelrespore  (pour home by tunnelrespore)\nPour échanger des fichiers entre son ordi et respore:\nsftprespore\npuis pour envoyer un fichier vers le répertoire repertoire_sur_respore de Respore:\nput monfichier repertoire_sur_respore/.\npour récupérer un fichier de repertoire_sur_respore vers mon ordi:\nget repertoire_sur_respore/monfichier .\nSi le tunnel ne fonctionne plus, il faut le détruire puis le recréer. La commande killtunnelrespore gère la destruction de manière automatique:\nkilltunnelrespore\ntunnelrespore"
-  },
-  {
-    "objectID": "sheets/anaconda_oceanographie.html",
-    "href": "sheets/anaconda_oceanographie.html",
-    "title": "Anaconda pour l’oceanographie",
+    "objectID": "sheets/detacher_processus_nohup.html",
+    "href": "sheets/detacher_processus_nohup.html",
+    "title": "détacher des processus avec la commande nohup",
     "section": "",
-    "text": "Suivre cette doc pour l’installation de Anaconda de manière générale:A FAIRE Installation de pyferret avec Anaconda\n\nInstallation de Anaconda\nIl est d’abord nécesaire d’installer Anaconda\n\n\nCréation d’un environnement pour l’océanographie\nconda create --name oceano\nconda activate oceano\nconda install pandas numpy xarray netCDF4 dask scipy ipython jupyter cartopy numba\nconda install matplotlib ipykernel cloudpickle ipykernel\nconda install -c conda-forge xgcm hdf5storage\n\n\nCréation d’un autre environnement avec pyferret\nSi on veut aussi installer pyferret dans le même environnement\nconda create --name FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets --yes\nconda activate FERRET\nconda install -c conda-forge xgcm hdf5storage xarray \nconda install matplotlib netCDF4 ipython jupyter cartopy numba ipykernel\nremarque:\n- numpy est installé automatiquement par dépendance de pyferret - pandas, dask, cloudpickle, scipy sont installés automatiquement aussi par dépendances.\n\n\nUtilisation de ces environnements\nPour utiliser cet environnement:\nconda activate oceano\nPour désactiver cet environnement lorsqu’on le souhaite:\nconda deactivate\nremarque: - pas d’installation de spyder (incompatibilités, … si quelqu’un a une solution, je suis preneuse…)\n\n\nInstallation d’un environnement conda pour Copernicus\nVoir la doc Documentation sur Copernicus Marine ."
+    "text": "But: pouvoir detacher un processus et le faire tourner meme si on n’est pas connecté: (voir https://www.tecmint.com/keep-remote-ssh-sessions-running-after-disconnection/ )\n\nFonctionnement\nPour créer un screen (nommé nomduscreen)\nscreen -S nomduscreen\nPour sortir du screen, le détacher: “To detach a screen from the remote terminal, just press “Ctrl+a” immediately followed by “d”” ctrl+a puis d\npour voir tous les screen qu’on a, dans un terminal normal:\nscreen -r\nThere are several suitable screens on:\n    2283.pts-100.service7    (Detached)\n    2221.testcamille    (Detached)\ns'il n'y a qu'un screen, screen -r permet de revenir au screen \n\nsi plusieurs screen, cela les liste\nPour aller dedans:\n# si le résultat de la commande est un tableau\nscreen -r 2221.testcamille\n  # si on veut se connecter au screen avec ce numéro\nPour en supprimer un, aller dedans puis:\nexit \n\n\nAutres infos à trier:\nExecution de son programme :\nscreen -S session_julien ./monprog &gt;output.txt 2&gt;&1&\n→ et on ferme la fenetre (on peut egalement fermer sa session cela ne pose pas de pb)\nPour voir si il y a des screens qui tournent :\nscreen -ls\nDe chez soi on se connecte sur la machine sur laquelle on a des scripts qui tournent en nohup et on recupere le shell via la commande :\nscreen -r session_julien\nscreen et le shell multi-utilisateur pour travailler avec un collegue de travail sur un meme shell !\nMoi (utilisateur root)\nMoi : chmod u+s /usr/bin/screen\nMoi : screen -S test\n\nLui : screen -r root/ (bien specifier le \"/\" a la fin)\net voila !\nQuelques commandes utiles\n\nTaper screen pour lancer un shell screen\nCtrl-a c : cree un nouveau shell screen\nCtrl-a 0 : Passe au shell numero 0\nCtrl-a 1 : Passe au shell numero 1\nCtrl-a ? : Voir les raccourcis"
   },
   {
-    "objectID": "sheets/executable_matlab.html",
-    "href": "sheets/executable_matlab.html",
-    "title": "Créer un exécutable Matlab",
+    "objectID": "sheets/ccamu.html",
+    "href": "sheets/ccamu.html",
+    "title": "Utilisation du cluster régional du CCAMU de Marseille",
     "section": "",
-    "text": "But: pouvoir utiliser son script matlab sur une machine qui n’a pas de licence matlab\nInconvénients: il faut créer l’éxécutable sur la même architecture que l’architecture cible (ex: linux pour linux, …)\n\n1. Suivre la doc du SIP\nhttps://calcul.osupytheas.fr/?p=478\n\n\n2. Etape 1: création de l’exécutable, choix des arguments\nOn peut choisir des arguments de notre code matlab flottants et non de type chaine de charactere: Avant la phrase du SIP ” Une fois vos codes et modules ajoutés, vous devez créer le package en cliquant sur Package.”, c’est important de dire que les arguments donnés au code peuvent être indiqués en chaines de caractères (par défault) ou en flottants (ce dont moi j’avais besoin). Il y a une case à cocher. Tous les arguments doivent être du même type (flottant ou string)\n\n\n3. Lancement du code via slurm\nPour la Deuxième étape indiquée sur calcul.osupytheas.fr, je propose une autre solution que je trouve plus lisible quand on a des arguments. Mais c’est à vous de voir si vous préférez le tutorial du SIP ou cette possibilité: - 1. Copier le script run_xxx.sh contenu dans le répertoire for_testing vers notre répertoire de travail et modifier la ligne pointant vers l’exécutable, si besoin : bash     exe_dir=/home/mazoyer/matlab_to_exe/rep_exe - 2. Créer un fichier run.slurm de lancement batch comme suit, si l’on a un script matlab avec 3 arguments qui seront ici arg1, arg2, arg3 (à remplacer dans votre cas). Le répertoire Matlab /usr/local/MATLAB/MATLAB_Runtime/v910 est le répertoire racine de Matlab contenant par exemple le répertoire runtime/glnxa64.\n    #!/bin/sh\n    # script pour l'exécution des codes Matlab packages.\n    #\n    #Environnement MATLAB Runtime\n\n    #SBATCH --job-name=matlab_MCR\n    #SBATCH --time=240:00:00\n    #SBATCH --mail-user=xxx.yyy@ird.fr\n    #SBATCH --partition=seq\n    #SBATCH --output=resultslumr.log\n\n    echo 'start matlab'\n    time sh run_xxx.sh /usr/local/MATLAB/MATLAB_Runtime/v910 arg1 arg2 arg3\n    echo 'end matlab'\n\n\nPour lancer ensuite l’exécutable, taper la commande:\n\n\n    sbatch run.slurm\nAttention! le run batch ne s’arrête pas une fois la fin de l’éxécution matlab, il faut penser à killer le job evéntuellement."
+    "text": "auteur: camille.mazoyer@ird.fr maj : janvier 2024"
   },
   {
-    "objectID": "sheets/clef_ssh.html",
-    "href": "sheets/clef_ssh.html",
-    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
-    "section": "",
-    "text": "ssh-keygen -t ed25519 -C \"prenom.nom@monemail.fr\"\nIl est maintenant conseillé de générer une clef ed255 plutôt que rsa. Indiquer une passphrase qui remplacera votre mot de passe et que votre ordinateur vous demandera qu’une seule fois par démarrage.\nSur mac: Ajouter dans le ~/.ssh/config :\nHost *\n    UseKeychain yes"
+    "objectID": "sheets/ccamu.html#sftp",
+    "href": "sheets/ccamu.html#sftp",
+    "title": "Utilisation du cluster régional du CCAMU de Marseille",
+    "section": "SFTP",
+    "text": "SFTP\nSur la machine ssh ou chez vous, vous pouvez utiliser un alias à insérer dans le fichier .bashrc:\nalias sftpccamu='sftp -P 8822 votrelogin@login.mesocentre.univ-amu.fr'\nsi vous utilisez une connexion via un tunnel\nalias sftptunnelccamu='sftp -P 5535 cmazoyer@localhost'\nEnsuite, la connection se fait avec la commande:\nsftpccamu\nou par le tunnel:\nsftptunnelccamu\nPuis utiliser les commandes get ou put pour recevoir ou envoyer des fichiers entre les deux machines"
   },
   {
-    "objectID": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
-    "href": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
-    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
-    "section": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)",
-    "text": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)\nChanger “monlogin” avec votre login.\n\nToulon\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@lseet.univ-tln.fr\nssh monlogin@lseet.univ-tln.fr  #=&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@respore\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@ssh.osupytheas.fr\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@cluster.osupytheas.fr\nSi la copie a fonctionné, vous devriez voir apparaitre: “number of key added: 1” et vous devriez pouvoir vous connecter sans mot de passe (Ubuntu va vous demander un mot de passe, votre passphrase à la première connexion ssh)."
+    "objectID": "sheets/ccamu.html#scp",
+    "href": "sheets/ccamu.html#scp",
+    "title": "Utilisation du cluster régional du CCAMU de Marseille",
+    "section": "SCP",
+    "text": "SCP\nVous pouvez aussi utiliser la commande suivante, en se plaçant sur la machine locale (cluster de l’OSU).\nscp -P 8822 fichierlocal monlogin@login.mesocentre.univ-amu.fr:repertoireccamu/. \nsi vous utilisez une connexion via un tunnel\nscp -P 5535 fichierlocal monlogin@localhost:repertoireccamu/."
   },
   {
-    "objectID": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
-    "href": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
-    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
-    "section": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:",
-    "text": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:\n\nToulon\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@lseet.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nssh monlogin@lseet.univ-tln.fr # =&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@respore.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@meduse.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@cluster.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nsi cela ne fonctionne pas, chmod 700 -R ~/.ssh"
+    "objectID": "sheets/ccamu.html#rsync",
+    "href": "sheets/ccamu.html#rsync",
+    "title": "Utilisation du cluster régional du CCAMU de Marseille",
+    "section": "Rsync",
+    "text": "Rsync\nRechercher ma doc sur rsync (local ou via ssh), en se plaçant sur la machine locale (cluster de l’OSU).\nrsync -uave 'ssh -p 8822' votrelogin@login.mesocentre.univ-amu.fr:repertoireccamu/.\nsi vous utilisez une connexion via un tunnel\nrsync -uave 'ssh -p 5535' votrelogin@localhost:repertoireccamu/."
   },
   {
-    "objectID": "sheets/vim.html",
-    "href": "sheets/vim.html",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "",
-    "text": "Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM :"
-  },
-  {
-    "objectID": "sheets/vim.html#couleur-du-thème",
-    "href": "sheets/vim.html#couleur-du-thème",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "2.1 Couleur du thème:",
-    "text": "2.1 Couleur du thème:\nPour changer de couleur de theme et avoir quelque chose de plus visible, créer ou ouvrir s’il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):\ncolorscheme darkblue"
-  },
-  {
-    "objectID": "sheets/vim.html#un-thème-adapté-au-vimdiff",
-    "href": "sheets/vim.html#un-thème-adapté-au-vimdiff",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "2.2 Un thème adapté au vimdiff",
-    "text": "2.2 Un thème adapté au vimdiff\nVoir Post stackoverflow:\n (image issue de l’url de statckoverflow ci-dessus)\nDans un terminal:\ncurl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim\npuis dans vim, en mode édition:\n:colorscheme github"
-  },
-  {
-    "objectID": "sheets/partager_env_anaconda.html",
-    "href": "sheets/partager_env_anaconda.html",
-    "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
-    "section": "",
-    "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
-  },
-  {
-    "objectID": "sheets/universite_toulon_proxy.html",
-    "href": "sheets/universite_toulon_proxy.html",
-    "title": "Travailler à l’université de Toulon sous proxy",
-    "section": "",
-    "text": "A faire uniquement lorsque l’on est derrière un proxy avec authentification, connecté en RJ45. Attention, il faut éviter de mettre des “!” ou “@” dans son mot de passe, cela peut poser problème en ligne de commande ensuite.\n\n1. Git\nCréer le fichier ~/.gitconfig s’il n’existe pas. Y ajouter les infos sur le proxy:\n[https]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n[http]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n        proxyAuthMethod = basic\n\n\n2. Wget\nconfigurer Wget pour les proxy selon stackoverflow.com.\nexemple:\nindiquer dans le fichier .bashrc:\nexport http_proxy=cache.univ-tln.fr:3128\nexport https_proxy=cache.univ-tln.fr:3128\npuis en ligne de commande, suivant ce qu’on veut télécharger:\nwget --proxy-user=\"tonlogin\" --proxy-password=\"tonmotdepasse\" \"https://xxxx.tar.gz\"\n\n\n3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi …)\nCréer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la doc de Anaconda.\nfichier .condarc\nproxy_servers:\n    http: http://user:pass@cache.univ-tln.fr:3128\n    https: https://user:pass@cache.univ-tln.fr:3128"
-  },
-  {
-    "objectID": "sheets/docker.html",
-    "href": "sheets/docker.html",
-    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
-    "section": "",
-    "text": "Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un serveur mandataire dans les paramètres réseaux .\n\n1. Création du docker\nLe fichier est le suivant: dockerFile_ubuntu22-04_anaconda3 FROM ubuntu:22.04 WORKDIR /usr/src/app USER root RUN apt-get update && apt-get install -y vim libpq-dev wget RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &&\nsh Miniconda3-latest-Linux-x86_64.sh -b -p /opt/miniconda3 &&\nrm -r Miniconda3-latest-Linux-x86_64.sh ENV PATH /opt/miniconda3/bin:$PATH RUN conda update conda #RUN conda install python=3.9 RUN conda config –add channels conda-forge #RUN conda config –set channel_priority strict\ndocker build -t test -f dockerFile_ubuntu22-04_anaconda3 .\n\n\n2. lancement du docker\ndocker run -i -v /home/mazoyer/Documents/data/TBAY/:/DATA -t ubuntu22.4-pyferret bash"
-  },
-  {
-    "objectID": "sheets/installation_pyferret.html",
-    "href": "sheets/installation_pyferret.html",
-    "title": "Installation de pyferret avec Anaconda",
-    "section": "",
-    "text": "Suivre les explications du README de pyferret: https://github.com/NOAA-PMEL/PyFerret/blob/master/README.md"
-  },
-  {
-    "objectID": "sheets/installation_pyferret.html#dernière-version-de-pyferret-pour-ubuntu-20.04",
-    "href": "sheets/installation_pyferret.html#dernière-version-de-pyferret-pour-ubuntu-20.04",
-    "title": "Installation de pyferret avec Anaconda",
-    "section": "Dernière version de Pyferret pour ubuntu > 20.04",
-    "text": "Dernière version de Pyferret pour ubuntu &gt; 20.04\nPour avoir la dernière version de PyFerret:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes"
-  },
-  {
-    "objectID": "sheets/installation_pyferret.html#pyferret-pour-ubuntu-20.04",
-    "href": "sheets/installation_pyferret.html#pyferret-pour-ubuntu-20.04",
-    "title": "Installation de pyferret avec Anaconda",
-    "section": "Pyferret pour ubuntu 20.04",
-    "text": "Pyferret pour ubuntu 20.04\nAttention! Pour installer PyFerret avec Ubuntu 20.04 TLS, choisir une version de 2020 (https://www.pmel.noaa.gov/maillists/tmap/ferret_users/fu_2019/msg01061.html)\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
-  },
-  {
-    "objectID": "sheets/installation_pyferret.html#usage-de-python-3.9-au-lieu-de-3.10",
-    "href": "sheets/installation_pyferret.html#usage-de-python-3.9-au-lieu-de-3.10",
-    "title": "Installation de pyferret avec Anaconda",
-    "section": "Usage de python 3.9 au lieu de 3.10",
-    "text": "Usage de python 3.9 au lieu de 3.10\nPyferret peut ne pas fonctionner avec python 3.10 (erreur: https://github.com/conda-forge/pyferret-feedstock/issues/94 ). Si c’est le cas, spécifier la version de python:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes\nou\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
-  },
-  {
-    "objectID": "sheets/visual_studio_code.html",
-    "href": "sheets/visual_studio_code.html",
-    "title": "Utilisation de Visual Studio Code",
-    "section": "",
-    "text": "1. Configuration\n\nGénérer une clefs ssh (voir Générer une clef ssh ). Ici, j’utilise la clef id_rsa pour respore et id_ed25519 pour le mesocentre CCAMU.\nCréer le fichier .ssh/config qui contient vos configurations.\n\nIci, Respore, cluster.osupytheas.fr et tools.osupytheas.fr sont des machines auxquelles j’accède via un tunnel (voir Connexion à un ordinateur via un tunnel). Par conséquence, leur hostname est localhost et non leur nom réél. Si vous utilisez localhost, comme ici, pensez à lancer le tunnel dans un terminal avant d’utiliser Visual Studio Code, sinon, cela ne fonctionnera pas.\nHost *\n  ForwardAgent yes\n  ForwardX11 yes\n  ForwardX11Trusted yes\n  ServerAliveInterval 1920\n\nHost Respore\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  IdentityFile ~/.ssh/id_rsa\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5533\n\nHost ClusterOSU\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5530\n\nHost ToolsOSU\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5531\n\nHost CCAMU\n  HostName login.mesocentre.univ-amu.fr\n  ForwardX11Trusted yes\n  user cmazoyer\n  PubkeyAuthentication yes\n  IdentityFile ~/.ssh/id_ed25519\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  port 22\n\ncréer ensuite le répertoire sockets :\n\nmkdir .ssh/sockets\n\nlancer le tunnel sur la machine sur laquelle on veut se connecter (ex: tunnelrespore) si nécessaire.\nlancer Visual Studio Code\nInstaller l’extension “Remote ssh”\nRedémarrer Visual Studio et sélectionner en bas à gauche le texte en vert (SSH …).\n\n\n\nPuis cliquer sur “Se connecter à l’hôte”.\n\n\n\nVous devez voir apparaître toutes les machines que vous avez indiquées dans votre .ssh/config. Cliquer sur celle que vous souhaitez (pensez à bien activer un tunnel ssh si nécessaire, dans un terminal).\n\n\n\n\n2. Utilisation de Jupyter à distance\n\nSur la machine distante, il faut installer python (via anaconda par exemple) et la librairie jupyter.\nSe connecter avec Visual Studio sur la machine distante (voir section 1).\ncréer un fichier .ipynb"
-  },
-  {
-    "objectID": "sheets/copernicusmarine.html",
-    "href": "sheets/copernicusmarine.html",
-    "title": "Comment utiliser l’outil Copernicusmarine",
-    "section": "",
-    "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install -c conda-forge copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
+    "objectID": "sheets/ccamu.html#si-la-durée-de-transfert-est-supérieure-à-30-min",
+    "href": "sheets/ccamu.html#si-la-durée-de-transfert-est-supérieure-à-30-min",
+    "title": "Utilisation du cluster régional du CCAMU de Marseille",
+    "section": "Si la durée de transfert est supérieure à 30 min",
+    "text": "Si la durée de transfert est supérieure à 30 min\nSe référer à la doc https://mesocentre.univ-amu.fr/sauvegarde-donnees/ et la suivre. Une fois connecté à un noeud de calcul comme proposé dans la doc, il faut créer un tunnel avec la machine cluster puis s’y connecter avec une des 3 méthodes plus haut (attention, le port est le 5530 et la machine est localhost):\nssh -X -C -N -f votrelogin@ssh.osupytheas.fr -L5530:cluster.osupytheas.fr:22\nsftp -P 5530 votrelogin@localhost"
   },
   {
     "objectID": "sheets/git.html",
@@ -280,46 +189,172 @@
     "text": "3.6 Commande “hist”\nTaper (une seule fois) la commande suivante dans un terminal\ngit config --global alias.hist \"log --graph --date-order --date=short \\\n--pretty=format:'%C(auto)%h%d %C(reset)%s %C(bold blue)%ce %C(reset)%C(green)%cr (%cd)'\"\nL’utilisation se fait de la manière suivante:\ngit hist # Show the history of current branch\ngit hist --all # Show the graph of all branches (including remotes)\ngit hist master devel # Show the relationship between two or more branches\ngit hist --branches # Show all local branches\n#Add --topo-order to sort commits topologically, instead of by date (default in this alias)\nPar exemple:  Les avantages de cette commande sont les suivants:\n\nressemble à “plain –decorate” avec des couleurs différentes pour chaque branche\najout de l’email de la personne qui commit\najout des dates\ntri des commits par dates"
   },
   {
-    "objectID": "sheets/ccamu.html",
-    "href": "sheets/ccamu.html",
-    "title": "Utilisation du cluster régional du CCAMU de Marseille",
+    "objectID": "sheets/copernicusmarine.html",
+    "href": "sheets/copernicusmarine.html",
+    "title": "Comment utiliser l’outil Copernicusmarine",
     "section": "",
-    "text": "auteur: camille.mazoyer@ird.fr maj : janvier 2024"
+    "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install -c conda-forge copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
   },
   {
-    "objectID": "sheets/ccamu.html#sftp",
-    "href": "sheets/ccamu.html#sftp",
-    "title": "Utilisation du cluster régional du CCAMU de Marseille",
-    "section": "SFTP",
-    "text": "SFTP\nSur la machine ssh ou chez vous, vous pouvez utiliser un alias à insérer dans le fichier .bashrc:\nalias sftpccamu='sftp -P 8822 votrelogin@login.mesocentre.univ-amu.fr'\nsi vous utilisez une connexion via un tunnel\nalias sftptunnelccamu='sftp -P 5535 cmazoyer@localhost'\nEnsuite, la connection se fait avec la commande:\nsftpccamu\nou par le tunnel:\nsftptunnelccamu\nPuis utiliser les commandes get ou put pour recevoir ou envoyer des fichiers entre les deux machines"
-  },
-  {
-    "objectID": "sheets/ccamu.html#scp",
-    "href": "sheets/ccamu.html#scp",
-    "title": "Utilisation du cluster régional du CCAMU de Marseille",
-    "section": "SCP",
-    "text": "SCP\nVous pouvez aussi utiliser la commande suivante, en se plaçant sur la machine locale (cluster de l’OSU).\nscp -P 8822 fichierlocal monlogin@login.mesocentre.univ-amu.fr:repertoireccamu/. \nsi vous utilisez une connexion via un tunnel\nscp -P 5535 fichierlocal monlogin@localhost:repertoireccamu/."
-  },
-  {
-    "objectID": "sheets/ccamu.html#rsync",
-    "href": "sheets/ccamu.html#rsync",
-    "title": "Utilisation du cluster régional du CCAMU de Marseille",
-    "section": "Rsync",
-    "text": "Rsync\nRechercher ma doc sur rsync (local ou via ssh), en se plaçant sur la machine locale (cluster de l’OSU).\nrsync -uave 'ssh -p 8822' votrelogin@login.mesocentre.univ-amu.fr:repertoireccamu/.\nsi vous utilisez une connexion via un tunnel\nrsync -uave 'ssh -p 5535' votrelogin@localhost:repertoireccamu/."
-  },
-  {
-    "objectID": "sheets/ccamu.html#si-la-durée-de-transfert-est-supérieure-à-30-min",
-    "href": "sheets/ccamu.html#si-la-durée-de-transfert-est-supérieure-à-30-min",
-    "title": "Utilisation du cluster régional du CCAMU de Marseille",
-    "section": "Si la durée de transfert est supérieure à 30 min",
-    "text": "Si la durée de transfert est supérieure à 30 min\nSe référer à la doc https://mesocentre.univ-amu.fr/sauvegarde-donnees/ et la suivre. Une fois connecté à un noeud de calcul comme proposé dans la doc, il faut créer un tunnel avec la machine cluster puis s’y connecter avec une des 3 méthodes plus haut (attention, le port est le 5530 et la machine est localhost):\nssh -X -C -N -f votrelogin@ssh.osupytheas.fr -L5530:cluster.osupytheas.fr:22\nsftp -P 5530 votrelogin@localhost"
-  },
-  {
-    "objectID": "sheets/detacher_processus_nohup.html",
-    "href": "sheets/detacher_processus_nohup.html",
-    "title": "détacher des processus avec la commande nohup",
+    "objectID": "sheets/vim.html",
+    "href": "sheets/vim.html",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
     "section": "",
-    "text": "But: pouvoir detacher un processus et le faire tourner meme si on n’est pas connecté: (voir https://www.tecmint.com/keep-remote-ssh-sessions-running-after-disconnection/ )\n\nFonctionnement\nPour créer un screen (nommé nomduscreen)\nscreen -S nomduscreen\nPour sortir du screen, le détacher: “To detach a screen from the remote terminal, just press “Ctrl+a” immediately followed by “d”” ctrl+a puis d\npour voir tous les screen qu’on a, dans un terminal normal:\nscreen -r\nThere are several suitable screens on:\n    2283.pts-100.service7    (Detached)\n    2221.testcamille    (Detached)\ns'il n'y a qu'un screen, screen -r permet de revenir au screen \n\nsi plusieurs screen, cela les liste\nPour aller dedans:\n# si le résultat de la commande est un tableau\nscreen -r 2221.testcamille\n  # si on veut se connecter au screen avec ce numéro\nPour en supprimer un, aller dedans puis:\nexit \n\n\nAutres infos à trier:\nExecution de son programme :\nscreen -S session_julien ./monprog &gt;output.txt 2&gt;&1&\n→ et on ferme la fenetre (on peut egalement fermer sa session cela ne pose pas de pb)\nPour voir si il y a des screens qui tournent :\nscreen -ls\nDe chez soi on se connecte sur la machine sur laquelle on a des scripts qui tournent en nohup et on recupere le shell via la commande :\nscreen -r session_julien\nscreen et le shell multi-utilisateur pour travailler avec un collegue de travail sur un meme shell !\nMoi (utilisateur root)\nMoi : chmod u+s /usr/bin/screen\nMoi : screen -S test\n\nLui : screen -r root/ (bien specifier le \"/\" a la fin)\net voila !\nQuelques commandes utiles\n\nTaper screen pour lancer un shell screen\nCtrl-a c : cree un nouveau shell screen\nCtrl-a 0 : Passe au shell numero 0\nCtrl-a 1 : Passe au shell numero 1\nCtrl-a ? : Voir les raccourcis"
+    "text": "Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM :"
+  },
+  {
+    "objectID": "sheets/vim.html#couleur-du-thème",
+    "href": "sheets/vim.html#couleur-du-thème",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "2.1 Couleur du thème:",
+    "text": "2.1 Couleur du thème:\nPour changer de couleur de theme et avoir quelque chose de plus visible, créer ou ouvrir s’il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):\ncolorscheme darkblue"
+  },
+  {
+    "objectID": "sheets/vim.html#un-thème-adapté-au-vimdiff",
+    "href": "sheets/vim.html#un-thème-adapté-au-vimdiff",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "2.2 Un thème adapté au vimdiff",
+    "text": "2.2 Un thème adapté au vimdiff\nVoir Post stackoverflow:\n (image issue de l’url de statckoverflow ci-dessus)\nDans un terminal:\ncurl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim\npuis dans vim, en mode édition:\n:colorscheme github"
+  },
+  {
+    "objectID": "sheets/partager_env_anaconda.html",
+    "href": "sheets/partager_env_anaconda.html",
+    "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
+    "section": "",
+    "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
+  },
+  {
+    "objectID": "sheets/universite_toulon_proxy.html",
+    "href": "sheets/universite_toulon_proxy.html",
+    "title": "Travailler à l’université de Toulon sous proxy",
+    "section": "",
+    "text": "A faire uniquement lorsque l’on est derrière un proxy avec authentification, connecté en RJ45. Attention, il faut éviter de mettre des “!” ou “@” dans son mot de passe, cela peut poser problème en ligne de commande ensuite.\n\n1. Git\nCréer le fichier ~/.gitconfig s’il n’existe pas. Y ajouter les infos sur le proxy:\n[https]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n[http]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n        proxyAuthMethod = basic\n\n\n2. Wget\nconfigurer Wget pour les proxy selon stackoverflow.com.\nexemple:\nindiquer dans le fichier .bashrc:\nexport http_proxy=cache.univ-tln.fr:3128\nexport https_proxy=cache.univ-tln.fr:3128\npuis en ligne de commande, suivant ce qu’on veut télécharger:\nwget --proxy-user=\"tonlogin\" --proxy-password=\"tonmotdepasse\" \"https://xxxx.tar.gz\"\n\n\n3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi …)\nCréer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la doc de Anaconda.\nfichier .condarc\nproxy_servers:\n    http: http://user:pass@cache.univ-tln.fr:3128\n    https: https://user:pass@cache.univ-tln.fr:3128"
+  },
+  {
+    "objectID": "sheets/docker.html",
+    "href": "sheets/docker.html",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "",
+    "text": "Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un serveur mandataire dans les paramètres réseaux .\nQuelques docs à lire : - https://medium.com/@anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11 - https://leimao.github.io/blog/Docker-Container-GUI-Display/ -\n\n1. Création du docker\nLe fichier est le suivant: dockerFile_ubuntu22-04_anaconda3 FROM ubuntu:22.04 WORKDIR /usr/src/app USER root RUN apt-get update && apt-get install -y vim libpq-dev wget RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &&\nsh Miniconda3-latest-Linux-x86_64.sh -b -p /opt/miniconda3 &&\nrm -r Miniconda3-latest-Linux-x86_64.sh ENV PATH /opt/miniconda3/bin:$PATH RUN conda update conda #RUN conda install python=3.9 RUN conda config –add channels conda-forge #RUN conda config –set channel_priority strict\ndocker build -t test -f dockerFile_ubuntu22-04_anaconda3 .\n\n\n2. lancement du docker\ndocker run -i -v /home/mazoyer/Documents/data/TBAY/:/DATA -t ubuntu22.4-pyferret bash"
+  },
+  {
+    "objectID": "sheets/installation_pyferret.html",
+    "href": "sheets/installation_pyferret.html",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "",
+    "text": "Suivre les explications du README de pyferret: https://github.com/NOAA-PMEL/PyFerret/blob/master/README.md"
+  },
+  {
+    "objectID": "sheets/installation_pyferret.html#dernière-version-de-pyferret-pour-ubuntu-20.04",
+    "href": "sheets/installation_pyferret.html#dernière-version-de-pyferret-pour-ubuntu-20.04",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "Dernière version de Pyferret pour ubuntu > 20.04",
+    "text": "Dernière version de Pyferret pour ubuntu &gt; 20.04\nPour avoir la dernière version de PyFerret:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes"
+  },
+  {
+    "objectID": "sheets/installation_pyferret.html#pyferret-pour-ubuntu-20.04",
+    "href": "sheets/installation_pyferret.html#pyferret-pour-ubuntu-20.04",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "Pyferret pour ubuntu 20.04",
+    "text": "Pyferret pour ubuntu 20.04\nAttention! Pour installer PyFerret avec Ubuntu 20.04 TLS, choisir une version de 2020 (https://www.pmel.noaa.gov/maillists/tmap/ferret_users/fu_2019/msg01061.html)\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
+  },
+  {
+    "objectID": "sheets/installation_pyferret.html#usage-de-python-3.9-au-lieu-de-3.10",
+    "href": "sheets/installation_pyferret.html#usage-de-python-3.9-au-lieu-de-3.10",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "Usage de python 3.9 au lieu de 3.10",
+    "text": "Usage de python 3.9 au lieu de 3.10\nPyferret peut ne pas fonctionner avec python 3.10 (erreur: https://github.com/conda-forge/pyferret-feedstock/issues/94 ). Si c’est le cas, spécifier la version de python:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes\nou\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
+  },
+  {
+    "objectID": "sheets/visual_studio_code.html",
+    "href": "sheets/visual_studio_code.html",
+    "title": "Utilisation de Visual Studio Code",
+    "section": "",
+    "text": "1. Configuration\n\nGénérer une clefs ssh (voir Générer une clef ssh ). Ici, j’utilise la clef id_rsa pour respore et id_ed25519 pour le mesocentre CCAMU.\nCréer le fichier .ssh/config qui contient vos configurations.\n\nIci, Respore, cluster.osupytheas.fr et tools.osupytheas.fr sont des machines auxquelles j’accède via un tunnel (voir Connexion à un ordinateur via un tunnel). Par conséquence, leur hostname est localhost et non leur nom réél. Si vous utilisez localhost, comme ici, pensez à lancer le tunnel dans un terminal avant d’utiliser Visual Studio Code, sinon, cela ne fonctionnera pas.\nHost *\n  ForwardAgent yes\n  ForwardX11 yes\n  ForwardX11Trusted yes\n  ServerAliveInterval 1920\n\nHost Respore\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  IdentityFile ~/.ssh/id_rsa\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5533\n\nHost ClusterOSU\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5530\n\nHost ToolsOSU\n  HostName localhost\n  ForwardX11Trusted yes\n  user mazoyer\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  Port 5531\n\nHost CCAMU\n  HostName login.mesocentre.univ-amu.fr\n  ForwardX11Trusted yes\n  user cmazoyer\n  PubkeyAuthentication yes\n  IdentityFile ~/.ssh/id_ed25519\n  ControlMaster auto\n  ControlPath ~/.ssh/sockets/%r@%h-%p\n  ControlPersist 600\n  port 22\n\ncréer ensuite le répertoire sockets :\n\nmkdir .ssh/sockets\n\nlancer le tunnel sur la machine sur laquelle on veut se connecter (ex: tunnelrespore) si nécessaire.\nlancer Visual Studio Code\nInstaller l’extension “Remote ssh”\nRedémarrer Visual Studio et sélectionner en bas à gauche le texte en vert (SSH …).\n\n\n\nPuis cliquer sur “Se connecter à l’hôte”.\n\n\n\nVous devez voir apparaître toutes les machines que vous avez indiquées dans votre .ssh/config. Cliquer sur celle que vous souhaitez (pensez à bien activer un tunnel ssh si nécessaire, dans un terminal).\n\n\n\n\n2. Utilisation de Jupyter à distance\n\nSur la machine distante, il faut installer python (via anaconda par exemple) et la librairie jupyter.\nSe connecter avec Visual Studio sur la machine distante (voir section 1).\ncréer un fichier .ipynb"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html",
+    "href": "sheets/githubcopilot.html",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "",
+    "text": "Se créer un compte sur github avec la double authentification: https://github.com/. L’adresse mail utilisée doit être l’adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d’adhésion à copilot)"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#prérequis",
+    "href": "sheets/githubcopilot.html#prérequis",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "2.1 Prérequis",
+    "text": "2.1 Prérequis\nSuivre les prérequis indiqués ici : https://education.github.com/discount_requests/application. Entre autres:\n\ndouble authentification\nadresse de facturation\npersonnaliser son profil : indiquer son vrai nom, mettre sa photo, …\nse munir de sa carte professionnelle\nréaliser la demande dans les locaux de l’adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu’on est en congé, l’heure correspond à un week end / soirée, …)"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "href": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "Infos pour la demande de compte",
+    "text": "Infos pour la demande de compte\n\nbien faire la demande avec son adresse ird, amu ou tln\nLa carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l’adresse mail professionnelle. Github va demander de prendre une photo du devant de celle-ci avec la camera de l’ordinateur"
+  },
+  {
+    "objectID": "sheets/clef_ssh.html",
+    "href": "sheets/clef_ssh.html",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "section": "",
+    "text": "ssh-keygen -t ed25519 -C \"prenom.nom@monemail.fr\"\nIl est maintenant conseillé de générer une clef ed255 plutôt que rsa. Indiquer une passphrase qui remplacera votre mot de passe et que votre ordinateur vous demandera qu’une seule fois par démarrage.\nSur mac: Ajouter dans le ~/.ssh/config :\nHost *\n    UseKeychain yes"
+  },
+  {
+    "objectID": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
+    "href": "sheets/clef_ssh.html#solution-1-la-plus-simple-attention-penser-à-lancer-le-vpn-pour-luminy",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "section": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)",
+    "text": "Solution 1 (la plus simple) (attention : penser à lancer le VPN pour Luminy)\nChanger “monlogin” avec votre login.\n\nToulon\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@lseet.univ-tln.fr\nssh monlogin@lseet.univ-tln.fr  #=&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@respore\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@ssh.osupytheas.fr\nssh-copy-id -i ~/.ssh/id_ed25519 monlogin@cluster.osupytheas.fr\nSi la copie a fonctionné, vous devriez voir apparaitre: “number of key added: 1” et vous devriez pouvoir vous connecter sans mot de passe (Ubuntu va vous demander un mot de passe, votre passphrase à la première connexion ssh)."
+  },
+  {
+    "objectID": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
+    "href": "sheets/clef_ssh.html#solution-2.-si-cette-solution-ne-fonctionne-pas-il-faut-copier-la-clef-à-la-main",
+    "title": "Se connecter aux machines de Toulon (respore, lseet), Luminy (cluster, tools, ssh) et à l’IDRIS sans mot de passe",
+    "section": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:",
+    "text": "Solution 2. Si cette solution ne fonctionne pas, il faut copier la clef “à la main”:\n\nToulon\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@lseet.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nssh monlogin@lseet.univ-tln.fr # =&gt; que si on n'est pas dans les locaux de la fac de Toulon quand on fait la manipulation\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@respore.univ-tln.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\n\n\nLuminy : penser à lancer le VPN de Luminy !!!!\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@meduse.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\ncat ~/.ssh/id_ed25519.pub | ssh monlogin@cluster.osupytheas.fr \"mkdir -p ~/.ssh && cat &gt;&gt;  ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys\"\nsi cela ne fonctionne pas, chmod 700 -R ~/.ssh"
+  },
+  {
+    "objectID": "sheets/executable_matlab.html",
+    "href": "sheets/executable_matlab.html",
+    "title": "Créer un exécutable Matlab",
+    "section": "",
+    "text": "But: pouvoir utiliser son script matlab sur une machine qui n’a pas de licence matlab\nInconvénients: il faut créer l’éxécutable sur la même architecture que l’architecture cible (ex: linux pour linux, …)\n\n1. Suivre la doc du SIP\nhttps://calcul.osupytheas.fr/?p=478\n\n\n2. Etape 1: création de l’exécutable, choix des arguments\nOn peut choisir des arguments de notre code matlab flottants et non de type chaine de charactere: Avant la phrase du SIP ” Une fois vos codes et modules ajoutés, vous devez créer le package en cliquant sur Package.”, c’est important de dire que les arguments donnés au code peuvent être indiqués en chaines de caractères (par défault) ou en flottants (ce dont moi j’avais besoin). Il y a une case à cocher. Tous les arguments doivent être du même type (flottant ou string)\n\n\n3. Lancement du code via slurm\nPour la Deuxième étape indiquée sur calcul.osupytheas.fr, je propose une autre solution que je trouve plus lisible quand on a des arguments. Mais c’est à vous de voir si vous préférez le tutorial du SIP ou cette possibilité: - 1. Copier le script run_xxx.sh contenu dans le répertoire for_testing vers notre répertoire de travail et modifier la ligne pointant vers l’exécutable, si besoin : bash     exe_dir=/home/mazoyer/matlab_to_exe/rep_exe - 2. Créer un fichier run.slurm de lancement batch comme suit, si l’on a un script matlab avec 3 arguments qui seront ici arg1, arg2, arg3 (à remplacer dans votre cas). Le répertoire Matlab /usr/local/MATLAB/MATLAB_Runtime/v910 est le répertoire racine de Matlab contenant par exemple le répertoire runtime/glnxa64.\n    #!/bin/sh\n    # script pour l'exécution des codes Matlab packages.\n    #\n    #Environnement MATLAB Runtime\n\n    #SBATCH --job-name=matlab_MCR\n    #SBATCH --time=240:00:00\n    #SBATCH --mail-user=xxx.yyy@ird.fr\n    #SBATCH --partition=seq\n    #SBATCH --output=resultslumr.log\n\n    echo 'start matlab'\n    time sh run_xxx.sh /usr/local/MATLAB/MATLAB_Runtime/v910 arg1 arg2 arg3\n    echo 'end matlab'\n\n\nPour lancer ensuite l’exécutable, taper la commande:\n\n\n    sbatch run.slurm\nAttention! le run batch ne s’arrête pas une fois la fin de l’éxécution matlab, il faut penser à killer le job evéntuellement."
+  },
+  {
+    "objectID": "sheets/anaconda_oceanographie.html",
+    "href": "sheets/anaconda_oceanographie.html",
+    "title": "Anaconda pour l’oceanographie",
+    "section": "",
+    "text": "Suivre cette doc pour l’installation de Anaconda de manière générale:A FAIRE Installation de pyferret avec Anaconda\n\nInstallation de Anaconda\nIl est d’abord nécesaire d’installer Anaconda\n\n\nCréation d’un environnement pour l’océanographie\nconda create --name oceano\nconda activate oceano\nconda install pandas numpy xarray netCDF4 dask scipy ipython jupyter cartopy numba\nconda install matplotlib ipykernel cloudpickle ipykernel\nconda install -c conda-forge xgcm hdf5storage\n\n\nCréation d’un autre environnement avec pyferret\nSi on veut aussi installer pyferret dans le même environnement\nconda create --name FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets --yes\nconda activate FERRET\nconda install -c conda-forge xgcm hdf5storage xarray \nconda install matplotlib netCDF4 ipython jupyter cartopy numba ipykernel\nremarque:\n- numpy est installé automatiquement par dépendance de pyferret - pandas, dask, cloudpickle, scipy sont installés automatiquement aussi par dépendances.\n\n\nUtilisation de ces environnements\nPour utiliser cet environnement:\nconda activate oceano\nPour désactiver cet environnement lorsqu’on le souhaite:\nconda deactivate\nremarque: - pas d’installation de spyder (incompatibilités, … si quelqu’un a une solution, je suis preneuse…)\n\n\nInstallation d’un environnement conda pour Copernicus\nVoir la doc Documentation sur Copernicus Marine ."
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html",
+    "href": "sheets/connexion_via_tunnel.html",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "",
+    "text": "3 exemples ci-dessous:"
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
+    "href": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "Mise en place des scripts",
+    "text": "Mise en place des scripts\nà écrire dans .bash_aliases :\n        alias hrespore=\"ssh mazoyer@respore\"\n        alias tunnelrespore='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5533:respore:22'\n        alias htunnelrespore='ssh -X -p 5533 mazoyer@localhost'\n        alias sftprespore='sftp -P 5533 mazoyer@localhost'\n        # kill tunnel si besoin\n        alias ps=\"ps aux\"\n        killtunnelrespore(){\n          idtunnel=`ps | grep -i respore | grep -i ssh | awk '{print $2}'`\n          kill -9 $idtunnel\n        }"
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
+    "href": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "Creation du tunnel",
+    "text": "Creation du tunnel\nA faire une seule fois au démarrage de son ordinateur, pour créer le tunnel:\ntunnelrespore"
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html#utilisation",
+    "href": "sheets/connexion_via_tunnel.html#utilisation",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "utilisation",
+    "text": "utilisation\nA chaque fois qu’on veut se connecter à respore:\nhtunnelrespore  (pour home by tunnelrespore)\nPour échanger des fichiers entre son ordi et respore:\nsftprespore\npuis pour envoyer un fichier vers le répertoire repertoire_sur_respore de Respore:\nput monfichier repertoire_sur_respore/.\npour récupérer un fichier de repertoire_sur_respore vers mon ordi:\nget repertoire_sur_respore/monfichier .\nSi le tunnel ne fonctionne plus, il faut le détruire puis le recréer. La commande killtunnelrespore gère la destruction de manière automatique:\nkilltunnelrespore\ntunnelrespore"
   },
   {
     "objectID": "sheets/zenodo_github.html",
@@ -369,89 +404,5 @@
     "title": "Configurer son ordi Ubuntu pour le calcul scientifique",
     "section": "",
     "text": "Installations via apt_get / aptitude:\nsudo apt-get install aptitude\nsudo aptitude install vim-gtk3\nsudo aptitude install stow git gfortran libnetcdff-dev\nsudo aptitude install libopenmpi-dev openmpi-bin\n\n\nInstallation de Anaconda\n\n\nInstallation d’un environnement Anaconda pour PyFerret:\nInstallation de pyferret (doc à faire)\n\n\nMatlab\n\nTéléchargement de matlab via le site officiel en créant un compte avec votre email univ-tln.fr. L’installation doit se faire via le wifi ou de chez soi à cause du proxy.\nPour Luminy, voir matlab à Luminy\n\n\n\nPenser aussi à:\ncréer une clef SSH et la diffuser sur d’autres ordinateurs pour éviter de taper son mot de passe (voir doc Générer une clef ssh )"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html",
-    "href": "sheets/githubcopilot.html",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "",
-    "text": "Se créer un compte sur github avec la double authentification: https://github.com/. L’adresse mail utilisée doit être l’adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d’adhésion à copilot)"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#gestion-du-proxy",
-    "href": "sheets/githubcopilot.html#gestion-du-proxy",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "2.1 Gestion du proxy",
-    "text": "2.1 Gestion du proxy\nPrivilégier l’accès à des dépôts git via https pour éviter des soucis avec le proxy.\nCependant, si on a l’erreur suivante lors d’un git clone, ou git push par exemple:\nfatal: unable to access 'https://gitlab.osupytheas.fr/mazoyer/medoc/': Received HTTP code 407 from proxy after CONNECT\nIl faut alors passer en ssh sur son projet (que l’on nommera ici myproject). Attention, penser à changer mylogin en votre propre login:\ngit remote -v\ngit remote set-url origin git@gitlab.osupytheas.fr:mylogin/myproject.git\nSi les deux solutions ne sont pas satisfaisantes, nous sommes preneurs de votre retour (camille.mazoyer@ird.fr)"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#faire-référence-à-des-bug-dans-un-commentaire-git",
-    "href": "sheets/githubcopilot.html#faire-référence-à-des-bug-dans-un-commentaire-git",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "3.1 Faire référence à des bug dans un commentaire git",
-    "text": "3.1 Faire référence à des bug dans un commentaire git\nOn peut lister et noter les bugs dans un bug tracker dans le projet git de gitlab (rubrique Issues de votre gitlab). Ensuite, dans un commentaire de git commit (voir link-to-the-issue-number-on-github-within-a-commit-message), on y fait référence avec les mots clefs suivants (pour le bug numéro 5 par ex):\n[debug] Résolution du bug empechant la fermeture des fichiers"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#différences-plus-visuels-avec-git--d-file",
-    "href": "sheets/githubcopilot.html#différences-plus-visuels-avec-git--d-file",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "3.2 Différences plus visuels avec git -d file",
-    "text": "3.2 Différences plus visuels avec git -d file\nPour voir les git diff a travers vimdiff, beaucoup plus visuel. Ensuite, on peut taper git d fichier.F90 pour voir la différence entre la version pushée et les modif locales.\ngit config --global diff.tool vimdiff\ngit config --global difftool.prompt false\ngit config --global alias.d difftool\ngit d --color-words  file.F"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#outil-pour-faciliter-la-fusion-de-modifications-le-merge",
-    "href": "sheets/githubcopilot.html#outil-pour-faciliter-la-fusion-de-modifications-le-merge",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "3.3 Outil pour faciliter la fusion de modifications, le “merge”",
-    "text": "3.3 Outil pour faciliter la fusion de modifications, le “merge”\nVoir how-to-resolve-merge-conflicts-in-git-repository :\ngit config merge.tool vimdiff\ngit config merge.conflictstyle diff3\ngit config mergetool.prompt false"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers",
-    "href": "sheets/githubcopilot.html#comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "3.4 Comment ne pas tenir compte des changements de permissions sur les fichiers",
-    "text": "3.4 Comment ne pas tenir compte des changements de permissions sur les fichiers\nCela peut être utile si on utilise notre dépôt Git sur plusieurs machines et que tous les comptes n’ont pas les mêmes permissions. Je recommande de taper cette commande (une seule fois ) dans chacun de vos projets (voir git-comment-faire-pour-ignorer-les-changements-de-mode-de-fichier-chmod).\ngit config core.fileMode false"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#commande-log-plus-visuelle",
-    "href": "sheets/githubcopilot.html#commande-log-plus-visuelle",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "3.5 Commande “log” plus visuelle",
-    "text": "3.5 Commande “log” plus visuelle\nVoir pretty-git-branch-graphs.\nTaper (une seule fois) la commande suivante dans un terminal\ngit config --global alias.adog \"log --all --decorate --oneline --graph\"\nPuis vous pouvez l’utiliser quand nécessaire via:\ngit log --graph --abbrev-commit --decorate --date=relative --all"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#commande-hist",
-    "href": "sheets/githubcopilot.html#commande-hist",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "3.6 Commande “hist”",
-    "text": "3.6 Commande “hist”\nTaper (une seule fois) la commande suivante dans un terminal\ngit config --global alias.hist \"log --graph --date-order --date=short \\\n--pretty=format:'%C(auto)%h%d %C(reset)%s %C(bold blue)%ce %C(reset)%C(green)%cr (%cd)'\"\nL’utilisation se fait de la manière suivante:\ngit hist # Show the history of current branch\ngit hist --all # Show the graph of all branches (including remotes)\ngit hist master devel # Show the relationship between two or more branches\ngit hist --branches # Show all local branches\n#Add --topo-order to sort commits topologically, instead of by date (default in this alias)\nPar exemple:  Les avantages de cette commande sont les suivants:\n\nressemble à “plain –decorate” avec des couleurs différentes pour chaque branche\najout de l’email de la personne qui commit\najout des dates\ntri des commits par dates"
-  },
-  {
-    "objectID": "sheets/create_mkdocs_documentation.html",
-    "href": "sheets/create_mkdocs_documentation.html",
-    "title": "Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas [en construction]",
-    "section": "",
-    "text": "S’assurer que vous avez mkdocs installé sur votre ordinateur. Si ce n’est pas le cas, l’installer avec anaconda par exemple ( conda install conda-forge::mkdocs ).\n\nCréer un répertoire test-mkdocs:\n\nmkdocs new test-mkdocs\n\nVérifier en local le site web avec :\n\nmkdocs serve \n\nCreer le deployement pour vérifier\n\nmkdocs build\n\nPréparer le fichier .gitlab-ci.yml, en faisant attention aux indentations:\n\nimage: python:3.8\n\nstages:\n  - build\n\npages:\n  stage: build\n  only:\n    - master\n  script:\n    - mkdocs build --clean\n    - mv site public\n  artifacts:\n    paths:\n      - public\n\nPusher le projet\n\ngit add, git commit, git push …\n\nLe projet doit etre en public?\nLe pipeline doit retourner un status positif\n\nimage"
-  },
-  {
-    "objectID": "index.html#git",
-    "href": "index.html#git",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
-    "section": "Git",
-    "text": "Git\n\nMémos, raccourcis et améliorations de GIT\nCreer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas\nUtilisation de Github Copilot dans Visual Studio Code"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#prérequis",
-    "href": "sheets/githubcopilot.html#prérequis",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "2.1 Prérequis",
-    "text": "2.1 Prérequis\nSuivre les prérequis indiqués ici : https://education.github.com/discount_requests/application. Entre autres:\n\ndouble authentification\nadresse de facturation\npersonnaliser son profil : indiquer son vrai nom, mettre sa photo, …\nse munir de sa carte professionnelle\nréaliser la demande dans les locaux de l’adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu’on est en congé, l’heure correspond à un week end / soirée, …)"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
-    "href": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "Infos pour la demande de compte",
-    "text": "Infos pour la demande de compte\nFournir son adresse ird, amu ou tln. La carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l’adresse mail professionnelle."
   }
 ]

@@ -23,7 +23,8 @@ Suivre les prérequis indiqués ici : [https://education.github.com/discount_req
   
 ## Infos pour la demande de compte
 
-Fournir son adresse ird, amu ou tln. La carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l'adresse mail professionnelle. 
+- bien faire la demande avec son adresse ird, amu ou tln
+- La carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l'adresse mail professionnelle. Github va demander de prendre une photo du devant de celle-ci avec la camera de l'ordinateur
 
 # 3. Installation de Copilot dans Visual Studio Code, éditeur de code
 
