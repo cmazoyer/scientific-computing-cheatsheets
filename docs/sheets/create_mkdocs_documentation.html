@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Camille Mazoyer - Scientific computing cheatsheets at the laboratory MIO in oceanography</title>
+<title>Camille Mazoyer - Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas [en construction]</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +68,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Camille Mazoyer</span>
     </a>
   </div>
@@ -89,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -104,36 +104,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#configuration-globale" id="toc-configuration-globale" class="nav-link active" data-scroll-target="#configuration-globale">Configuration globale</a></li>
-  <li><a href="#informatique-divers" id="toc-informatique-divers" class="nav-link" data-scroll-target="#informatique-divers">Informatique (divers)</a></li>
-  <li><a href="#fiches-logiciels" id="toc-fiches-logiciels" class="nav-link" data-scroll-target="#fiches-logiciels">Fiches logiciels</a>
-  <ul class="collapse">
-  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git">Git</a></li>
-  <li><a href="#anaconda" id="toc-anaconda" class="nav-link" data-scroll-target="#anaconda">Anaconda</a></li>
-  <li><a href="#ferret" id="toc-ferret" class="nav-link" data-scroll-target="#ferret">Ferret</a></li>
-  <li><a href="#fortran" id="toc-fortran" class="nav-link" data-scroll-target="#fortran">Fortran</a></li>
-  <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
-  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
-  </ul></li>
-  <li><a href="#utilisation-de-clusters-locaux-régionaux-nationaux" id="toc-utilisation-de-clusters-locaux-régionaux-nationaux" class="nav-link" data-scroll-target="#utilisation-de-clusters-locaux-régionaux-nationaux">Utilisation de clusters locaux, régionaux, nationaux</a>
-  <ul class="collapse">
-  <li><a href="#cluster-de-losu-pytheas" id="toc-cluster-de-losu-pytheas" class="nav-link" data-scroll-target="#cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</a></li>
-  <li><a href="#cluster-régional-ccamu-marseille" id="toc-cluster-régional-ccamu-marseille" class="nav-link" data-scroll-target="#cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</a></li>
-  <li><a href="#idris" id="toc-idris" class="nav-link" data-scroll-target="#idris">IDRIS</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Scientific computing cheatsheets at the laboratory MIO in oceanography</h1>
+<h1 class="title">Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas [en construction]</h1>
 </div>
 
 
@@ -150,117 +128,48 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>auteur: Camille Mazoyer, camille.mazoyer@ird.fr</p>
-<p>maj: janvier 2024</p>
-<p>Merci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation.</p>
-<section id="configuration-globale" class="level1">
-<h1>Configuration globale</h1>
-<ul>
-<li><p><a href="sheets/config_globale_ubuntu.html">Configurer son ordi Ubuntu pour le calcul scientifique</a></p></li>
-<li><p>Configurer son ordi Mac pour le calcul scientifique (à faire)</p></li>
-<li><p><a href="sheets/universite_toulon_proxy.html">Travailler à l’université de Toulon sous proxy</a></p></li>
-</ul>
-</section>
-<section id="informatique-divers" class="level1">
-<h1>Informatique (divers)</h1>
-<ul>
-<li><p><a href="sheets/connexion_via_tunnel.html">Connexion à un ordinateur via un tunnel</a></p></li>
-<li><p><a href="sheets/clef_ssh.html">Générer une clef ssh</a></p></li>
-<li><p><a href="sheets/detacher_processus_nohup.html">screen : détacher des processus / nohup</a></p></li>
-<li><p><a href="sheets/rsync.html">rsync (local ou via ssh)</a></p></li>
-<li><p><a href="sheets/connexion_longue_ssh.html">Garder une connexion ssh persistante</a> (éviter les déconnexions trop rapides)</p></li>
-<li><p><a href="sheets/connexion_distance_tools.html">Connexion à distance à Tools</a></p></li>
-</ul>
-</section>
-<section id="fiches-logiciels" class="level1">
-<h1>Fiches logiciels</h1>
-<ul>
-<li><p><a href="sheets/vim.html">Mémos, raccourcis et améliorations de VIM/GVIM</a></p></li>
-<li><p>Utilisation de GDB avec exemple de CROCO sur le cluster de l’OSU</p></li>
-<li><p><a href="sheets/visual_studio_code.html">Utilisation de Visual Studio Code, éditeur de code</a></p></li>
-<li><p>Installation et configuration de x2go</p></li>
-<li><p>Récupération de fichiers netcdf via Copernicus</p>
-<ul>
-<li>Motuclient (deprecated?)</li>
-<li><a href="sheets/copernicusmarine.html">Copernicusmarine</a></li>
-</ul></li>
-<li><p><a href="sheets/zenodo_github.html">Utilisation de Zenodo et Github pour mettre son code sous DOI</a></p></li>
-</ul>
-<section id="git" class="level2">
-<h2 class="anchored" data-anchor-id="git">Git</h2>
-<ul>
-<li><p><a href="sheets/git.html">Mémos, raccourcis et améliorations de GIT</a></p></li>
-<li><p><a href="./sheets/create_mkdocs_documentation.html">Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas</a></p></li>
-<li><p><a href="./sheets/githubcopilot.html">Utilisation de Github Copilot dans Visual Studio Code</a></p></li>
-</ul>
-</section>
-<section id="anaconda" class="level2">
-<h2 class="anchored" data-anchor-id="anaconda">Anaconda</h2>
-<ul>
-<li><p><a href="sheets/installation_pyferret.html">Installation de pyferret avec Anaconda</a></p></li>
-<li><p><a href="sheets/anaconda_oceanographie.html">Installation d’un environnement Anaconda pour l’océanographie</a></p></li>
-<li><p><a href="sheets/partager_env_anaconda.html">Partager un environnement Anaconda entre deux utilisateurs d’une même machine</a></p></li>
-</ul>
-</section>
-<section id="ferret" class="level2">
-<h2 class="anchored" data-anchor-id="ferret">Ferret</h2>
-<ul>
-<li>Premiers pas en ferret ( à faire)</li>
-</ul>
-</section>
-<section id="fortran" class="level2">
-<h2 class="anchored" data-anchor-id="fortran">Fortran</h2>
-<ul>
-<li><p>Options de compilation pour debugger en Fortran</p></li>
-<li><p>utilisation du debugger gdb avec croco (sur le cluster OSU)</p></li>
-<li><p>Listing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop</p></li>
-</ul>
-</section>
-<section id="matlab" class="level2">
-<h2 class="anchored" data-anchor-id="matlab">Matlab</h2>
-<ul>
-<li><a href="sheets/executable_matlab.html">Créer un exécutable sous matlab: exemple sur le cluster de l’OSU</a></li>
-</ul>
-</section>
-<section id="python" class="level2">
-<h2 class="anchored" data-anchor-id="python">Python</h2>
-<ul>
-<li><p>Utilisation de google collab pour des jupyter notebook python</p></li>
-<li><p>CROCO avec Python .</p></li>
-<li><p>la bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html</p></li>
-<li><p>la bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n’est plus à jour)</p></li>
-<li><p>How to Make Python Code Run Incredibly Fast</p></li>
-<li><p>Utilisation de xarray conseillée (à faire)</p></li>
-</ul>
-</section>
-</section>
-<section id="utilisation-de-clusters-locaux-régionaux-nationaux" class="level1">
-<h1>Utilisation de clusters locaux, régionaux, nationaux</h1>
-<section id="cluster-de-losu-pytheas" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</h2>
-<ul>
-<li><p>cluster de l’osupytheas :https://calcul.osupytheas.fr/</p></li>
-<li><p>Documentation pour une Connexion à distance à Tools</p></li>
-</ul>
-</section>
-<section id="cluster-régional-ccamu-marseille" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</h2>
-<ul>
-<li><p><a href="sheets/ccamu.html">Mes docs sur l’utilisation du Mésocentre CCAMU de Marseille</a></p></li>
-<li><p>tutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/</p></li>
-</ul>
-</section>
-<section id="idris" class="level2">
-<h2 class="anchored" data-anchor-id="idris">IDRIS</h2>
-<ul>
-<li><p>http://www.idris.fr</p></li>
-<li><p>cheat sheet ici=&gt; http://www.idris.fr/media/su/idrismemento1.pdf</p></li>
-<li><p>Utilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html</p></li>
-</ul>
+<p>S’assurer que vous avez mkdocs installé sur votre ordinateur. Si ce n’est pas le cas, l’installer avec anaconda par exemple ( conda install conda-forge::mkdocs ).</p>
+<ol type="1">
+<li>Créer un répertoire test-mkdocs:</li>
+</ol>
+<pre><code>mkdocs new test-mkdocs</code></pre>
+<ol start="2" type="1">
+<li>Vérifier en local le site web avec :</li>
+</ol>
+<pre><code>mkdocs serve </code></pre>
+<ol start="3" type="1">
+<li>Creer le deployement pour vérifier</li>
+</ol>
+<pre><code>mkdocs build</code></pre>
+<ol start="4" type="1">
+<li>Préparer le fichier .gitlab-ci.yml, en faisant attention aux indentations:</li>
+</ol>
+<pre><code>image: python:3.8
+
+stages:
+  - build
+
+pages:
+  stage: build
+  only:
+    - master
+  script:
+    - mkdocs build --clean
+    - mv site public
+  artifacts:
+    paths:
+      - public</code></pre>
+<ol start="5" type="1">
+<li>Pusher le projet</li>
+</ol>
+<p>git add, git commit, git push …</p>
+<ol start="6" type="1">
+<li><p>Le projet doit etre en public?</p></li>
+<li><p>Le pipeline doit retourner un status positif</p></li>
+</ol>
+<p>image</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

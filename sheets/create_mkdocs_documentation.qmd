@@ -1,0 +1,56 @@
+---
+title: Creer un site web de documentation avec mkdocs et le gitlab de l'OSU Pytheas [en construction]
+---
+
+S'assurer que vous avez mkdocs installé sur votre ordinateur. Si ce n'est pas le cas, l'installer avec anaconda par exemple (  conda install conda-forge::mkdocs ).
+
+1. Créer un répertoire test-mkdocs:
+
+```
+mkdocs new test-mkdocs
+```
+
+2. Vérifier en local le site web avec : 
+
+```
+mkdocs serve 
+```
+
+3. Creer le deployement pour vérifier
+
+```
+mkdocs build
+```
+
+4. Préparer le fichier .gitlab-ci.yml, en faisant attention aux indentations:
+
+```
+image: python:3.8
+
+stages:
+  - build
+
+pages:
+  stage: build
+  only:
+    - master
+  script:
+    - mkdocs build --clean
+    - mv site public
+  artifacts:
+    paths:
+      - public
+```
+
+5. Pusher le projet
+
+git add, git commit, git push ...
+
+6. Le projet doit etre en public?
+
+7. Le pipeline doit retourner un status positif
+
+image
+
+
+

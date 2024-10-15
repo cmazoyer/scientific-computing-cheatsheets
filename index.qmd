@@ -30,11 +30,10 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [Connexion à distance à Tools](sheets/connexion_distance_tools.html)
 
+
 # Fiches logiciels
 
 -   [Mémos, raccourcis et améliorations de VIM/GVIM](sheets/vim.html)
-
--   [Mémos, raccourcis et améliorations de GIT](sheets/git.html)
 
 -   Utilisation de GDB avec exemple de CROCO sur le cluster de l'OSU
 
@@ -48,6 +47,14 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
     -   [Copernicusmarine](sheets/copernicusmarine.html)
 
 -   [Utilisation de Zenodo et Github pour mettre son code sous DOI](sheets/zenodo_github.html)
+
+## Git
+
+-   [Mémos, raccourcis et améliorations de GIT](sheets/git.html)
+
+- [Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas](sheets/create_mkdocs_documentation.qmd)
+  
+- [Utilisation de Github Copilot dans Visual Studio Code](sheets/githubcopilot.qmd)
 
 ## Anaconda
 

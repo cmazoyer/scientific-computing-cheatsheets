@@ -1,0 +1,33 @@
+---
+title : Creation et utilisation d'un docker (exemple pour pyferret)
+---
+
+Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un [serveur mandataire dans les paramètres réseaux](https://phoenixnap.com/kb/ubuntu-proxy-settings) .
+
+Quelques docs à lire : 
+- https://medium.com/@anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11
+- https://leimao.github.io/blog/Docker-Container-GUI-Display/
+- 
+
+# 1. Création du docker
+
+Le fichier est le suivant: dockerFile_ubuntu22-04_anaconda3
+FROM ubuntu:22.04
+WORKDIR /usr/src/app
+USER root
+RUN apt-get update && apt-get install -y vim libpq-dev wget
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \
+    sh Miniconda3-latest-Linux-x86_64.sh -b -p /opt/miniconda3 && \
+    rm -r Miniconda3-latest-Linux-x86_64.sh
+ENV PATH /opt/miniconda3/bin:$PATH
+RUN conda update conda
+#RUN conda install python=3.9
+RUN conda config --add channels conda-forge
+#RUN conda config --set channel_priority strict
+
+
+docker build  -t test -f dockerFile_ubuntu22-04_anaconda3 .
+
+
+# 2. lancement du docker 
+docker run -i -v /home/mazoyer/Documents/data/TBAY/:/DATA -t ubuntu22.4-pyferret bash

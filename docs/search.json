@@ -369,5 +369,89 @@
     "title": "Configurer son ordi Ubuntu pour le calcul scientifique",
     "section": "",
     "text": "Installations via apt_get / aptitude:\nsudo apt-get install aptitude\nsudo aptitude install vim-gtk3\nsudo aptitude install stow git gfortran libnetcdff-dev\nsudo aptitude install libopenmpi-dev openmpi-bin\n\n\nInstallation de Anaconda\n\n\nInstallation d’un environnement Anaconda pour PyFerret:\nInstallation de pyferret (doc à faire)\n\n\nMatlab\n\nTéléchargement de matlab via le site officiel en créant un compte avec votre email univ-tln.fr. L’installation doit se faire via le wifi ou de chez soi à cause du proxy.\nPour Luminy, voir matlab à Luminy\n\n\n\nPenser aussi à:\ncréer une clef SSH et la diffuser sur d’autres ordinateurs pour éviter de taper son mot de passe (voir doc Générer une clef ssh )"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html",
+    "href": "sheets/githubcopilot.html",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "",
+    "text": "Se créer un compte sur github avec la double authentification: https://github.com/. L’adresse mail utilisée doit être l’adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d’adhésion à copilot)"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#gestion-du-proxy",
+    "href": "sheets/githubcopilot.html#gestion-du-proxy",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "2.1 Gestion du proxy",
+    "text": "2.1 Gestion du proxy\nPrivilégier l’accès à des dépôts git via https pour éviter des soucis avec le proxy.\nCependant, si on a l’erreur suivante lors d’un git clone, ou git push par exemple:\nfatal: unable to access 'https://gitlab.osupytheas.fr/mazoyer/medoc/': Received HTTP code 407 from proxy after CONNECT\nIl faut alors passer en ssh sur son projet (que l’on nommera ici myproject). Attention, penser à changer mylogin en votre propre login:\ngit remote -v\ngit remote set-url origin git@gitlab.osupytheas.fr:mylogin/myproject.git\nSi les deux solutions ne sont pas satisfaisantes, nous sommes preneurs de votre retour (camille.mazoyer@ird.fr)"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#faire-référence-à-des-bug-dans-un-commentaire-git",
+    "href": "sheets/githubcopilot.html#faire-référence-à-des-bug-dans-un-commentaire-git",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "3.1 Faire référence à des bug dans un commentaire git",
+    "text": "3.1 Faire référence à des bug dans un commentaire git\nOn peut lister et noter les bugs dans un bug tracker dans le projet git de gitlab (rubrique Issues de votre gitlab). Ensuite, dans un commentaire de git commit (voir link-to-the-issue-number-on-github-within-a-commit-message), on y fait référence avec les mots clefs suivants (pour le bug numéro 5 par ex):\n[debug] Résolution du bug empechant la fermeture des fichiers"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#différences-plus-visuels-avec-git--d-file",
+    "href": "sheets/githubcopilot.html#différences-plus-visuels-avec-git--d-file",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "3.2 Différences plus visuels avec git -d file",
+    "text": "3.2 Différences plus visuels avec git -d file\nPour voir les git diff a travers vimdiff, beaucoup plus visuel. Ensuite, on peut taper git d fichier.F90 pour voir la différence entre la version pushée et les modif locales.\ngit config --global diff.tool vimdiff\ngit config --global difftool.prompt false\ngit config --global alias.d difftool\ngit d --color-words  file.F"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#outil-pour-faciliter-la-fusion-de-modifications-le-merge",
+    "href": "sheets/githubcopilot.html#outil-pour-faciliter-la-fusion-de-modifications-le-merge",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "3.3 Outil pour faciliter la fusion de modifications, le “merge”",
+    "text": "3.3 Outil pour faciliter la fusion de modifications, le “merge”\nVoir how-to-resolve-merge-conflicts-in-git-repository :\ngit config merge.tool vimdiff\ngit config merge.conflictstyle diff3\ngit config mergetool.prompt false"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers",
+    "href": "sheets/githubcopilot.html#comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "3.4 Comment ne pas tenir compte des changements de permissions sur les fichiers",
+    "text": "3.4 Comment ne pas tenir compte des changements de permissions sur les fichiers\nCela peut être utile si on utilise notre dépôt Git sur plusieurs machines et que tous les comptes n’ont pas les mêmes permissions. Je recommande de taper cette commande (une seule fois ) dans chacun de vos projets (voir git-comment-faire-pour-ignorer-les-changements-de-mode-de-fichier-chmod).\ngit config core.fileMode false"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#commande-log-plus-visuelle",
+    "href": "sheets/githubcopilot.html#commande-log-plus-visuelle",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "3.5 Commande “log” plus visuelle",
+    "text": "3.5 Commande “log” plus visuelle\nVoir pretty-git-branch-graphs.\nTaper (une seule fois) la commande suivante dans un terminal\ngit config --global alias.adog \"log --all --decorate --oneline --graph\"\nPuis vous pouvez l’utiliser quand nécessaire via:\ngit log --graph --abbrev-commit --decorate --date=relative --all"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#commande-hist",
+    "href": "sheets/githubcopilot.html#commande-hist",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "3.6 Commande “hist”",
+    "text": "3.6 Commande “hist”\nTaper (une seule fois) la commande suivante dans un terminal\ngit config --global alias.hist \"log --graph --date-order --date=short \\\n--pretty=format:'%C(auto)%h%d %C(reset)%s %C(bold blue)%ce %C(reset)%C(green)%cr (%cd)'\"\nL’utilisation se fait de la manière suivante:\ngit hist # Show the history of current branch\ngit hist --all # Show the graph of all branches (including remotes)\ngit hist master devel # Show the relationship between two or more branches\ngit hist --branches # Show all local branches\n#Add --topo-order to sort commits topologically, instead of by date (default in this alias)\nPar exemple:  Les avantages de cette commande sont les suivants:\n\nressemble à “plain –decorate” avec des couleurs différentes pour chaque branche\najout de l’email de la personne qui commit\najout des dates\ntri des commits par dates"
+  },
+  {
+    "objectID": "sheets/create_mkdocs_documentation.html",
+    "href": "sheets/create_mkdocs_documentation.html",
+    "title": "Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas [en construction]",
+    "section": "",
+    "text": "S’assurer que vous avez mkdocs installé sur votre ordinateur. Si ce n’est pas le cas, l’installer avec anaconda par exemple ( conda install conda-forge::mkdocs ).\n\nCréer un répertoire test-mkdocs:\n\nmkdocs new test-mkdocs\n\nVérifier en local le site web avec :\n\nmkdocs serve \n\nCreer le deployement pour vérifier\n\nmkdocs build\n\nPréparer le fichier .gitlab-ci.yml, en faisant attention aux indentations:\n\nimage: python:3.8\n\nstages:\n  - build\n\npages:\n  stage: build\n  only:\n    - master\n  script:\n    - mkdocs build --clean\n    - mv site public\n  artifacts:\n    paths:\n      - public\n\nPusher le projet\n\ngit add, git commit, git push …\n\nLe projet doit etre en public?\nLe pipeline doit retourner un status positif\n\nimage"
+  },
+  {
+    "objectID": "index.html#git",
+    "href": "index.html#git",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "Git",
+    "text": "Git\n\nMémos, raccourcis et améliorations de GIT\nCreer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas\nUtilisation de Github Copilot dans Visual Studio Code"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#prérequis",
+    "href": "sheets/githubcopilot.html#prérequis",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "2.1 Prérequis",
+    "text": "2.1 Prérequis\nSuivre les prérequis indiqués ici : https://education.github.com/discount_requests/application. Entre autres:\n\ndouble authentification\nadresse de facturation\npersonnaliser son profil : indiquer son vrai nom, mettre sa photo, …\nse munir de sa carte professionnelle\nréaliser la demande dans les locaux de l’adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu’on est en congé, l’heure correspond à un week end / soirée, …)"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "href": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "Infos pour la demande de compte",
+    "text": "Infos pour la demande de compte\nFournir son adresse ird, amu ou tln. La carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l’adresse mail professionnelle."
   }
 ]

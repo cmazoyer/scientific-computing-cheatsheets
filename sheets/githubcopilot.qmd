@@ -1,0 +1,36 @@
+---
+title: Installation et utilisation de Github Copilot en recherche
+---
+
+# 1.Création d'un compte sur github
+
+Se créer un compte sur github avec la double authentification: [https://github.com/](https://github.com/). L'adresse mail utilisée doit être l'adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d'adhésion à copilot)
+
+
+# 2. Création d'un compte recherche/professeur sur github education
+
+La demande de compte peut prendre quelques jours. Vous serez informé par mail. 
+
+## 2.1 Prérequis
+
+Suivre les prérequis indiqués ici : [https://education.github.com/discount_requests/application](https://education.github.com/discount_requests/application). Entre autres: 
+
+- double authentification
+- adresse de facturation 
+- personnaliser son profil : indiquer son vrai nom, mettre sa photo, ...
+- se munir de sa carte professionnelle 
+- réaliser la demande dans les locaux de l'adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu'on est en congé, l'heure correspond à un week end / soirée, ...)
+  
+## Infos pour la demande de compte
+
+Fournir son adresse ird, amu ou tln. La carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l'adresse mail professionnelle. 
+
+# 3. Installation de Copilot dans Visual Studio Code, éditeur de code
+
+Le logiciel Visual Studio Code est décrit dans les docs ici : [doc VSCode](visual_studio_code.qmd). 
+
+Pour l'installation de Copilot Github, suivre la doc officielle de Visual Studio disponible [ici](https://code.visualstudio.com/docs/copilot/overview).
+
+# 4. Utilisation de Copilot 
+
+Pour activer le chat et échanger avec copilot, utiliser les raccourcis : ctrl+alt+i
