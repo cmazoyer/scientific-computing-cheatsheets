@@ -1,0 +1,31 @@
+---
+title: "Configurer son ordi Mac pour le calcul scientifique"
+---
+
+# Installations de logiciels 
+
+Installation via les sites internet :
+1. [Docker desktop](https://docs.docker.com/desktop/install/mac-install/)
+2. [Visual Studio Code](https://code.visualstudio.com/)
+3. [Quarto](https://quarto.org/docs/get-started/)
+4. [keypassx](https://keepassxc.org)
+5. [Terminal](https://github.com/Eugeny/tabby/releases)
+
+
+# Installation de Anaconda
+
+# Installation d'un environnement Anaconda pour PyFerret:
+
+Installation de pyferret (doc à faire)
+
+# Matlab
+
+- Téléchargement de matlab via le site officiel en créant un compte avec votre email univ-tln.fr. L'installation doit se faire via le wifi ou de chez soi à cause du proxy.
+
+- Pour Luminy, voir [matlab à Luminy](https://documentation.osupytheas.fr/?s=matlab)
+
+
+# Penser aussi à:
+
+créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc [Générer une clef ssh](clef_ssh.qmd) )
+dddddd
