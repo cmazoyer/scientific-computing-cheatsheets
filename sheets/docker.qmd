@@ -11,7 +11,8 @@ Quelques docs à lire :
 
 # 1. Création du docker
 
-Le fichier est le suivant: dockerFile_ubuntu22-04_anaconda3
+Pour notre exemple, le fichier est le suivant: dockerFile_ubuntu22-04_anaconda3
+```bash
 FROM ubuntu:22.04
 WORKDIR /usr/src/app
 USER root
@@ -21,13 +22,18 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &
     rm -r Miniconda3-latest-Linux-x86_64.sh
 ENV PATH /opt/miniconda3/bin:$PATH
 RUN conda update conda
-#RUN conda install python=3.9
 RUN conda config --add channels conda-forge
-#RUN conda config --set channel_priority strict
+```
 
-
+Puis, on construit le docker avec la commande suivante:
+```bash
 docker build  -t test -f dockerFile_ubuntu22-04_anaconda3 .
-
+```
 
 # 2. lancement du docker 
+On lance le docker avec la commande suivante:
+```bash
 docker run -i -v /home/mazoyer/Documents/data/TBAY/:/DATA -t ubuntu22.4-pyferret bash
+```
+L'option -v permet de monter un volume entre le docker et le système hôte. Ici, on monte le dossier /home/mazoyer/Documents/data/TBAY/ dans le dossier /DATA du docker.
+L'option -t permet de lancer un terminal bash.

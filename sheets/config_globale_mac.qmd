@@ -4,17 +4,25 @@ title: "Configurer son ordi Mac pour le calcul scientifique"
 
 # Installations de logiciels 
 
-Installation via les sites internet :
+Installer les logiciels ci dessous : 
+
 1. [Docker desktop](https://docs.docker.com/desktop/install/mac-install/)
+
 2. [Visual Studio Code](https://code.visualstudio.com/)
+
 3. [Quarto](https://quarto.org/docs/get-started/)
+
 4. [keypassx](https://keepassxc.org)
+
 5. [Terminal](https://github.com/Eugeny/tabby/releases)
 
+6. [XQuartz](https://www.xquartz.org/) pour gérer le serveur X lors de connexions en ssh
 
 # Installation de Anaconda
 
-# Installation d'un environnement Anaconda pour PyFerret:
+L'installation se fait via le site officiel d'Anaconda: [Anaconda](https://www.anaconda.com/products/individual).    
+
+## Installation d'un environnement Anaconda pour PyFerret:
 
 Installation de pyferret (doc à faire)
 
@@ -27,5 +35,4 @@ Installation de pyferret (doc à faire)
 
 # Penser aussi à:
 
-créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc [Générer une clef ssh](clef_ssh.qmd) )
-dddddd
+- Créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc [Générer une clef ssh](clef_ssh.qmd) )

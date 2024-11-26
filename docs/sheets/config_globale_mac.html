@@ -109,8 +109,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#installations-de-logiciels" id="toc-installations-de-logiciels" class="nav-link active" data-scroll-target="#installations-de-logiciels">Installations de logiciels</a></li>
-  <li><a href="#installation-de-anaconda" id="toc-installation-de-anaconda" class="nav-link" data-scroll-target="#installation-de-anaconda">Installation de Anaconda</a></li>
+  <li><a href="#installation-de-anaconda" id="toc-installation-de-anaconda" class="nav-link" data-scroll-target="#installation-de-anaconda">Installation de Anaconda</a>
+  <ul class="collapse">
   <li><a href="#installation-dun-environnement-anaconda-pour-pyferret" id="toc-installation-dun-environnement-anaconda-pour-pyferret" class="nav-link" data-scroll-target="#installation-dun-environnement-anaconda-pour-pyferret">Installation d’un environnement Anaconda pour PyFerret:</a></li>
+  </ul></li>
   <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
   <li><a href="#penser-aussi-à" id="toc-penser-aussi-à" class="nav-link" data-scroll-target="#penser-aussi-à">Penser aussi à:</a></li>
   </ul>
@@ -140,14 +142,23 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="installations-de-logiciels" class="level1">
 <h1>Installations de logiciels</h1>
-<p>Installation via les sites internet : 1. <a href="https://docs.docker.com/desktop/install/mac-install/">Docker desktop</a> 2. <a href="https://code.visualstudio.com/">Visual Studio Code</a> 3. <a href="https://quarto.org/docs/get-started/">Quarto</a> 4. <a href="https://keepassxc.org">keypassx</a> 5. <a href="https://github.com/Eugeny/tabby/releases">Terminal</a></p>
+<p>Installer les logiciels ci dessous :</p>
+<ol type="1">
+<li><p><a href="https://docs.docker.com/desktop/install/mac-install/">Docker desktop</a></p></li>
+<li><p><a href="https://code.visualstudio.com/">Visual Studio Code</a></p></li>
+<li><p><a href="https://quarto.org/docs/get-started/">Quarto</a></p></li>
+<li><p><a href="https://keepassxc.org">keypassx</a></p></li>
+<li><p><a href="https://github.com/Eugeny/tabby/releases">Terminal</a></p></li>
+<li><p><a href="https://www.xquartz.org/">XQuartz</a> pour gérer le serveur X lors de connexions en ssh</p></li>
+</ol>
 </section>
 <section id="installation-de-anaconda" class="level1">
 <h1>Installation de Anaconda</h1>
-</section>
-<section id="installation-dun-environnement-anaconda-pour-pyferret" class="level1">
-<h1>Installation d’un environnement Anaconda pour PyFerret:</h1>
+<p>L’installation se fait via le site officiel d’Anaconda: <a href="https://www.anaconda.com/products/individual">Anaconda</a>.</p>
+<section id="installation-dun-environnement-anaconda-pour-pyferret" class="level2">
+<h2 class="anchored" data-anchor-id="installation-dun-environnement-anaconda-pour-pyferret">Installation d’un environnement Anaconda pour PyFerret:</h2>
 <p>Installation de pyferret (doc à faire)</p>
+</section>
 </section>
 <section id="matlab" class="level1">
 <h1>Matlab</h1>
@@ -158,7 +169,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="penser-aussi-à" class="level1">
 <h1>Penser aussi à:</h1>
-<p>créer une clef SSH et la diffuser sur d’autres ordinateurs pour éviter de taper son mot de passe (voir doc <a href="../sheets/clef_ssh.html">Générer une clef ssh</a> ) dddddd</p>
+<ul>
+<li>Créer une clef SSH et la diffuser sur d’autres ordinateurs pour éviter de taper son mot de passe (voir doc <a href="../sheets/clef_ssh.html">Générer une clef ssh</a> )</li>
+</ul>
 
 
 </section>

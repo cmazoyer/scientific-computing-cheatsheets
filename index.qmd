@@ -4,7 +4,7 @@ title: "Scientific computing cheatsheets at the laboratory MIO in oceanography"
 
 auteur: Camille Mazoyer, camille.mazoyer\@ird.fr
 
-maj: janvier 2024
+maj: novembre 2024
 
 Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour que j'améliore la documentation.
 
@@ -12,7 +12,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [Configurer son ordi Ubuntu pour le calcul scientifique](sheets/config_globale_ubuntu.html)
 
--   Configurer son ordi Mac pour le calcul scientifique (à faire)
+-   [Configurer son ordi Mac pour le calcul scientifique](sheets/config_globale_mac.html)
 
 -   [Travailler à l'université de Toulon sous proxy](sheets/universite_toulon_proxy.html)
 

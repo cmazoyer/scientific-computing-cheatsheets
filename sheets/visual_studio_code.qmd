@@ -4,7 +4,7 @@ title: Utilisation de Visual Studio Code
 
 # 1. Configuration
 
-- Générer une clefs ssh (voir Générer une clef ssh ). Ici, j'utilise la clef id_rsa pour respore et id_ed25519 pour le mesocentre CCAMU.
+- Générer une clef ssh (voir [Générer une clef ssh](clef_ssh.html)). Ici, j'utilise la clef id_rsa pour respore et id_ed25519 pour le mesocentre CCAMU.
 - Créer le fichier .ssh/config qui contient vos configurations.  
 
 Ici, Respore, cluster.osupytheas.fr et tools.osupytheas.fr sont des machines auxquelles j'accède via un tunnel (voir Connexion à un ordinateur via un tunnel). Par conséquence, leur hostname est localhost et non leur nom réél. Si vous utilisez localhost, comme ici, pensez à lancer le tunnel dans un terminal avant d'utiliser Visual Studio Code, sinon, cela ne fonctionnera pas.

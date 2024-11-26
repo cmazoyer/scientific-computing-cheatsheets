@@ -26,4 +26,4 @@ Installation de pyferret (doc à faire)
 
 # Penser aussi à:
 
-créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc Générer une clef ssh )
+créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc [Générer une clef ssh](clef_ssh.qmd) )
