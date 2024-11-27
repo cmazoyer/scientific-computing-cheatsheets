@@ -35,22 +35,23 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [Mémos, raccourcis et améliorations de VIM/GVIM](sheets/vim.html)
 
--   Utilisation de GDB avec exemple de CROCO sur le cluster de l'OSU
+-   Utilisation de GDB avec exemple de CROCO sur le cluster de l'OSU - EN CONSTRUCTION -
 
 -   [Utilisation de Visual Studio Code, éditeur de code](sheets/visual_studio_code.html)
 
--   Installation et configuration de x2go
+-   Installation et configuration de x2go - EN CONSTRUCTION -
 
--   Récupération de fichiers netcdf via Copernicus
-
-    -   Motuclient (deprecated?)
-    -   [Copernicusmarine](sheets/copernicusmarine.html)
+-   Récupération de fichiers netcdf via Copernicus avec [Copernicusmarine](sheets/copernicusmarine.html)
 
 -   [Utilisation de Zenodo et Github pour mettre son code sous DOI](sheets/zenodo_github.html)
+  
+-   [Utilisation de Quarto pour créer un site web](sheets/site_quarto.html)
+  
+
 
 ## Git
 
--   [Mémos, raccourcis et améliorations de GIT](sheets/git.html)
+- [Mémos, raccourcis et améliorations de GIT](sheets/git.html)
 
 - [Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas](sheets/create_mkdocs_documentation.qmd)
   
@@ -110,8 +111,8 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## IDRIS
 
--   http://www.idris.fr
+-   [Site web de l'IDRIS](http://www.idris.fr)
 
--   cheat sheet ici=\> http://www.idris.fr/media/su/idrismemento1.pdf
+-   [cheat sheet sur l'utilisation du calculateur de l'IDRIS](http://www.idris.fr/media/su/idrismemento1.pdf)
 
--   Utilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html
+-   [Utilisation des jupyter notebook sur Jean Zay](https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html)

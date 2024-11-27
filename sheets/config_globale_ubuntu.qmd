@@ -13,9 +13,11 @@ sudo aptitude install libopenmpi-dev openmpi-bin
 
 # Installation de Anaconda
 
+L'installation se fait via le site officiel d'Anaconda: [Anaconda](https://www.anaconda.com/products/individual).    
+
 # Installation d'un environnement Anaconda pour PyFerret:
 
-Installation de pyferret (doc à faire)
+ [Installation de pyferret avec Anaconda](sheets/installation_pyferret.html)
 
 # Matlab
 
@@ -26,4 +28,4 @@ Installation de pyferret (doc à faire)
 
 # Penser aussi à:
 
-créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc [Générer une clef ssh](clef_ssh.qmd) )
+créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc [Générer une clef ssh](clef_ssh.html) )

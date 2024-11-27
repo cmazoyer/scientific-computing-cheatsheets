@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Configurer son ordi Mac pour le calcul scientifique – Camille Mazoyer</title>
+<title>Création d’un site en quarto – Camille Mazoyer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -108,13 +142,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installations-de-logiciels" id="toc-installations-de-logiciels" class="nav-link active" data-scroll-target="#installations-de-logiciels">Installations de logiciels</a></li>
-  <li><a href="#installation-de-anaconda" id="toc-installation-de-anaconda" class="nav-link" data-scroll-target="#installation-de-anaconda">Installation de Anaconda</a>
+  <li><a href="#création-dun-site-en-quarto-sous-github" id="toc-création-dun-site-en-quarto-sous-github" class="nav-link active" data-scroll-target="#création-dun-site-en-quarto-sous-github">Création d’un site en quarto sous github</a>
   <ul class="collapse">
-  <li><a href="#installation-dun-environnement-anaconda-pour-pyferret" id="toc-installation-dun-environnement-anaconda-pour-pyferret" class="nav-link" data-scroll-target="#installation-dun-environnement-anaconda-pour-pyferret">Installation d’un environnement Anaconda pour PyFerret:</a></li>
+  <li><a href="#installation-de-quarto" id="toc-installation-de-quarto" class="nav-link" data-scroll-target="#installation-de-quarto">Installation de quarto</a></li>
+  <li><a href="#création-du-dépôt-github" id="toc-création-du-dépôt-github" class="nav-link" data-scroll-target="#création-du-dépôt-github">Création du dépôt github</a></li>
+  <li><a href="#en-construction" id="toc-en-construction" class="nav-link" data-scroll-target="#en-construction">En construction</a></li>
   </ul></li>
-  <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
-  <li><a href="#penser-aussi-à" id="toc-penser-aussi-à" class="nav-link" data-scroll-target="#penser-aussi-à">Penser aussi à:</a></li>
   </ul>
 </nav>
     </div>
@@ -123,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Configurer son ordi Mac pour le calcul scientifique</h1>
+<h1 class="title">Création d’un site en quarto</h1>
 </div>
 
 
@@ -140,40 +173,24 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="installations-de-logiciels" class="level1">
-<h1>Installations de logiciels</h1>
-<p>Installer les logiciels ci dessous :</p>
-<ol type="1">
-<li><p><a href="https://docs.docker.com/desktop/install/mac-install/">Docker desktop</a></p></li>
-<li><p><a href="https://code.visualstudio.com/">Visual Studio Code</a></p></li>
-<li><p><a href="https://quarto.org/docs/get-started/">Quarto</a></p></li>
-<li><p><a href="https://keepassxc.org">keypassx</a></p></li>
-<li><p><a href="https://github.com/Eugeny/tabby/releases">Terminal</a></p></li>
-<li><p><a href="https://www.xquartz.org/">XQuartz</a> pour gérer le serveur X lors de connexions en ssh</p></li>
-</ol>
+<section id="création-dun-site-en-quarto-sous-github" class="level1">
+<h1>Création d’un site en quarto sous github</h1>
+<section id="installation-de-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="installation-de-quarto">Installation de quarto</h2>
+<p>On peut installer quarto via conda:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> conda-forge quarto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="installation-de-anaconda" class="level1">
-<h1>Installation de Anaconda</h1>
-<p>L’installation se fait via le site officiel d’Anaconda: <a href="https://www.anaconda.com/products/individual">Anaconda</a>.</p>
-<section id="installation-dun-environnement-anaconda-pour-pyferret" class="level2">
-<h2 class="anchored" data-anchor-id="installation-dun-environnement-anaconda-pour-pyferret">Installation d’un environnement Anaconda pour PyFerret:</h2>
-<p><a href="sheets/installation_pyferret.html">Installation de pyferret avec Anaconda</a></p>
+<section id="création-du-dépôt-github" class="level2">
+<h2 class="anchored" data-anchor-id="création-du-dépôt-github">Création du dépôt github</h2>
+<p>Créer le dépôt sur github et le cloner sur son ordinateur. Dans le terminal, se placer dans le dossier du dépôt cloné. Et créer le site, en tapant la commande suivante:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-</section>
-<section id="matlab" class="level1">
-<h1>Matlab</h1>
-<ul>
-<li><p>Téléchargement de matlab via le site officiel en créant un compte avec votre email univ-tln.fr. L’installation doit se faire via le wifi ou de chez soi à cause du proxy.</p></li>
-<li><p>Pour Luminy, voir <a href="https://documentation.osupytheas.fr/?s=matlab">matlab à Luminy</a></p></li>
-</ul>
-</section>
-<section id="penser-aussi-à" class="level1">
-<h1>Penser aussi à:</h1>
-<ul>
-<li>Créer une clef SSH et la diffuser sur d’autres ordinateurs pour éviter de taper son mot de passe (voir doc <a href="clef_ssh.html">Générer une clef ssh</a> )</li>
-</ul>
+<section id="en-construction" class="level2">
+<h2 class="anchored" data-anchor-id="en-construction">En construction</h2>
+<p>Suite en construction …</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

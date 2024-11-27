@@ -24,7 +24,7 @@ L'installation se fait via le site officiel d'Anaconda: [Anaconda](https://www.a
 
 ## Installation d'un environnement Anaconda pour PyFerret:
 
-Installation de pyferret (doc à faire)
+ [Installation de pyferret avec Anaconda](sheets/installation_pyferret.html)
 
 # Matlab
 
@@ -35,4 +35,4 @@ Installation de pyferret (doc à faire)
 
 # Penser aussi à:
 
-- Créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc [Générer une clef ssh](clef_ssh.qmd) )
+- Créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc [Générer une clef ssh](clef_ssh.html) )
