@@ -7,11 +7,18 @@
     "text": "auteur: Camille Mazoyer, camille.mazoyer@ird.fr\nmaj: novembre 2024\nMerci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation."
   },
   {
+    "objectID": "index.html#docker",
+    "href": "index.html#docker",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "Docker",
+    "text": "Docker\n\nCreation et utilisation d’un docker (exemple pour pyferret)"
+  },
+  {
     "objectID": "index.html#git",
     "href": "index.html#git",
     "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
     "section": "Git",
-    "text": "Git\n\nMémos, raccourcis et améliorations de GIT\nCreer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas\nUtilisation de Github Copilot dans Visual Studio Code"
+    "text": "Git\n\nMémos, raccourcis et améliorations de GIT\nCreer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas\nCreer un site web de documentation avec sphinx et le gitlab de l’OSU Pytheas : en construction\nUtilisation de Quarto pour créer un site web, avec github\nUtilisation de Github Copilot dans Visual Studio Code"
   },
   {
     "objectID": "index.html#anaconda",

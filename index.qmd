@@ -45,8 +45,11 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [Utilisation de Zenodo et Github pour mettre son code sous DOI](sheets/zenodo_github.html)
   
--   [Utilisation de Quarto pour créer un site web](sheets/site_quarto.html)
-  
+
+## Docker
+
+-   [Creation et utilisation d'un docker (exemple pour pyferret)](sheets/docker.html)
+
 
 
 ## Git
@@ -54,6 +57,10 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 - [Mémos, raccourcis et améliorations de GIT](sheets/git.html)
 
 - [Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas](sheets/create_mkdocs_documentation.qmd)
+  
+- Creer un site web de documentation avec sphinx et le gitlab de l’OSU Pytheas : en construction 
+
+- [Utilisation de Quarto pour créer un site web, avec github](sheets/site_quarto.html)
   
 - [Utilisation de Github Copilot dans Visual Studio Code](sheets/githubcopilot.qmd)
 
