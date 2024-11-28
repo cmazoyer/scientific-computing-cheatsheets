@@ -32,6 +32,23 @@ L'installation se fait via le site officiel d'Anaconda: [Anaconda](https://www.a
 
 - Pour Luminy, voir [matlab à Luminy](https://documentation.osupytheas.fr/?s=matlab)
 
+# Installation de homebrew
+
+Homebrew est un gestionnaire de paquets pour macOS. Il permet d'installer des commandes du style de linux. Pour l'installer, ouvrir un terminal et taper la commande suivante:
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+Une fois Brew installé, le mettre à jour avec la commande:
+```bash
+brew update
+```
+
+On peut alors installer des logiciels comme wget:
+```bash
+brew install wget
+```
+
+
 
 # Penser aussi à:
 
