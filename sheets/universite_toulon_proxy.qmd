@@ -46,3 +46,43 @@ proxy_servers:
     http: http://user:pass@cache.univ-tln.fr:3128
     https: https://user:pass@cache.univ-tln.fr:3128
 ```
+
+# Curl
+```bash
+curl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin ...
+```
+
+# Docker
+
+## Demon Docker
+
+Ecrire dans le fichier /etc/systemd/system/docker.service.d/http-proxy.conf :
+
+```bash
+[Service]
+Environment="HTTP_PROXY=http://username:password@proxy.server.com:port/"
+Environment="HTTPS_PROXY=http://username:password@proxy.server.com:port/"
+Environment="NO_PROXY=localhost,127.0.0.1"
+```
+Attention, si votre mot de passe contient des caractères spéciaux. Si c'est le cas, vous pouvez le remplacer par son équivalent en URL encoding. Par exemple, si votre mot de passe est "p@ssw0rd", vous pouvez le remplacer par "p%40ssw0rd". Vous pouvez tester votre mot de passe via le script python:
+```bash
+python3 -c "import urllib.parse; print(urllib.parse.quote('votre_mot_de_passe'))"
+```
+
+Puis recharger le daemon et redémarrer le service docker :
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+côté client, ajouter les variables d'environnement suivantes dans le fichier ~/.bashrc :
+```bash
+export http_proxy="http://username:password@proxy:port/"
+export https_proxy="http://username:password@proxy:port/"
+export no_proxy="localhost,127.0.0.1"
+
+et recharger le fichier :
+```bash
+source ~/.bashrc
+```
+

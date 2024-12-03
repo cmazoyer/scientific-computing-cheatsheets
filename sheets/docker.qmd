@@ -9,7 +9,50 @@ Quelques docs à lire :
 - https://leimao.github.io/blog/Docker-Container-GUI-Display/
 - 
 
-# 1. Création du docker
+# 1. Installation de Docker
+
+Pour installer Docker, il faut suivre les instructions du site officiel: [Docker](https://docs.docker.com/get-docker/):
+
+## 1.1 Ubuntu
+Se référer à la page web [pour ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+
+### Via un proxy par authentification (cas de Toulon) 
+
+On installe les paquets nécessaires, en remplacant yourlogin par votre login:
+```bash
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+### de manière standard
+
+On installe les paquets nécessaires:
+```bash
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+
+### suite de l'installation (avec ou sans proxy) 
+
+```bash
+echo "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
+sudo apt update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+En suivant les [explications du site Docker](https://docs.docker.com/engine/install/linux-postinstall/), on ajoute son utilisateur au groupe docker:
+
+```bash
+sudo groupadd docker
+ sudo usermod -aG docker $USER
+```
+
+
+## 1.2 Mac
+Se référer à la page web [pour mac] (https://docs.docker.com/desktop/setup/install/mac-install/)
+
+# 2. Création du docker
 
 Pour notre exemple, le fichier est le suivant: dockerFile_ubuntu22-04_anaconda3
 ```bash
@@ -30,7 +73,7 @@ Puis, on construit le docker avec la commande suivante:
 docker build  -t test -f dockerFile_ubuntu22-04_anaconda3 .
 ```
 
-# 2. lancement du docker 
+# 3. lancement du docker 
 On lance le docker avec la commande suivante:
 ```bash
 docker run -i -v /home/mazoyer/Documents/data/TBAY/:/DATA -t ubuntu22.4-pyferret bash

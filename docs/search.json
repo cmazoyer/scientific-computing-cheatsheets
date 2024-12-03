@@ -382,7 +382,21 @@
     "href": "sheets/docker.html",
     "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
     "section": "",
-    "text": "Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un serveur mandataire dans les paramètres réseaux .\nQuelques docs à lire : - https://medium.com/@anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11 - https://leimao.github.io/blog/Docker-Container-GUI-Display/ -\n\n1. Création du docker\nPour notre exemple, le fichier est le suivant: dockerFile_ubuntu22-04_anaconda3\nFROM ubuntu:22.04\nWORKDIR /usr/src/app\nUSER root\nRUN apt-get update && apt-get install -y vim libpq-dev wget\nRUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh && \\\n    sh Miniconda3-latest-Linux-x86_64.sh -b -p /opt/miniconda3 && \\\n    rm -r Miniconda3-latest-Linux-x86_64.sh\nENV PATH /opt/miniconda3/bin:$PATH\nRUN conda update conda\nRUN conda config --add channels conda-forge\nPuis, on construit le docker avec la commande suivante:\ndocker build  -t test -f dockerFile_ubuntu22-04_anaconda3 .\n\n\n2. lancement du docker\nOn lance le docker avec la commande suivante:\ndocker run -i -v /home/mazoyer/Documents/data/TBAY/:/DATA -t ubuntu22.4-pyferret bash\nL’option -v permet de monter un volume entre le docker et le système hôte. Ici, on monte le dossier /home/mazoyer/Documents/data/TBAY/ dans le dossier /DATA du docker. L’option -t permet de lancer un terminal bash."
+    "text": "Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un serveur mandataire dans les paramètres réseaux .\nQuelques docs à lire : - https://medium.com/@anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11 - https://leimao.github.io/blog/Docker-Container-GUI-Display/ -"
+  },
+  {
+    "objectID": "sheets/docker.html#ubuntu",
+    "href": "sheets/docker.html#ubuntu",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "1.1 Ubuntu",
+    "text": "1.1 Ubuntu\nSe référer à la page web pour ubuntu\n\nVia un proxy par authentification (cas de Toulon)\nOn installe les paquets nécessaires, en remplacant yourlogin par votre login:\nsudo apt update\nsudo apt install apt-transport-https ca-certificates curl software-properties-common\ncurl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\n\n\nde manière standard\nOn installe les paquets nécessaires:\nsudo apt update\nsudo apt install apt-transport-https ca-certificates curl software-properties-common\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\n\n\nsuite de l’installation (avec ou sans proxy)\necho \"deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list\nsudo apt update\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin\nEn suivant les explications du site Docker, on ajoute son utilisateur au groupe docker:\nsudo groupadd docker\n sudo usermod -aG docker $USER"
+  },
+  {
+    "objectID": "sheets/docker.html#mac",
+    "href": "sheets/docker.html#mac",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "1.2 Mac",
+    "text": "1.2 Mac\nSe référer à la page web [pour mac] (https://docs.docker.com/desktop/setup/install/mac-install/)"
   },
   {
     "objectID": "sheets/create_mkdocs_documentation.html",
@@ -438,7 +452,14 @@
     "href": "sheets/universite_toulon_proxy.html",
     "title": "Travailler à l’université de Toulon sous proxy",
     "section": "",
-    "text": "A faire uniquement lorsque l’on est derrière un proxy avec authentification, connecté en RJ45. Attention, il faut éviter de mettre des “!” ou “@” dans son mot de passe, cela peut poser problème en ligne de commande ensuite.\n\n1. Git\nCréer le fichier ~/.gitconfig s’il n’existe pas. Y ajouter les infos sur le proxy:\n[https]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n[http]\n        proxy = http://monlogin:monmotdepasse@cache.univ-tln.fr:3128\n        sslVerify = false\n        proxyAuthMethod = basic\n\n\n2. Wget\nconfigurer Wget pour les proxy selon stackoverflow.com.\nexemple:\nindiquer dans le fichier .bashrc:\nexport http_proxy=cache.univ-tln.fr:3128\nexport https_proxy=cache.univ-tln.fr:3128\npuis en ligne de commande, suivant ce qu’on veut télécharger:\nwget --proxy-user=\"tonlogin\" --proxy-password=\"tonmotdepasse\" \"https://xxxx.tar.gz\"\n\n\n3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi …)\nCréer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la doc de Anaconda.\nfichier .condarc\nproxy_servers:\n    http: http://user:pass@cache.univ-tln.fr:3128\n    https: https://user:pass@cache.univ-tln.fr:3128"
+    "text": "A faire uniquement lorsque l’on est derrière un proxy avec authentification, connecté en RJ45. Attention, il faut éviter de mettre des “!” ou “@” dans son mot de passe, cela peut poser problème en ligne de commande ensuite."
+  },
+  {
+    "objectID": "sheets/universite_toulon_proxy.html#demon-docker",
+    "href": "sheets/universite_toulon_proxy.html#demon-docker",
+    "title": "Travailler à l’université de Toulon sous proxy",
+    "section": "Demon Docker",
+    "text": "Demon Docker\nEcrire dans le fichier /etc/systemd/system/docker.service.d/http-proxy.conf :\n[Service]\nEnvironment=\"HTTP_PROXY=http://username:password@proxy.server.com:port/\"\nEnvironment=\"HTTPS_PROXY=http://username:password@proxy.server.com:port/\"\nEnvironment=\"NO_PROXY=localhost,127.0.0.1\"\nAttention, si votre mot de passe contient des caractères spéciaux. Si c’est le cas, vous pouvez le remplacer par son équivalent en URL encoding. Par exemple, si votre mot de passe est “p@ssw0rd”, vous pouvez le remplacer par “p%40ssw0rd”. Vous pouvez tester votre mot de passe via le script python:\npython3 -c \"import urllib.parse; print(urllib.parse.quote('votre_mot_de_passe'))\"\nPuis recharger le daemon et redémarrer le service docker :\nsudo systemctl daemon-reload\nsudo systemctl restart docker\ncôté client, ajouter les variables d’environnement suivantes dans le fichier ~/.bashrc :\nexport http_proxy=\"http://username:password@proxy:port/\"\nexport https_proxy=\"http://username:password@proxy:port/\"\nexport no_proxy=\"localhost,127.0.0.1\"\n\net recharger le fichier :\n```bash\nsource ~/.bashrc"
   },
   {
     "objectID": "sheets/connexion_longue_ssh.html",

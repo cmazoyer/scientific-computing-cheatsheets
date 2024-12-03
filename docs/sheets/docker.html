@@ -142,8 +142,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#création-du-docker" id="toc-création-du-docker" class="nav-link active" data-scroll-target="#création-du-docker">1. Création du docker</a></li>
-  <li><a href="#lancement-du-docker" id="toc-lancement-du-docker" class="nav-link" data-scroll-target="#lancement-du-docker">2. lancement du docker</a></li>
+  <li><a href="#installation-de-docker" id="toc-installation-de-docker" class="nav-link active" data-scroll-target="#installation-de-docker">1. Installation de Docker</a>
+  <ul class="collapse">
+  <li><a href="#ubuntu" id="toc-ubuntu" class="nav-link" data-scroll-target="#ubuntu">1.1 Ubuntu</a>
+  <ul class="collapse">
+  <li><a href="#via-un-proxy-par-authentification-cas-de-toulon" id="toc-via-un-proxy-par-authentification-cas-de-toulon" class="nav-link" data-scroll-target="#via-un-proxy-par-authentification-cas-de-toulon">Via un proxy par authentification (cas de Toulon)</a></li>
+  <li><a href="#de-manière-standard" id="toc-de-manière-standard" class="nav-link" data-scroll-target="#de-manière-standard">de manière standard</a></li>
+  <li><a href="#suite-de-linstallation-avec-ou-sans-proxy" id="toc-suite-de-linstallation-avec-ou-sans-proxy" class="nav-link" data-scroll-target="#suite-de-linstallation-avec-ou-sans-proxy">suite de l’installation (avec ou sans proxy)</a></li>
+  </ul></li>
+  <li><a href="#mac" id="toc-mac" class="nav-link" data-scroll-target="#mac">1.2 Mac</a></li>
+  </ul></li>
+  <li><a href="#création-du-docker" id="toc-création-du-docker" class="nav-link" data-scroll-target="#création-du-docker">2. Création du docker</a></li>
+  <li><a href="#lancement-du-docker" id="toc-lancement-du-docker" class="nav-link" data-scroll-target="#lancement-du-docker">3. lancement du docker</a></li>
   </ul>
 </nav>
     </div>
@@ -171,26 +181,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un <a href="https://phoenixnap.com/kb/ubuntu-proxy-settings">serveur mandataire dans les paramètres réseaux</a> .</p>
 <p>Quelques docs à lire : - https://medium.com/<span class="citation" data-cites="anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11">@anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11</span> - https://leimao.github.io/blog/Docker-Container-GUI-Display/ -</p>
+<section id="installation-de-docker" class="level1">
+<h1>1. Installation de Docker</h1>
+<p>Pour installer Docker, il faut suivre les instructions du site officiel: <a href="https://docs.docker.com/get-docker/">Docker</a>:</p>
+<section id="ubuntu" class="level2">
+<h2 class="anchored" data-anchor-id="ubuntu">1.1 Ubuntu</h2>
+<p>Se référer à la page web <a href="https://docs.docker.com/engine/install/ubuntu/">pour ubuntu</a></p>
+<section id="via-un-proxy-par-authentification-cas-de-toulon" class="level3">
+<h3 class="anchored" data-anchor-id="via-un-proxy-par-authentification-cas-de-toulon">Via un proxy par authentification (cas de Toulon)</h3>
+<p>On installe les paquets nécessaires, en remplacant yourlogin par votre login:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install apt-transport-https ca-certificates curl software-properties-common</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--proxy</span> http://cache.univ-tln.fr:3128 <span class="at">--proxy-user</span> yourlogin <span class="at">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg <span class="kw">|</span> <span class="fu">sudo</span> apt-key add <span class="at">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="de-manière-standard" class="level3">
+<h3 class="anchored" data-anchor-id="de-manière-standard">de manière standard</h3>
+<p>On installe les paquets nécessaires:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install apt-transport-https ca-certificates curl software-properties-common</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg <span class="kw">|</span> <span class="fu">sudo</span> apt-key add <span class="at">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="suite-de-linstallation-avec-ou-sans-proxy" class="level3">
+<h3 class="anchored" data-anchor-id="suite-de-linstallation-avec-ou-sans-proxy">suite de l’installation (avec ou sans proxy)</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"deb [arch=</span><span class="va">$(</span><span class="ex">dpkg</span> <span class="at">--print-architecture</span><span class="va">)</span><span class="st">] https://download.docker.com/linux/ubuntu </span><span class="va">$(</span><span class="ex">lsb_release</span> <span class="at">-cs</span><span class="va">)</span><span class="st"> stable"</span> <span class="kw">|</span> <span class="fu">sudo</span> tee /etc/apt/sources.list.d/docker.list</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En suivant les <a href="https://docs.docker.com/engine/install/linux-postinstall/">explications du site Docker</a>, on ajoute son utilisateur au groupe docker:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> groupadd docker</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">sudo</span> usermod <span class="at">-aG</span> docker <span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="mac" class="level2">
+<h2 class="anchored" data-anchor-id="mac">1.2 Mac</h2>
+<p>Se référer à la page web [pour mac] (https://docs.docker.com/desktop/setup/install/mac-install/)</p>
+</section>
+</section>
 <section id="création-du-docker" class="level1">
-<h1>1. Création du docker</h1>
+<h1>2. Création du docker</h1>
 <p>Pour notre exemple, le fichier est le suivant: dockerFile_ubuntu22-04_anaconda3</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">FROM</span> ubuntu:22.04</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">WORKDIR</span> /usr/src/app</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">USER</span> root</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> vim libpq-dev wget</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sh</span> Miniconda3-latest-Linux-x86_64.sh <span class="at">-b</span> <span class="at">-p</span> /opt/miniconda3 <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rm</span> <span class="at">-r</span> Miniconda3-latest-Linux-x86_64.sh</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">ENV</span> PATH /opt/miniconda3/bin:<span class="va">$PATH</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> conda update conda</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> conda config <span class="at">--add</span> channels conda-forge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">FROM</span> ubuntu:22.04</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">WORKDIR</span> /usr/src/app</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">USER</span> root</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> vim libpq-dev wget</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sh</span> Miniconda3-latest-Linux-x86_64.sh <span class="at">-b</span> <span class="at">-p</span> /opt/miniconda3 <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rm</span> <span class="at">-r</span> Miniconda3-latest-Linux-x86_64.sh</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">ENV</span> PATH /opt/miniconda3/bin:<span class="va">$PATH</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> conda update conda</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> conda config <span class="at">--add</span> channels conda-forge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puis, on construit le docker avec la commande suivante:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build  <span class="at">-t</span> test <span class="at">-f</span> dockerFile_ubuntu22-04_anaconda3 .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build  <span class="at">-t</span> test <span class="at">-f</span> dockerFile_ubuntu22-04_anaconda3 .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="lancement-du-docker" class="level1">
-<h1>2. lancement du docker</h1>
+<h1>3. lancement du docker</h1>
 <p>On lance le docker avec la commande suivante:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-i</span> <span class="at">-v</span> /home/mazoyer/Documents/data/TBAY/:/DATA <span class="at">-t</span> ubuntu22.4-pyferret bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-i</span> <span class="at">-v</span> /home/mazoyer/Documents/data/TBAY/:/DATA <span class="at">-t</span> ubuntu22.4-pyferret bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>L’option -v permet de monter un volume entre le docker et le système hôte. Ici, on monte le dossier /home/mazoyer/Documents/data/TBAY/ dans le dossier /DATA du docker. L’option -t permet de lancer un terminal bash.</p>
 
 

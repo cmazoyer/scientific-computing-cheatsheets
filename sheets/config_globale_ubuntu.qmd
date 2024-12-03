@@ -4,7 +4,7 @@ title: "Configurer son ordi Ubuntu pour le calcul scientifique"
 
 # Installations via apt_get / aptitude:
 
-```
+```bash
 sudo apt-get install aptitude
 sudo aptitude install vim-gtk3
 sudo aptitude install stow git gfortran libnetcdff-dev

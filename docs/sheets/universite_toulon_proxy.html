@@ -145,6 +145,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#git" id="toc-git" class="nav-link active" data-scroll-target="#git">1. Git</a></li>
   <li><a href="#wget" id="toc-wget" class="nav-link" data-scroll-target="#wget">2. Wget</a></li>
   <li><a href="#configurer-anaconda-pour-les-proxy-ne-fonctionne-pas-pourquoi" id="toc-configurer-anaconda-pour-les-proxy-ne-fonctionne-pas-pourquoi" class="nav-link" data-scroll-target="#configurer-anaconda-pour-les-proxy-ne-fonctionne-pas-pourquoi">3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi …)</a></li>
+  <li><a href="#curl" id="toc-curl" class="nav-link" data-scroll-target="#curl">Curl</a></li>
+  <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker">Docker</a>
+  <ul class="collapse">
+  <li><a href="#demon-docker" id="toc-demon-docker" class="nav-link" data-scroll-target="#demon-docker">Demon Docker</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -199,8 +204,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">proxy_servers:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">http:</span> http://user:pass@cache.univ-tln.fr:3128</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">https:</span> https://user:pass@cache.univ-tln.fr:3128</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="curl" class="level1">
+<h1>Curl</h1>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--proxy</span> http://cache.univ-tln.fr:3128 <span class="at">--proxy-user</span> yourlogin ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="docker" class="level1">
+<h1>Docker</h1>
+<section id="demon-docker" class="level2">
+<h2 class="anchored" data-anchor-id="demon-docker">Demon Docker</h2>
+<p>Ecrire dans le fichier /etc/systemd/system/docker.service.d/http-proxy.conf :</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Service]</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">Environment</span><span class="op">=</span><span class="st">"HTTP_PROXY=http://username:password@proxy.server.com:port/"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">Environment</span><span class="op">=</span><span class="st">"HTTPS_PROXY=http://username:password@proxy.server.com:port/"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="va">Environment</span><span class="op">=</span><span class="st">"NO_PROXY=localhost,127.0.0.1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Attention, si votre mot de passe contient des caractères spéciaux. Si c’est le cas, vous pouvez le remplacer par son équivalent en URL encoding. Par exemple, si votre mot de passe est “p@ssw0rd”, vous pouvez le remplacer par “p%40ssw0rd”. Vous pouvez tester votre mot de passe via le script python:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-c</span> <span class="st">"import urllib.parse; print(urllib.parse.quote('votre_mot_de_passe'))"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puis recharger le daemon et redémarrer le service docker :</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl daemon-reload</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>côté client, ajouter les variables d’environnement suivantes dans le fichier ~/.bashrc :</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">http_proxy</span><span class="op">=</span><span class="st">"http://username:password@proxy:port/"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">https_proxy</span><span class="op">=</span><span class="st">"http://username:password@proxy:port/"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">no_proxy</span><span class="op">=</span><span class="st">"localhost,127.0.0.1"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">et</span> recharger le fichier :</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">bash</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
