@@ -35,7 +35,9 @@ puis en ligne de commande, suivant ce qu'on veut télécharger:
 wget --proxy-user="tonlogin" --proxy-password="tonmotdepasse" "https://xxxx.tar.gz"
 ```
 
-# 3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi ...)
+# 3. Anaconda
+
+Cela ne fonctionne pas forcément, je ne sais pas pourquoi...
 
 Créer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la [doc de Anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html#config-proxy).
 
@@ -82,8 +84,10 @@ côté client, ajouter les variables d'environnement suivantes dans le fichier ~
 export http_proxy="http://username:password@proxy:port/"
 export https_proxy="http://username:password@proxy:port/"
 export no_proxy="localhost,127.0.0.1"
+```
 
 et recharger le fichier :
+
 ```bash
 source ~/.bashrc
 ```

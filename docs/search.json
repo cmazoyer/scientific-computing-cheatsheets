@@ -466,7 +466,7 @@
     "href": "sheets/universite_toulon_proxy.html#client-docker",
     "title": "Travailler à l’université de Toulon sous proxy",
     "section": "Client Docker",
-    "text": "Client Docker\ncôté client, ajouter les variables d’environnement suivantes dans le fichier ~/.bashrc :\nexport http_proxy=\"http://username:password@proxy:port/\"\nexport https_proxy=\"http://username:password@proxy:port/\"\nexport no_proxy=\"localhost,127.0.0.1\"\n\net recharger le fichier :\n```bash\nsource ~/.bashrc"
+    "text": "Client Docker\ncôté client, ajouter les variables d’environnement suivantes dans le fichier ~/.bashrc :\nexport http_proxy=\"http://username:password@proxy:port/\"\nexport https_proxy=\"http://username:password@proxy:port/\"\nexport no_proxy=\"localhost,127.0.0.1\"\net recharger le fichier :\nsource ~/.bashrc"
   },
   {
     "objectID": "sheets/connexion_longue_ssh.html",
