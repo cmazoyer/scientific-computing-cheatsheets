@@ -150,6 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#demon-docker" id="toc-demon-docker" class="nav-link" data-scroll-target="#demon-docker">Demon Docker</a></li>
   </ul></li>
+  <li><a href="#prise-en-compte-du-proxy-sous-python" id="toc-prise-en-compte-du-proxy-sous-python" class="nav-link" data-scroll-target="#prise-en-compte-du-proxy-sous-python">Prise en compte du proxy sous python</a></li>
   </ul>
 </nav>
     </div>
@@ -231,9 +232,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">et</span> recharger le fichier :</span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">```</span><span class="fu">bash</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-
 </section>
+</section>
+<section id="prise-en-compte-du-proxy-sous-python" class="level1">
+<h1>Prise en compte du proxy sous python</h1>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> urllib.request</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Replace with your actual proxy details</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  proxy_username <span class="op">=</span> ‘xxx<span class="st">'</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="er">  proxy_password = ‘xxx'</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  proxy_server <span class="op">=</span> <span class="st">'cache.univ-tln.fr'</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  proxy_port <span class="op">=</span> <span class="st">'3128'</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Construct the proxy URL with authentication</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  proxy_url <span class="op">=</span> <span class="ss">f'http://</span><span class="sc">{</span>proxy_username<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>proxy_password<span class="sc">}</span><span class="ss">@</span><span class="sc">{</span>proxy_server<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>proxy_port<span class="sc">}</span><span class="ss">'</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set up the proxy handler</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  proxy_support <span class="op">=</span> urllib.request.ProxyHandler({</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">'http'</span>: proxy_url,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">'https'</span>: proxy_url</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  opener <span class="op">=</span> urllib.request.build_opener(proxy_support)</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  urllib.request.install_opener(opener)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
 </section>
 
 </main> <!-- /main -->
