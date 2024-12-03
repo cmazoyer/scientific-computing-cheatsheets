@@ -12,8 +12,8 @@ Il est d'abord nécesaire d'installer Anaconda
 ```bash
 conda create --name oceano
 conda activate oceano
-conda install pandas numpy xarray netCDF4 dask scipy ipython jupyter cartopy numba
-conda install matplotlib ipykernel cloudpickle ipykernel
+conda install pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy numba
+conda install matplotlib ipykernel cloudpickle
 conda install -c conda-forge xgcm hdf5storage
 ```
 
@@ -25,7 +25,7 @@ Si on veut aussi installer pyferret dans le même environnement
 conda create --name FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets --yes
 conda activate FERRET
 conda install -c conda-forge xgcm hdf5storage xarray 
-conda install matplotlib netCDF4 ipython jupyter cartopy numba ipykernel
+conda install matplotlib netcdf4 ipython jupyter cartopy numba ipykernel
 ```
 
 remarque:    
