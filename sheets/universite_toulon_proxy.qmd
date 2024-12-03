@@ -54,7 +54,7 @@ curl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin ...
 
 # Docker
 
-## Demon Docker
+## Daemon Docker
 
 Ecrire dans le fichier /etc/systemd/system/docker.service.d/http-proxy.conf :
 
@@ -74,6 +74,8 @@ Puis recharger le daemon et redémarrer le service docker :
 sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
+
+## Client Docker
 
 côté client, ajouter les variables d'environnement suivantes dans le fichier ~/.bashrc :
 ```bash

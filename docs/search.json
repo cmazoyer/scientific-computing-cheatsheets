@@ -455,11 +455,18 @@
     "text": "A faire uniquement lorsque l’on est derrière un proxy avec authentification, connecté en RJ45. Attention, il faut éviter de mettre des “!” ou “@” dans son mot de passe, cela peut poser problème en ligne de commande ensuite."
   },
   {
-    "objectID": "sheets/universite_toulon_proxy.html#demon-docker",
-    "href": "sheets/universite_toulon_proxy.html#demon-docker",
+    "objectID": "sheets/universite_toulon_proxy.html#daemon-docker",
+    "href": "sheets/universite_toulon_proxy.html#daemon-docker",
     "title": "Travailler à l’université de Toulon sous proxy",
-    "section": "Demon Docker",
-    "text": "Demon Docker\nEcrire dans le fichier /etc/systemd/system/docker.service.d/http-proxy.conf :\n[Service]\nEnvironment=\"HTTP_PROXY=http://username:password@proxy.server.com:port/\"\nEnvironment=\"HTTPS_PROXY=http://username:password@proxy.server.com:port/\"\nEnvironment=\"NO_PROXY=localhost,127.0.0.1\"\nAttention, si votre mot de passe contient des caractères spéciaux. Si c’est le cas, vous pouvez le remplacer par son équivalent en URL encoding. Par exemple, si votre mot de passe est “p@ssw0rd”, vous pouvez le remplacer par “p%40ssw0rd”. Vous pouvez tester votre mot de passe via le script python:\npython3 -c \"import urllib.parse; print(urllib.parse.quote('votre_mot_de_passe'))\"\nPuis recharger le daemon et redémarrer le service docker :\nsudo systemctl daemon-reload\nsudo systemctl restart docker\ncôté client, ajouter les variables d’environnement suivantes dans le fichier ~/.bashrc :\nexport http_proxy=\"http://username:password@proxy:port/\"\nexport https_proxy=\"http://username:password@proxy:port/\"\nexport no_proxy=\"localhost,127.0.0.1\"\n\net recharger le fichier :\n```bash\nsource ~/.bashrc"
+    "section": "Daemon Docker",
+    "text": "Daemon Docker\nEcrire dans le fichier /etc/systemd/system/docker.service.d/http-proxy.conf :\n[Service]\nEnvironment=\"HTTP_PROXY=http://username:password@proxy.server.com:port/\"\nEnvironment=\"HTTPS_PROXY=http://username:password@proxy.server.com:port/\"\nEnvironment=\"NO_PROXY=localhost,127.0.0.1\"\nAttention, si votre mot de passe contient des caractères spéciaux. Si c’est le cas, vous pouvez le remplacer par son équivalent en URL encoding. Par exemple, si votre mot de passe est “p@ssw0rd”, vous pouvez le remplacer par “p%40ssw0rd”. Vous pouvez tester votre mot de passe via le script python:\npython3 -c \"import urllib.parse; print(urllib.parse.quote('votre_mot_de_passe'))\"\nPuis recharger le daemon et redémarrer le service docker :\nsudo systemctl daemon-reload\nsudo systemctl restart docker"
+  },
+  {
+    "objectID": "sheets/universite_toulon_proxy.html#client-docker",
+    "href": "sheets/universite_toulon_proxy.html#client-docker",
+    "title": "Travailler à l’université de Toulon sous proxy",
+    "section": "Client Docker",
+    "text": "Client Docker\ncôté client, ajouter les variables d’environnement suivantes dans le fichier ~/.bashrc :\nexport http_proxy=\"http://username:password@proxy:port/\"\nexport https_proxy=\"http://username:password@proxy:port/\"\nexport no_proxy=\"localhost,127.0.0.1\"\n\net recharger le fichier :\n```bash\nsource ~/.bashrc"
   },
   {
     "objectID": "sheets/connexion_longue_ssh.html",

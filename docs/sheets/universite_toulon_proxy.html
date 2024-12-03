@@ -148,7 +148,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#curl" id="toc-curl" class="nav-link" data-scroll-target="#curl">Curl</a></li>
   <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker">Docker</a>
   <ul class="collapse">
-  <li><a href="#demon-docker" id="toc-demon-docker" class="nav-link" data-scroll-target="#demon-docker">Demon Docker</a></li>
+  <li><a href="#daemon-docker" id="toc-daemon-docker" class="nav-link" data-scroll-target="#daemon-docker">Daemon Docker</a></li>
+  <li><a href="#client-docker" id="toc-client-docker" class="nav-link" data-scroll-target="#client-docker">Client Docker</a></li>
   </ul></li>
   <li><a href="#prise-en-compte-du-proxy-sous-python" id="toc-prise-en-compte-du-proxy-sous-python" class="nav-link" data-scroll-target="#prise-en-compte-du-proxy-sous-python">Prise en compte du proxy sous python</a></li>
   </ul>
@@ -212,8 +213,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="docker" class="level1">
 <h1>Docker</h1>
-<section id="demon-docker" class="level2">
-<h2 class="anchored" data-anchor-id="demon-docker">Demon Docker</h2>
+<section id="daemon-docker" class="level2">
+<h2 class="anchored" data-anchor-id="daemon-docker">Daemon Docker</h2>
 <p>Ecrire dans le fichier /etc/systemd/system/docker.service.d/http-proxy.conf :</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Service]</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">Environment</span><span class="op">=</span><span class="st">"HTTP_PROXY=http://username:password@proxy.server.com:port/"</span></span>
@@ -224,6 +225,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Puis recharger le daemon et redémarrer le service docker :</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl daemon-reload</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="client-docker" class="level2">
+<h2 class="anchored" data-anchor-id="client-docker">Client Docker</h2>
 <p>côté client, ajouter les variables d’environnement suivantes dans le fichier ~/.bashrc :</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">http_proxy</span><span class="op">=</span><span class="st">"http://username:password@proxy:port/"</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">https_proxy</span><span class="op">=</span><span class="st">"http://username:password@proxy:port/"</span></span>
