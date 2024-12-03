@@ -2,77 +2,77 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "title": "Calcul scientifique au laboratoire MIO",
     "section": "",
     "text": "auteur: Camille Mazoyer, camille.mazoyer@ird.fr\nmaj: novembre 2024\nMerci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation."
   },
   {
     "objectID": "index.html#docker",
     "href": "index.html#docker",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "title": "Calcul scientifique au laboratoire MIO",
     "section": "Docker",
     "text": "Docker\n\nCreation et utilisation d’un docker (exemple pour pyferret)"
   },
   {
     "objectID": "index.html#git",
     "href": "index.html#git",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "title": "Calcul scientifique au laboratoire MIO",
     "section": "Git",
     "text": "Git\n\nMémos, raccourcis et améliorations de GIT\nCreer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas\nCreer un site web de documentation avec sphinx et le gitlab de l’OSU Pytheas : en construction\nUtilisation de Quarto pour créer un site web, avec github\nUtilisation de Github Copilot dans Visual Studio Code"
   },
   {
     "objectID": "index.html#anaconda",
     "href": "index.html#anaconda",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "title": "Calcul scientifique au laboratoire MIO",
     "section": "Anaconda",
     "text": "Anaconda\n\nInstallation de pyferret avec Anaconda\nInstallation d’un environnement Anaconda pour l’océanographie\nPartager un environnement Anaconda entre deux utilisateurs d’une même machine"
   },
   {
     "objectID": "index.html#ferret",
     "href": "index.html#ferret",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "title": "Calcul scientifique au laboratoire MIO",
     "section": "Ferret",
     "text": "Ferret\n\nPremiers pas en ferret ( à faire)"
   },
   {
     "objectID": "index.html#fortran",
     "href": "index.html#fortran",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "title": "Calcul scientifique au laboratoire MIO",
     "section": "Fortran",
     "text": "Fortran\n\nOptions de compilation pour debugger en Fortran\nutilisation du debugger gdb avec croco (sur le cluster OSU)\nListing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop"
   },
   {
     "objectID": "index.html#matlab",
     "href": "index.html#matlab",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "title": "Calcul scientifique au laboratoire MIO",
     "section": "Matlab",
     "text": "Matlab\n\nCréer un exécutable sous matlab: exemple sur le cluster de l’OSU"
   },
   {
     "objectID": "index.html#python",
     "href": "index.html#python",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "title": "Calcul scientifique au laboratoire MIO",
     "section": "Python",
     "text": "Python\n\nUtilisation de google collab pour des jupyter notebook python\nCROCO avec Python .\nla bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html\nla bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n’est plus à jour)\nHow to Make Python Code Run Incredibly Fast\nUtilisation de xarray conseillée (à faire)"
   },
   {
     "objectID": "index.html#cluster-de-losu-pytheas",
     "href": "index.html#cluster-de-losu-pytheas",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "title": "Calcul scientifique au laboratoire MIO",
     "section": "Cluster de l’OSU Pytheas",
     "text": "Cluster de l’OSU Pytheas\n\ncluster de l’osupytheas :https://calcul.osupytheas.fr/\nDocumentation pour une Connexion à distance à Tools"
   },
   {
     "objectID": "index.html#cluster-régional-ccamu-marseille",
     "href": "index.html#cluster-régional-ccamu-marseille",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "title": "Calcul scientifique au laboratoire MIO",
     "section": "Cluster régional CCAMU Marseille",
     "text": "Cluster régional CCAMU Marseille\n\nMes docs sur l’utilisation du Mésocentre CCAMU de Marseille\ntutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/"
   },
   {
     "objectID": "index.html#idris",
     "href": "index.html#idris",
-    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "title": "Calcul scientifique au laboratoire MIO",
     "section": "IDRIS",
     "text": "IDRIS\n\nSite web de l’IDRIS\ncheat sheet sur l’utilisation du calculateur de l’IDRIS\nUtilisation des jupyter notebook sur Jean Zay"
   },

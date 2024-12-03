@@ -1,5 +1,5 @@
 ---
-title: "Scientific computing cheatsheets at the laboratory MIO in oceanography"
+title: "Calcul scientifique au laboratoire MIO"
 ---
 
 auteur: Camille Mazoyer, camille.mazoyer\@ird.fr
