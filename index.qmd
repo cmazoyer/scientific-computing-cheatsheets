@@ -48,9 +48,9 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## Docker
 
--   [Creation et utilisation d'un docker (exemple pour pyferret)](sheets/docker.html)
+-  [Création et utilisation d'un docker (exemple pour pyferret)](sheets/docker.html)
 
-
+-  [Créer et partager une image docker](sheets/create_docker.html)
 
 ## Git
 

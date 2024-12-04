@@ -80,3 +80,14 @@ docker run -i -v /home/mazoyer/Documents/data/TBAY/:/DATA -t ubuntu22.4-pyferret
 ```
 L'option -v permet de monter un volume entre le docker et le système hôte. Ici, on monte le dossier /home/mazoyer/Documents/data/TBAY/ dans le dossier /DATA du docker.
 L'option -t permet de lancer un terminal bash.
+
+
+# 4. Dockers que je mets à disposition au MIO
+
+## 4.1 Pyferret
+
+## 4.2 OceanParcels
+
+```bash
+docker build . -t oceanparcels:3.1.0
+```

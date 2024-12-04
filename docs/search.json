@@ -11,7 +11,7 @@
     "href": "index.html#docker",
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "Docker",
-    "text": "Docker\n\nCreation et utilisation d’un docker (exemple pour pyferret)"
+    "text": "Docker\n\nCréation et utilisation d’un docker (exemple pour pyferret)\nCréer et partager une image docker"
   },
   {
     "objectID": "index.html#git",
@@ -203,60 +203,53 @@
     "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install -c conda-forge copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
   },
   {
-    "objectID": "sheets/connexion_via_tunnel.html",
-    "href": "sheets/connexion_via_tunnel.html",
-    "title": "Connexion à un ordinateur via un tunnel",
+    "objectID": "sheets/create_docker.html",
+    "href": "sheets/create_docker.html",
+    "title": "Créer et partager une image docker",
     "section": "",
-    "text": "3 exemples ci-dessous:"
+    "text": "But: pouvoir partager un logiciel avec d’autres utilisateurs, ou sur d’autres ordinateurs, de manière simple, sans avoir à l’installer.\nNous allons prendre l’exemple de la création d’une image docker pour OceanParcels."
   },
   {
-    "objectID": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
-    "href": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "Mise en place des scripts",
-    "text": "Mise en place des scripts\nà écrire dans .bash_aliases :\n        alias hrespore=\"ssh mazoyer@respore\"\n        alias tunnelrespore='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5533:respore:22'\n        alias htunnelrespore='ssh -X -p 5533 mazoyer@localhost'\n        alias sftprespore='sftp -P 5533 mazoyer@localhost'\n        # kill tunnel si besoin\n        alias ps=\"ps aux\"\n        killtunnelrespore(){\n          idtunnel=`ps | grep -i respore | grep -i ssh | awk '{print $2}'`\n          kill -9 $idtunnel\n        }"
+    "objectID": "sheets/create_docker.html#partage-via-docker-hub",
+    "href": "sheets/create_docker.html#partage-via-docker-hub",
+    "title": "Créer et partager une image docker",
+    "section": "2.1 Partage via Docker Hub",
+    "text": "2.1 Partage via Docker Hub\nPrérequis: Pour utiliser Docker Hub, il est nécessaire de s’y créer un compte (on peut utiliser son compte Github).\nL’avantage de ce site est la simplicité de partage. L’utilisateur ne manipule pas de fichier Dockerfile, et n’a pas à recréer l’image. Elle est directement téléchargeable.\nTaguer l’image en indiquant sa version (ex: 3.1.0) pour Docker Hub et la pousser sur Docker Hub:\ndocker tag oceanparcels:3.1.0 cmazoyer/oceanparcels:3.1.0\ndocker login\ndocker push cmazoyer/oceanparcels:3.1.0\nOn peut ensuite vérifier dans son compte Docker Hub que l’image a bien été poussée.\nUn utilisateur peut ensuite télécharger l’image déjà faite sur n’importe quel ordinateur, il lui suffit de faire:\ndocker pull cmazoyer/oceanparcels:3.1.0\nIl peut ensuite l’utiliser comme n’importe quelle image docker (docker run …)\nPar exemple, pour lancer un conteneur avec l’image oceanparcels:3.1.0, avec le répertoire physique /home/monlogin/work équivalent au répertoire dans le docker /work, on peut faire:\ndocker run -i -v /home/monlogin/work:/work -t cmazoyer/oceanparcels:3.1.0"
   },
   {
-    "objectID": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
-    "href": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "Creation du tunnel",
-    "text": "Creation du tunnel\nA faire une seule fois au démarrage de son ordinateur, pour créer le tunnel:\ntunnelrespore"
+    "objectID": "sheets/create_docker.html#partage-via-un-fichier-dockerfile",
+    "href": "sheets/create_docker.html#partage-via-un-fichier-dockerfile",
+    "title": "Créer et partager une image docker",
+    "section": "2.2 Partage via un fichier Dockerfile",
+    "text": "2.2 Partage via un fichier Dockerfile\nEn téléchargeant le fichier Dockerfile, l’utilisateur peut recréer l’image docker sur son ordinateur, avec la commande build.\nIl peut ensuite utiliser la commande run pour lancer un conteneur avec l’image créée.\nNous avons donc partagé notre image docker de Ocean Parcels de deux façons possibles."
   },
   {
-    "objectID": "sheets/connexion_via_tunnel.html#utilisation",
-    "href": "sheets/connexion_via_tunnel.html#utilisation",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "utilisation",
-    "text": "utilisation\nA chaque fois qu’on veut se connecter à respore:\nhtunnelrespore  (pour home by tunnelrespore)\nPour échanger des fichiers entre son ordi et respore:\nsftprespore\npuis pour envoyer un fichier vers le répertoire repertoire_sur_respore de Respore:\nput monfichier repertoire_sur_respore/.\npour récupérer un fichier de repertoire_sur_respore vers mon ordi:\nget repertoire_sur_respore/monfichier .\nSi le tunnel ne fonctionne plus, il faut le détruire puis le recréer. La commande killtunnelrespore gère la destruction de manière automatique:\nkilltunnelrespore\ntunnelrespore"
-  },
-  {
-    "objectID": "sheets/partager_env_anaconda.html",
-    "href": "sheets/partager_env_anaconda.html",
-    "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
+    "objectID": "sheets/vim.html",
+    "href": "sheets/vim.html",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
     "section": "",
-    "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
+    "text": "Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM :"
   },
   {
-    "objectID": "sheets/githubcopilot.html",
-    "href": "sheets/githubcopilot.html",
-    "title": "Installation et utilisation de Github Copilot en recherche",
+    "objectID": "sheets/vim.html#couleur-du-thème",
+    "href": "sheets/vim.html#couleur-du-thème",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "2.1 Couleur du thème:",
+    "text": "2.1 Couleur du thème:\nPour changer de couleur de theme et avoir quelque chose de plus visible, créer ou ouvrir s’il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):\ncolorscheme darkblue"
+  },
+  {
+    "objectID": "sheets/vim.html#un-thème-adapté-au-vimdiff",
+    "href": "sheets/vim.html#un-thème-adapté-au-vimdiff",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "2.2 Un thème adapté au vimdiff",
+    "text": "2.2 Un thème adapté au vimdiff\nVoir Post stackoverflow:\n (image issue de l’url de statckoverflow ci-dessus)\nDans un terminal:\ncurl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim\npuis dans vim, en mode édition:\n:colorscheme github"
+  },
+  {
+    "objectID": "sheets/connexion_distance_tools.html",
+    "href": "sheets/connexion_distance_tools.html",
+    "title": "Connexion à distance à Tools",
     "section": "",
-    "text": "Se créer un compte sur github avec la double authentification: https://github.com/. L’adresse mail utilisée doit être l’adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d’adhésion à copilot)"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#prérequis",
-    "href": "sheets/githubcopilot.html#prérequis",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "2.1 Prérequis",
-    "text": "2.1 Prérequis\nSuivre les prérequis indiqués ici : https://education.github.com/discount_requests/application. Entre autres:\n\ndouble authentification\nadresse de facturation\npersonnaliser son profil : indiquer son vrai nom, mettre sa photo, …\nse munir de sa carte professionnelle\nréaliser la demande dans les locaux de l’adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu’on est en congé, l’heure correspond à un week end / soirée, …)"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
-    "href": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "Infos pour la demande de compte",
-    "text": "Infos pour la demande de compte\n\nbien faire la demande avec son adresse ird, amu ou tln\nLa carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l’adresse mail professionnelle. Github va demander de prendre une photo du devant de celle-ci avec la camera de l’ordinateur"
+    "text": "Via un tunnel SSH\nVoir la documentation: Connexion à un ordinateur via un tunnel\n\n\nVia le VPN de l’OSU pytheas\nSe référer à la Documentation du VPN. Une fois le VPN lancé, il suffit de se connecter à tools.osupytheas.fr en ssh par ex, ou avec putty pour windows.\n\n\nVia Rdesktop (pas fonctionnel ou fonctionnel?)\nInstallation sous ubuntu via:\napt-get install rdesktop\nUtilisation\nrdesktop -u votrelogin 172.20.9.140\n\n\nVia x2go\nSolution possible. A compléter."
   },
   {
     "objectID": "sheets/zenodo_github.html",
@@ -294,32 +287,60 @@
     "text": "3.2 Sur Zenodo\nSe référer à la documentation github sur Zenodo.\n\nSe rendre sur Zenodo et se connecter à Zenodo avec son compte Github, le lien sera ainsi fait entre les deux sites web.\nDans la page settings, https://zenodo.org/account/settings/github/, cliquer sur “Sync Now”\nRafraichir la page avec F5\nPositionner le bouton sur “ON” sur le dépôt de votre organisation (ici TAO-Soft/Tao-Soft)\nRafraichir la page avec F5\nDans la section “Enabled Repositories”, le nouveau dépôt devrait apparaitre. Cliquer dessus.\nOn est alors sur la page https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft, dans mon exemple.\nCliquer sur “Create release”, on se déplace alors sur une page du dépôt TAO-Soft du site Github\nDans “Choose a tag”, sélectioner le tag qui nous intéresse, par ex: v0.1.0.\nIndiquer le titre de la release. Par exemple: “Initial release v0.1.0”\nIl est conseiller de décrire la release (amélioration, bug fixed, …)\nCliquer sur le bouton vert “Publish release”\nCette release ayant été faite à partir de Zenodo, elle sera visible sur celui-ci. Rafraichir la page du dépôt sur Zenodo https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft\nToutes les informations apparaissent, dont le DOI"
   },
   {
-    "objectID": "sheets/connexion_distance_tools.html",
-    "href": "sheets/connexion_distance_tools.html",
-    "title": "Connexion à distance à Tools",
+    "objectID": "sheets/githubcopilot.html",
+    "href": "sheets/githubcopilot.html",
+    "title": "Installation et utilisation de Github Copilot en recherche",
     "section": "",
-    "text": "Via un tunnel SSH\nVoir la documentation: Connexion à un ordinateur via un tunnel\n\n\nVia le VPN de l’OSU pytheas\nSe référer à la Documentation du VPN. Une fois le VPN lancé, il suffit de se connecter à tools.osupytheas.fr en ssh par ex, ou avec putty pour windows.\n\n\nVia Rdesktop (pas fonctionnel ou fonctionnel?)\nInstallation sous ubuntu via:\napt-get install rdesktop\nUtilisation\nrdesktop -u votrelogin 172.20.9.140\n\n\nVia x2go\nSolution possible. A compléter."
+    "text": "Se créer un compte sur github avec la double authentification: https://github.com/. L’adresse mail utilisée doit être l’adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d’adhésion à copilot)"
   },
   {
-    "objectID": "sheets/vim.html",
-    "href": "sheets/vim.html",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "objectID": "sheets/githubcopilot.html#prérequis",
+    "href": "sheets/githubcopilot.html#prérequis",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "2.1 Prérequis",
+    "text": "2.1 Prérequis\nSuivre les prérequis indiqués ici : https://education.github.com/discount_requests/application. Entre autres:\n\ndouble authentification\nadresse de facturation\npersonnaliser son profil : indiquer son vrai nom, mettre sa photo, …\nse munir de sa carte professionnelle\nréaliser la demande dans les locaux de l’adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu’on est en congé, l’heure correspond à un week end / soirée, …)"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "href": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "Infos pour la demande de compte",
+    "text": "Infos pour la demande de compte\n\nbien faire la demande avec son adresse ird, amu ou tln\nLa carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l’adresse mail professionnelle. Github va demander de prendre une photo du devant de celle-ci avec la camera de l’ordinateur"
+  },
+  {
+    "objectID": "sheets/partager_env_anaconda.html",
+    "href": "sheets/partager_env_anaconda.html",
+    "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
     "section": "",
-    "text": "Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM :"
+    "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
   },
   {
-    "objectID": "sheets/vim.html#couleur-du-thème",
-    "href": "sheets/vim.html#couleur-du-thème",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "2.1 Couleur du thème:",
-    "text": "2.1 Couleur du thème:\nPour changer de couleur de theme et avoir quelque chose de plus visible, créer ou ouvrir s’il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):\ncolorscheme darkblue"
+    "objectID": "sheets/connexion_via_tunnel.html",
+    "href": "sheets/connexion_via_tunnel.html",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "",
+    "text": "3 exemples ci-dessous:"
   },
   {
-    "objectID": "sheets/vim.html#un-thème-adapté-au-vimdiff",
-    "href": "sheets/vim.html#un-thème-adapté-au-vimdiff",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "2.2 Un thème adapté au vimdiff",
-    "text": "2.2 Un thème adapté au vimdiff\nVoir Post stackoverflow:\n (image issue de l’url de statckoverflow ci-dessus)\nDans un terminal:\ncurl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim\npuis dans vim, en mode édition:\n:colorscheme github"
+    "objectID": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
+    "href": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "Mise en place des scripts",
+    "text": "Mise en place des scripts\nà écrire dans .bash_aliases :\n        alias hrespore=\"ssh mazoyer@respore\"\n        alias tunnelrespore='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5533:respore:22'\n        alias htunnelrespore='ssh -X -p 5533 mazoyer@localhost'\n        alias sftprespore='sftp -P 5533 mazoyer@localhost'\n        # kill tunnel si besoin\n        alias ps=\"ps aux\"\n        killtunnelrespore(){\n          idtunnel=`ps | grep -i respore | grep -i ssh | awk '{print $2}'`\n          kill -9 $idtunnel\n        }"
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
+    "href": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "Creation du tunnel",
+    "text": "Creation du tunnel\nA faire une seule fois au démarrage de son ordinateur, pour créer le tunnel:\ntunnelrespore"
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html#utilisation",
+    "href": "sheets/connexion_via_tunnel.html#utilisation",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "utilisation",
+    "text": "utilisation\nA chaque fois qu’on veut se connecter à respore:\nhtunnelrespore  (pour home by tunnelrespore)\nPour échanger des fichiers entre son ordi et respore:\nsftprespore\npuis pour envoyer un fichier vers le répertoire repertoire_sur_respore de Respore:\nput monfichier repertoire_sur_respore/.\npour récupérer un fichier de repertoire_sur_respore vers mon ordi:\nget repertoire_sur_respore/monfichier .\nSi le tunnel ne fonctionne plus, il faut le détruire puis le recréer. La commande killtunnelrespore gère la destruction de manière automatique:\nkilltunnelrespore\ntunnelrespore"
   },
   {
     "objectID": "sheets/site_quarto.html",
@@ -397,6 +418,20 @@
     "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
     "section": "1.2 Mac",
     "text": "1.2 Mac\nSe référer à la page web [pour mac] (https://docs.docker.com/desktop/setup/install/mac-install/)"
+  },
+  {
+    "objectID": "sheets/docker.html#pyferret",
+    "href": "sheets/docker.html#pyferret",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "4.1 Pyferret",
+    "text": "4.1 Pyferret"
+  },
+  {
+    "objectID": "sheets/docker.html#oceanparcels",
+    "href": "sheets/docker.html#oceanparcels",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "4.2 OceanParcels",
+    "text": "4.2 OceanParcels\ndocker build . -t oceanparcels:3.1.0"
   },
   {
     "objectID": "sheets/create_mkdocs_documentation.html",

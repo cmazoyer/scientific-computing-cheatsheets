@@ -154,6 +154,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#création-du-docker" id="toc-création-du-docker" class="nav-link" data-scroll-target="#création-du-docker">2. Création du docker</a></li>
   <li><a href="#lancement-du-docker" id="toc-lancement-du-docker" class="nav-link" data-scroll-target="#lancement-du-docker">3. lancement du docker</a></li>
+  <li><a href="#dockers-que-je-mets-à-disposition-au-mio" id="toc-dockers-que-je-mets-à-disposition-au-mio" class="nav-link" data-scroll-target="#dockers-que-je-mets-à-disposition-au-mio">4. Dockers que je mets à disposition au MIO</a>
+  <ul class="collapse">
+  <li><a href="#pyferret" id="toc-pyferret" class="nav-link" data-scroll-target="#pyferret">4.1 Pyferret</a></li>
+  <li><a href="#oceanparcels" id="toc-oceanparcels" class="nav-link" data-scroll-target="#oceanparcels">4.2 OceanParcels</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -237,8 +242,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>On lance le docker avec la commande suivante:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-i</span> <span class="at">-v</span> /home/mazoyer/Documents/data/TBAY/:/DATA <span class="at">-t</span> ubuntu22.4-pyferret bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>L’option -v permet de monter un volume entre le docker et le système hôte. Ici, on monte le dossier /home/mazoyer/Documents/data/TBAY/ dans le dossier /DATA du docker. L’option -t permet de lancer un terminal bash.</p>
+</section>
+<section id="dockers-que-je-mets-à-disposition-au-mio" class="level1">
+<h1>4. Dockers que je mets à disposition au MIO</h1>
+<section id="pyferret" class="level2">
+<h2 class="anchored" data-anchor-id="pyferret">4.1 Pyferret</h2>
+</section>
+<section id="oceanparcels" class="level2">
+<h2 class="anchored" data-anchor-id="oceanparcels">4.2 OceanParcels</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build . <span class="at">-t</span> oceanparcels:3.1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
