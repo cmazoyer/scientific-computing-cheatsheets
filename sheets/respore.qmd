@@ -3,6 +3,7 @@ title : Machine respore au MIO Toulon
 ---
 
 A disposition sur la machine respore:
+
 # anaconda
 
 ## env "oceano"
@@ -23,11 +24,13 @@ Docker est installé sur la machine respore. Pour plus d'informations sur docker
 
 ## oceanparcels 3.1.0
 
-Pour lancer le docker d'oceaparcels 3.1.0, et partager le répertoire /home/monlogin/work dans lequel nous avons nos données ou scripts, taper la commande suivante:
+Pour lancer le docker d'oceanparcels 3.1.0, et partager le répertoire /home/monlogin/work dans lequel nous avons nos données ou scripts, taper la commande suivante:
 ```bash
 docker run -i -v /home/monlogin/work/:/work -t oceanparcels:3.1.0
 ```
 Les données ou scripts dans /home/monlogin/work/ seront accessibles dans le docker dans le répertoire /work.
+
+Si vous avez besoin de télécharger des données dans les scripts python pour oceanparcels, vous aurez besoin d'indiquer le proxy dans vos scripts. Se référer à la doc [Travailler à la fac de Toulon derrière un proxy](universite_toulon_proxy.qmd.html) pour plus d'informations sur le proxy.
 
 ## pyferret
 A venir

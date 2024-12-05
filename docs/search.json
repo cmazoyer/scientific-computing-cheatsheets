@@ -137,7 +137,7 @@
     "href": "sheets/respore.html",
     "title": "Machine respore au MIO Toulon",
     "section": "",
-    "text": "A disposition sur la machine respore: # anaconda"
+    "text": "A disposition sur la machine respore:"
   },
   {
     "objectID": "sheets/respore.html#env-oceano",
@@ -165,7 +165,7 @@
     "href": "sheets/respore.html#oceanparcels-3.1.0",
     "title": "Machine respore au MIO Toulon",
     "section": "oceanparcels 3.1.0",
-    "text": "oceanparcels 3.1.0\nPour lancer le docker d’oceaparcels 3.1.0, et partager le répertoire /home/monlogin/work dans lequel nous avons nos données ou scripts, taper la commande suivante:\ndocker run -i -v /home/monlogin/work/:/work -t oceanparcels:3.1.0\nLes données ou scripts dans /home/monlogin/work/ seront accessibles dans le docker dans le répertoire /work."
+    "text": "oceanparcels 3.1.0\nPour lancer le docker d’oceanparcels 3.1.0, et partager le répertoire /home/monlogin/work dans lequel nous avons nos données ou scripts, taper la commande suivante:\ndocker run -i -v /home/monlogin/work/:/work -t oceanparcels:3.1.0\nLes données ou scripts dans /home/monlogin/work/ seront accessibles dans le docker dans le répertoire /work.\nSi vous avez besoin de télécharger des données dans les scripts python pour oceanparcels, vous aurez besoin d’indiquer le proxy dans vos scripts. Se référer à la doc Travailler à la fac de Toulon derrière un proxy pour plus d’informations sur le proxy."
   },
   {
     "objectID": "sheets/respore.html#pyferret",

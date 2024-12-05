@@ -142,9 +142,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#env-oceano" id="toc-env-oceano" class="nav-link active" data-scroll-target="#env-oceano">env “oceano”</a></li>
+  <li><a href="#anaconda" id="toc-anaconda" class="nav-link active" data-scroll-target="#anaconda">anaconda</a>
+  <ul class="collapse">
+  <li><a href="#env-oceano" id="toc-env-oceano" class="nav-link" data-scroll-target="#env-oceano">env “oceano”</a></li>
   <li><a href="#env-copernicusmarine" id="toc-env-copernicusmarine" class="nav-link" data-scroll-target="#env-copernicusmarine">env “copernicusmarine”</a></li>
   <li><a href="#utilisation" id="toc-utilisation" class="nav-link" data-scroll-target="#utilisation">utilisation</a></li>
+  </ul></li>
   <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker">docker</a>
   <ul class="collapse">
   <li><a href="#oceanparcels-3.1.0" id="toc-oceanparcels-3.1.0" class="nav-link" data-scroll-target="#oceanparcels-3.1.0">oceanparcels 3.1.0</a></li>
@@ -175,7 +178,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>A disposition sur la machine respore: # anaconda</p>
+<p>A disposition sur la machine respore:</p>
+<section id="anaconda" class="level1">
+<h1>anaconda</h1>
 <section id="env-oceano" class="level2">
 <h2 class="anchored" data-anchor-id="env-oceano">env “oceano”</h2>
 <p>environnement “oceano” avec de nombreux packages nécessaires pour l’océanographie: dask, xarray, xgcm, numpy, pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy matplotlib cloudpickle …</p>
@@ -189,14 +194,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Utiliser la commande suivante pour utiliser l’environnement “oceano”, par exemple:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate oceano</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+</section>
 <section id="docker" class="level1">
 <h1>docker</h1>
 <p>Docker est installé sur la machine respore. Pour plus d’informations sur docker, voir la doc <a href="create_docker.html">Créer et partager une image docker</a> et <a href="docker.html">Création et utilisation d’un docker (exemple pour pyferret)</a>.</p>
 <section id="oceanparcels-3.1.0" class="level2">
 <h2 class="anchored" data-anchor-id="oceanparcels-3.1.0">oceanparcels 3.1.0</h2>
-<p>Pour lancer le docker d’oceaparcels 3.1.0, et partager le répertoire /home/monlogin/work dans lequel nous avons nos données ou scripts, taper la commande suivante:</p>
+<p>Pour lancer le docker d’oceanparcels 3.1.0, et partager le répertoire /home/monlogin/work dans lequel nous avons nos données ou scripts, taper la commande suivante:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-i</span> <span class="at">-v</span> /home/monlogin/work/:/work <span class="at">-t</span> oceanparcels:3.1.0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Les données ou scripts dans /home/monlogin/work/ seront accessibles dans le docker dans le répertoire /work.</p>
+<p>Si vous avez besoin de télécharger des données dans les scripts python pour oceanparcels, vous aurez besoin d’indiquer le proxy dans vos scripts. Se référer à la doc <a href="universite_toulon_proxy.qmd.html">Travailler à la fac de Toulon derrière un proxy</a> pour plus d’informations sur le proxy.</p>
 </section>
 <section id="pyferret" class="level2">
 <h2 class="anchored" data-anchor-id="pyferret">pyferret</h2>
