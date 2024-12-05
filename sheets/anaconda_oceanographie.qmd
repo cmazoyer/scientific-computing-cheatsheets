@@ -17,9 +17,14 @@ conda install matplotlib ipykernel cloudpickle
 conda install -c conda-forge xgcm hdf5storage
 ```
 
-# Création d'un autre environnement avec pyferret
+# creation d'un environnement pyferret uniquement
 
-Si on veut aussi installer pyferret dans le même environnement 
+Se référer à la page [Installation de pyferret avec Anaconda](installation_pyferret.html) pour l'installation de pyferret.
+
+
+# Création d'un environnement oceano et pyferret
+
+Si on veut aussi installer pyferret dans le même environnement, il est conseillé d'intaller pyferret en premier, puis les autres packages: 
 
 ```bash
 conda create --name FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets --yes
@@ -31,6 +36,7 @@ conda install matplotlib netcdf4 ipython jupyter cartopy numba ipykernel
 remarque:    
 - numpy est installé automatiquement par dépendance de pyferret
 - pandas, dask, cloudpickle,  scipy  sont installés automatiquement aussi par dépendances.
+
 
 # Utilisation de ces environnements 
 

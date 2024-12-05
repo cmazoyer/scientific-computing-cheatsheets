@@ -18,6 +18,17 @@ Pour avoir la dernière version de PyFerret:
 conda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes
 ```
 
+Avec cette installation, on peut rencontrer l'erreur suivante lors de l'utilisation de pyferret:
+"A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.0.2 as it may crash."
+
+Pour résoudre ce problème, il faut installer une version de numpy plus ancienne (même après l'installation de pyferret):
+```bash
+conda install "numpy<2"
+```
+Cela devrait résoudre le problème.
+
+
 ## Pyferret pour ubuntu 20.04
 
 Attention! Pour installer PyFerret avec Ubuntu 20.04 TLS, choisir une version de 2020 (https://www.pmel.noaa.gov/maillists/tmap/ferret_users/fu_2019/msg01061.html)
