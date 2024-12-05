@@ -1,0 +1,34 @@
+---
+title : Machine respore au MIO Toulon
+---
+
+A disposition sur la machine respore:
+# anaconda
+
+## env "oceano"
+environnement "oceano" avec de nombreux packages nécessaires pour l'océanographie: dask, xarray, xgcm, numpy, pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy matplotlib cloudpickle ...
+
+## env "copernicusmarine"
+Permet de télécharger les données de Copernicus Marine: voir la doc [Documentation sur Copernicus Marine](copernicusmarine.html).
+
+## utilisation
+Utiliser la commande suivante pour utiliser l'environnement "oceano", par exemple:
+```bash
+conda activate oceano
+```
+
+# docker
+
+Docker est installé sur la machine respore. Pour plus d'informations sur docker, voir la doc [Créer et partager une image docker](create_docker.html) et [Création et utilisation d'un docker (exemple pour pyferret)](docker.html).
+
+## oceanparcels 3.1.0
+
+Pour lancer le docker d'oceaparcels 3.1.0, et partager le répertoire /home/monlogin/work dans lequel nous avons nos données ou scripts, taper la commande suivante:
+```bash
+docker run -i -v /home/monlogin/work/:/work -t oceanparcels:3.1.0
+```
+Les données ou scripts dans /home/monlogin/work/ seront accessibles dans le docker dans le répertoire /work.
+
+## pyferret
+A venir
+

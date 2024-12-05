@@ -56,6 +56,13 @@
     "text": "Python\n\nUtilisation de google collab pour des jupyter notebook python\nCROCO avec Python .\nla bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html\nla bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n’est plus à jour)\nHow to Make Python Code Run Incredibly Fast\nUtilisation de xarray conseillée (à faire)"
   },
   {
+    "objectID": "index.html#respore-au-mio-toulon",
+    "href": "index.html#respore-au-mio-toulon",
+    "title": "Calcul scientifique au laboratoire MIO",
+    "section": "Respore au MIO Toulon",
+    "text": "Respore au MIO Toulon\n\nMachine respore au MIO Toulon"
+  },
+  {
     "objectID": "index.html#cluster-de-losu-pytheas",
     "href": "index.html#cluster-de-losu-pytheas",
     "title": "Calcul scientifique au laboratoire MIO",
@@ -126,6 +133,300 @@
     "text": "But: pouvoir detacher un processus et le faire tourner meme si on n’est pas connecté: (voir https://www.tecmint.com/keep-remote-ssh-sessions-running-after-disconnection/ )\n\nFonctionnement\nPour créer un screen (nommé nomduscreen)\nscreen -S nomduscreen\nPour sortir du screen, le détacher: “To detach a screen from the remote terminal, just press “Ctrl+a” immediately followed by “d”” ctrl+a puis d\npour voir tous les screen qu’on a, dans un terminal normal:\nscreen -r\nThere are several suitable screens on:\n    2283.pts-100.service7    (Detached)\n    2221.testcamille    (Detached)\ns'il n'y a qu'un screen, screen -r permet de revenir au screen \n\nsi plusieurs screen, cela les liste\nPour aller dedans:\n# si le résultat de la commande est un tableau\nscreen -r 2221.testcamille\n  # si on veut se connecter au screen avec ce numéro\nPour en supprimer un, aller dedans puis:\nexit \n\n\nAutres infos à trier:\nExecution de son programme :\nscreen -S session_julien ./monprog &gt;output.txt 2&gt;&1&\n→ et on ferme la fenetre (on peut egalement fermer sa session cela ne pose pas de pb)\nPour voir si il y a des screens qui tournent :\nscreen -ls\nDe chez soi on se connecte sur la machine sur laquelle on a des scripts qui tournent en nohup et on recupere le shell via la commande :\nscreen -r session_julien\nscreen et le shell multi-utilisateur pour travailler avec un collegue de travail sur un meme shell !\nMoi (utilisateur root)\nMoi : chmod u+s /usr/bin/screen\nMoi : screen -S test\n\nLui : screen -r root/ (bien specifier le \"/\" a la fin)\net voila !\nQuelques commandes utiles\n\nTaper screen pour lancer un shell screen\nCtrl-a c : cree un nouveau shell screen\nCtrl-a 0 : Passe au shell numero 0\nCtrl-a 1 : Passe au shell numero 1\nCtrl-a ? : Voir les raccourcis"
   },
   {
+    "objectID": "sheets/respore.html",
+    "href": "sheets/respore.html",
+    "title": "Machine respore au MIO Toulon",
+    "section": "",
+    "text": "A disposition sur la machine respore: # anaconda"
+  },
+  {
+    "objectID": "sheets/respore.html#env-oceano",
+    "href": "sheets/respore.html#env-oceano",
+    "title": "Machine respore au MIO Toulon",
+    "section": "env “oceano”",
+    "text": "env “oceano”\nenvironnement “oceano” avec de nombreux packages nécessaires pour l’océanographie: dask, xarray, xgcm, numpy, pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy matplotlib cloudpickle …"
+  },
+  {
+    "objectID": "sheets/respore.html#env-copernicusmarine",
+    "href": "sheets/respore.html#env-copernicusmarine",
+    "title": "Machine respore au MIO Toulon",
+    "section": "env “copernicusmarine”",
+    "text": "env “copernicusmarine”\nPermet de télécharger les données de Copernicus Marine: voir la doc Documentation sur Copernicus Marine."
+  },
+  {
+    "objectID": "sheets/respore.html#utilisation",
+    "href": "sheets/respore.html#utilisation",
+    "title": "Machine respore au MIO Toulon",
+    "section": "utilisation",
+    "text": "utilisation\nUtiliser la commande suivante pour utiliser l’environnement “oceano”, par exemple:\nconda activate oceano"
+  },
+  {
+    "objectID": "sheets/respore.html#oceanparcels-3.1.0",
+    "href": "sheets/respore.html#oceanparcels-3.1.0",
+    "title": "Machine respore au MIO Toulon",
+    "section": "oceanparcels 3.1.0",
+    "text": "oceanparcels 3.1.0\nPour lancer le docker d’oceaparcels 3.1.0, et partager le répertoire /home/monlogin/work dans lequel nous avons nos données ou scripts, taper la commande suivante:\ndocker run -i -v /home/monlogin/work/:/work -t oceanparcels:3.1.0\nLes données ou scripts dans /home/monlogin/work/ seront accessibles dans le docker dans le répertoire /work."
+  },
+  {
+    "objectID": "sheets/respore.html#pyferret",
+    "href": "sheets/respore.html#pyferret",
+    "title": "Machine respore au MIO Toulon",
+    "section": "pyferret",
+    "text": "pyferret\nA venir"
+  },
+  {
+    "objectID": "sheets/docker.html",
+    "href": "sheets/docker.html",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "",
+    "text": "Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un serveur mandataire dans les paramètres réseaux .\nQuelques docs à lire : - https://medium.com/@anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11 - https://leimao.github.io/blog/Docker-Container-GUI-Display/ -"
+  },
+  {
+    "objectID": "sheets/docker.html#ubuntu",
+    "href": "sheets/docker.html#ubuntu",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "1.1 Ubuntu",
+    "text": "1.1 Ubuntu\nSe référer à la page web pour ubuntu\n\nVia un proxy par authentification (cas de Toulon)\nOn installe les paquets nécessaires, en remplacant yourlogin par votre login:\nsudo apt update\nsudo apt install apt-transport-https ca-certificates curl software-properties-common\ncurl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\n\n\nde manière standard\nOn installe les paquets nécessaires:\nsudo apt update\nsudo apt install apt-transport-https ca-certificates curl software-properties-common\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\n\n\nsuite de l’installation (avec ou sans proxy)\necho \"deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list\nsudo apt update\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin\nEn suivant les explications du site Docker, on ajoute son utilisateur au groupe docker:\nsudo groupadd docker\n sudo usermod -aG docker $USER"
+  },
+  {
+    "objectID": "sheets/docker.html#mac",
+    "href": "sheets/docker.html#mac",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "1.2 Mac",
+    "text": "1.2 Mac\nSe référer à la page web [pour mac] (https://docs.docker.com/desktop/setup/install/mac-install/)"
+  },
+  {
+    "objectID": "sheets/docker.html#pyferret",
+    "href": "sheets/docker.html#pyferret",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "4.1 Pyferret",
+    "text": "4.1 Pyferret"
+  },
+  {
+    "objectID": "sheets/docker.html#oceanparcels",
+    "href": "sheets/docker.html#oceanparcels",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "4.2 OceanParcels",
+    "text": "4.2 OceanParcels\ndocker build . -t oceanparcels:3.1.0"
+  },
+  {
+    "objectID": "sheets/installation_pyferret.html",
+    "href": "sheets/installation_pyferret.html",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "",
+    "text": "Suivre les explications du README de pyferret: https://github.com/NOAA-PMEL/PyFerret/blob/master/README.md"
+  },
+  {
+    "objectID": "sheets/installation_pyferret.html#dernière-version-de-pyferret-pour-ubuntu-20.04",
+    "href": "sheets/installation_pyferret.html#dernière-version-de-pyferret-pour-ubuntu-20.04",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "Dernière version de Pyferret pour ubuntu > 20.04",
+    "text": "Dernière version de Pyferret pour ubuntu &gt; 20.04\nPour avoir la dernière version de PyFerret:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes"
+  },
+  {
+    "objectID": "sheets/installation_pyferret.html#pyferret-pour-ubuntu-20.04",
+    "href": "sheets/installation_pyferret.html#pyferret-pour-ubuntu-20.04",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "Pyferret pour ubuntu 20.04",
+    "text": "Pyferret pour ubuntu 20.04\nAttention! Pour installer PyFerret avec Ubuntu 20.04 TLS, choisir une version de 2020 (https://www.pmel.noaa.gov/maillists/tmap/ferret_users/fu_2019/msg01061.html)\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
+  },
+  {
+    "objectID": "sheets/installation_pyferret.html#usage-de-python-3.9-au-lieu-de-3.10",
+    "href": "sheets/installation_pyferret.html#usage-de-python-3.9-au-lieu-de-3.10",
+    "title": "Installation de pyferret avec Anaconda",
+    "section": "Usage de python 3.9 au lieu de 3.10",
+    "text": "Usage de python 3.9 au lieu de 3.10\nPyferret peut ne pas fonctionner avec python 3.10 (erreur: https://github.com/conda-forge/pyferret-feedstock/issues/94 ). Si c’est le cas, spécifier la version de python:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes\nou\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
+  },
+  {
+    "objectID": "sheets/site_quarto.html",
+    "href": "sheets/site_quarto.html",
+    "title": "Création d’un site en quarto",
+    "section": "",
+    "text": "On peut installer quarto via conda:\nconda install -c conda-forge quarto\n\n\n\nCréer le dépôt sur github et le cloner sur son ordinateur. Dans le terminal, se placer dans le dossier du dépôt cloné. Et créer le site, en tapant la commande suivante:\nquarto init\n\n\n\nSuite en construction …"
+  },
+  {
+    "objectID": "sheets/site_quarto.html#installation-de-quarto",
+    "href": "sheets/site_quarto.html#installation-de-quarto",
+    "title": "Création d’un site en quarto",
+    "section": "",
+    "text": "On peut installer quarto via conda:\nconda install -c conda-forge quarto"
+  },
+  {
+    "objectID": "sheets/site_quarto.html#création-du-dépôt-github",
+    "href": "sheets/site_quarto.html#création-du-dépôt-github",
+    "title": "Création d’un site en quarto",
+    "section": "",
+    "text": "Créer le dépôt sur github et le cloner sur son ordinateur. Dans le terminal, se placer dans le dossier du dépôt cloné. Et créer le site, en tapant la commande suivante:\nquarto init"
+  },
+  {
+    "objectID": "sheets/site_quarto.html#en-construction",
+    "href": "sheets/site_quarto.html#en-construction",
+    "title": "Création d’un site en quarto",
+    "section": "",
+    "text": "Suite en construction …"
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html",
+    "href": "sheets/connexion_via_tunnel.html",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "",
+    "text": "3 exemples ci-dessous:"
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
+    "href": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "Mise en place des scripts",
+    "text": "Mise en place des scripts\nà écrire dans .bash_aliases :\n        alias hrespore=\"ssh mazoyer@respore\"\n        alias tunnelrespore='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5533:respore:22'\n        alias htunnelrespore='ssh -X -p 5533 mazoyer@localhost'\n        alias sftprespore='sftp -P 5533 mazoyer@localhost'\n        # kill tunnel si besoin\n        alias ps=\"ps aux\"\n        killtunnelrespore(){\n          idtunnel=`ps | grep -i respore | grep -i ssh | awk '{print $2}'`\n          kill -9 $idtunnel\n        }"
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
+    "href": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "Creation du tunnel",
+    "text": "Creation du tunnel\nA faire une seule fois au démarrage de son ordinateur, pour créer le tunnel:\ntunnelrespore"
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html#utilisation",
+    "href": "sheets/connexion_via_tunnel.html#utilisation",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "utilisation",
+    "text": "utilisation\nA chaque fois qu’on veut se connecter à respore:\nhtunnelrespore  (pour home by tunnelrespore)\nPour échanger des fichiers entre son ordi et respore:\nsftprespore\npuis pour envoyer un fichier vers le répertoire repertoire_sur_respore de Respore:\nput monfichier repertoire_sur_respore/.\npour récupérer un fichier de repertoire_sur_respore vers mon ordi:\nget repertoire_sur_respore/monfichier .\nSi le tunnel ne fonctionne plus, il faut le détruire puis le recréer. La commande killtunnelrespore gère la destruction de manière automatique:\nkilltunnelrespore\ntunnelrespore"
+  },
+  {
+    "objectID": "sheets/partager_env_anaconda.html",
+    "href": "sheets/partager_env_anaconda.html",
+    "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
+    "section": "",
+    "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html",
+    "href": "sheets/githubcopilot.html",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "",
+    "text": "Se créer un compte sur github avec la double authentification: https://github.com/. L’adresse mail utilisée doit être l’adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d’adhésion à copilot)"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#prérequis",
+    "href": "sheets/githubcopilot.html#prérequis",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "2.1 Prérequis",
+    "text": "2.1 Prérequis\nSuivre les prérequis indiqués ici : https://education.github.com/discount_requests/application. Entre autres:\n\ndouble authentification\nadresse de facturation\npersonnaliser son profil : indiquer son vrai nom, mettre sa photo, …\nse munir de sa carte professionnelle\nréaliser la demande dans les locaux de l’adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu’on est en congé, l’heure correspond à un week end / soirée, …)"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "href": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "Infos pour la demande de compte",
+    "text": "Infos pour la demande de compte\n\nbien faire la demande avec son adresse ird, amu ou tln\nLa carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l’adresse mail professionnelle. Github va demander de prendre une photo du devant de celle-ci avec la camera de l’ordinateur"
+  },
+  {
+    "objectID": "sheets/zenodo_github.html",
+    "href": "sheets/zenodo_github.html",
+    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
+    "section": "",
+    "text": "se créer un compte sur github\nsi vous travaillez à plusieurs et que le logiciel a vocation à être diffuser, je vous conseille de créer une organisation sous Github (gestion de projet à plusieurs). Sinon, vous pouvez juste créer un projet sous votre compte. voir creating-a-new-organization-from-scratch\nChoisir une organisation “plan Free” et remplir les informations de créer de l’organisation.\nSi le nom choisi est Tao-Soft par ex, l’url est alors https://github.com/TAO-Soft .\n\n\n\n\n\nCréer un dépot (repository) à l’intérieur de cette organisation. Il pourra y en avoir plusieurs pour les différents outils (pré, post processing, le software, …). Dans notre exemple, cela donne: https://github.com/orgs/TAO-Soft/repositories\nChoisir un dépôt public et indiquer la licence GNU General Public Licence V3.0 par ex"
+  },
+  {
+    "objectID": "sheets/zenodo_github.html#création-dune-organisation",
+    "href": "sheets/zenodo_github.html#création-dune-organisation",
+    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
+    "section": "",
+    "text": "se créer un compte sur github\nsi vous travaillez à plusieurs et que le logiciel a vocation à être diffuser, je vous conseille de créer une organisation sous Github (gestion de projet à plusieurs). Sinon, vous pouvez juste créer un projet sous votre compte. voir creating-a-new-organization-from-scratch\nChoisir une organisation “plan Free” et remplir les informations de créer de l’organisation.\nSi le nom choisi est Tao-Soft par ex, l’url est alors https://github.com/TAO-Soft ."
+  },
+  {
+    "objectID": "sheets/zenodo_github.html#création-dun-dépôt",
+    "href": "sheets/zenodo_github.html#création-dun-dépôt",
+    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
+    "section": "",
+    "text": "Créer un dépot (repository) à l’intérieur de cette organisation. Il pourra y en avoir plusieurs pour les différents outils (pré, post processing, le software, …). Dans notre exemple, cela donne: https://github.com/orgs/TAO-Soft/repositories\nChoisir un dépôt public et indiquer la licence GNU General Public Licence V3.0 par ex"
+  },
+  {
+    "objectID": "sheets/zenodo_github.html#autoriser-zenodo-à-accéder-à-votre-organisation",
+    "href": "sheets/zenodo_github.html#autoriser-zenodo-à-accéder-à-votre-organisation",
+    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
+    "section": "3.1 Autoriser Zenodo à accéder à votre organisation",
+    "text": "3.1 Autoriser Zenodo à accéder à votre organisation\n\nAccéder au lien url de votre organisation, ici pour mon exemple: https://github.com/TAO-Soft (attention pas le lien de votre dépôt).\nCliquer sur “Settings”\nPuis dans le panel de gauche, cliquer sur “OAuth Application Policy”\nPuis “Remove restrictions”. Cela permettra que depuis votre compte zenodo personel, vous ayez accès aux dépôts de votre organisation. Vous vous callez sur les restrictions liées à votre compte personnel sans ajouter de blocage aussi via l’organisation."
+  },
+  {
+    "objectID": "sheets/zenodo_github.html#sur-zenodo",
+    "href": "sheets/zenodo_github.html#sur-zenodo",
+    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
+    "section": "3.2 Sur Zenodo",
+    "text": "3.2 Sur Zenodo\nSe référer à la documentation github sur Zenodo.\n\nSe rendre sur Zenodo et se connecter à Zenodo avec son compte Github, le lien sera ainsi fait entre les deux sites web.\nDans la page settings, https://zenodo.org/account/settings/github/, cliquer sur “Sync Now”\nRafraichir la page avec F5\nPositionner le bouton sur “ON” sur le dépôt de votre organisation (ici TAO-Soft/Tao-Soft)\nRafraichir la page avec F5\nDans la section “Enabled Repositories”, le nouveau dépôt devrait apparaitre. Cliquer dessus.\nOn est alors sur la page https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft, dans mon exemple.\nCliquer sur “Create release”, on se déplace alors sur une page du dépôt TAO-Soft du site Github\nDans “Choose a tag”, sélectioner le tag qui nous intéresse, par ex: v0.1.0.\nIndiquer le titre de la release. Par exemple: “Initial release v0.1.0”\nIl est conseiller de décrire la release (amélioration, bug fixed, …)\nCliquer sur le bouton vert “Publish release”\nCette release ayant été faite à partir de Zenodo, elle sera visible sur celui-ci. Rafraichir la page du dépôt sur Zenodo https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft\nToutes les informations apparaissent, dont le DOI"
+  },
+  {
+    "objectID": "sheets/connexion_distance_tools.html",
+    "href": "sheets/connexion_distance_tools.html",
+    "title": "Connexion à distance à Tools",
+    "section": "",
+    "text": "Via un tunnel SSH\nVoir la documentation: Connexion à un ordinateur via un tunnel\n\n\nVia le VPN de l’OSU pytheas\nSe référer à la Documentation du VPN. Une fois le VPN lancé, il suffit de se connecter à tools.osupytheas.fr en ssh par ex, ou avec putty pour windows.\n\n\nVia Rdesktop (pas fonctionnel ou fonctionnel?)\nInstallation sous ubuntu via:\napt-get install rdesktop\nUtilisation\nrdesktop -u votrelogin 172.20.9.140\n\n\nVia x2go\nSolution possible. A compléter."
+  },
+  {
+    "objectID": "sheets/vim.html",
+    "href": "sheets/vim.html",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "",
+    "text": "Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM :"
+  },
+  {
+    "objectID": "sheets/vim.html#couleur-du-thème",
+    "href": "sheets/vim.html#couleur-du-thème",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "2.1 Couleur du thème:",
+    "text": "2.1 Couleur du thème:\nPour changer de couleur de theme et avoir quelque chose de plus visible, créer ou ouvrir s’il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):\ncolorscheme darkblue"
+  },
+  {
+    "objectID": "sheets/vim.html#un-thème-adapté-au-vimdiff",
+    "href": "sheets/vim.html#un-thème-adapté-au-vimdiff",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "2.2 Un thème adapté au vimdiff",
+    "text": "2.2 Un thème adapté au vimdiff\nVoir Post stackoverflow:\n (image issue de l’url de statckoverflow ci-dessus)\nDans un terminal:\ncurl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim\npuis dans vim, en mode édition:\n:colorscheme github"
+  },
+  {
+    "objectID": "sheets/create_docker.html",
+    "href": "sheets/create_docker.html",
+    "title": "Créer et partager une image docker",
+    "section": "",
+    "text": "But: pouvoir partager un logiciel avec d’autres utilisateurs, ou sur d’autres ordinateurs, de manière simple, sans avoir à l’installer.\nNous allons prendre l’exemple de la création d’une image docker pour OceanParcels."
+  },
+  {
+    "objectID": "sheets/create_docker.html#partage-via-docker-hub",
+    "href": "sheets/create_docker.html#partage-via-docker-hub",
+    "title": "Créer et partager une image docker",
+    "section": "2.1 Partage via Docker Hub",
+    "text": "2.1 Partage via Docker Hub\nPrérequis: Pour utiliser Docker Hub, il est nécessaire de s’y créer un compte (on peut utiliser son compte Github).\nL’avantage de ce site est la simplicité de partage. L’utilisateur ne manipule pas de fichier Dockerfile, et n’a pas à recréer l’image. Elle est directement téléchargeable.\nTaguer l’image en indiquant sa version (ex: 3.1.0) pour Docker Hub et la pousser sur Docker Hub:\ndocker tag oceanparcels:3.1.0 cmazoyer/oceanparcels:3.1.0\ndocker login\ndocker push cmazoyer/oceanparcels:3.1.0\nOn peut ensuite vérifier dans son compte Docker Hub que l’image a bien été poussée.\nUn utilisateur peut ensuite télécharger l’image déjà faite sur n’importe quel ordinateur, il lui suffit de faire:\ndocker pull cmazoyer/oceanparcels:3.1.0\nIl peut ensuite l’utiliser comme n’importe quelle image docker (docker run …)\nPar exemple, pour lancer un conteneur avec l’image oceanparcels:3.1.0, avec le répertoire physique /home/monlogin/work équivalent au répertoire dans le docker /work, on peut faire:\ndocker run -i -v /home/monlogin/work:/work -t cmazoyer/oceanparcels:3.1.0"
+  },
+  {
+    "objectID": "sheets/create_docker.html#partage-via-un-fichier-dockerfile",
+    "href": "sheets/create_docker.html#partage-via-un-fichier-dockerfile",
+    "title": "Créer et partager une image docker",
+    "section": "2.2 Partage via un fichier Dockerfile",
+    "text": "2.2 Partage via un fichier Dockerfile\nEn téléchargeant le fichier Dockerfile, l’utilisateur peut recréer l’image docker sur son ordinateur, avec la commande build.\nIl peut ensuite utiliser la commande run pour lancer un conteneur avec l’image créée.\nNous avons donc partagé notre image docker de Ocean Parcels de deux façons possibles."
+  },
+  {
+    "objectID": "sheets/copernicusmarine.html",
+    "href": "sheets/copernicusmarine.html",
+    "title": "Comment utiliser l’outil Copernicusmarine",
+    "section": "",
+    "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install -c conda-forge copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
+  },
+  {
+    "objectID": "sheets/config_globale_mac.html",
+    "href": "sheets/config_globale_mac.html",
+    "title": "Configurer son ordi Mac pour le calcul scientifique",
+    "section": "",
+    "text": "Installer les logiciels ci dessous :\n\nDocker desktop\nVisual Studio Code\nQuarto\nkeypassx\nTerminal\nXQuartz pour gérer le serveur X lors de connexions en ssh"
+  },
+  {
+    "objectID": "sheets/config_globale_mac.html#installation-dun-environnement-anaconda-pour-pyferret",
+    "href": "sheets/config_globale_mac.html#installation-dun-environnement-anaconda-pour-pyferret",
+    "title": "Configurer son ordi Mac pour le calcul scientifique",
+    "section": "Installation d’un environnement Anaconda pour PyFerret:",
+    "text": "Installation d’un environnement Anaconda pour PyFerret:\nInstallation de pyferret avec Anaconda"
+  },
+  {
     "objectID": "sheets/git.html",
     "href": "sheets/git.html",
     "title": "Mémos, raccourcis et améliorations de GIT",
@@ -180,258 +481,6 @@
     "title": "Mémos, raccourcis et améliorations de GIT",
     "section": "3.6 Commande “hist”",
     "text": "3.6 Commande “hist”\nTaper (une seule fois) la commande suivante dans un terminal\ngit config --global alias.hist \"log --graph --date-order --date=short \\\n--pretty=format:'%C(auto)%h%d %C(reset)%s %C(bold blue)%ce %C(reset)%C(green)%cr (%cd)'\"\nL’utilisation se fait de la manière suivante:\ngit hist # Show the history of current branch\ngit hist --all # Show the graph of all branches (including remotes)\ngit hist master devel # Show the relationship between two or more branches\ngit hist --branches # Show all local branches\n#Add --topo-order to sort commits topologically, instead of by date (default in this alias)\nPar exemple:  Les avantages de cette commande sont les suivants:\n\nressemble à “plain –decorate” avec des couleurs différentes pour chaque branche\najout de l’email de la personne qui commit\najout des dates\ntri des commits par dates"
-  },
-  {
-    "objectID": "sheets/config_globale_mac.html",
-    "href": "sheets/config_globale_mac.html",
-    "title": "Configurer son ordi Mac pour le calcul scientifique",
-    "section": "",
-    "text": "Installer les logiciels ci dessous :\n\nDocker desktop\nVisual Studio Code\nQuarto\nkeypassx\nTerminal\nXQuartz pour gérer le serveur X lors de connexions en ssh"
-  },
-  {
-    "objectID": "sheets/config_globale_mac.html#installation-dun-environnement-anaconda-pour-pyferret",
-    "href": "sheets/config_globale_mac.html#installation-dun-environnement-anaconda-pour-pyferret",
-    "title": "Configurer son ordi Mac pour le calcul scientifique",
-    "section": "Installation d’un environnement Anaconda pour PyFerret:",
-    "text": "Installation d’un environnement Anaconda pour PyFerret:\nInstallation de pyferret avec Anaconda"
-  },
-  {
-    "objectID": "sheets/copernicusmarine.html",
-    "href": "sheets/copernicusmarine.html",
-    "title": "Comment utiliser l’outil Copernicusmarine",
-    "section": "",
-    "text": "Installation\ninstallation de l’outil de copernicus (nouveau) à la place de motu client, via anaconda. Pour plus d’informations, voir : https://pypi.org/project/copernicusmarine/.\nL’outil est installé sur tools accessible à tous.\n\n\nPremière utilisation\n\nsi vous n’utilisez pas la machine tools, installer l’environnement anaconda copernicus:\n\n conda install -c conda-forge copernicusmarine\n\nSi vous utilisez la machine tools, créer son alias dans .bashrc:\n\n alias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'\nsinon,\nalias envcopernicus='conda activate copernicus'\n\nrelancer un terminal, puis lancer l’environnement\n\nenvcopernicus\n\nA faire une seule fois: indiquer son login copernicus avec:\n\nconda activate copernicus\ncopernicusmarine login\nCa permettra que le login et mot de passe soit chargé dans un fichier caché. \n\n\nUtilisation\nEnsuite, on utilise des scripts dans ce style:\nimport copernicusmarine as cm\n\ncm.subset(\n  dataset_id=\"cmems_obs_mob_glo_phy-cur_nrt_0.25deg_P1D-m\",\n  dataset_version=\"202311\",\n  variables=[\"uo\", \"vo\"],\n  minimum_longitude=0,\n  maximum_longitude=80,\n  minimum_latitude=-50,\n  maximum_latitude=-5,\n  start_datetime=\"2023-01-01T00:00:00\",\n  end_datetime=\"2023-12-31T00:00:00\",\n  minimum_depth=0,\n  maximum_depth=0,\n)"
-  },
-  {
-    "objectID": "sheets/create_docker.html",
-    "href": "sheets/create_docker.html",
-    "title": "Créer et partager une image docker",
-    "section": "",
-    "text": "But: pouvoir partager un logiciel avec d’autres utilisateurs, ou sur d’autres ordinateurs, de manière simple, sans avoir à l’installer.\nNous allons prendre l’exemple de la création d’une image docker pour OceanParcels."
-  },
-  {
-    "objectID": "sheets/create_docker.html#partage-via-docker-hub",
-    "href": "sheets/create_docker.html#partage-via-docker-hub",
-    "title": "Créer et partager une image docker",
-    "section": "2.1 Partage via Docker Hub",
-    "text": "2.1 Partage via Docker Hub\nPrérequis: Pour utiliser Docker Hub, il est nécessaire de s’y créer un compte (on peut utiliser son compte Github).\nL’avantage de ce site est la simplicité de partage. L’utilisateur ne manipule pas de fichier Dockerfile, et n’a pas à recréer l’image. Elle est directement téléchargeable.\nTaguer l’image en indiquant sa version (ex: 3.1.0) pour Docker Hub et la pousser sur Docker Hub:\ndocker tag oceanparcels:3.1.0 cmazoyer/oceanparcels:3.1.0\ndocker login\ndocker push cmazoyer/oceanparcels:3.1.0\nOn peut ensuite vérifier dans son compte Docker Hub que l’image a bien été poussée.\nUn utilisateur peut ensuite télécharger l’image déjà faite sur n’importe quel ordinateur, il lui suffit de faire:\ndocker pull cmazoyer/oceanparcels:3.1.0\nIl peut ensuite l’utiliser comme n’importe quelle image docker (docker run …)\nPar exemple, pour lancer un conteneur avec l’image oceanparcels:3.1.0, avec le répertoire physique /home/monlogin/work équivalent au répertoire dans le docker /work, on peut faire:\ndocker run -i -v /home/monlogin/work:/work -t cmazoyer/oceanparcels:3.1.0"
-  },
-  {
-    "objectID": "sheets/create_docker.html#partage-via-un-fichier-dockerfile",
-    "href": "sheets/create_docker.html#partage-via-un-fichier-dockerfile",
-    "title": "Créer et partager une image docker",
-    "section": "2.2 Partage via un fichier Dockerfile",
-    "text": "2.2 Partage via un fichier Dockerfile\nEn téléchargeant le fichier Dockerfile, l’utilisateur peut recréer l’image docker sur son ordinateur, avec la commande build.\nIl peut ensuite utiliser la commande run pour lancer un conteneur avec l’image créée.\nNous avons donc partagé notre image docker de Ocean Parcels de deux façons possibles."
-  },
-  {
-    "objectID": "sheets/vim.html",
-    "href": "sheets/vim.html",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "",
-    "text": "Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM :"
-  },
-  {
-    "objectID": "sheets/vim.html#couleur-du-thème",
-    "href": "sheets/vim.html#couleur-du-thème",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "2.1 Couleur du thème:",
-    "text": "2.1 Couleur du thème:\nPour changer de couleur de theme et avoir quelque chose de plus visible, créer ou ouvrir s’il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):\ncolorscheme darkblue"
-  },
-  {
-    "objectID": "sheets/vim.html#un-thème-adapté-au-vimdiff",
-    "href": "sheets/vim.html#un-thème-adapté-au-vimdiff",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "2.2 Un thème adapté au vimdiff",
-    "text": "2.2 Un thème adapté au vimdiff\nVoir Post stackoverflow:\n (image issue de l’url de statckoverflow ci-dessus)\nDans un terminal:\ncurl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim\npuis dans vim, en mode édition:\n:colorscheme github"
-  },
-  {
-    "objectID": "sheets/connexion_distance_tools.html",
-    "href": "sheets/connexion_distance_tools.html",
-    "title": "Connexion à distance à Tools",
-    "section": "",
-    "text": "Via un tunnel SSH\nVoir la documentation: Connexion à un ordinateur via un tunnel\n\n\nVia le VPN de l’OSU pytheas\nSe référer à la Documentation du VPN. Une fois le VPN lancé, il suffit de se connecter à tools.osupytheas.fr en ssh par ex, ou avec putty pour windows.\n\n\nVia Rdesktop (pas fonctionnel ou fonctionnel?)\nInstallation sous ubuntu via:\napt-get install rdesktop\nUtilisation\nrdesktop -u votrelogin 172.20.9.140\n\n\nVia x2go\nSolution possible. A compléter."
-  },
-  {
-    "objectID": "sheets/zenodo_github.html",
-    "href": "sheets/zenodo_github.html",
-    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
-    "section": "",
-    "text": "se créer un compte sur github\nsi vous travaillez à plusieurs et que le logiciel a vocation à être diffuser, je vous conseille de créer une organisation sous Github (gestion de projet à plusieurs). Sinon, vous pouvez juste créer un projet sous votre compte. voir creating-a-new-organization-from-scratch\nChoisir une organisation “plan Free” et remplir les informations de créer de l’organisation.\nSi le nom choisi est Tao-Soft par ex, l’url est alors https://github.com/TAO-Soft .\n\n\n\n\n\nCréer un dépot (repository) à l’intérieur de cette organisation. Il pourra y en avoir plusieurs pour les différents outils (pré, post processing, le software, …). Dans notre exemple, cela donne: https://github.com/orgs/TAO-Soft/repositories\nChoisir un dépôt public et indiquer la licence GNU General Public Licence V3.0 par ex"
-  },
-  {
-    "objectID": "sheets/zenodo_github.html#création-dune-organisation",
-    "href": "sheets/zenodo_github.html#création-dune-organisation",
-    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
-    "section": "",
-    "text": "se créer un compte sur github\nsi vous travaillez à plusieurs et que le logiciel a vocation à être diffuser, je vous conseille de créer une organisation sous Github (gestion de projet à plusieurs). Sinon, vous pouvez juste créer un projet sous votre compte. voir creating-a-new-organization-from-scratch\nChoisir une organisation “plan Free” et remplir les informations de créer de l’organisation.\nSi le nom choisi est Tao-Soft par ex, l’url est alors https://github.com/TAO-Soft ."
-  },
-  {
-    "objectID": "sheets/zenodo_github.html#création-dun-dépôt",
-    "href": "sheets/zenodo_github.html#création-dun-dépôt",
-    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
-    "section": "",
-    "text": "Créer un dépot (repository) à l’intérieur de cette organisation. Il pourra y en avoir plusieurs pour les différents outils (pré, post processing, le software, …). Dans notre exemple, cela donne: https://github.com/orgs/TAO-Soft/repositories\nChoisir un dépôt public et indiquer la licence GNU General Public Licence V3.0 par ex"
-  },
-  {
-    "objectID": "sheets/zenodo_github.html#autoriser-zenodo-à-accéder-à-votre-organisation",
-    "href": "sheets/zenodo_github.html#autoriser-zenodo-à-accéder-à-votre-organisation",
-    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
-    "section": "3.1 Autoriser Zenodo à accéder à votre organisation",
-    "text": "3.1 Autoriser Zenodo à accéder à votre organisation\n\nAccéder au lien url de votre organisation, ici pour mon exemple: https://github.com/TAO-Soft (attention pas le lien de votre dépôt).\nCliquer sur “Settings”\nPuis dans le panel de gauche, cliquer sur “OAuth Application Policy”\nPuis “Remove restrictions”. Cela permettra que depuis votre compte zenodo personel, vous ayez accès aux dépôts de votre organisation. Vous vous callez sur les restrictions liées à votre compte personnel sans ajouter de blocage aussi via l’organisation."
-  },
-  {
-    "objectID": "sheets/zenodo_github.html#sur-zenodo",
-    "href": "sheets/zenodo_github.html#sur-zenodo",
-    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
-    "section": "3.2 Sur Zenodo",
-    "text": "3.2 Sur Zenodo\nSe référer à la documentation github sur Zenodo.\n\nSe rendre sur Zenodo et se connecter à Zenodo avec son compte Github, le lien sera ainsi fait entre les deux sites web.\nDans la page settings, https://zenodo.org/account/settings/github/, cliquer sur “Sync Now”\nRafraichir la page avec F5\nPositionner le bouton sur “ON” sur le dépôt de votre organisation (ici TAO-Soft/Tao-Soft)\nRafraichir la page avec F5\nDans la section “Enabled Repositories”, le nouveau dépôt devrait apparaitre. Cliquer dessus.\nOn est alors sur la page https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft, dans mon exemple.\nCliquer sur “Create release”, on se déplace alors sur une page du dépôt TAO-Soft du site Github\nDans “Choose a tag”, sélectioner le tag qui nous intéresse, par ex: v0.1.0.\nIndiquer le titre de la release. Par exemple: “Initial release v0.1.0”\nIl est conseiller de décrire la release (amélioration, bug fixed, …)\nCliquer sur le bouton vert “Publish release”\nCette release ayant été faite à partir de Zenodo, elle sera visible sur celui-ci. Rafraichir la page du dépôt sur Zenodo https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft\nToutes les informations apparaissent, dont le DOI"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html",
-    "href": "sheets/githubcopilot.html",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "",
-    "text": "Se créer un compte sur github avec la double authentification: https://github.com/. L’adresse mail utilisée doit être l’adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d’adhésion à copilot)"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#prérequis",
-    "href": "sheets/githubcopilot.html#prérequis",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "2.1 Prérequis",
-    "text": "2.1 Prérequis\nSuivre les prérequis indiqués ici : https://education.github.com/discount_requests/application. Entre autres:\n\ndouble authentification\nadresse de facturation\npersonnaliser son profil : indiquer son vrai nom, mettre sa photo, …\nse munir de sa carte professionnelle\nréaliser la demande dans les locaux de l’adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu’on est en congé, l’heure correspond à un week end / soirée, …)"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
-    "href": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "Infos pour la demande de compte",
-    "text": "Infos pour la demande de compte\n\nbien faire la demande avec son adresse ird, amu ou tln\nLa carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l’adresse mail professionnelle. Github va demander de prendre une photo du devant de celle-ci avec la camera de l’ordinateur"
-  },
-  {
-    "objectID": "sheets/partager_env_anaconda.html",
-    "href": "sheets/partager_env_anaconda.html",
-    "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
-    "section": "",
-    "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
-  },
-  {
-    "objectID": "sheets/connexion_via_tunnel.html",
-    "href": "sheets/connexion_via_tunnel.html",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "",
-    "text": "3 exemples ci-dessous:"
-  },
-  {
-    "objectID": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
-    "href": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "Mise en place des scripts",
-    "text": "Mise en place des scripts\nà écrire dans .bash_aliases :\n        alias hrespore=\"ssh mazoyer@respore\"\n        alias tunnelrespore='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5533:respore:22'\n        alias htunnelrespore='ssh -X -p 5533 mazoyer@localhost'\n        alias sftprespore='sftp -P 5533 mazoyer@localhost'\n        # kill tunnel si besoin\n        alias ps=\"ps aux\"\n        killtunnelrespore(){\n          idtunnel=`ps | grep -i respore | grep -i ssh | awk '{print $2}'`\n          kill -9 $idtunnel\n        }"
-  },
-  {
-    "objectID": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
-    "href": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "Creation du tunnel",
-    "text": "Creation du tunnel\nA faire une seule fois au démarrage de son ordinateur, pour créer le tunnel:\ntunnelrespore"
-  },
-  {
-    "objectID": "sheets/connexion_via_tunnel.html#utilisation",
-    "href": "sheets/connexion_via_tunnel.html#utilisation",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "utilisation",
-    "text": "utilisation\nA chaque fois qu’on veut se connecter à respore:\nhtunnelrespore  (pour home by tunnelrespore)\nPour échanger des fichiers entre son ordi et respore:\nsftprespore\npuis pour envoyer un fichier vers le répertoire repertoire_sur_respore de Respore:\nput monfichier repertoire_sur_respore/.\npour récupérer un fichier de repertoire_sur_respore vers mon ordi:\nget repertoire_sur_respore/monfichier .\nSi le tunnel ne fonctionne plus, il faut le détruire puis le recréer. La commande killtunnelrespore gère la destruction de manière automatique:\nkilltunnelrespore\ntunnelrespore"
-  },
-  {
-    "objectID": "sheets/site_quarto.html",
-    "href": "sheets/site_quarto.html",
-    "title": "Création d’un site en quarto",
-    "section": "",
-    "text": "On peut installer quarto via conda:\nconda install -c conda-forge quarto\n\n\n\nCréer le dépôt sur github et le cloner sur son ordinateur. Dans le terminal, se placer dans le dossier du dépôt cloné. Et créer le site, en tapant la commande suivante:\nquarto init\n\n\n\nSuite en construction …"
-  },
-  {
-    "objectID": "sheets/site_quarto.html#installation-de-quarto",
-    "href": "sheets/site_quarto.html#installation-de-quarto",
-    "title": "Création d’un site en quarto",
-    "section": "",
-    "text": "On peut installer quarto via conda:\nconda install -c conda-forge quarto"
-  },
-  {
-    "objectID": "sheets/site_quarto.html#création-du-dépôt-github",
-    "href": "sheets/site_quarto.html#création-du-dépôt-github",
-    "title": "Création d’un site en quarto",
-    "section": "",
-    "text": "Créer le dépôt sur github et le cloner sur son ordinateur. Dans le terminal, se placer dans le dossier du dépôt cloné. Et créer le site, en tapant la commande suivante:\nquarto init"
-  },
-  {
-    "objectID": "sheets/site_quarto.html#en-construction",
-    "href": "sheets/site_quarto.html#en-construction",
-    "title": "Création d’un site en quarto",
-    "section": "",
-    "text": "Suite en construction …"
-  },
-  {
-    "objectID": "sheets/installation_pyferret.html",
-    "href": "sheets/installation_pyferret.html",
-    "title": "Installation de pyferret avec Anaconda",
-    "section": "",
-    "text": "Suivre les explications du README de pyferret: https://github.com/NOAA-PMEL/PyFerret/blob/master/README.md"
-  },
-  {
-    "objectID": "sheets/installation_pyferret.html#dernière-version-de-pyferret-pour-ubuntu-20.04",
-    "href": "sheets/installation_pyferret.html#dernière-version-de-pyferret-pour-ubuntu-20.04",
-    "title": "Installation de pyferret avec Anaconda",
-    "section": "Dernière version de Pyferret pour ubuntu > 20.04",
-    "text": "Dernière version de Pyferret pour ubuntu &gt; 20.04\nPour avoir la dernière version de PyFerret:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes"
-  },
-  {
-    "objectID": "sheets/installation_pyferret.html#pyferret-pour-ubuntu-20.04",
-    "href": "sheets/installation_pyferret.html#pyferret-pour-ubuntu-20.04",
-    "title": "Installation de pyferret avec Anaconda",
-    "section": "Pyferret pour ubuntu 20.04",
-    "text": "Pyferret pour ubuntu 20.04\nAttention! Pour installer PyFerret avec Ubuntu 20.04 TLS, choisir une version de 2020 (https://www.pmel.noaa.gov/maillists/tmap/ferret_users/fu_2019/msg01061.html)\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
-  },
-  {
-    "objectID": "sheets/installation_pyferret.html#usage-de-python-3.9-au-lieu-de-3.10",
-    "href": "sheets/installation_pyferret.html#usage-de-python-3.9-au-lieu-de-3.10",
-    "title": "Installation de pyferret avec Anaconda",
-    "section": "Usage de python 3.9 au lieu de 3.10",
-    "text": "Usage de python 3.9 au lieu de 3.10\nPyferret peut ne pas fonctionner avec python 3.10 (erreur: https://github.com/conda-forge/pyferret-feedstock/issues/94 ). Si c’est le cas, spécifier la version de python:\nconda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes\nou\nconda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes"
-  },
-  {
-    "objectID": "sheets/docker.html",
-    "href": "sheets/docker.html",
-    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
-    "section": "",
-    "text": "Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un serveur mandataire dans les paramètres réseaux .\nQuelques docs à lire : - https://medium.com/@anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11 - https://leimao.github.io/blog/Docker-Container-GUI-Display/ -"
-  },
-  {
-    "objectID": "sheets/docker.html#ubuntu",
-    "href": "sheets/docker.html#ubuntu",
-    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
-    "section": "1.1 Ubuntu",
-    "text": "1.1 Ubuntu\nSe référer à la page web pour ubuntu\n\nVia un proxy par authentification (cas de Toulon)\nOn installe les paquets nécessaires, en remplacant yourlogin par votre login:\nsudo apt update\nsudo apt install apt-transport-https ca-certificates curl software-properties-common\ncurl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\n\n\nde manière standard\nOn installe les paquets nécessaires:\nsudo apt update\nsudo apt install apt-transport-https ca-certificates curl software-properties-common\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\n\n\nsuite de l’installation (avec ou sans proxy)\necho \"deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list\nsudo apt update\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin\nEn suivant les explications du site Docker, on ajoute son utilisateur au groupe docker:\nsudo groupadd docker\n sudo usermod -aG docker $USER"
-  },
-  {
-    "objectID": "sheets/docker.html#mac",
-    "href": "sheets/docker.html#mac",
-    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
-    "section": "1.2 Mac",
-    "text": "1.2 Mac\nSe référer à la page web [pour mac] (https://docs.docker.com/desktop/setup/install/mac-install/)"
-  },
-  {
-    "objectID": "sheets/docker.html#pyferret",
-    "href": "sheets/docker.html#pyferret",
-    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
-    "section": "4.1 Pyferret",
-    "text": "4.1 Pyferret"
-  },
-  {
-    "objectID": "sheets/docker.html#oceanparcels",
-    "href": "sheets/docker.html#oceanparcels",
-    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
-    "section": "4.2 OceanParcels",
-    "text": "4.2 OceanParcels\ndocker build . -t oceanparcels:3.1.0"
   },
   {
     "objectID": "sheets/create_mkdocs_documentation.html",
