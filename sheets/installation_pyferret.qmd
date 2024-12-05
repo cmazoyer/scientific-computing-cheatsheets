@@ -5,54 +5,11 @@ title: Installation de pyferret avec Anaconda
 
 Suivre les explications du README de pyferret: https://github.com/NOAA-PMEL/PyFerret/blob/master/README.md
 
-# 1) installation via miniconda
-https://docs.conda.io/en/latest/miniconda.html
-```bash
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh (script .sh à adapter suivant la page html ci dessu)
-sh Miniconda*.sh
-```
+# 1) Prérequis
 
-ou pour installer rapidement anaconda:
-```bash
-# Install miniconda to /miniconda
-curl -LO http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh -p /miniconda -b
-rm Miniconda3-latest-Linux-x86_64.sh
-ENV PATH=/miniconda/bin:${PATH}
-```
+Installer Anaconda (se réferer à la page [Configurer son ordi Ubuntu pour le calcul scientifique](config_globale_ubuntu.html) pour plus de détails).
 
-installation dans /home/votrelogin/anaconda/miniconda3 par exemple
-
-demander a installer l'initialisation, ce qui equivaut au code ci dessous de l'item 2.
-
-# 2) installation dans le .bashrc  (a installer dans les home de chacun)
-Dans son home dir, recopier le code ci dessous dans le .bashrc:
-```bash
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/anaconda/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-```
-
-Relancer ensuite un terminal
-
-# 3) Installation de l'environnement FERRET
-
-Si vous êtes derrière le proxy de la fac de Toulon, avant toute commande, taper:
-```bash
-export HTTP_PROXY=cache.univ-tln.fr:3128
-export HTTPS_PROXY=cache.univ-tln.fr:3128
-```
+# 2) Installation de l'environnement FERRET
 
 ## Dernière version de Pyferret pour ubuntu > 20.04
 
@@ -79,7 +36,7 @@ ou
 conda create -n FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 --yes
 ```
 
-# 4) Utilisation de pyferret
+# 3) Utilisation de pyferret
 A chaque utilisation de pyferret:
 
 activer l'environnement
@@ -98,7 +55,7 @@ Désactiver l'environnement une fois l'usage fini
 conda deactivate
 ```
 
-# 5) Utilisation d'un script pour faciliter le lancement de pyferret
+# 4) Utilisation d'un script pour faciliter le lancement de pyferret
 
 Ces deux commandes activate + pyferret  peuvent être remplacées par un alias à insérer dans votre .bashrc:
 ```bash
@@ -107,7 +64,7 @@ alias mypyferret='source activate FERRET && pyferret'
 
 Ou alors, vous pouvez aller voir le script pyferret.sh dans la doc https://github.com/NOAA-PMEL/PyFerret/blob/master/README.md
 
-# 6) Commandes de test pour vérifier votre installation pyferret
+# 5) Commandes de test pour vérifier votre installation pyferret
 
 Lancer pyferret et utiliser un netcdf (ici file.nc).
 Avec une variable 3D température nommée TEMP

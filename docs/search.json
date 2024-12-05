@@ -109,14 +109,35 @@
     "href": "sheets/config_globale_ubuntu.html",
     "title": "Configurer son ordi Ubuntu pour le calcul scientifique",
     "section": "",
-    "text": "Installations via apt_get / aptitude:\nsudo apt-get install aptitude\nsudo aptitude install vim-gtk3\nsudo aptitude install stow git gfortran libnetcdff-dev\nsudo aptitude install libopenmpi-dev openmpi-bin\n\n\nInstallation de Anaconda\nL’installation se fait via le site officiel d’Anaconda: Anaconda.\n\n\nInstallation d’un environnement Anaconda pour PyFerret:\nInstallation de pyferret avec Anaconda\n\n\nMatlab\n\nTéléchargement de matlab via le site officiel en créant un compte avec votre email univ-tln.fr. L’installation doit se faire via le wifi ou de chez soi à cause du proxy.\nPour Luminy, voir matlab à Luminy\n\n\n\nPenser aussi à:\ncréer une clef SSH et la diffuser sur d’autres ordinateurs pour éviter de taper son mot de passe (voir doc Générer une clef ssh )"
+    "text": "sudo apt-get install aptitude\nsudo aptitude install vim-gtk3\nsudo aptitude install stow git gfortran libnetcdff-dev\nsudo aptitude install libopenmpi-dev openmpi-bin"
+  },
+  {
+    "objectID": "sheets/config_globale_ubuntu.html#installation-via-miniconda",
+    "href": "sheets/config_globale_ubuntu.html#installation-via-miniconda",
+    "title": "Configurer son ordi Ubuntu pour le calcul scientifique",
+    "section": "1) installation via miniconda",
+    "text": "1) installation via miniconda\nLe script ci-dessous est à adapter suivant la page web de miniconda :\nwget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \nsh Miniconda*.sh\nou pour installer rapidement anaconda:\n# Install miniconda to /miniconda\ncurl -LO http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh\nbash Miniconda3-latest-Linux-x86_64.sh -p /miniconda -b\nrm Miniconda3-latest-Linux-x86_64.sh\nENV PATH=/miniconda/bin:${PATH}\nOn peut installer miniconda dans le répertoire /home/votrelogin/anaconda/miniconda3 par exemple."
+  },
+  {
+    "objectID": "sheets/config_globale_ubuntu.html#installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun",
+    "href": "sheets/config_globale_ubuntu.html#installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun",
+    "title": "Configurer son ordi Ubuntu pour le calcul scientifique",
+    "section": "2) installation dans le .bashrc (a installer dans les home de chacun)",
+    "text": "2) installation dans le .bashrc (a installer dans les home de chacun)\nA la fin de l’installation, l’installateur propose de rajouter le chemin de miniconda dans le .bashrc, via la commande conda init. Si on accepte, les commandes ci-dessous sont ajoutées dans le .bashrc automatiquement. Si ce n’est pas le cas, vous pouvez toujours ajouter manuellement les lignes suivantes:\n# &gt;&gt;&gt; conda initialize &gt;&gt;&gt;\n# !! Contents within this block are managed by 'conda init' !!\n__conda_setup=\"$('/usr/local/anaconda/miniconda3/bin/conda' 'shell.bash' 'hook' 2&gt; /dev/null)\"\nif [ $? -eq 0 ]; then\n    eval \"$__conda_setup\"\nelse\n    if [ -f \"/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh\" ]; then\n        . \"/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh\"\n    else\n        export PATH=\"/usr/local/anaconda/miniconda3/bin:$PATH\"\n    fi\nfi\nunset __conda_setup\n# &lt;&lt;&lt; conda initialize &lt;&lt;&lt;\nRelancer ensuite un terminal pour que les modifications soient prises en compte."
+  },
+  {
+    "objectID": "sheets/config_globale_ubuntu.html#création-dun-environnement-pour-locéanographie",
+    "href": "sheets/config_globale_ubuntu.html#création-dun-environnement-pour-locéanographie",
+    "title": "Configurer son ordi Ubuntu pour le calcul scientifique",
+    "section": "3) Création d’un environnement pour l’océanographie",
+    "text": "3) Création d’un environnement pour l’océanographie\nVous pouvez ensuite vous référer à la page Anaconda pour l’oceanographie pour la création d’environnements conda adaptés à l’océanographie."
   },
   {
     "objectID": "sheets/anaconda_oceanographie.html",
     "href": "sheets/anaconda_oceanographie.html",
     "title": "Anaconda pour l’oceanographie",
     "section": "",
-    "text": "Suivre cette doc pour l’installation de Anaconda de manière générale:A FAIRE Installation de pyferret avec Anaconda\n\nInstallation de Anaconda\nIl est d’abord nécesaire d’installer Anaconda\n\n\nCréation d’un environnement pour l’océanographie\nconda create --name oceano\nconda activate oceano\nconda install pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy numba\nconda install matplotlib ipykernel cloudpickle\nconda install -c conda-forge xgcm hdf5storage\n\n\nCréation d’un autre environnement avec pyferret\nSi on veut aussi installer pyferret dans le même environnement\nconda create --name FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets --yes\nconda activate FERRET\nconda install -c conda-forge xgcm hdf5storage xarray \nconda install matplotlib netcdf4 ipython jupyter cartopy numba ipykernel\nremarque:\n- numpy est installé automatiquement par dépendance de pyferret - pandas, dask, cloudpickle, scipy sont installés automatiquement aussi par dépendances.\n\n\nUtilisation de ces environnements\nPour utiliser cet environnement:\nconda activate oceano\nPour désactiver cet environnement lorsqu’on le souhaite:\nconda deactivate\nremarque: - pas d’installation de spyder (incompatibilités, … si quelqu’un a une solution, je suis preneuse…)\n\n\nInstallation d’un environnement conda pour Copernicus\nVoir la doc Documentation sur Copernicus Marine ."
+    "text": "Installation de Anaconda\nSe réferer à la page Configurer son ordi Ubuntu pour le calcul scientifique pour l’installation de miniconda.\n\n\nCréation d’un environnement pour l’océanographie\nconda create --name oceano\nconda activate oceano\nconda install pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy numba\nconda install matplotlib ipykernel cloudpickle\nconda install -c conda-forge xgcm hdf5storage\n\n\nCréation d’un autre environnement avec pyferret\nSi on veut aussi installer pyferret dans le même environnement\nconda create --name FERRET -c conda-forge/label/cf202003 pyferret ferret_datasets --yes\nconda activate FERRET\nconda install -c conda-forge xgcm hdf5storage xarray \nconda install matplotlib netcdf4 ipython jupyter cartopy numba ipykernel\nremarque:\n- numpy est installé automatiquement par dépendance de pyferret - pandas, dask, cloudpickle, scipy sont installés automatiquement aussi par dépendances.\n\n\nUtilisation de ces environnements\nPour utiliser cet environnement:\nconda activate oceano\nPour désactiver cet environnement lorsqu’on le souhaite:\nconda deactivate\nremarque: - pas d’installation de spyder (incompatibilités, … si quelqu’un a une solution, je suis preneuse…)\n\n\nInstallation d’un environnement conda pour Copernicus\nVoir la doc Documentation sur Copernicus Marine ."
   },
   {
     "objectID": "sheets/visual_studio_code.html",
@@ -144,7 +165,7 @@
     "href": "sheets/respore.html#env-oceano",
     "title": "Machine respore au MIO Toulon",
     "section": "env “oceano”",
-    "text": "env “oceano”\nenvironnement “oceano” avec de nombreux packages nécessaires pour l’océanographie: dask, xarray, xgcm, numpy, pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy matplotlib cloudpickle …"
+    "text": "env “oceano”\nEnvironnement “oceano” avec de nombreux packages nécessaires pour l’océanographie: dask, xarray, xgcm, numpy, pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy matplotlib cloudpickle …"
   },
   {
     "objectID": "sheets/respore.html#env-copernicusmarine",
@@ -152,6 +173,13 @@
     "title": "Machine respore au MIO Toulon",
     "section": "env “copernicusmarine”",
     "text": "env “copernicusmarine”\nPermet de télécharger les données de Copernicus Marine: voir la doc Documentation sur Copernicus Marine."
+  },
+  {
+    "objectID": "sheets/respore.html#env-croco_pyenv",
+    "href": "sheets/respore.html#env-croco_pyenv",
+    "title": "Machine respore au MIO Toulon",
+    "section": "env “croco_pyenv”",
+    "text": "env “croco_pyenv”\nEnvironnement nécessaire à la toolbox python croco."
   },
   {
     "objectID": "sheets/respore.html#utilisation",

@@ -7,10 +7,13 @@ A disposition sur la machine respore:
 # anaconda
 
 ## env "oceano"
-environnement "oceano" avec de nombreux packages nécessaires pour l'océanographie: dask, xarray, xgcm, numpy, pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy matplotlib cloudpickle ...
+Environnement "oceano" avec de nombreux packages nécessaires pour l'océanographie: dask, xarray, xgcm, numpy, pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy matplotlib cloudpickle ...
 
 ## env "copernicusmarine"
 Permet de télécharger les données de Copernicus Marine: voir la doc [Documentation sur Copernicus Marine](copernicusmarine.html).
+
+## env "croco_pyenv"
+Environnement nécessaire à la [toolbox python croco](https://gitlab.inria.fr/croco-ocean/croco_pytools).
 
 ## utilisation
 Utiliser la commande suivante pour utiliser l'environnement "oceano", par exemple:

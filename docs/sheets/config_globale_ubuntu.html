@@ -143,8 +143,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#installations-via-apt_get-aptitude" id="toc-installations-via-apt_get-aptitude" class="nav-link active" data-scroll-target="#installations-via-apt_get-aptitude">Installations via apt_get / aptitude:</a></li>
-  <li><a href="#installation-de-anaconda" id="toc-installation-de-anaconda" class="nav-link" data-scroll-target="#installation-de-anaconda">Installation de Anaconda</a></li>
-  <li><a href="#installation-dun-environnement-anaconda-pour-pyferret" id="toc-installation-dun-environnement-anaconda-pour-pyferret" class="nav-link" data-scroll-target="#installation-dun-environnement-anaconda-pour-pyferret">Installation d’un environnement Anaconda pour PyFerret:</a></li>
+  <li><a href="#installation-de-anaconda" id="toc-installation-de-anaconda" class="nav-link" data-scroll-target="#installation-de-anaconda">Installation de Anaconda</a>
+  <ul class="collapse">
+  <li><a href="#installation-via-miniconda" id="toc-installation-via-miniconda" class="nav-link" data-scroll-target="#installation-via-miniconda">1) installation via miniconda</a></li>
+  <li><a href="#installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun" id="toc-installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun" class="nav-link" data-scroll-target="#installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun">2) installation dans le .bashrc (a installer dans les home de chacun)</a></li>
+  <li><a href="#création-dun-environnement-pour-locéanographie" id="toc-création-dun-environnement-pour-locéanographie" class="nav-link" data-scroll-target="#création-dun-environnement-pour-locéanographie">3) Création d’un environnement pour l’océanographie</a></li>
+  </ul></li>
   <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
   <li><a href="#penser-aussi-à" id="toc-penser-aussi-à" class="nav-link" data-scroll-target="#penser-aussi-à">Penser aussi à:</a></li>
   </ul>
@@ -182,10 +186,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="installation-de-anaconda" class="level1">
 <h1>Installation de Anaconda</h1>
 <p>L’installation se fait via le site officiel d’Anaconda: <a href="https://www.anaconda.com/products/individual">Anaconda</a>.</p>
+<section id="installation-via-miniconda" class="level2">
+<h2 class="anchored" data-anchor-id="installation-via-miniconda">1) installation via miniconda</h2>
+<p>Le script ci-dessous est à adapter suivant la <a href="https://docs.conda.io/en/latest/miniconda.html">page web de miniconda</a> :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> Miniconda<span class="pp">*</span>.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>ou pour installer rapidement anaconda:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install miniconda to /miniconda</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LO</span> http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniconda3-latest-Linux-x86_64.sh <span class="at">-p</span> /miniconda <span class="at">-b</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> Miniconda3-latest-Linux-x86_64.sh</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ENV</span> PATH=/miniconda/bin:<span class="va">${PATH}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>On peut installer miniconda dans le répertoire /home/votrelogin/anaconda/miniconda3 par exemple.</p>
 </section>
-<section id="installation-dun-environnement-anaconda-pour-pyferret" class="level1">
-<h1>Installation d’un environnement Anaconda pour PyFerret:</h1>
-<p><a href="sheets/installation_pyferret.html">Installation de pyferret avec Anaconda</a></p>
+<section id="installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun" class="level2">
+<h2 class="anchored" data-anchor-id="installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun">2) installation dans le .bashrc (a installer dans les home de chacun)</h2>
+<p>A la fin de l’installation, l’installateur propose de rajouter le chemin de miniconda dans le .bashrc, via la commande conda init. Si on accepte, les commandes ci-dessous sont ajoutées dans le .bashrc automatiquement. Si ce n’est pas le cas, vous pouvez toujours ajouter manuellement les lignes suivantes:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !! Contents within this block are managed by 'conda init' !!</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">__conda_setup</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="st">'/usr/local/anaconda/miniconda3/bin/conda'</span> <span class="st">'shell.bash'</span> <span class="st">'hook'</span> <span class="dv">2</span><span class="op">&gt;</span> /dev/null<span class="va">)</span><span class="st">"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="va">$?</span> <span class="ot">-eq</span> 0 <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">eval</span> <span class="st">"</span><span class="va">$__conda_setup</span><span class="st">"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">[</span> <span class="ot">-f</span> <span class="st">"/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">.</span> <span class="st">"/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"/usr/local/anaconda/miniconda3/bin:</span><span class="va">$PATH</span><span class="st">"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="bu">unset</span> <span class="va">__conda_setup</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Relancer ensuite un terminal pour que les modifications soient prises en compte.</p>
+</section>
+<section id="création-dun-environnement-pour-locéanographie" class="level2">
+<h2 class="anchored" data-anchor-id="création-dun-environnement-pour-locéanographie">3) Création d’un environnement pour l’océanographie</h2>
+<p>Vous pouvez ensuite vous référer à la page <a href="anaconda_oceanographie.html">Anaconda pour l’oceanographie</a> pour la création d’environnements conda adaptés à l’océanographie.</p>
+</section>
 </section>
 <section id="matlab" class="level1">
 <h1>Matlab</h1>

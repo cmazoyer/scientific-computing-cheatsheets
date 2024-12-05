@@ -24,7 +24,7 @@ L'installation se fait via le site officiel d'Anaconda: [Anaconda](https://www.a
 
 ## Installation d'un environnement Anaconda pour PyFerret:
 
- [Installation de pyferret avec Anaconda](sheets/installation_pyferret.html)
+ [Installation de pyferret avec Anaconda](installation_pyferret.html)
 
 # Matlab
 

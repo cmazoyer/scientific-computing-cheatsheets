@@ -2,10 +2,10 @@
 title : Anaconda pour l'oceanographie
 ---
 
-Suivre cette doc pour l'installation de Anaconda de manière générale:A FAIRE Installation de pyferret avec Anaconda
-
 # Installation de Anaconda
-Il est d'abord nécesaire d'installer Anaconda
+
+Se réferer à la page [Configurer son ordi Ubuntu pour le calcul scientifique](config_globale_ubuntu.html) pour l'installation de miniconda.
+
 
 # Création d'un environnement pour l'océanographie
 

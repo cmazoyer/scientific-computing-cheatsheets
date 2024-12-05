@@ -55,12 +55,12 @@ proxy_servers:
     https: https://user:pass@cache.univ-tln.fr:3128
 ```
 
-# Curl
+# 4. Curl
 ```bash
 curl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin ...
 ```
 
-# Pip
+# 5. Pip
 
 Créer le fichier ~/.pip/pip.conf ou le fichier ~/.config/pip/pip.conf (faire un lien symbolique entre les deux), et ajouter les lignes suivantes:
 
@@ -70,7 +70,7 @@ proxy = http://username:password@cache.univ-tln.fr:3128/
 ```
 
 
-# Docker
+# 6. Docker
 
 ## Daemon Docker
 

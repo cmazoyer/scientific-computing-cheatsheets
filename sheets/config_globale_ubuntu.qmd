@@ -15,9 +15,51 @@ sudo aptitude install libopenmpi-dev openmpi-bin
 
 L'installation se fait via le site officiel d'Anaconda: [Anaconda](https://www.anaconda.com/products/individual).    
 
-# Installation d'un environnement Anaconda pour PyFerret:
+## 1) installation via miniconda
 
- [Installation de pyferret avec Anaconda](sheets/installation_pyferret.html)
+Le script ci-dessous est à adapter suivant la [page web de miniconda](https://docs.conda.io/en/latest/miniconda.html) :
+```bash
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh 
+sh Miniconda*.sh
+```
+
+ou pour installer rapidement anaconda:
+```bash
+# Install miniconda to /miniconda
+curl -LO http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh -p /miniconda -b
+rm Miniconda3-latest-Linux-x86_64.sh
+ENV PATH=/miniconda/bin:${PATH}
+```
+
+On peut installer miniconda dans le répertoire /home/votrelogin/anaconda/miniconda3 par exemple.
+
+## 2) installation dans le .bashrc  (a installer dans les home de chacun)
+
+A la fin de l'installation, l'installateur propose de rajouter le chemin de miniconda dans le .bashrc, via la commande conda init. Si on accepte, les commandes ci-dessous sont ajoutées dans le .bashrc automatiquement. Si ce n'est pas le cas, vous pouvez toujours ajouter manuellement les lignes suivantes:
+
+```bash
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/local/anaconda/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/local/anaconda/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+```
+
+Relancer ensuite un terminal pour que les modifications soient prises en compte.
+
+## 3) Création d'un environnement pour l'océanographie
+
+Vous pouvez ensuite vous référer à la page [Anaconda pour l'oceanographie](anaconda_oceanographie.html) pour la création d'environnements conda adaptés à l'océanographie.
 
 # Matlab
 

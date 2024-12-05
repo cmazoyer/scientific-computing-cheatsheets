@@ -149,9 +149,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#pas-de-modifications" id="toc-pas-de-modifications" class="nav-link" data-scroll-target="#pas-de-modifications">Pas de modifications</a></li>
   <li><a href="#cependant" id="toc-cependant" class="nav-link" data-scroll-target="#cependant">Cependant</a></li>
   </ul></li>
-  <li><a href="#curl" id="toc-curl" class="nav-link" data-scroll-target="#curl">Curl</a></li>
-  <li><a href="#pip" id="toc-pip" class="nav-link" data-scroll-target="#pip">Pip</a></li>
-  <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker">Docker</a>
+  <li><a href="#curl" id="toc-curl" class="nav-link" data-scroll-target="#curl">4. Curl</a></li>
+  <li><a href="#pip" id="toc-pip" class="nav-link" data-scroll-target="#pip">5. Pip</a></li>
+  <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker">6. Docker</a>
   <ul class="collapse">
   <li><a href="#daemon-docker" id="toc-daemon-docker" class="nav-link" data-scroll-target="#daemon-docker">Daemon Docker</a></li>
   <li><a href="#client-docker" id="toc-client-docker" class="nav-link" data-scroll-target="#client-docker">Client Docker</a></li>
@@ -221,17 +221,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="curl" class="level1">
-<h1>Curl</h1>
+<h1>4. Curl</h1>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--proxy</span> http://cache.univ-tln.fr:3128 <span class="at">--proxy-user</span> yourlogin ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="pip" class="level1">
-<h1>Pip</h1>
+<h1>5. Pip</h1>
 <p>Créer le fichier ~/.pip/pip.conf ou le fichier ~/.config/pip/pip.conf (faire un lien symbolique entre les deux), et ajouter les lignes suivantes:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[global]</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">proxy</span> = http://username:password@cache.univ-tln.fr:3128/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="docker" class="level1">
-<h1>Docker</h1>
+<h1>6. Docker</h1>
 <section id="daemon-docker" class="level2">
 <h2 class="anchored" data-anchor-id="daemon-docker">Daemon Docker</h2>
 <p>Ecrire dans le fichier /etc/systemd/system/docker.service.d/http-proxy.conf :</p>
