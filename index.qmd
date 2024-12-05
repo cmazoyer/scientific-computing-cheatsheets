@@ -90,17 +90,13 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## Python
 
--   Utilisation de google collab pour des jupyter notebook python
+-   Utilisation de google collab pour des jupyter notebook python - EN CONSTRUCTION -
 
--   CROCO avec Python .
+-   Toolbox pycroco (toolbox officielle de CROCO): [sources](https://gitlab.inria.fr/croco-ocean/croco_pytools/-/releases) et [documentation](https://www.croco-ocean.org/documentation/) 
 
--   la bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html
+-   la [bibliothèque XOA](https://xoa.readthedocs.io/en/latest/index.html) gère les sorties CROCO 
 
--   la bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n'est plus à jour)
-
--   How to Make Python Code Run Incredibly Fast
-
--   Utilisation de xarray conseillée (à faire)
+-   Utilisation de gros jeux de données netcdf via xarray: [documentation](https://docs.xarray.dev/en/stable/) et [tutoriels](https://tutorial.xarray.dev/intro.html#)
 
 # Utilisation de clusters locaux, régionaux, nationaux
 
@@ -110,15 +106,15 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## Cluster de l'OSU Pytheas
 
--   cluster de l'osupytheas :https://calcul.osupytheas.fr/
+-   [ le site web du cluster de l'osupytheas](https://calcul.osupytheas.fr/)
 
--   Documentation pour une Connexion à distance à Tools
+-   Documentation pour une Connexion à distance à Tools - EN CONSTRUCTION -
 
 ## Cluster régional CCAMU Marseille
 
 -   [Mes docs sur l'utilisation du Mésocentre CCAMU de Marseille](sheets/ccamu.html)
 
--   tutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/
+-   [Tutoriaux officiels](https://mesocentre.univ-amu.fr/les-tutoriaux/)
 
 ## IDRIS
 

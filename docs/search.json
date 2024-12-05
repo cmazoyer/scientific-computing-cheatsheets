@@ -53,7 +53,7 @@
     "href": "index.html#python",
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "Python",
-    "text": "Python\n\nUtilisation de google collab pour des jupyter notebook python\nCROCO avec Python .\nla bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html\nla bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n’est plus à jour)\nHow to Make Python Code Run Incredibly Fast\nUtilisation de xarray conseillée (à faire)"
+    "text": "Python\n\nUtilisation de google collab pour des jupyter notebook python - EN CONSTRUCTION -\nToolbox pycroco (toolbox officielle de CROCO): sources et documentation\nla bibliothèque XOA gère les sorties CROCO\nUtilisation de gros jeux de données netcdf via xarray: documentation et tutoriels"
   },
   {
     "objectID": "index.html#respore-au-mio-toulon",
@@ -67,14 +67,14 @@
     "href": "index.html#cluster-de-losu-pytheas",
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "Cluster de l’OSU Pytheas",
-    "text": "Cluster de l’OSU Pytheas\n\ncluster de l’osupytheas :https://calcul.osupytheas.fr/\nDocumentation pour une Connexion à distance à Tools"
+    "text": "Cluster de l’OSU Pytheas\n\nle site web du cluster de l’osupytheas\nDocumentation pour une Connexion à distance à Tools - EN CONSTRUCTION -"
   },
   {
     "objectID": "index.html#cluster-régional-ccamu-marseille",
     "href": "index.html#cluster-régional-ccamu-marseille",
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "Cluster régional CCAMU Marseille",
-    "text": "Cluster régional CCAMU Marseille\n\nMes docs sur l’utilisation du Mésocentre CCAMU de Marseille\ntutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/"
+    "text": "Cluster régional CCAMU Marseille\n\nMes docs sur l’utilisation du Mésocentre CCAMU de Marseille\nTutoriaux officiels"
   },
   {
     "objectID": "index.html#idris",
