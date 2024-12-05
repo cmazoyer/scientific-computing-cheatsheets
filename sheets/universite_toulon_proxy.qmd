@@ -37,7 +37,13 @@ wget --proxy-user="tonlogin" --proxy-password="tonmotdepasse" "https://xxxx.tar.
 
 # 3. Anaconda
 
-Cela ne fonctionne pas forcément, je ne sais pas pourquoi...
+## Pas de modifications
+
+A priori, la DSIUN a ouvert le proxy pour laisser passer les connexions vers les serveurs de Anaconda.
+
+## Cependant
+
+Si cela ne fonctionne pas, vous pouvez essayer de forcer le proxy dans le fichier ~/.condarc.
 
 Créer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la [doc de Anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html#config-proxy).
 
@@ -53,6 +59,16 @@ proxy_servers:
 ```bash
 curl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin ...
 ```
+
+# Pip
+
+Créer le fichier ~/.pip/pip.conf ou le fichier ~/.config/pip/pip.conf (faire un lien symbolique entre les deux), et ajouter les lignes suivantes:
+
+```bash
+[global]
+proxy = http://username:password@cache.univ-tln.fr:3128/
+```
+
 
 # Docker
 

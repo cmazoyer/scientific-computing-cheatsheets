@@ -144,8 +144,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#git" id="toc-git" class="nav-link active" data-scroll-target="#git">1. Git</a></li>
   <li><a href="#wget" id="toc-wget" class="nav-link" data-scroll-target="#wget">2. Wget</a></li>
-  <li><a href="#anaconda" id="toc-anaconda" class="nav-link" data-scroll-target="#anaconda">3. Anaconda</a></li>
+  <li><a href="#anaconda" id="toc-anaconda" class="nav-link" data-scroll-target="#anaconda">3. Anaconda</a>
+  <ul class="collapse">
+  <li><a href="#pas-de-modifications" id="toc-pas-de-modifications" class="nav-link" data-scroll-target="#pas-de-modifications">Pas de modifications</a></li>
+  <li><a href="#cependant" id="toc-cependant" class="nav-link" data-scroll-target="#cependant">Cependant</a></li>
+  </ul></li>
   <li><a href="#curl" id="toc-curl" class="nav-link" data-scroll-target="#curl">Curl</a></li>
+  <li><a href="#pip" id="toc-pip" class="nav-link" data-scroll-target="#pip">Pip</a></li>
   <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker">Docker</a>
   <ul class="collapse">
   <li><a href="#daemon-docker" id="toc-daemon-docker" class="nav-link" data-scroll-target="#daemon-docker">Daemon Docker</a></li>
@@ -201,61 +206,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="anaconda" class="level1">
 <h1>3. Anaconda</h1>
-<p>Cela ne fonctionne pas forcément, je ne sais pas pourquoi…</p>
+<section id="pas-de-modifications" class="level2">
+<h2 class="anchored" data-anchor-id="pas-de-modifications">Pas de modifications</h2>
+<p>A priori, la DSIUN a ouvert le proxy pour laisser passer les connexions vers les serveurs de Anaconda.</p>
+</section>
+<section id="cependant" class="level2">
+<h2 class="anchored" data-anchor-id="cependant">Cependant</h2>
+<p>Si cela ne fonctionne pas, vous pouvez essayer de forcer le proxy dans le fichier ~/.condarc.</p>
 <p>Créer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html#config-proxy">doc de Anaconda</a>.</p>
 <p>fichier .condarc</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">proxy_servers:</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">http:</span> http://user:pass@cache.univ-tln.fr:3128</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">https:</span> https://user:pass@cache.univ-tln.fr:3128</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+</section>
 <section id="curl" class="level1">
 <h1>Curl</h1>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--proxy</span> http://cache.univ-tln.fr:3128 <span class="at">--proxy-user</span> yourlogin ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pip" class="level1">
+<h1>Pip</h1>
+<p>Créer le fichier ~/.pip/pip.conf ou le fichier ~/.config/pip/pip.conf (faire un lien symbolique entre les deux), et ajouter les lignes suivantes:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[global]</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">proxy</span> = http://username:password@cache.univ-tln.fr:3128/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="docker" class="level1">
 <h1>Docker</h1>
 <section id="daemon-docker" class="level2">
 <h2 class="anchored" data-anchor-id="daemon-docker">Daemon Docker</h2>
 <p>Ecrire dans le fichier /etc/systemd/system/docker.service.d/http-proxy.conf :</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Service]</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="va">Environment</span><span class="op">=</span><span class="st">"HTTP_PROXY=http://username:password@proxy.server.com:port/"</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="va">Environment</span><span class="op">=</span><span class="st">"HTTPS_PROXY=http://username:password@proxy.server.com:port/"</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="va">Environment</span><span class="op">=</span><span class="st">"NO_PROXY=localhost,127.0.0.1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[Service]</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">Environment</span><span class="op">=</span><span class="st">"HTTP_PROXY=http://username:password@proxy.server.com:port/"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="va">Environment</span><span class="op">=</span><span class="st">"HTTPS_PROXY=http://username:password@proxy.server.com:port/"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="va">Environment</span><span class="op">=</span><span class="st">"NO_PROXY=localhost,127.0.0.1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Attention, si votre mot de passe contient des caractères spéciaux. Si c’est le cas, vous pouvez le remplacer par son équivalent en URL encoding. Par exemple, si votre mot de passe est “p@ssw0rd”, vous pouvez le remplacer par “p%40ssw0rd”. Vous pouvez tester votre mot de passe via le script python:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-c</span> <span class="st">"import urllib.parse; print(urllib.parse.quote('votre_mot_de_passe'))"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-c</span> <span class="st">"import urllib.parse; print(urllib.parse.quote('votre_mot_de_passe'))"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puis recharger le daemon et redémarrer le service docker :</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl daemon-reload</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl daemon-reload</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> systemctl restart docker</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="client-docker" class="level2">
 <h2 class="anchored" data-anchor-id="client-docker">Client Docker</h2>
 <p>côté client, ajouter les variables d’environnement suivantes dans le fichier ~/.bashrc :</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">http_proxy</span><span class="op">=</span><span class="st">"http://username:password@proxy:port/"</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">https_proxy</span><span class="op">=</span><span class="st">"http://username:password@proxy:port/"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">no_proxy</span><span class="op">=</span><span class="st">"localhost,127.0.0.1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">http_proxy</span><span class="op">=</span><span class="st">"http://username:password@proxy:port/"</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">https_proxy</span><span class="op">=</span><span class="st">"http://username:password@proxy:port/"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">no_proxy</span><span class="op">=</span><span class="st">"localhost,127.0.0.1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>et recharger le fichier :</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> ~/.bashrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="prise-en-compte-du-proxy-sous-python" class="level1">
 <h1>Prise en compte du proxy sous python</h1>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> urllib.request</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Replace with your actual proxy details</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  proxy_username <span class="op">=</span> ‘xxx<span class="st">'</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="er">  proxy_password = ‘xxx'</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  proxy_server <span class="op">=</span> <span class="st">'cache.univ-tln.fr'</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  proxy_port <span class="op">=</span> <span class="st">'3128'</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Construct the proxy URL with authentication</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  proxy_url <span class="op">=</span> <span class="ss">f'http://</span><span class="sc">{</span>proxy_username<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>proxy_password<span class="sc">}</span><span class="ss">@</span><span class="sc">{</span>proxy_server<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>proxy_port<span class="sc">}</span><span class="ss">'</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set up the proxy handler</span></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  proxy_support <span class="op">=</span> urllib.request.ProxyHandler({</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">'http'</span>: proxy_url,</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">'https'</span>: proxy_url</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  opener <span class="op">=</span> urllib.request.build_opener(proxy_support)</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  urllib.request.install_opener(opener)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  <span class="im">import</span> urllib.request</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Replace with your actual proxy details</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  proxy_username <span class="op">=</span> ‘xxx<span class="st">'</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="er">  proxy_password = ‘xxx'</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  proxy_server <span class="op">=</span> <span class="st">'cache.univ-tln.fr'</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  proxy_port <span class="op">=</span> <span class="st">'3128'</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Construct the proxy URL with authentication</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  proxy_url <span class="op">=</span> <span class="ss">f'http://</span><span class="sc">{</span>proxy_username<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>proxy_password<span class="sc">}</span><span class="ss">@</span><span class="sc">{</span>proxy_server<span class="sc">}</span><span class="ss">:</span><span class="sc">{</span>proxy_port<span class="sc">}</span><span class="ss">'</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set up the proxy handler</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  proxy_support <span class="op">=</span> urllib.request.ProxyHandler({</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>      <span class="st">'http'</span>: proxy_url,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>      <span class="st">'https'</span>: proxy_url</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  opener <span class="op">=</span> urllib.request.build_opener(proxy_support)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  urllib.request.install_opener(opener)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

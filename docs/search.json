@@ -539,6 +539,20 @@
     "text": "A faire uniquement lorsque l’on est derrière un proxy avec authentification, connecté en RJ45. Attention, il faut éviter de mettre des “!” ou “@” dans son mot de passe, cela peut poser problème en ligne de commande ensuite."
   },
   {
+    "objectID": "sheets/universite_toulon_proxy.html#pas-de-modifications",
+    "href": "sheets/universite_toulon_proxy.html#pas-de-modifications",
+    "title": "Travailler à l’université de Toulon sous proxy",
+    "section": "Pas de modifications",
+    "text": "Pas de modifications\nA priori, la DSIUN a ouvert le proxy pour laisser passer les connexions vers les serveurs de Anaconda."
+  },
+  {
+    "objectID": "sheets/universite_toulon_proxy.html#cependant",
+    "href": "sheets/universite_toulon_proxy.html#cependant",
+    "title": "Travailler à l’université de Toulon sous proxy",
+    "section": "Cependant",
+    "text": "Cependant\nSi cela ne fonctionne pas, vous pouvez essayer de forcer le proxy dans le fichier ~/.condarc.\nCréer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la doc de Anaconda.\nfichier .condarc\nproxy_servers:\n    http: http://user:pass@cache.univ-tln.fr:3128\n    https: https://user:pass@cache.univ-tln.fr:3128"
+  },
+  {
     "objectID": "sheets/universite_toulon_proxy.html#daemon-docker",
     "href": "sheets/universite_toulon_proxy.html#daemon-docker",
     "title": "Travailler à l’université de Toulon sous proxy",
