@@ -22,7 +22,8 @@ Installer les logiciels ci dessous :
 
 L'installation se fait via le site officiel d'Anaconda: [Anaconda](https://www.anaconda.com/products/individual).    
 
-Pour certaines installations, par exemple pyferret, il est possible que les packages ne soient pas présents pour l'architecture M3. Pour contourner ce problème, il est possible de forcer l'environnement conda en mode x86_64. Pour cela, il faut installer Rosetta 2 et forcer conda à créer un environnement x86_64.
+
+Pour certaines installations, par exemple pyferret, il est possible que les packages et les bibliothèques dépendantes ne soient pas compilés pour l'architecture Apple Silicon (M1, M2, M3, etc.). Pour contourner ce problème, il est possible de forcer l'environnement conda en mode x86_64. Pour cela, il faut installer Rosetta 2 et forcer conda à créer un environnement x86_64.
 
 ## 1. Installer Rosetta 2 
 
