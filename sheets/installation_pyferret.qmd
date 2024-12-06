@@ -9,6 +9,8 @@ Suivre les explications du README de pyferret: https://github.com/NOAA-PMEL/PyFe
 
 Installer Anaconda (se réferer à la page [Configurer son ordi Ubuntu pour le calcul scientifique](config_globale_ubuntu.html) pour plus de détails).
 
+Pour Mac Os X, il est nécessaire de suivre la procédure d'installation de Rosetta et de forcer conda à créer un environnement x86_64. Voir la page [Configurer son ordi Mac pour le calcul scientifique](config_globale_mac.html) pour plus de détails.
+
 # 2) Installation de l'environnement FERRET
 
 ## Dernière version de Pyferret pour ubuntu > 20.04

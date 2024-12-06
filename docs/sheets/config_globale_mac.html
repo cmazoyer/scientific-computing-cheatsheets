@@ -145,6 +145,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#installations-de-logiciels" id="toc-installations-de-logiciels" class="nav-link active" data-scroll-target="#installations-de-logiciels">Installations de logiciels</a></li>
   <li><a href="#installation-de-anaconda" id="toc-installation-de-anaconda" class="nav-link" data-scroll-target="#installation-de-anaconda">Installation de Anaconda</a>
   <ul class="collapse">
+  <li><a href="#installer-rosetta-2" id="toc-installer-rosetta-2" class="nav-link" data-scroll-target="#installer-rosetta-2">1. Installer Rosetta 2</a></li>
+  <li><a href="#forcer-conda-à-créer-un-environnement-x86_64" id="toc-forcer-conda-à-créer-un-environnement-x86_64" class="nav-link" data-scroll-target="#forcer-conda-à-créer-un-environnement-x86_64">2. Forcer conda à créer un environnement x86_64 :</a></li>
   <li><a href="#installation-dun-environnement-anaconda-pour-pyferret" id="toc-installation-dun-environnement-anaconda-pour-pyferret" class="nav-link" data-scroll-target="#installation-dun-environnement-anaconda-pour-pyferret">Installation d’un environnement Anaconda pour PyFerret:</a></li>
   </ul></li>
   <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
@@ -190,6 +192,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="installation-de-anaconda" class="level1">
 <h1>Installation de Anaconda</h1>
 <p>L’installation se fait via le site officiel d’Anaconda: <a href="https://www.anaconda.com/products/individual">Anaconda</a>.</p>
+<p>Pour certaines installations, par exemple pyferret, il est possible que les packages ne soient pas présents pour l’architecture M3. Pour contourner ce problème, il est possible de forcer l’environnement conda en mode x86_64. Pour cela, il faut installer Rosetta 2 et forcer conda à créer un environnement x86_64.</p>
+<section id="installer-rosetta-2" class="level2">
+<h2 class="anchored" data-anchor-id="installer-rosetta-2">1. Installer Rosetta 2</h2>
+<p>Dans un terminal:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">softwareupdate</span> <span class="at">--install-rosetta</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="forcer-conda-à-créer-un-environnement-x86_64" class="level2">
+<h2 class="anchored" data-anchor-id="forcer-conda-à-créer-un-environnement-x86_64">2. Forcer conda à créer un environnement x86_64 :</h2>
+<p>Avant de créer et/ou d’installer les packages qui posent problème (PyFerret par ex), définissez la variable d’environnement CONDA_SUBDIR à osx-64 afin de récupérer les paquets compilés pour Intel :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">CONDA_SUBDIR</span><span class="op">=</span>osx-64</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> mon_environnement </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate mon_environnement</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install monpackage</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cette manipulation permet à conda d’utiliser les binaires Intel, qui pourront fonctionner via Rosetta 2. Bien sûr, les performances seront moindres qu’une version native, mais cela permet au moins d’utiliser les packages souhaités.</p>
+</section>
 <section id="installation-dun-environnement-anaconda-pour-pyferret" class="level2">
 <h2 class="anchored" data-anchor-id="installation-dun-environnement-anaconda-pour-pyferret">Installation d’un environnement Anaconda pour PyFerret:</h2>
 <p><a href="installation_pyferret.html">Installation de pyferret avec Anaconda</a></p>
@@ -205,11 +222,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="installation-de-homebrew" class="level1">
 <h1>Installation de homebrew</h1>
 <p>Homebrew est un gestionnaire de paquets pour macOS. Il permet d’installer des commandes du style de linux. Pour l’installer, ouvrir un terminal et taper la commande suivante:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">"</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Une fois Brew installé, le mettre à jour avec la commande:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> update</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> update</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On peut alors installer des logiciels comme wget:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install wget</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install wget</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="penser-aussi-à" class="level1">
 <h1>Penser aussi à:</h1>

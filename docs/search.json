@@ -448,6 +448,20 @@
     "text": "Installer les logiciels ci dessous :\n\nDocker desktop\nVisual Studio Code\nQuarto\nkeypassx\nTerminal\nXQuartz pour gérer le serveur X lors de connexions en ssh"
   },
   {
+    "objectID": "sheets/config_globale_mac.html#installer-rosetta-2",
+    "href": "sheets/config_globale_mac.html#installer-rosetta-2",
+    "title": "Configurer son ordi Mac pour le calcul scientifique",
+    "section": "1. Installer Rosetta 2",
+    "text": "1. Installer Rosetta 2\nDans un terminal:\nsoftwareupdate --install-rosetta"
+  },
+  {
+    "objectID": "sheets/config_globale_mac.html#forcer-conda-à-créer-un-environnement-x86_64",
+    "href": "sheets/config_globale_mac.html#forcer-conda-à-créer-un-environnement-x86_64",
+    "title": "Configurer son ordi Mac pour le calcul scientifique",
+    "section": "2. Forcer conda à créer un environnement x86_64 :",
+    "text": "2. Forcer conda à créer un environnement x86_64 :\nAvant de créer et/ou d’installer les packages qui posent problème (PyFerret par ex), définissez la variable d’environnement CONDA_SUBDIR à osx-64 afin de récupérer les paquets compilés pour Intel :\nexport CONDA_SUBDIR=osx-64\nconda create -n mon_environnement \nconda activate mon_environnement\nconda install monpackage\nCette manipulation permet à conda d’utiliser les binaires Intel, qui pourront fonctionner via Rosetta 2. Bien sûr, les performances seront moindres qu’une version native, mais cela permet au moins d’utiliser les packages souhaités."
+  },
+  {
     "objectID": "sheets/config_globale_mac.html#installation-dun-environnement-anaconda-pour-pyferret",
     "href": "sheets/config_globale_mac.html#installation-dun-environnement-anaconda-pour-pyferret",
     "title": "Configurer son ordi Mac pour le calcul scientifique",
