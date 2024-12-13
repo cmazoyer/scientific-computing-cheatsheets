@@ -294,60 +294,53 @@
     "text": "Suite en construction …"
   },
   {
-    "objectID": "sheets/connexion_via_tunnel.html",
-    "href": "sheets/connexion_via_tunnel.html",
-    "title": "Connexion à un ordinateur via un tunnel",
+    "objectID": "sheets/bonnes_pratiques_travail.html",
+    "href": "sheets/bonnes_pratiques_travail.html",
+    "title": "Bonnes pratiques de travail",
     "section": "",
-    "text": "3 exemples ci-dessous:"
+    "text": "Sous Ubuntu ou Mac"
   },
   {
-    "objectID": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
-    "href": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "Mise en place des scripts",
-    "text": "Mise en place des scripts\nà écrire dans .bash_aliases :\n        alias hrespore=\"ssh mazoyer@respore\"\n        alias tunnelrespore='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5533:respore:22'\n        alias htunnelrespore='ssh -X -p 5533 mazoyer@localhost'\n        alias sftprespore='sftp -P 5533 mazoyer@localhost'\n        # kill tunnel si besoin\n        alias ps=\"ps aux\"\n        killtunnelrespore(){\n          idtunnel=`ps | grep -i respore | grep -i ssh | awk '{print $2}'`\n          kill -9 $idtunnel\n        }"
+    "objectID": "sheets/bonnes_pratiques_travail.html#installation-de-keepassxc",
+    "href": "sheets/bonnes_pratiques_travail.html#installation-de-keepassxc",
+    "title": "Bonnes pratiques de travail",
+    "section": "Installation de KeepassXC",
+    "text": "Installation de KeepassXC\nPour installer KeepassXC sous Linux ou Mac, suivre les instructions d’installation sur le site officiel de KeepassXC."
   },
   {
-    "objectID": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
-    "href": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "Creation du tunnel",
-    "text": "Creation du tunnel\nA faire une seule fois au démarrage de son ordinateur, pour créer le tunnel:\ntunnelrespore"
+    "objectID": "sheets/bonnes_pratiques_travail.html#utilisation-de-keepassxc",
+    "href": "sheets/bonnes_pratiques_travail.html#utilisation-de-keepassxc",
+    "title": "Bonnes pratiques de travail",
+    "section": "Utilisation de KeepassXC",
+    "text": "Utilisation de KeepassXC\nPour utiliser KeepassXC, il suffit de créer une base de données de mots de passe et d’y stocker vos mots de passe. Vous pouvez ensuite les copier-coller dans les champs de connexion des sites web. La base de données est sécurisée par un mot de passe principal. Vous pouvez mettre le fichier de base de données dans un dossier synchronisé avec le service de cloud de l’Osu Pytheas."
   },
   {
-    "objectID": "sheets/connexion_via_tunnel.html#utilisation",
-    "href": "sheets/connexion_via_tunnel.html#utilisation",
-    "title": "Connexion à un ordinateur via un tunnel",
-    "section": "utilisation",
-    "text": "utilisation\nA chaque fois qu’on veut se connecter à respore:\nhtunnelrespore  (pour home by tunnelrespore)\nPour échanger des fichiers entre son ordi et respore:\nsftprespore\npuis pour envoyer un fichier vers le répertoire repertoire_sur_respore de Respore:\nput monfichier repertoire_sur_respore/.\npour récupérer un fichier de repertoire_sur_respore vers mon ordi:\nget repertoire_sur_respore/monfichier .\nSi le tunnel ne fonctionne plus, il faut le détruire puis le recréer. La commande killtunnelrespore gère la destruction de manière automatique:\nkilltunnelrespore\ntunnelrespore"
-  },
-  {
-    "objectID": "sheets/partager_env_anaconda.html",
-    "href": "sheets/partager_env_anaconda.html",
-    "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
+    "objectID": "sheets/vim.html",
+    "href": "sheets/vim.html",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
     "section": "",
-    "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
+    "text": "Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM :"
   },
   {
-    "objectID": "sheets/githubcopilot.html",
-    "href": "sheets/githubcopilot.html",
-    "title": "Installation et utilisation de Github Copilot en recherche",
+    "objectID": "sheets/vim.html#couleur-du-thème",
+    "href": "sheets/vim.html#couleur-du-thème",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "2.1 Couleur du thème:",
+    "text": "2.1 Couleur du thème:\nPour changer de couleur de theme et avoir quelque chose de plus visible, créer ou ouvrir s’il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):\ncolorscheme darkblue"
+  },
+  {
+    "objectID": "sheets/vim.html#un-thème-adapté-au-vimdiff",
+    "href": "sheets/vim.html#un-thème-adapté-au-vimdiff",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "2.2 Un thème adapté au vimdiff",
+    "text": "2.2 Un thème adapté au vimdiff\nVoir Post stackoverflow:\n (image issue de l’url de statckoverflow ci-dessus)\nDans un terminal:\ncurl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim\npuis dans vim, en mode édition:\n:colorscheme github"
+  },
+  {
+    "objectID": "sheets/connexion_distance_tools.html",
+    "href": "sheets/connexion_distance_tools.html",
+    "title": "Connexion à distance à Tools",
     "section": "",
-    "text": "Se créer un compte sur github avec la double authentification: https://github.com/. L’adresse mail utilisée doit être l’adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d’adhésion à copilot)"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#prérequis",
-    "href": "sheets/githubcopilot.html#prérequis",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "2.1 Prérequis",
-    "text": "2.1 Prérequis\nSuivre les prérequis indiqués ici : https://education.github.com/discount_requests/application. Entre autres:\n\ndouble authentification\nadresse de facturation\npersonnaliser son profil : indiquer son vrai nom, mettre sa photo, …\nse munir de sa carte professionnelle\nréaliser la demande dans les locaux de l’adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu’on est en congé, l’heure correspond à un week end / soirée, …)"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
-    "href": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "Infos pour la demande de compte",
-    "text": "Infos pour la demande de compte\n\nbien faire la demande avec son adresse ird, amu ou tln\nLa carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l’adresse mail professionnelle. Github va demander de prendre une photo du devant de celle-ci avec la camera de l’ordinateur"
+    "text": "Via un tunnel SSH\nVoir la documentation: Connexion à un ordinateur via un tunnel\n\n\nVia le VPN de l’OSU pytheas\nSe référer à la Documentation du VPN. Une fois le VPN lancé, il suffit de se connecter à tools.osupytheas.fr en ssh par ex, ou avec putty pour windows.\n\n\nVia Rdesktop (pas fonctionnel ou fonctionnel?)\nInstallation sous ubuntu via:\napt-get install rdesktop\nUtilisation\nrdesktop -u votrelogin 172.20.9.140\n\n\nVia x2go\nSolution possible. A compléter."
   },
   {
     "objectID": "sheets/zenodo_github.html",
@@ -385,32 +378,60 @@
     "text": "3.2 Sur Zenodo\nSe référer à la documentation github sur Zenodo.\n\nSe rendre sur Zenodo et se connecter à Zenodo avec son compte Github, le lien sera ainsi fait entre les deux sites web.\nDans la page settings, https://zenodo.org/account/settings/github/, cliquer sur “Sync Now”\nRafraichir la page avec F5\nPositionner le bouton sur “ON” sur le dépôt de votre organisation (ici TAO-Soft/Tao-Soft)\nRafraichir la page avec F5\nDans la section “Enabled Repositories”, le nouveau dépôt devrait apparaitre. Cliquer dessus.\nOn est alors sur la page https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft, dans mon exemple.\nCliquer sur “Create release”, on se déplace alors sur une page du dépôt TAO-Soft du site Github\nDans “Choose a tag”, sélectioner le tag qui nous intéresse, par ex: v0.1.0.\nIndiquer le titre de la release. Par exemple: “Initial release v0.1.0”\nIl est conseiller de décrire la release (amélioration, bug fixed, …)\nCliquer sur le bouton vert “Publish release”\nCette release ayant été faite à partir de Zenodo, elle sera visible sur celui-ci. Rafraichir la page du dépôt sur Zenodo https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft\nToutes les informations apparaissent, dont le DOI"
   },
   {
-    "objectID": "sheets/connexion_distance_tools.html",
-    "href": "sheets/connexion_distance_tools.html",
-    "title": "Connexion à distance à Tools",
+    "objectID": "sheets/githubcopilot.html",
+    "href": "sheets/githubcopilot.html",
+    "title": "Installation et utilisation de Github Copilot en recherche",
     "section": "",
-    "text": "Via un tunnel SSH\nVoir la documentation: Connexion à un ordinateur via un tunnel\n\n\nVia le VPN de l’OSU pytheas\nSe référer à la Documentation du VPN. Une fois le VPN lancé, il suffit de se connecter à tools.osupytheas.fr en ssh par ex, ou avec putty pour windows.\n\n\nVia Rdesktop (pas fonctionnel ou fonctionnel?)\nInstallation sous ubuntu via:\napt-get install rdesktop\nUtilisation\nrdesktop -u votrelogin 172.20.9.140\n\n\nVia x2go\nSolution possible. A compléter."
+    "text": "Se créer un compte sur github avec la double authentification: https://github.com/. L’adresse mail utilisée doit être l’adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d’adhésion à copilot)"
   },
   {
-    "objectID": "sheets/vim.html",
-    "href": "sheets/vim.html",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "objectID": "sheets/githubcopilot.html#prérequis",
+    "href": "sheets/githubcopilot.html#prérequis",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "2.1 Prérequis",
+    "text": "2.1 Prérequis\nSuivre les prérequis indiqués ici : https://education.github.com/discount_requests/application. Entre autres:\n\ndouble authentification\nadresse de facturation\npersonnaliser son profil : indiquer son vrai nom, mettre sa photo, …\nse munir de sa carte professionnelle\nréaliser la demande dans les locaux de l’adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu’on est en congé, l’heure correspond à un week end / soirée, …)"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "href": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "Infos pour la demande de compte",
+    "text": "Infos pour la demande de compte\n\nbien faire la demande avec son adresse ird, amu ou tln\nLa carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l’adresse mail professionnelle. Github va demander de prendre une photo du devant de celle-ci avec la camera de l’ordinateur"
+  },
+  {
+    "objectID": "sheets/partager_env_anaconda.html",
+    "href": "sheets/partager_env_anaconda.html",
+    "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
     "section": "",
-    "text": "Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM :"
+    "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
   },
   {
-    "objectID": "sheets/vim.html#couleur-du-thème",
-    "href": "sheets/vim.html#couleur-du-thème",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "2.1 Couleur du thème:",
-    "text": "2.1 Couleur du thème:\nPour changer de couleur de theme et avoir quelque chose de plus visible, créer ou ouvrir s’il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):\ncolorscheme darkblue"
+    "objectID": "sheets/connexion_via_tunnel.html",
+    "href": "sheets/connexion_via_tunnel.html",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "",
+    "text": "3 exemples ci-dessous:"
   },
   {
-    "objectID": "sheets/vim.html#un-thème-adapté-au-vimdiff",
-    "href": "sheets/vim.html#un-thème-adapté-au-vimdiff",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "2.2 Un thème adapté au vimdiff",
-    "text": "2.2 Un thème adapté au vimdiff\nVoir Post stackoverflow:\n (image issue de l’url de statckoverflow ci-dessus)\nDans un terminal:\ncurl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim\npuis dans vim, en mode édition:\n:colorscheme github"
+    "objectID": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
+    "href": "sheets/connexion_via_tunnel.html#mise-en-place-des-scripts",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "Mise en place des scripts",
+    "text": "Mise en place des scripts\nà écrire dans .bash_aliases :\n        alias hrespore=\"ssh mazoyer@respore\"\n        alias tunnelrespore='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5533:respore:22'\n        alias htunnelrespore='ssh -X -p 5533 mazoyer@localhost'\n        alias sftprespore='sftp -P 5533 mazoyer@localhost'\n        # kill tunnel si besoin\n        alias ps=\"ps aux\"\n        killtunnelrespore(){\n          idtunnel=`ps | grep -i respore | grep -i ssh | awk '{print $2}'`\n          kill -9 $idtunnel\n        }"
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
+    "href": "sheets/connexion_via_tunnel.html#creation-du-tunnel",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "Creation du tunnel",
+    "text": "Creation du tunnel\nA faire une seule fois au démarrage de son ordinateur, pour créer le tunnel:\ntunnelrespore"
+  },
+  {
+    "objectID": "sheets/connexion_via_tunnel.html#utilisation",
+    "href": "sheets/connexion_via_tunnel.html#utilisation",
+    "title": "Connexion à un ordinateur via un tunnel",
+    "section": "utilisation",
+    "text": "utilisation\nA chaque fois qu’on veut se connecter à respore:\nhtunnelrespore  (pour home by tunnelrespore)\nPour échanger des fichiers entre son ordi et respore:\nsftprespore\npuis pour envoyer un fichier vers le répertoire repertoire_sur_respore de Respore:\nput monfichier repertoire_sur_respore/.\npour récupérer un fichier de repertoire_sur_respore vers mon ordi:\nget repertoire_sur_respore/monfichier .\nSi le tunnel ne fonctionne plus, il faut le détruire puis le recréer. La commande killtunnelrespore gère la destruction de manière automatique:\nkilltunnelrespore\ntunnelrespore"
   },
   {
     "objectID": "sheets/create_docker.html",

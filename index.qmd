@@ -14,6 +14,8 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [Configurer son ordi Mac pour le calcul scientifique](sheets/config_globale_mac.html)
 
+-   [Bonnes pratiques de travail (mots de passes, nuage, git ...)](sheets/bonnes_pratiques_travail.html)
+
 -   [Travailler à l'université de Toulon sous proxy](sheets/universite_toulon_proxy.html)
 
 # Informatique (divers)

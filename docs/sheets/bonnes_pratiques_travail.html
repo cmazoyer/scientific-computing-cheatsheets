@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Calcul scientifique au laboratoire MIO – Camille Mazoyer</title>
+<title>Bonnes pratiques de travail – Camille Mazoyer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8bda806db8b623a4dafb352339cca83f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8bda806db8b623a4dafb352339cca83f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,7 +68,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Camille Mazoyer</span>
     </a>
   </div>
@@ -89,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -108,25 +108,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#configuration-globale" id="toc-configuration-globale" class="nav-link active" data-scroll-target="#configuration-globale">Configuration globale</a></li>
-  <li><a href="#informatique-divers" id="toc-informatique-divers" class="nav-link" data-scroll-target="#informatique-divers">Informatique (divers)</a></li>
-  <li><a href="#fiches-logiciels" id="toc-fiches-logiciels" class="nav-link" data-scroll-target="#fiches-logiciels">Fiches logiciels</a>
+  <li><a href="#utilisation-dun-logiciel-de-mots-de-passe-keepassxc" id="toc-utilisation-dun-logiciel-de-mots-de-passe-keepassxc" class="nav-link active" data-scroll-target="#utilisation-dun-logiciel-de-mots-de-passe-keepassxc">Utilisation d’un logiciel de mots de passe : KeepassXC</a>
   <ul class="collapse">
-  <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker">Docker</a></li>
-  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git">Git</a></li>
-  <li><a href="#anaconda" id="toc-anaconda" class="nav-link" data-scroll-target="#anaconda">Anaconda</a></li>
-  <li><a href="#ferret" id="toc-ferret" class="nav-link" data-scroll-target="#ferret">Ferret</a></li>
-  <li><a href="#fortran" id="toc-fortran" class="nav-link" data-scroll-target="#fortran">Fortran</a></li>
-  <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
-  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  <li><a href="#installation-de-keepassxc" id="toc-installation-de-keepassxc" class="nav-link" data-scroll-target="#installation-de-keepassxc">Installation de KeepassXC</a></li>
+  <li><a href="#utilisation-de-keepassxc" id="toc-utilisation-de-keepassxc" class="nav-link" data-scroll-target="#utilisation-de-keepassxc">Utilisation de KeepassXC</a></li>
   </ul></li>
-  <li><a href="#utilisation-de-clusters-locaux-régionaux-nationaux" id="toc-utilisation-de-clusters-locaux-régionaux-nationaux" class="nav-link" data-scroll-target="#utilisation-de-clusters-locaux-régionaux-nationaux">Utilisation de clusters locaux, régionaux, nationaux</a>
-  <ul class="collapse">
-  <li><a href="#respore-au-mio-toulon" id="toc-respore-au-mio-toulon" class="nav-link" data-scroll-target="#respore-au-mio-toulon">Respore au MIO Toulon</a></li>
-  <li><a href="#cluster-de-losu-pytheas" id="toc-cluster-de-losu-pytheas" class="nav-link" data-scroll-target="#cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</a></li>
-  <li><a href="#cluster-régional-ccamu-marseille" id="toc-cluster-régional-ccamu-marseille" class="nav-link" data-scroll-target="#cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</a></li>
-  <li><a href="#idris" id="toc-idris" class="nav-link" data-scroll-target="#idris">IDRIS</a></li>
-  </ul></li>
+  <li><a href="#synchronisation-de-fichiers-avec-le-service-de-cloud-de-losu-pytheas" id="toc-synchronisation-de-fichiers-avec-le-service-de-cloud-de-losu-pytheas" class="nav-link" data-scroll-target="#synchronisation-de-fichiers-avec-le-service-de-cloud-de-losu-pytheas">Synchronisation de fichiers avec le service de cloud de l’Osu Pytheas</a></li>
+  <li><a href="#utilisation-de-git" id="toc-utilisation-de-git" class="nav-link" data-scroll-target="#utilisation-de-git">Utilisation de GIT</a></li>
   </ul>
 </nav>
     </div>
@@ -135,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Calcul scientifique au laboratoire MIO</h1>
+<h1 class="title">Bonnes pratiques de travail</h1>
 </div>
 
 
@@ -152,126 +140,34 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>auteur: Camille Mazoyer, camille.mazoyer@ird.fr</p>
-<p>maj: novembre 2024</p>
-<p>Merci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation.</p>
-<section id="configuration-globale" class="level1">
-<h1>Configuration globale</h1>
+<p>Sous Ubuntu ou Mac</p>
+<section id="utilisation-dun-logiciel-de-mots-de-passe-keepassxc" class="level1">
+<h1>Utilisation d’un logiciel de mots de passe : KeepassXC</h1>
+<p>Il est recommandé d’utiliser un logiciel de mots de passe pour stocker vos mots de passe. Cela permet:</p>
 <ul>
-<li><p><a href="sheets/config_globale_ubuntu.html">Configurer son ordi Ubuntu pour le calcul scientifique</a></p></li>
-<li><p><a href="sheets/config_globale_mac.html">Configurer son ordi Mac pour le calcul scientifique</a></p></li>
-<li><p><a href="sheets/bonnes_pratiques_travail.html">Bonnes pratiques de travail (mots de passes, nuage, git …)</a></p></li>
-<li><p><a href="sheets/universite_toulon_proxy.html">Travailler à l’université de Toulon sous proxy</a></p></li>
+<li>de ne pas les stocker en clair dans un fichier texte</li>
+<li>de les sécuriser avec un mot de passe principal</li>
+<li>de ne pas réutiliser le même mot de passe sur plusieurs sites : il est facile de recréer de nouveaux mots de passe</li>
 </ul>
+<section id="installation-de-keepassxc" class="level2">
+<h2 class="anchored" data-anchor-id="installation-de-keepassxc">Installation de KeepassXC</h2>
+<p>Pour installer KeepassXC sous Linux ou Mac, suivre les instructions d’installation sur le site officiel de <a href="https://keepassxc.org">KeepassXC</a>.</p>
 </section>
-<section id="informatique-divers" class="level1">
-<h1>Informatique (divers)</h1>
-<ul>
-<li><p><a href="sheets/connexion_via_tunnel.html">Connexion à un ordinateur via un tunnel</a></p></li>
-<li><p><a href="sheets/clef_ssh.html">Générer une clef ssh</a></p></li>
-<li><p><a href="sheets/detacher_processus_nohup.html">screen : détacher des processus / nohup</a></p></li>
-<li><p><a href="sheets/rsync.html">rsync (local ou via ssh)</a></p></li>
-<li><p><a href="sheets/connexion_longue_ssh.html">Garder une connexion ssh persistante</a> (éviter les déconnexions trop rapides)</p></li>
-<li><p><a href="sheets/connexion_distance_tools.html">Connexion à distance à Tools</a></p></li>
-</ul>
-</section>
-<section id="fiches-logiciels" class="level1">
-<h1>Fiches logiciels</h1>
-<ul>
-<li><p><a href="sheets/vim.html">Mémos, raccourcis et améliorations de VIM/GVIM</a></p></li>
-<li><p>Utilisation de GDB avec exemple de CROCO sur le cluster de l’OSU - EN CONSTRUCTION -</p></li>
-<li><p><a href="sheets/visual_studio_code.html">Utilisation de Visual Studio Code, éditeur de code</a></p></li>
-<li><p>Installation et configuration de x2go - EN CONSTRUCTION -</p></li>
-<li><p>Récupération de fichiers netcdf via Copernicus avec <a href="sheets/copernicusmarine.html">Copernicusmarine</a></p></li>
-<li><p><a href="sheets/zenodo_github.html">Utilisation de Zenodo et Github pour mettre son code sous DOI</a></p></li>
-</ul>
-<section id="docker" class="level2">
-<h2 class="anchored" data-anchor-id="docker">Docker</h2>
-<ul>
-<li><p><a href="sheets/docker.html">Création et utilisation d’un docker (exemple pour pyferret)</a></p></li>
-<li><p><a href="sheets/create_docker.html">Créer et partager une image docker</a></p></li>
-</ul>
-</section>
-<section id="git" class="level2">
-<h2 class="anchored" data-anchor-id="git">Git</h2>
-<ul>
-<li><p><a href="sheets/git.html">Mémos, raccourcis et améliorations de GIT</a></p></li>
-<li><p><a href="./sheets/create_mkdocs_documentation.html">Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas</a></p></li>
-<li><p>Creer un site web de documentation avec sphinx et le gitlab de l’OSU Pytheas : en construction</p></li>
-<li><p><a href="sheets/site_quarto.html">Utilisation de Quarto pour créer un site web, avec github</a></p></li>
-<li><p><a href="./sheets/githubcopilot.html">Utilisation de Github Copilot dans Visual Studio Code</a></p></li>
-</ul>
-</section>
-<section id="anaconda" class="level2">
-<h2 class="anchored" data-anchor-id="anaconda">Anaconda</h2>
-<ul>
-<li><p><a href="sheets/installation_pyferret.html">Installation de pyferret avec Anaconda</a></p></li>
-<li><p><a href="sheets/anaconda_oceanographie.html">Installation d’un environnement Anaconda pour l’océanographie</a></p></li>
-<li><p><a href="sheets/partager_env_anaconda.html">Partager un environnement Anaconda entre deux utilisateurs d’une même machine</a></p></li>
-</ul>
-</section>
-<section id="ferret" class="level2">
-<h2 class="anchored" data-anchor-id="ferret">Ferret</h2>
-<ul>
-<li>Premiers pas en ferret ( à faire)</li>
-</ul>
-</section>
-<section id="fortran" class="level2">
-<h2 class="anchored" data-anchor-id="fortran">Fortran</h2>
-<ul>
-<li><p>Options de compilation pour debugger en Fortran</p></li>
-<li><p>utilisation du debugger gdb avec croco (sur le cluster OSU)</p></li>
-<li><p>Listing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop</p></li>
-</ul>
-</section>
-<section id="matlab" class="level2">
-<h2 class="anchored" data-anchor-id="matlab">Matlab</h2>
-<ul>
-<li><a href="sheets/executable_matlab.html">Créer un exécutable sous matlab: exemple sur le cluster de l’OSU</a></li>
-</ul>
-</section>
-<section id="python" class="level2">
-<h2 class="anchored" data-anchor-id="python">Python</h2>
-<ul>
-<li><p>Utilisation de google collab pour des jupyter notebook python - EN CONSTRUCTION -</p></li>
-<li><p>Toolbox pycroco (toolbox officielle de CROCO): <a href="https://gitlab.inria.fr/croco-ocean/croco_pytools/-/releases">sources</a> et <a href="https://www.croco-ocean.org/documentation/">documentation</a></p></li>
-<li><p>la <a href="https://xoa.readthedocs.io/en/latest/index.html">bibliothèque XOA</a> gère les sorties CROCO</p></li>
-<li><p>Utilisation de gros jeux de données netcdf via xarray: <a href="https://docs.xarray.dev/en/stable/">documentation</a> et <a href="https://tutorial.xarray.dev/intro.html#">tutoriels</a></p></li>
-</ul>
+<section id="utilisation-de-keepassxc" class="level2">
+<h2 class="anchored" data-anchor-id="utilisation-de-keepassxc">Utilisation de KeepassXC</h2>
+<p>Pour utiliser KeepassXC, il suffit de créer une base de données de mots de passe et d’y stocker vos mots de passe. Vous pouvez ensuite les copier-coller dans les champs de connexion des sites web. La base de données est sécurisée par un mot de passe principal. Vous pouvez mettre le fichier de base de données dans un dossier synchronisé avec le service de cloud de l’Osu Pytheas.</p>
 </section>
 </section>
-<section id="utilisation-de-clusters-locaux-régionaux-nationaux" class="level1">
-<h1>Utilisation de clusters locaux, régionaux, nationaux</h1>
-<section id="respore-au-mio-toulon" class="level2">
-<h2 class="anchored" data-anchor-id="respore-au-mio-toulon">Respore au MIO Toulon</h2>
-<ul>
-<li><a href="sheets/respore.html">Machine respore au MIO Toulon</a></li>
-</ul>
+<section id="synchronisation-de-fichiers-avec-le-service-de-cloud-de-losu-pytheas" class="level1">
+<h1>Synchronisation de fichiers avec le service de cloud de l’Osu Pytheas</h1>
+<p>Les fichiers importants, tels que les documents (doc, ppt, pdf ..), les scripts non versionnés sous git, peuvent être dans un répertoire de votre ordinateur synchronisé avec le <a href="https://documentation.osupytheas.fr/?p=3854">cloud de l’OSU Pytheas</a> (jusqu’à 200 Go).</p>
 </section>
-<section id="cluster-de-losu-pytheas" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</h2>
-<ul>
-<li><p><a href="https://calcul.osupytheas.fr/">le site web du cluster de l’osupytheas</a></p></li>
-<li><p>Documentation pour une Connexion à distance à Tools - EN CONSTRUCTION -</p></li>
-</ul>
-</section>
-<section id="cluster-régional-ccamu-marseille" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</h2>
-<ul>
-<li><p><a href="sheets/ccamu.html">Mes docs sur l’utilisation du Mésocentre CCAMU de Marseille</a></p></li>
-<li><p><a href="https://mesocentre.univ-amu.fr/les-tutoriaux/">Tutoriaux officiels</a></p></li>
-</ul>
-</section>
-<section id="idris" class="level2">
-<h2 class="anchored" data-anchor-id="idris">IDRIS</h2>
-<ul>
-<li><p><a href="http://www.idris.fr">Site web de l’IDRIS</a></p></li>
-<li><p><a href="http://www.idris.fr/media/su/idrismemento1.pdf">cheat sheet sur l’utilisation du calculateur de l’IDRIS</a></p></li>
-<li><p><a href="https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md%20et%20http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html">Utilisation des jupyter notebook sur Jean Zay</a></p></li>
-</ul>
+<section id="utilisation-de-git" class="level1">
+<h1>Utilisation de GIT</h1>
+<p>Il est recommandé d’utiliser git pour versionner vos scripts. Cela permet de garder un historique de vos modifications, de travailler à plusieurs sur les mêmes fichiers et de revenir à une version antérieure si besoin. Voir la <a href="https://documentation.osupytheas.fr/?s=git">documentation sur git</a> pour plus d’informations. Vos dépôts git peuvent être gérés via le <a href="https://gitlab.osupytheas.fr/">gitlab de l’osu pytheas</a>, le <a href="https://services.renater.fr/sourcesup/index">gitlab de renater</a>, de l’Inria, de l’IRD …</p>
+<p>Les dépôts git ne sont pas à mettre dans le nuage de l’OSU Pytheas, puisque déjà gérés par un serveur git.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

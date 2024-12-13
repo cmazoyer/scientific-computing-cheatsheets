@@ -7,7 +7,7 @@ maj : janvier 2024
 
 # 1. A faire à la première connexion:
 
-- Se connecter ici: https://mesocentre.univ-amu.fr/copernicus/user.html, mettre le mot de passe qui est indiqué dans un email.  
+- Se connecter ici: [espace utilisateur du CCAMU](https://mesocentre.univ-amu.fr/copernicus/user.html), mettre le mot de passe qui est indiqué dans un email.  
 
 - Changer le mot de passe comme demandé
 
