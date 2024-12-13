@@ -76,15 +76,15 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## Ferret
 
--   Premiers pas en ferret ( à faire)
+-   Premiers pas en ferret - EN CONSTRUCTION -
 
 ## Fortran
 
--   Options de compilation pour debugger en Fortran
+-   Options de compilation pour debugger en Fortran - EN CONSTRUCTION -
 
--   utilisation du debugger gdb avec croco (sur le cluster OSU)
+-   utilisation du debugger gdb avec croco (sur le cluster OSU) - EN CONSTRUCTION -
 
--   Listing des erreurs de compilations rencontrées lors d'installations de CROCO ou ROMS sur les machines de TP ou laptop
+-   Listing des erreurs de compilations rencontrées lors d'installations de CROCO ou ROMS sur les machines de TP ou laptop - EN CONSTRUCTION -
 
 ## Matlab
 

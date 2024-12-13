@@ -32,14 +32,14 @@
     "href": "index.html#ferret",
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "Ferret",
-    "text": "Ferret\n\nPremiers pas en ferret ( à faire)"
+    "text": "Ferret\n\nPremiers pas en ferret - EN CONSTRUCTION -"
   },
   {
     "objectID": "index.html#fortran",
     "href": "index.html#fortran",
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "Fortran",
-    "text": "Fortran\n\nOptions de compilation pour debugger en Fortran\nutilisation du debugger gdb avec croco (sur le cluster OSU)\nListing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop"
+    "text": "Fortran\n\nOptions de compilation pour debugger en Fortran - EN CONSTRUCTION -\nutilisation du debugger gdb avec croco (sur le cluster OSU) - EN CONSTRUCTION -\nListing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop - EN CONSTRUCTION -"
   },
   {
     "objectID": "index.html#matlab",
