@@ -304,15 +304,15 @@
     "objectID": "sheets/bonnes_pratiques_travail.html#installation-de-keepassxc",
     "href": "sheets/bonnes_pratiques_travail.html#installation-de-keepassxc",
     "title": "Bonnes pratiques de travail",
-    "section": "Installation de KeepassXC",
-    "text": "Installation de KeepassXC\nPour installer KeepassXC sous Linux ou Mac, suivre les instructions d’installation sur le site officiel de KeepassXC."
+    "section": "1.1 Installation de KeepassXC",
+    "text": "1.1 Installation de KeepassXC\nPour installer KeepassXC sous Linux ou Mac, suivre les instructions d’installation sur le site officiel de KeepassXC."
   },
   {
     "objectID": "sheets/bonnes_pratiques_travail.html#utilisation-de-keepassxc",
     "href": "sheets/bonnes_pratiques_travail.html#utilisation-de-keepassxc",
     "title": "Bonnes pratiques de travail",
-    "section": "Utilisation de KeepassXC",
-    "text": "Utilisation de KeepassXC\nPour utiliser KeepassXC, il suffit de créer une base de données de mots de passe et d’y stocker vos mots de passe. Vous pouvez ensuite les copier-coller dans les champs de connexion des sites web. La base de données est sécurisée par un mot de passe principal. Vous pouvez mettre le fichier de base de données dans un dossier synchronisé avec le service de cloud de l’Osu Pytheas."
+    "section": "1.2 Utilisation de KeepassXC",
+    "text": "1.2 Utilisation de KeepassXC\nPour utiliser KeepassXC, il suffit de créer une base de données de mots de passe et d’y stocker vos mots de passe. Vous pouvez ensuite les copier-coller dans les champs de connexion des sites web. La base de données est sécurisée par un mot de passe principal. Vous pouvez mettre le fichier de base de données dans un dossier synchronisé avec le service de cloud de l’Osu Pytheas."
   },
   {
     "objectID": "sheets/vim.html",
