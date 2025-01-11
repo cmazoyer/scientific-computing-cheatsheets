@@ -109,7 +109,7 @@
     "href": "sheets/google_colab.html",
     "title": "Utilisation efficace de Google colab",
     "section": "",
-    "text": "Liens à lire:\n\npage web sur towardsdatascience.com\npage web de demo\n\n\n\nÉtapes à réaliser:\n\nConnecter son compte Github avec Google Colab. Autoriser l’accès de son compte ici : http://colab.research.google.com/github\n\n \n\nChercher le token sur son compte Github\nOuvrir son dépôt github\n\n \n\nTravailler sur son fichier .ipynb\nPour le sauver et faire un push sur le serveur github"
+    "text": "Utilisation et intérêt de Google Colab\nGoogle Colab est un service gratuit de Google qui permet d’exécuter des notebooks Jupyter dans le cloud. Il est très pratique pour les personnes qui n’ont pas de machine puissante pour faire du calcul intensif. Il est possible d’utiliser des GPU et des TPU pour accélérer les calculs.\nL’intérêt est que : - la page est partageable, donc on peut partager un notebook avec des collègues pour qu’ils puissent le tester. - les personnes qui reçoivent le lien peuvent tester le code sans rien installer sur leur machine.\n\n\nLiens à lire:\n\npage web sur towardsdatascience.com\npage web de demo\n\n\n\nÉtapes à réaliser:\n\nConnecter son compte Github avec Google Colab. Autoriser l’accès de son compte ici : http://colab.research.google.com/github\n\n \n\nChercher le token sur son compte Github\nOuvrir son dépôt github\n\n \n\nTravailler sur son fichier .ipynb\nPour le sauver et faire un push sur le serveur github\n\n\n\nRemarques:\nPour utiliser la libraire netcdf4, il est possible de l’installer dans le notebook avec la commande suivante:\n!pip install netcdf4\nimport netCDF4"
   },
   {
     "objectID": "sheets/universite_toulon_proxy.html",

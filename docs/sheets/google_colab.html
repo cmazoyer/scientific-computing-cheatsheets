@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -108,8 +142,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#liens-à-lire" id="toc-liens-à-lire" class="nav-link active" data-scroll-target="#liens-à-lire">Liens à lire:</a></li>
+  <li><a href="#utilisation-et-intérêt-de-google-colab" id="toc-utilisation-et-intérêt-de-google-colab" class="nav-link active" data-scroll-target="#utilisation-et-intérêt-de-google-colab">Utilisation et intérêt de Google Colab</a></li>
+  <li><a href="#liens-à-lire" id="toc-liens-à-lire" class="nav-link" data-scroll-target="#liens-à-lire">Liens à lire:</a></li>
   <li><a href="#étapes-à-réaliser" id="toc-étapes-à-réaliser" class="nav-link" data-scroll-target="#étapes-à-réaliser">Étapes à réaliser:</a></li>
+  <li><a href="#remarques" id="toc-remarques" class="nav-link" data-scroll-target="#remarques">Remarques:</a></li>
   </ul>
 </nav>
     </div>
@@ -135,6 +171,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="utilisation-et-intérêt-de-google-colab" class="level1">
+<h1>Utilisation et intérêt de Google Colab</h1>
+<p>Google Colab est un service gratuit de Google qui permet d’exécuter des notebooks Jupyter dans le cloud. Il est très pratique pour les personnes qui n’ont pas de machine puissante pour faire du calcul intensif. Il est possible d’utiliser des GPU et des TPU pour accélérer les calculs.</p>
+<p>L’intérêt est que : - la page est partageable, donc on peut partager un notebook avec des collègues pour qu’ils puissent le tester. - les personnes qui reçoivent le lien peuvent tester le code sans rien installer sur leur machine.</p>
+</section>
 <section id="liens-à-lire" class="level1">
 <h1>Liens à lire:</h1>
 <ul>
@@ -157,6 +198,12 @@ ul.task-list li input[type="checkbox"] {
 <li>Travailler sur son fichier .ipynb</li>
 <li>Pour le sauver et faire un push sur le serveur github</li>
 </ol>
+</section>
+<section id="remarques" class="level1">
+<h1>Remarques:</h1>
+<p>Pour utiliser la libraire netcdf4, il est possible de l’installer dans le notebook avec la commande suivante:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>pip install netcdf4</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> netCDF4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

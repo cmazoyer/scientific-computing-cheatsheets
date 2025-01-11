@@ -124,4 +124,4 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [cheat sheet sur l'utilisation du calculateur de l'IDRIS](http://www.idris.fr/media/su/idrismemento1.pdf)
 
--   [Utilisation des jupyter notebook sur Jean Zay](https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html)
+-   [Utilisation des jupyter notebook sur Jean Zay](https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md)

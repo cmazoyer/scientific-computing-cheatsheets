@@ -2,6 +2,14 @@
 title : Utilisation efficace de Google colab
 ---
 
+# Utilisation et intérêt de Google Colab
+
+Google Colab est un service gratuit de Google qui permet d'exécuter des notebooks Jupyter dans le cloud. Il est très pratique pour les personnes qui n'ont pas de machine puissante pour faire du calcul intensif. Il est possible d'utiliser des GPU et des TPU pour accélérer les calculs.
+
+L'intérêt est que :
+- la page est partageable, donc on peut partager un notebook avec des collègues pour qu'ils puissent le tester.
+- les personnes qui reçoivent le lien peuvent tester le code sans rien installer sur leur machine.
+
 # Liens à lire:
 - [page web sur towardsdatascience.com](https://towardsdatascience.com/google-drive-google-colab-github-dont-just-read-do-it-5554d5824228)
 - [page web de demo](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)
@@ -22,3 +30,12 @@ title : Utilisation efficace de Google colab
 
 4. Travailler sur son fichier .ipynb
 5. Pour le sauver et faire un push sur le serveur github
+
+# Remarques:
+
+Pour utiliser la libraire netcdf4, il est possible de l'installer dans le notebook avec la commande suivante:
+
+```python
+!pip install netcdf4
+import netCDF4
+```
