@@ -92,7 +92,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## Python
 
--   Utilisation de google collab pour des jupyter notebook python - EN CONSTRUCTION -
+-   [Utilisation de google collab pour des jupyter notebook python](sheets/google_colab.qmd) 
 
 -   Toolbox pycroco (toolbox officielle de CROCO): [sources](https://gitlab.inria.fr/croco-ocean/croco_pytools/-/releases) et [documentation](https://www.croco-ocean.org/documentation/) 
 

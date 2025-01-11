@@ -1,0 +1,24 @@
+---
+title : Utilisation efficace de Google colab
+---
+
+# Liens à lire:
+- [page web sur towardsdatascience.com](https://towardsdatascience.com/google-drive-google-colab-github-dont-just-read-do-it-5554d5824228)
+- [page web de demo](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)
+
+# Étapes à réaliser:
+
+1. Connecter son compte Github avec Google Colab. Autoriser l'accès de son compte ici : [http://colab.research.google.com/github](http://colab.research.google.com/github)
+   
+![Google Colab 01](../images/google_colab_01.png)
+![Google Colab 02](../images/google_colab_02.png)
+
+2. [Chercher le token sur son compte Github](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/)
+   
+3. Ouvrir son dépôt github 
+   
+![Google Colab 03](../images/google_colab_03.png)
+![Google Colab 04](../images/google_colab_04.png)
+
+4. Travailler sur son fichier .ipynb
+5. Pour le sauver et faire un push sur le serveur github
