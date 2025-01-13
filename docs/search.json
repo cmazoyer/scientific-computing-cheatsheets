@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "",
-    "text": "auteur: Camille Mazoyer, camille.mazoyer@ird.fr\nmaj: novembre 2024\nMerci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation."
+    "text": "auteur: Camille Mazoyer, camille.mazoyer@ird.fr\nmaj: janv 2025\nI’ll translate my notes into English as I go along.\nMerci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation."
   },
   {
     "objectID": "index.html#docker",
@@ -53,7 +53,7 @@
     "href": "index.html#python",
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "Python",
-    "text": "Python\n\nUtilisation de google collab pour des jupyter notebook python\nToolbox pycroco (toolbox officielle de CROCO): sources et documentation\nla bibliothèque XOA gère les sorties CROCO\nUtilisation de gros jeux de données netcdf via xarray: documentation et tutoriels"
+    "text": "Python\n\nForcing unbuffered writing in a Python file\nUtilisation de google collab pour des jupyter notebook python\nToolbox pycroco (toolbox officielle de CROCO): sources et documentation\nla bibliothèque XOA gère les sorties CROCO\nUtilisation de gros jeux de données netcdf via xarray: documentation et tutoriels"
   },
   {
     "objectID": "index.html#respore-au-mio-toulon",
@@ -343,25 +343,11 @@
     "text": "sur tout ordinateur\nL’utilisateur 1 “user1” a un environnement anaconda qui intéresse l’utilisateur 2 “user2” sur la même machine. Le partage de son environnement peut se faire de cette manière:\nle home directory de user1 doit être lisible. Pour cela, user1 doit taper les commandes suivantes:\nchmod 755 /home/user1\nchmod -R 755 /home/user1/.conda    (si ses environnements sont situés ici)\n                                  (il le voit en regardant son ~/.condarc)\nuser2 doit aller chercher l’environnement de user1. Pour cela, il doit créer un fichier .condarc avec les infos suivantes:\nenvs_dirs:\n  - /home/user1/.conda/envs\nchannels:\n  - conda-forge\n  - defaults\nApres avoir relancer un terminal, le user2 peut se servir de l’environnement anaconda de user1 nommé ici “environnementuser1”:\nconda activate environnementuser1\n\n\nSur la machine tools :\nPartager un répertoire ouvert en lecture à tous:\nconda create -p /MODELISATION/ocean/CONDA/copernicus\nconda activate /MODELISATION/ocean/CONDA/copernicus\npuis se créer l’alias :\nalias envcopernicus='conda activate /MODELISATION/ocean/CONDA/copernicus'"
   },
   {
-    "objectID": "sheets/githubcopilot.html",
-    "href": "sheets/githubcopilot.html",
-    "title": "Installation et utilisation de Github Copilot en recherche",
+    "objectID": "sheets/python_buffer.html",
+    "href": "sheets/python_buffer.html",
+    "title": "Forcing unbuffered writing in a Python file",
     "section": "",
-    "text": "Se créer un compte sur github avec la double authentification: https://github.com/. L’adresse mail utilisée doit être l’adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d’adhésion à copilot)"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#prérequis",
-    "href": "sheets/githubcopilot.html#prérequis",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "2.1 Prérequis",
-    "text": "2.1 Prérequis\nSuivre les prérequis indiqués ici : https://education.github.com/discount_requests/application. Entre autres:\n\ndouble authentification\nadresse de facturation\npersonnaliser son profil : indiquer son vrai nom, mettre sa photo, …\nse munir de sa carte professionnelle\nréaliser la demande dans les locaux de l’adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu’on est en congé, l’heure correspond à un week end / soirée, …)"
-  },
-  {
-    "objectID": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
-    "href": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
-    "title": "Installation et utilisation de Github Copilot en recherche",
-    "section": "Infos pour la demande de compte",
-    "text": "Infos pour la demande de compte\n\nbien faire la demande avec son adresse ird, amu ou tln\nLa carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l’adresse mail professionnelle. Github va demander de prendre une photo du devant de celle-ci avec la camera de l’ordinateur"
+    "text": "Sometimes writing (to text files and on screen) is not done on the fly, but at the end of the script. In this case, you need to force writing by flushing the memory buffer. So we’ll use the print method defined here:\nimport os,sys,builtins\n\n\ndef print(text):\n        builtins.print(text)\n        os.fsync(sys.stdout)\n\ndef print2(text1,text2):\n        builtins.print(text1, text2)\n        os.fsync(sys.stdout)\n\nsys.stdout=open(\"readgrib.txt\",\"a\",buffering=1)\n\n# script avec des calculs et des print\nprint('read grdfile') # avec un argument\nprint2('read grdfile', gridname) # avec deux arguments\n# et autre print...."
   },
   {
     "objectID": "sheets/zenodo_github.html",
@@ -397,6 +383,27 @@
     "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
     "section": "3.2 Sur Zenodo",
     "text": "3.2 Sur Zenodo\nSe référer à la documentation github sur Zenodo.\n\nSe rendre sur Zenodo et se connecter à Zenodo avec son compte Github, le lien sera ainsi fait entre les deux sites web.\nDans la page settings, https://zenodo.org/account/settings/github/, cliquer sur “Sync Now”\nRafraichir la page avec F5\nPositionner le bouton sur “ON” sur le dépôt de votre organisation (ici TAO-Soft/Tao-Soft)\nRafraichir la page avec F5\nDans la section “Enabled Repositories”, le nouveau dépôt devrait apparaitre. Cliquer dessus.\nOn est alors sur la page https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft, dans mon exemple.\nCliquer sur “Create release”, on se déplace alors sur une page du dépôt TAO-Soft du site Github\nDans “Choose a tag”, sélectioner le tag qui nous intéresse, par ex: v0.1.0.\nIndiquer le titre de la release. Par exemple: “Initial release v0.1.0”\nIl est conseiller de décrire la release (amélioration, bug fixed, …)\nCliquer sur le bouton vert “Publish release”\nCette release ayant été faite à partir de Zenodo, elle sera visible sur celui-ci. Rafraichir la page du dépôt sur Zenodo https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft\nToutes les informations apparaissent, dont le DOI"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html",
+    "href": "sheets/githubcopilot.html",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "",
+    "text": "Se créer un compte sur github avec la double authentification: https://github.com/. L’adresse mail utilisée doit être l’adresse professionelle, pour laquelle on a une carte professionnelle (ce sera nécessaire pour la demande d’adhésion à copilot)"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#prérequis",
+    "href": "sheets/githubcopilot.html#prérequis",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "2.1 Prérequis",
+    "text": "2.1 Prérequis\nSuivre les prérequis indiqués ici : https://education.github.com/discount_requests/application. Entre autres:\n\ndouble authentification\nadresse de facturation\npersonnaliser son profil : indiquer son vrai nom, mettre sa photo, …\nse munir de sa carte professionnelle\nréaliser la demande dans les locaux de l’adresse de facturation. Dans le cas contraire, il faut indiquer pourquoi la localisation ne correspond pas (ex: parce qu’on est en congé, l’heure correspond à un week end / soirée, …)"
+  },
+  {
+    "objectID": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "href": "sheets/githubcopilot.html#infos-pour-la-demande-de-compte",
+    "title": "Installation et utilisation de Github Copilot en recherche",
+    "section": "Infos pour la demande de compte",
+    "text": "Infos pour la demande de compte\n\nbien faire la demande avec son adresse ird, amu ou tln\nLa carte professionnelle (sans date) peut être une preuve suffisante. Elle doit correspondre à l’adresse mail professionnelle. Github va demander de prendre une photo du devant de celle-ci avec la camera de l’ordinateur"
   },
   {
     "objectID": "sheets/connexion_distance_tools.html",

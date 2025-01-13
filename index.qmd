@@ -4,7 +4,9 @@ title: "Calcul scientifique au laboratoire MIO"
 
 auteur: Camille Mazoyer, camille.mazoyer\@ird.fr
 
-maj: novembre 2024
+maj: janv 2025
+
+I'll translate my notes into English as I go along. 
 
 Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour que j'améliore la documentation.
 
@@ -64,7 +66,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 - [Utilisation de Quarto pour créer un site web, avec github](sheets/site_quarto.html)
   
-- [Utilisation de Github Copilot dans Visual Studio Code](sheets/githubcopilot.qmd)
+- [Utilisation de Github Copilot dans Visual Studio Code](sheets/githubcopilot.html)
 
 ## Anaconda
 
@@ -92,7 +94,9 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## Python
 
--   [Utilisation de google collab pour des jupyter notebook python](sheets/google_colab.qmd) 
+- [Forcing unbuffered writing in a Python file](sheets/python_buffer.html)
+
+-  [Utilisation de google collab pour des jupyter notebook python](sheets/google_colab.html) 
 
 -   Toolbox pycroco (toolbox officielle de CROCO): [sources](https://gitlab.inria.fr/croco-ocean/croco_pytools/-/releases) et [documentation](https://www.croco-ocean.org/documentation/) 
 
