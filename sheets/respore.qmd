@@ -2,28 +2,45 @@
 title : Machine respore au MIO Toulon
 ---
 
-A disposition sur la machine respore:
+Voici une liste des environnements anaconda et dockers à disposition sur la machine Respore.
 
 # anaconda
 
 ## env "oceano"
 Environnement "oceano" avec de nombreux packages nécessaires pour l'océanographie: dask, xarray, xgcm, numpy, pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy matplotlib cloudpickle ...
 
-## env "copernicusmarine"
-Permet de télécharger les données de Copernicus Marine: voir la doc [Documentation sur Copernicus Marine](copernicusmarine.html).
-
-## env "croco_pyenv"
-Environnement nécessaire à la [toolbox python croco](https://gitlab.inria.fr/croco-ocean/croco_pytools).
-
-## utilisation
-Utiliser la commande suivante pour utiliser l'environnement "oceano", par exemple:
 ```bash
 conda activate oceano
 ```
 
+## env "FERRET"
+Environnement nécessaire pour pyferret.
+
+```bash
+conda activate FERRET
+pyferret
+```
+
+## env "copernicusmarine"
+Permet de télécharger les données de Copernicus Marine: voir la doc interne au wiki spécifique à [Copernicus Marine](copernicusmarine.html).
+
+```bash
+conda activate copernicusmarine
+```
+
+## env "croco_pyenv"
+Environnement nécessaire à la [toolbox python croco](https://gitlab.inria.fr/croco-ocean/croco_pytools), qui a pour but de remplacer la crocotools écrite en matlab.
+
+```bash
+conda activate croco_pyenv
+```
+
+
 # docker
 
 Docker est installé sur la machine respore. Pour plus d'informations sur docker, voir la doc [Créer et partager une image docker](create_docker.html) et [Création et utilisation d'un docker (exemple pour pyferret)](docker.html).
+
+A long terme, plusieurs environnements seront disponibles sous forme de docker. Pour l'instant, seul oceanparcels est à votre disposition.
 
 ## oceanparcels 3.1.0
 
@@ -35,6 +52,5 @@ Les données ou scripts dans /home/monlogin/work/ seront accessibles dans le doc
 
 Si vous avez besoin de télécharger des données dans les scripts python pour oceanparcels, vous aurez besoin d'indiquer le proxy dans vos scripts. Se référer à la doc [Travailler à la fac de Toulon derrière un proxy](universite_toulon_proxy.qmd.html) pour plus d'informations sur le proxy.
 
-## pyferret
-A venir
+
 

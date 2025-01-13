@@ -543,35 +543,35 @@
     "href": "sheets/respore.html",
     "title": "Machine respore au MIO Toulon",
     "section": "",
-    "text": "A disposition sur la machine respore:"
+    "text": "Voici une liste des environnements anaconda et dockers à disposition sur la machine Respore."
   },
   {
     "objectID": "sheets/respore.html#env-oceano",
     "href": "sheets/respore.html#env-oceano",
     "title": "Machine respore au MIO Toulon",
     "section": "env “oceano”",
-    "text": "env “oceano”\nEnvironnement “oceano” avec de nombreux packages nécessaires pour l’océanographie: dask, xarray, xgcm, numpy, pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy matplotlib cloudpickle …"
+    "text": "env “oceano”\nEnvironnement “oceano” avec de nombreux packages nécessaires pour l’océanographie: dask, xarray, xgcm, numpy, pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy matplotlib cloudpickle …\nconda activate oceano"
+  },
+  {
+    "objectID": "sheets/respore.html#env-ferret",
+    "href": "sheets/respore.html#env-ferret",
+    "title": "Machine respore au MIO Toulon",
+    "section": "env “FERRET”",
+    "text": "env “FERRET”\nEnvironnement nécessaire pour pyferret.\nconda activate FERRET\npyferret"
   },
   {
     "objectID": "sheets/respore.html#env-copernicusmarine",
     "href": "sheets/respore.html#env-copernicusmarine",
     "title": "Machine respore au MIO Toulon",
     "section": "env “copernicusmarine”",
-    "text": "env “copernicusmarine”\nPermet de télécharger les données de Copernicus Marine: voir la doc Documentation sur Copernicus Marine."
+    "text": "env “copernicusmarine”\nPermet de télécharger les données de Copernicus Marine: voir la doc interne au wiki spécifique à Copernicus Marine.\nconda activate copernicusmarine"
   },
   {
     "objectID": "sheets/respore.html#env-croco_pyenv",
     "href": "sheets/respore.html#env-croco_pyenv",
     "title": "Machine respore au MIO Toulon",
     "section": "env “croco_pyenv”",
-    "text": "env “croco_pyenv”\nEnvironnement nécessaire à la toolbox python croco."
-  },
-  {
-    "objectID": "sheets/respore.html#utilisation",
-    "href": "sheets/respore.html#utilisation",
-    "title": "Machine respore au MIO Toulon",
-    "section": "utilisation",
-    "text": "utilisation\nUtiliser la commande suivante pour utiliser l’environnement “oceano”, par exemple:\nconda activate oceano"
+    "text": "env “croco_pyenv”\nEnvironnement nécessaire à la toolbox python croco, qui a pour but de remplacer la crocotools écrite en matlab.\nconda activate croco_pyenv"
   },
   {
     "objectID": "sheets/respore.html#oceanparcels-3.1.0",
@@ -579,13 +579,6 @@
     "title": "Machine respore au MIO Toulon",
     "section": "oceanparcels 3.1.0",
     "text": "oceanparcels 3.1.0\nPour lancer le docker d’oceanparcels 3.1.0, et partager le répertoire /home/monlogin/work dans lequel nous avons nos données ou scripts, taper la commande suivante:\ndocker run -i -v /home/monlogin/work/:/work -t oceanparcels:3.1.0\nLes données ou scripts dans /home/monlogin/work/ seront accessibles dans le docker dans le répertoire /work.\nSi vous avez besoin de télécharger des données dans les scripts python pour oceanparcels, vous aurez besoin d’indiquer le proxy dans vos scripts. Se référer à la doc Travailler à la fac de Toulon derrière un proxy pour plus d’informations sur le proxy."
-  },
-  {
-    "objectID": "sheets/respore.html#pyferret",
-    "href": "sheets/respore.html#pyferret",
-    "title": "Machine respore au MIO Toulon",
-    "section": "pyferret",
-    "text": "pyferret\nA venir"
   },
   {
     "objectID": "sheets/detacher_processus_nohup.html",
