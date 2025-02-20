@@ -17,42 +17,26 @@ L'installation se fait via le site officiel d'Anaconda: [Anaconda](https://www.a
 
 ## 1) installation via miniconda
 
-Le script ci-dessous est à adapter suivant la [page web de miniconda](https://docs.conda.io/en/latest/miniconda.html) :
-```bash
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh 
-sh Miniconda*.sh
-```
+Le script ci-dessous est à adapter suivant la [page web de miniconda](https://docs.conda.io/en/latest/miniconda.html) si vous souhaitez plus d'infos :
 
-ou pour installer rapidement anaconda:
+Si possible, une installation en root est à privilégier pour que l'ensemble des utilisateurs puissent en bénéficier. 
+Si on n'a pas d'accès root, on peut installer miniconda dans le répertoire /home/votrelogin/anaconda/miniconda3 par exemple.
+
 ```bash
 # Install miniconda to /miniconda
-curl -LO http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh -p /miniconda -b
+wget --proxy-user="tonlogin" --proxy-password="tonmotdepasse" « https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh »
+bash Miniconda3-latest-Linux-x86_64.sh -p  /opt/miniconda3  -b
 rm Miniconda3-latest-Linux-x86_64.sh
-ENV PATH=/miniconda/bin:${PATH}
+conda update -n base -c defaults conda
 ```
 
-On peut installer miniconda dans le répertoire /home/votrelogin/anaconda/miniconda3 par exemple.
 
 ## 2) installation dans le .bashrc  (a installer dans les home de chacun)
 
 A la fin de l'installation, l'installateur propose de rajouter le chemin de miniconda dans le .bashrc, via la commande conda init. Si on accepte, les commandes ci-dessous sont ajoutées dans le .bashrc automatiquement. Si ce n'est pas le cas, vous pouvez toujours ajouter manuellement les lignes suivantes:
 
 ```bash
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/anaconda/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+ /opt/miniconda3/condabin/conda init 
 ```
 
 Relancer ensuite un terminal pour que les modifications soient prises en compte.
@@ -71,3 +55,43 @@ Vous pouvez ensuite vous référer à la page [Anaconda pour l'oceanographie](an
 # Penser aussi à:
 
 créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc [Générer une clef ssh](clef_ssh.html) )
+
+
+# script complet : 
+En fonction de toutes les commandes ci-dessus, **le script complet** est le suivant, via le proxy de l'université de Toulon:
+```bash
+#!/bin/bash
+
+# variable proxy_tln (mettre à true si le proxy de la fac de toulon doit être utilisé, sinon false)
+proxy_tln=true
+
+# Installation des paquets nécessaires
+sudo apt-get install aptitude -y
+sudo aptitude install vim-gtk3 -y
+sudo aptitude install stow git gfortran libnetcdff-dev -y
+sudo aptitude install libopenmpi-dev openmpi-bin -y
+#### installation de miniconda ####
+if [ "$proxy_tln" = true ]; then
+    export http_proxy=cache.univ-tln.fr:3128
+    export https_proxy=cache.univ-tln.fr:3128
+    wget --proxy-user="tonlogin" --proxy-password="tonmotdepasse" "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+else
+    wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+fi
+bash Miniconda3-latest-Linux-x86_64.sh -p  /opt/miniconda3  -b
+
+# mise a jour
+conda update -n base -c defaults conda
+
+#### FERRET: #### 
+conda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes
+conda install "numpy<2"
+
+#### ocean parcels : ####  3.1.2
+conda create -n oceanparcels -c conda-forge  parcels 
+```
+
+Puis pour chaque utilisateur, il faut rajouter dans le .bashrc:
+```bash
+/opt/miniconda3/condabin/conda init
+```

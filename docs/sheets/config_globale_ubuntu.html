@@ -160,6 +160,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
   </ul></li>
   <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
   <li><a href="#penser-aussi-à" id="toc-penser-aussi-à" class="nav-link" data-scroll-target="#penser-aussi-à">Penser aussi à:</a></li>
+  <li><a href="#script-complet" id="toc-script-complet" class="nav-link" data-scroll-target="#script-complet">script complet :</a></li>
   </ul>
 </nav>
     </div>
@@ -197,34 +198,18 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
 <p>L’installation se fait via le site officiel d’Anaconda: <a href="https://www.anaconda.com/products/individual">Anaconda</a>.</p>
 <section id="installation-via-miniconda" class="level2">
 <h2 class="anchored" data-anchor-id="installation-via-miniconda">1) installation via miniconda</h2>
-<p>Le script ci-dessous est à adapter suivant la <a href="https://docs.conda.io/en/latest/miniconda.html">page web de miniconda</a> :</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> Miniconda<span class="pp">*</span>.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>ou pour installer rapidement anaconda:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install miniconda to /miniconda</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LO</span> http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniconda3-latest-Linux-x86_64.sh <span class="at">-p</span> /miniconda <span class="at">-b</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> Miniconda3-latest-Linux-x86_64.sh</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ENV</span> PATH=/miniconda/bin:<span class="va">${PATH}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>On peut installer miniconda dans le répertoire /home/votrelogin/anaconda/miniconda3 par exemple.</p>
+<p>Le script ci-dessous est à adapter suivant la <a href="https://docs.conda.io/en/latest/miniconda.html">page web de miniconda</a> si vous souhaitez plus d’infos :</p>
+<p>Si possible, une installation en root est à privilégier pour que l’ensemble des utilisateurs puissent en bénéficier. Si on n’a pas d’accès root, on peut installer miniconda dans le répertoire /home/votrelogin/anaconda/miniconda3 par exemple.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install miniconda to /miniconda</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">--proxy-user</span><span class="op">=</span><span class="st">"tonlogin"</span> <span class="at">--proxy-password</span><span class="op">=</span><span class="st">"tonmotdepasse"</span> «&nbsp;https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh&nbsp;»</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniconda3-latest-Linux-x86_64.sh <span class="at">-p</span>  /opt/miniconda3  <span class="at">-b</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> Miniconda3-latest-Linux-x86_64.sh</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update <span class="at">-n</span> base <span class="at">-c</span> defaults conda</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun" class="level2">
 <h2 class="anchored" data-anchor-id="installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun">2) installation dans le .bashrc (a installer dans les home de chacun)</h2>
 <p>A la fin de l’installation, l’installateur propose de rajouter le chemin de miniconda dans le .bashrc, via la commande conda init. Si on accepte, les commandes ci-dessous sont ajoutées dans le .bashrc automatiquement. Si ce n’est pas le cas, vous pouvez toujours ajouter manuellement les lignes suivantes:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !! Contents within this block are managed by 'conda init' !!</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">__conda_setup</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="st">'/usr/local/anaconda/miniconda3/bin/conda'</span> <span class="st">'shell.bash'</span> <span class="st">'hook'</span> <span class="dv">2</span><span class="op">&gt;</span> /dev/null<span class="va">)</span><span class="st">"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="va">$?</span> <span class="ot">-eq</span> 0 <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">eval</span> <span class="st">"</span><span class="va">$__conda_setup</span><span class="st">"</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">[</span> <span class="ot">-f</span> <span class="st">"/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">.</span> <span class="st">"/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh"</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"/usr/local/anaconda/miniconda3/bin:</span><span class="va">$PATH</span><span class="st">"</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="bu">unset</span> <span class="va">__conda_setup</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">/opt/miniconda3/condabin/conda</span> init </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Relancer ensuite un terminal pour que les modifications soient prises en compte.</p>
 </section>
 <section id="création-dun-environnement-pour-locéanographie" class="level2">
@@ -242,6 +227,41 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
 <section id="penser-aussi-à" class="level1">
 <h1>Penser aussi à:</h1>
 <p>créer une clef SSH et la diffuser sur d’autres ordinateurs pour éviter de taper son mot de passe (voir doc <a href="clef_ssh.html">Générer une clef ssh</a> )</p>
+</section>
+<section id="script-complet" class="level1">
+<h1>script complet :</h1>
+<p>En fonction de toutes les commandes ci-dessus, <strong>le script complet</strong> est le suivant, via le proxy de l’université de Toulon:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># variable proxy_tln (mettre à true si le proxy de la fac de toulon doit être utilisé, sinon false)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">proxy_tln</span><span class="op">=</span>true</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Installation des paquets nécessaires</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install aptitude <span class="at">-y</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> aptitude install vim-gtk3 <span class="at">-y</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> aptitude install stow git gfortran libnetcdff-dev <span class="at">-y</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> aptitude install libopenmpi-dev openmpi-bin <span class="at">-y</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#### installation de miniconda ####</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="st">"</span><span class="va">$proxy_tln</span><span class="st">"</span> <span class="ot">=</span> true <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">export</span> <span class="va">http_proxy</span><span class="op">=</span>cache.univ-tln.fr:3128</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">export</span> <span class="va">https_proxy</span><span class="op">=</span>cache.univ-tln.fr:3128</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wget</span> <span class="at">--proxy-user</span><span class="op">=</span><span class="st">"tonlogin"</span> <span class="at">--proxy-password</span><span class="op">=</span><span class="st">"tonmotdepasse"</span> <span class="st">"https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wget</span> <span class="st">"https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniconda3-latest-Linux-x86_64.sh <span class="at">-p</span>  /opt/miniconda3  <span class="at">-b</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># mise a jour</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update <span class="at">-n</span> base <span class="at">-c</span> defaults conda</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#### FERRET: #### </span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> FERRET <span class="at">-c</span> conda-forge pyferret ferret_datasets python=3.9 <span class="at">--yes</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="st">"numpy&lt;2"</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">#### ocean parcels : ####  3.1.2</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> oceanparcels <span class="at">-c</span> conda-forge  parcels </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puis pour chaque utilisateur, il faut rajouter dans le .bashrc:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/opt/miniconda3/condabin/conda</span> init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
