@@ -4,7 +4,7 @@ title: "Calcul scientifique au laboratoire MIO"
 
 auteur: Camille Mazoyer, camille.mazoyer\@ird.fr
 
-maj: janv 2025
+maj: fev 2025
 
 I'll translate my notes into English as I go along. 
 
@@ -76,9 +76,11 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [Partager un environnement Anaconda entre deux utilisateurs d'une même machine](sheets/partager_env_anaconda.html)
 
-## Ferret
+## pyFerret / Ferret
 
--   Premiers pas en ferret - EN CONSTRUCTION -
+-   [Installation de pyferret avec Anaconda](sheets/installation_pyferret.html)
+  
+-   [Premiers pas en ferret](files/tutoriel_linux_ferret_nco.pdf) 
 
 ## Fortran
 

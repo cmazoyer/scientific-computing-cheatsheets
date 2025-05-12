@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "",
-    "text": "auteur: Camille Mazoyer, camille.mazoyer@ird.fr\nmaj: janv 2025\nI’ll translate my notes into English as I go along.\nMerci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation."
+    "text": "auteur: Camille Mazoyer, camille.mazoyer@ird.fr\nmaj: fev 2025\nI’ll translate my notes into English as I go along.\nMerci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation."
   },
   {
     "objectID": "index.html#docker",
@@ -649,5 +649,12 @@
     "title": "Créer un exécutable Matlab",
     "section": "",
     "text": "But: pouvoir utiliser son script matlab sur une machine qui n’a pas de licence matlab\nInconvénients: il faut créer l’éxécutable sur la même architecture que l’architecture cible (ex: linux pour linux, …)\n\n1. Suivre la doc du SIP\nhttps://calcul.osupytheas.fr/?p=478\n\n\n2. Etape 1: création de l’exécutable, choix des arguments\nOn peut choisir des arguments de notre code matlab flottants et non de type chaine de charactere: Avant la phrase du SIP ” Une fois vos codes et modules ajoutés, vous devez créer le package en cliquant sur Package.”, c’est important de dire que les arguments donnés au code peuvent être indiqués en chaines de caractères (par défault) ou en flottants (ce dont moi j’avais besoin). Il y a une case à cocher. Tous les arguments doivent être du même type (flottant ou string)\n\n\n3. Lancement du code via slurm\nPour la Deuxième étape indiquée sur calcul.osupytheas.fr, je propose une autre solution que je trouve plus lisible quand on a des arguments. Mais c’est à vous de voir si vous préférez le tutorial du SIP ou cette possibilité: - 1. Copier le script run_xxx.sh contenu dans le répertoire for_testing vers notre répertoire de travail et modifier la ligne pointant vers l’exécutable, si besoin : bash     exe_dir=/home/mazoyer/matlab_to_exe/rep_exe - 2. Créer un fichier run.slurm de lancement batch comme suit, si l’on a un script matlab avec 3 arguments qui seront ici arg1, arg2, arg3 (à remplacer dans votre cas). Le répertoire Matlab /usr/local/MATLAB/MATLAB_Runtime/v910 est le répertoire racine de Matlab contenant par exemple le répertoire runtime/glnxa64.\n    #!/bin/sh\n    # script pour l'exécution des codes Matlab packages.\n    #\n    #Environnement MATLAB Runtime\n\n    #SBATCH --job-name=matlab_MCR\n    #SBATCH --time=240:00:00\n    #SBATCH --mail-user=xxx.yyy@ird.fr\n    #SBATCH --partition=seq\n    #SBATCH --output=resultslumr.log\n\n    echo 'start matlab'\n    time sh run_xxx.sh /usr/local/MATLAB/MATLAB_Runtime/v910 arg1 arg2 arg3\n    echo 'end matlab'\n\n\nPour lancer ensuite l’exécutable, taper la commande:\n\n\n    sbatch run.slurm\nAttention! le run batch ne s’arrête pas une fois la fin de l’éxécution matlab, il faut penser à killer le job evéntuellement."
+  },
+  {
+    "objectID": "index.html#pyferret-ferret",
+    "href": "index.html#pyferret-ferret",
+    "title": "Calcul scientifique au laboratoire MIO",
+    "section": "pyFerret / Ferret",
+    "text": "pyFerret / Ferret\n\nInstallation de pyferret avec Anaconda\n\nPremiers pas en ferret"
   }
 ]
