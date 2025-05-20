@@ -1,0 +1,66 @@
+---
+title : Astuces Ferret
+---
+
+# Aggréger des netcdf 
+
+## via un fichier descripteur .des
+
+Les infos sont issues du site de Ferret [File descriptor website NOAA](https://ferret.pmel.noaa.gov/Ferret/documentation/users-guide/converting-to-netcdf/CREATING-A-MULTI-FILE-NETCDF-DATA-SET#_VPID_366), voir 10.4.1 Tools for making descriptor files. 
+
+Un fichier perl permet de créer le fichier des. Il est disponible ici: [fichier make_des à télécharger](http://www.gfdl.noaa.gov/~atw/ferret/make_des).
+
+Pour utiliser le fichier .des en sortie de make_des, il suffit d'utiliser la commande "use": 
+```ferret
+use "GLAZUR.des"
+```
+## via l'appel à un script Ferret aggregate.jnl
+
+Le script aggregate.jnl ci-dessous permet de créer dataset à partir de plusieurs fichiers netcdf. 
+
+```ferret
+  \cancel mode verify
+  ! aggregate.jnl
+  ! Description: Generate a time aggregation and open the files
+
+  ! Usage:         arg1
+  ! GO aggregate file name
+
+  ! arg 1 - file list defined by wildcards
+  ! arg 2 - name of the file
+
+  ! Example:
+  ! go aggregate RUN*/ocean_day.nc4 fileU
+  !
+  let file_list = SPAWN("ls -1 $1")
+  DEFINE DATA/AGGREGATE /T $2=file_list
+  say "Defining data set AggData"
+  set mode/last verify
+```
+
+L'utilisation de ce script est la suivante. Pour l'exemple, si l'on souhaite aggréger tous les fichiers netcdf qui commencent par TBAY et qui se terminent par _U.nc, il faut faire:
+```ferret
+  go aggregate /home/monrep/TBAY*_U.nc fileu
+  shade/d=`fileu`/k=75/l=10 temp
+```
+Le script va créer alors créér un aggrégat d=fileu et qui contient toutes les variables des fichiers d'entrée. Dans l'exemple, on peut voir comment on peut afficher la température à la profondeur k=75, au temps l=10. 
+
+
+
+# Extraire des données et les sauver dans un netcdf
+Pour sauver un fichier netcdf, il faut utiliser la commande "save/file" de ferret. Par exemple, pour extraire les 10 premiers mètres de surface pour la vitesse (uveltave, vveltave). On utilise une boucle avec repeat pour optimiser la mémoire.
+
+```ferret
+use "/arch/home/rech/utv/rutv918/output_mitgcm/EXPT1_polluants_mistral_20160201_00h00_TOTAL/tave_2016_2017.des"
+! vitesse moyenne sur [0:10m]
+let U_10m=UVELTAVE[z=-10:0@ave]
+let V_10m=VVELTAVE[z=-10:0@ave]
+save/clobber/l=1/file="/arch/home/rech/utv/rutv918/output_mitgcm/EXPT1_polluants_mistral_20160201_00h00_TOTAL/2016_2017_U_V_surface_avg_0_10m.nc" U_10m,
+V_10m
+repeat/l=10318:11520 (save/append/file="/arch/home/rech/utv/rutv918/output_mitgcm/EXPT1_polluants_mistral_20160201_00h00_TOTAL/2016_2017_U_V_surface_avg_
+0_10m.nc" U_10m, V_10m)
+```
+
+
+
+

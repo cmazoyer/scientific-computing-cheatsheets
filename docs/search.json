@@ -655,6 +655,27 @@
     "href": "index.html#pyferret-ferret",
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "pyFerret / Ferret",
-    "text": "pyFerret / Ferret\n\nInstallation de pyferret avec Anaconda\n\nPremiers pas en ferret"
+    "text": "pyFerret / Ferret\n\nInstallation de pyferret avec Anaconda\nPremiers pas en ferret\nAstuces pour Ferret"
+  },
+  {
+    "objectID": "sheets/ferret.html",
+    "href": "sheets/ferret.html",
+    "title": "Astuces Ferret",
+    "section": "",
+    "text": "Les infos sont issues du site de Ferret File descriptor website NOAA, voir 10.4.1 Tools for making descriptor files.\nUn fichier perl permet de créer le fichier des. Il est disponible ici: fichier make_des à télécharger.\nPour utiliser le fichier .des en sortie de make_des, il suffit d’utiliser la commande “use”:\nuse \"GLAZUR.des\"\n\n\n\nLe script aggregate.jnl ci-dessous permet de créer dataset à partir de plusieurs fichiers netcdf.\n  \\cancel mode verify\n  ! aggregate.jnl\n  ! Description: Generate a time aggregation and open the files\n\n  ! Usage:         arg1\n  ! GO aggregate file name\n\n  ! arg 1 - file list defined by wildcards\n  ! arg 2 - name of the file\n\n  ! Example:\n  ! go aggregate RUN*/ocean_day.nc4 fileU\n  !\n  let file_list = SPAWN(\"ls -1 $1\")\n  DEFINE DATA/AGGREGATE /T $2=file_list\n  say \"Defining data set AggData\"\n  set mode/last verify\nL’utilisation de ce script est la suivante. Pour l’exemple, si l’on souhaite aggréger tous les fichiers netcdf qui commencent par TBAY et qui se terminent par _U.nc, il faut faire:\n  go aggregate /home/monrep/TBAY*_U.nc fileu\n  shade/d=`fileu`/k=75/l=10 temp\nLe script va créer alors créér un aggrégat d=fileu et qui contient toutes les variables des fichiers d’entrée. Dans l’exemple, on peut voir comment on peut afficher la température à la profondeur k=75, au temps l=10."
+  },
+  {
+    "objectID": "sheets/ferret.html#via-un-fichier-descripteur-.des",
+    "href": "sheets/ferret.html#via-un-fichier-descripteur-.des",
+    "title": "Astuces Ferret",
+    "section": "",
+    "text": "Les infos sont issues du site de Ferret File descriptor website NOAA, voir 10.4.1 Tools for making descriptor files.\nUn fichier perl permet de créer le fichier des. Il est disponible ici: fichier make_des à télécharger.\nPour utiliser le fichier .des en sortie de make_des, il suffit d’utiliser la commande “use”:\nuse \"GLAZUR.des\""
+  },
+  {
+    "objectID": "sheets/ferret.html#via-lappel-à-un-script-ferret-aggregate.jnl",
+    "href": "sheets/ferret.html#via-lappel-à-un-script-ferret-aggregate.jnl",
+    "title": "Astuces Ferret",
+    "section": "",
+    "text": "Le script aggregate.jnl ci-dessous permet de créer dataset à partir de plusieurs fichiers netcdf.\n  \\cancel mode verify\n  ! aggregate.jnl\n  ! Description: Generate a time aggregation and open the files\n\n  ! Usage:         arg1\n  ! GO aggregate file name\n\n  ! arg 1 - file list defined by wildcards\n  ! arg 2 - name of the file\n\n  ! Example:\n  ! go aggregate RUN*/ocean_day.nc4 fileU\n  !\n  let file_list = SPAWN(\"ls -1 $1\")\n  DEFINE DATA/AGGREGATE /T $2=file_list\n  say \"Defining data set AggData\"\n  set mode/last verify\nL’utilisation de ce script est la suivante. Pour l’exemple, si l’on souhaite aggréger tous les fichiers netcdf qui commencent par TBAY et qui se terminent par _U.nc, il faut faire:\n  go aggregate /home/monrep/TBAY*_U.nc fileu\n  shade/d=`fileu`/k=75/l=10 temp\nLe script va créer alors créér un aggrégat d=fileu et qui contient toutes les variables des fichiers d’entrée. Dans l’exemple, on peut voir comment on peut afficher la température à la profondeur k=75, au temps l=10."
   }
 ]

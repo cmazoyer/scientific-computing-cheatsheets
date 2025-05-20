@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Calcul scientifique au laboratoire MIO – Camille Mazoyer</title>
+<title>Astuces Ferret – Camille Mazoyer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-8bda806db8b623a4dafb352339cca83f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-8bda806db8b623a4dafb352339cca83f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -77,7 +77,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
 </script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -87,7 +87,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Camille Mazoyer</span>
     </a>
   </div>
@@ -98,7 +98,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
 </ul>
@@ -117,25 +117,12 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#configuration-globale" id="toc-configuration-globale" class="nav-link active" data-scroll-target="#configuration-globale">Configuration globale</a></li>
-  <li><a href="#informatique-divers" id="toc-informatique-divers" class="nav-link" data-scroll-target="#informatique-divers">Informatique (divers)</a></li>
-  <li><a href="#fiches-logiciels" id="toc-fiches-logiciels" class="nav-link" data-scroll-target="#fiches-logiciels">Fiches logiciels</a>
+  <li><a href="#aggréger-des-netcdf" id="toc-aggréger-des-netcdf" class="nav-link active" data-scroll-target="#aggréger-des-netcdf">Aggréger des netcdf</a>
   <ul class="collapse">
-  <li><a href="#docker" id="toc-docker" class="nav-link" data-scroll-target="#docker">Docker</a></li>
-  <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git">Git</a></li>
-  <li><a href="#anaconda" id="toc-anaconda" class="nav-link" data-scroll-target="#anaconda">Anaconda</a></li>
-  <li><a href="#pyferret-ferret" id="toc-pyferret-ferret" class="nav-link" data-scroll-target="#pyferret-ferret">pyFerret / Ferret</a></li>
-  <li><a href="#fortran" id="toc-fortran" class="nav-link" data-scroll-target="#fortran">Fortran</a></li>
-  <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
-  <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
+  <li><a href="#via-un-fichier-descripteur-.des" id="toc-via-un-fichier-descripteur-.des" class="nav-link" data-scroll-target="#via-un-fichier-descripteur-.des">via un fichier descripteur .des</a></li>
+  <li><a href="#via-lappel-à-un-script-ferret-aggregate.jnl" id="toc-via-lappel-à-un-script-ferret-aggregate.jnl" class="nav-link" data-scroll-target="#via-lappel-à-un-script-ferret-aggregate.jnl">via l’appel à un script Ferret aggregate.jnl</a></li>
   </ul></li>
-  <li><a href="#utilisation-de-clusters-locaux-régionaux-nationaux" id="toc-utilisation-de-clusters-locaux-régionaux-nationaux" class="nav-link" data-scroll-target="#utilisation-de-clusters-locaux-régionaux-nationaux">Utilisation de clusters locaux, régionaux, nationaux</a>
-  <ul class="collapse">
-  <li><a href="#respore-au-mio-toulon" id="toc-respore-au-mio-toulon" class="nav-link" data-scroll-target="#respore-au-mio-toulon">Respore au MIO Toulon</a></li>
-  <li><a href="#cluster-de-losu-pytheas" id="toc-cluster-de-losu-pytheas" class="nav-link" data-scroll-target="#cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</a></li>
-  <li><a href="#cluster-régional-ccamu-marseille" id="toc-cluster-régional-ccamu-marseille" class="nav-link" data-scroll-target="#cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</a></li>
-  <li><a href="#idris" id="toc-idris" class="nav-link" data-scroll-target="#idris">IDRIS</a></li>
-  </ul></li>
+  <li><a href="#extraire-des-données-et-les-sauver-dans-un-netcdf" id="toc-extraire-des-données-et-les-sauver-dans-un-netcdf" class="nav-link" data-scroll-target="#extraire-des-données-et-les-sauver-dans-un-netcdf">Extraire des données et les sauver dans un netcdf</a></li>
   </ul>
 </nav>
     </div>
@@ -144,7 +131,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Calcul scientifique au laboratoire MIO</h1>
+<h1 class="title">Astuces Ferret</h1>
 </div>
 
 
@@ -161,130 +148,54 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
 </header>
 
 
-<p>auteur: Camille Mazoyer, camille.mazoyer@ird.fr</p>
-<p>maj: fev 2025</p>
-<p>I’ll translate my notes into English as I go along.</p>
-<p>Merci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation.</p>
-<section id="configuration-globale" class="level1">
-<h1>Configuration globale</h1>
-<ul>
-<li><p><a href="sheets/config_globale_ubuntu.html">Configurer son ordi Ubuntu pour le calcul scientifique</a></p></li>
-<li><p><a href="sheets/config_globale_mac.html">Configurer son ordi Mac pour le calcul scientifique</a></p></li>
-<li><p><a href="sheets/bonnes_pratiques_travail.html">Bonnes pratiques de travail (mots de passes, nuage, git …)</a></p></li>
-<li><p><a href="sheets/universite_toulon_proxy.html">Travailler à l’université de Toulon sous proxy</a></p></li>
-</ul>
+<section id="aggréger-des-netcdf" class="level1">
+<h1>Aggréger des netcdf</h1>
+<section id="via-un-fichier-descripteur-.des" class="level2">
+<h2 class="anchored" data-anchor-id="via-un-fichier-descripteur-.des">via un fichier descripteur .des</h2>
+<p>Les infos sont issues du site de Ferret <a href="https://ferret.pmel.noaa.gov/Ferret/documentation/users-guide/converting-to-netcdf/CREATING-A-MULTI-FILE-NETCDF-DATA-SET#_VPID_366">File descriptor website NOAA</a>, voir 10.4.1 Tools for making descriptor files.</p>
+<p>Un fichier perl permet de créer le fichier des. Il est disponible ici: <a href="http://www.gfdl.noaa.gov/~atw/ferret/make_des">fichier make_des à télécharger</a>.</p>
+<p>Pour utiliser le fichier .des en sortie de make_des, il suffit d’utiliser la commande “use”:</p>
+<pre class="ferret"><code>use "GLAZUR.des"</code></pre>
 </section>
-<section id="informatique-divers" class="level1">
-<h1>Informatique (divers)</h1>
-<ul>
-<li><p><a href="sheets/connexion_via_tunnel.html">Connexion à un ordinateur via un tunnel</a></p></li>
-<li><p><a href="sheets/clef_ssh.html">Générer une clef ssh</a></p></li>
-<li><p><a href="sheets/detacher_processus_nohup.html">screen : détacher des processus / nohup</a></p></li>
-<li><p><a href="sheets/rsync.html">rsync (local ou via ssh)</a></p></li>
-<li><p><a href="sheets/connexion_longue_ssh.html">Garder une connexion ssh persistante</a> (éviter les déconnexions trop rapides)</p></li>
-<li><p><a href="sheets/connexion_distance_tools.html">Connexion à distance à Tools</a></p></li>
-</ul>
-</section>
-<section id="fiches-logiciels" class="level1">
-<h1>Fiches logiciels</h1>
-<ul>
-<li><p><a href="sheets/vim.html">Mémos, raccourcis et améliorations de VIM/GVIM</a></p></li>
-<li><p>Utilisation de GDB avec exemple de CROCO sur le cluster de l’OSU - EN CONSTRUCTION -</p></li>
-<li><p><a href="sheets/visual_studio_code.html">Utilisation de Visual Studio Code, éditeur de code</a></p></li>
-<li><p>Installation et configuration de x2go - EN CONSTRUCTION -</p></li>
-<li><p>Récupération de fichiers netcdf via Copernicus avec <a href="sheets/copernicusmarine.html">Copernicusmarine</a></p></li>
-<li><p><a href="sheets/zenodo_github.html">Utilisation de Zenodo et Github pour mettre son code sous DOI</a></p></li>
-</ul>
-<section id="docker" class="level2">
-<h2 class="anchored" data-anchor-id="docker">Docker</h2>
-<ul>
-<li><p><a href="sheets/docker.html">Création et utilisation d’un docker (exemple pour pyferret)</a></p></li>
-<li><p><a href="sheets/create_docker.html">Créer et partager une image docker</a></p></li>
-</ul>
-</section>
-<section id="git" class="level2">
-<h2 class="anchored" data-anchor-id="git">Git</h2>
-<ul>
-<li><p><a href="sheets/git.html">Mémos, raccourcis et améliorations de GIT</a></p></li>
-<li><p><a href="./sheets/create_mkdocs_documentation.html">Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas</a></p></li>
-<li><p>Creer un site web de documentation avec sphinx et le gitlab de l’OSU Pytheas : en construction</p></li>
-<li><p><a href="sheets/site_quarto.html">Utilisation de Quarto pour créer un site web, avec github</a></p></li>
-<li><p><a href="sheets/githubcopilot.html">Utilisation de Github Copilot dans Visual Studio Code</a></p></li>
-</ul>
-</section>
-<section id="anaconda" class="level2">
-<h2 class="anchored" data-anchor-id="anaconda">Anaconda</h2>
-<ul>
-<li><p><a href="sheets/installation_pyferret.html">Installation de pyferret avec Anaconda</a></p></li>
-<li><p><a href="sheets/anaconda_oceanographie.html">Installation d’un environnement Anaconda pour l’océanographie</a></p></li>
-<li><p><a href="sheets/partager_env_anaconda.html">Partager un environnement Anaconda entre deux utilisateurs d’une même machine</a></p></li>
-</ul>
-</section>
-<section id="pyferret-ferret" class="level2">
-<h2 class="anchored" data-anchor-id="pyferret-ferret">pyFerret / Ferret</h2>
-<ul>
-<li><p><a href="sheets/installation_pyferret.html">Installation de pyferret avec Anaconda</a></p></li>
-<li><p><a href="files/tutoriel_linux_ferret_nco.pdf">Premiers pas en ferret</a></p></li>
-<li><p><a href="sheets/ferret.html">Astuces pour Ferret</a></p></li>
-</ul>
-</section>
-<section id="fortran" class="level2">
-<h2 class="anchored" data-anchor-id="fortran">Fortran</h2>
-<ul>
-<li><p>Options de compilation pour debugger en Fortran - EN CONSTRUCTION -</p></li>
-<li><p>utilisation du debugger gdb avec croco (sur le cluster OSU) - EN CONSTRUCTION -</p></li>
-<li><p>Listing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop - EN CONSTRUCTION -</p></li>
-</ul>
-</section>
-<section id="matlab" class="level2">
-<h2 class="anchored" data-anchor-id="matlab">Matlab</h2>
-<ul>
-<li><a href="sheets/executable_matlab.html">Créer un exécutable sous matlab: exemple sur le cluster de l’OSU</a></li>
-</ul>
-</section>
-<section id="python" class="level2">
-<h2 class="anchored" data-anchor-id="python">Python</h2>
-<ul>
-<li><p><a href="sheets/python_buffer.html">Forcing unbuffered writing in a Python file</a></p></li>
-<li><p><a href="sheets/google_colab.html">Utilisation de google collab pour des jupyter notebook python</a></p></li>
-<li><p>Toolbox pycroco (toolbox officielle de CROCO): <a href="https://gitlab.inria.fr/croco-ocean/croco_pytools/-/releases">sources</a> et <a href="https://www.croco-ocean.org/documentation/">documentation</a></p></li>
-<li><p>la <a href="https://xoa.readthedocs.io/en/latest/index.html">bibliothèque XOA</a> gère les sorties CROCO</p></li>
-<li><p>Utilisation de gros jeux de données netcdf via xarray: <a href="https://docs.xarray.dev/en/stable/">documentation</a> et <a href="https://tutorial.xarray.dev/intro.html#">tutoriels</a></p></li>
-</ul>
+<section id="via-lappel-à-un-script-ferret-aggregate.jnl" class="level2">
+<h2 class="anchored" data-anchor-id="via-lappel-à-un-script-ferret-aggregate.jnl">via l’appel à un script Ferret aggregate.jnl</h2>
+<p>Le script aggregate.jnl ci-dessous permet de créer dataset à partir de plusieurs fichiers netcdf.</p>
+<pre class="ferret"><code>  \cancel mode verify
+  ! aggregate.jnl
+  ! Description: Generate a time aggregation and open the files
+
+  ! Usage:         arg1
+  ! GO aggregate file name
+
+  ! arg 1 - file list defined by wildcards
+  ! arg 2 - name of the file
+
+  ! Example:
+  ! go aggregate RUN*/ocean_day.nc4 fileU
+  !
+  let file_list = SPAWN("ls -1 $1")
+  DEFINE DATA/AGGREGATE /T $2=file_list
+  say "Defining data set AggData"
+  set mode/last verify</code></pre>
+<p>L’utilisation de ce script est la suivante. Pour l’exemple, si l’on souhaite aggréger tous les fichiers netcdf qui commencent par TBAY et qui se terminent par _U.nc, il faut faire:</p>
+<pre class="ferret"><code>  go aggregate /home/monrep/TBAY*_U.nc fileu
+  shade/d=`fileu`/k=75/l=10 temp</code></pre>
+<p>Le script va créer alors créér un aggrégat d=fileu et qui contient toutes les variables des fichiers d’entrée. Dans l’exemple, on peut voir comment on peut afficher la température à la profondeur k=75, au temps l=10.</p>
 </section>
 </section>
-<section id="utilisation-de-clusters-locaux-régionaux-nationaux" class="level1">
-<h1>Utilisation de clusters locaux, régionaux, nationaux</h1>
-<section id="respore-au-mio-toulon" class="level2">
-<h2 class="anchored" data-anchor-id="respore-au-mio-toulon">Respore au MIO Toulon</h2>
-<ul>
-<li><a href="sheets/respore.html">Machine respore au MIO Toulon</a></li>
-</ul>
-</section>
-<section id="cluster-de-losu-pytheas" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</h2>
-<ul>
-<li><p><a href="https://calcul.osupytheas.fr/">le site web du cluster de l’osupytheas</a></p></li>
-<li><p>Documentation pour une Connexion à distance à Tools - EN CONSTRUCTION -</p></li>
-</ul>
-</section>
-<section id="cluster-régional-ccamu-marseille" class="level2">
-<h2 class="anchored" data-anchor-id="cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</h2>
-<ul>
-<li><p><a href="sheets/ccamu.html">Mes docs sur l’utilisation du Mésocentre CCAMU de Marseille</a></p></li>
-<li><p><a href="https://mesocentre.univ-amu.fr/les-tutoriaux/">Tutoriaux officiels</a></p></li>
-</ul>
-</section>
-<section id="idris" class="level2">
-<h2 class="anchored" data-anchor-id="idris">IDRIS</h2>
-<ul>
-<li><p><a href="http://www.idris.fr">Site web de l’IDRIS</a></p></li>
-<li><p><a href="http://www.idris.fr/media/su/idrismemento1.pdf">cheat sheet sur l’utilisation du calculateur de l’IDRIS</a></p></li>
-<li><p><a href="https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md">Utilisation des jupyter notebook sur Jean Zay</a></p></li>
-</ul>
+<section id="extraire-des-données-et-les-sauver-dans-un-netcdf" class="level1">
+<h1>Extraire des données et les sauver dans un netcdf</h1>
+<p>Pour sauver un fichier netcdf, il faut utiliser la commande “save/file” de ferret. Par exemple, pour extraire les 10 premiers mètres de surface pour la vitesse (uveltave, vveltave). On utilise une boucle avec repeat pour optimiser la mémoire.</p>
+<pre class="ferret"><code>use "/arch/home/rech/utv/rutv918/output_mitgcm/EXPT1_polluants_mistral_20160201_00h00_TOTAL/tave_2016_2017.des"
+! vitesse moyenne sur [0:10m]
+let U_10m=UVELTAVE[z=-10:0@ave]
+let V_10m=VVELTAVE[z=-10:0@ave]
+save/clobber/l=1/file="/arch/home/rech/utv/rutv918/output_mitgcm/EXPT1_polluants_mistral_20160201_00h00_TOTAL/2016_2017_U_V_surface_avg_0_10m.nc" U_10m,
+V_10m
+repeat/l=10318:11520 (save/append/file="/arch/home/rech/utv/rutv918/output_mitgcm/EXPT1_polluants_mistral_20160201_00h00_TOTAL/2016_2017_U_V_surface_avg_
+0_10m.nc" U_10m, V_10m)</code></pre>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
