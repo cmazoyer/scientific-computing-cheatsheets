@@ -1,5 +1,5 @@
 ---
-title : installation de docker, création et utilisation d'un docker simple
+title : Creation et utilisation d'un docker (exemple pour pyferret)
 ---
 
 Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un [serveur mandataire dans les paramètres réseaux](https://phoenixnap.com/kb/ubuntu-proxy-settings) .
@@ -9,23 +9,9 @@ Quelques docs à lire :
 - https://leimao.github.io/blog/Docker-Container-GUI-Display/
 - 
 
-# 1. Installation de Docker de manière simple, via un script officiel
+# 1. Installation de Docker
 
-Dans un terminal, lancer la commande suivante:`
-```bash
-curl -fsSL https://get.docker.com | sh
-```
-
-C’est un script tout-en-un fourni par Docker, qui :
-	*	détecte la distribution;
-	*	installe Docker;
-	*	configure les services.
-
-Il est possible qu'il ne fonctionne pas avec le proxy de l'université de Toulon. Dans ce cas, il faut suivre la méthode suivante.
-
-# 2. Installation de Docker mode avancé
-
-Pour installer Docker pas à pas, il faut suivre les instructions du site officiel: [Docker](https://docs.docker.com/get-docker/):
+Pour installer Docker, il faut suivre les instructions du site officiel: [Docker](https://docs.docker.com/get-docker/):
 
 ## 1.1 Ubuntu
 Se référer à la page web [pour ubuntu](https://docs.docker.com/engine/install/ubuntu/)
@@ -64,12 +50,11 @@ sudo groupadd docker
 
 
 ## 1.2 Mac
-Se référer à la page web [pour mac](https://docs.docker.com/desktop/setup/install/mac-install/)
+Se référer à la page web [pour mac] (https://docs.docker.com/desktop/setup/install/mac-install/)
 
 # 2. Création du docker
 
-Pour notre exemple, on va créer un docker qui contiendra une distribution ubuntu 22.04 avec anaconda. Le fichier à créer se nommera `dockerFile_ubuntu22-04_anaconda3`, et contiendra les lignes suivantes:
-
+Pour notre exemple, le fichier est le suivant: dockerFile_ubuntu22-04_anaconda3
 ```bash
 FROM ubuntu:22.04
 WORKDIR /usr/src/app
@@ -83,8 +68,7 @@ RUN conda update conda
 RUN conda config --add channels conda-forge
 ```
 
-Puis, on construit le docker avec la commande suivante. Cette commande se fait une seule fois, et permet de créer une image docker. Il faut se placer dans le répertoire où se trouve le fichier `dockerFile_ubuntu22-04_anaconda3`:
-
+Puis, on construit le docker avec la commande suivante:
 ```bash
 docker build  -t test -f dockerFile_ubuntu22-04_anaconda3 .
 ```
@@ -92,9 +76,18 @@ docker build  -t test -f dockerFile_ubuntu22-04_anaconda3 .
 # 3. lancement du docker 
 On lance le docker avec la commande suivante:
 ```bash
-docker run -i -v /home/mazoyer/Documents/data/:/DATA -t ubuntu22.4_anaconda bash
+docker run -i -v /home/mazoyer/Documents/data/TBAY/:/DATA -t ubuntu22.4-pyferret bash
 ```
-L'option -v permet de monter un volume entre le docker et le système hôte. Ici, on monte le dossier /home/mazoyer/Documents/data/ dans le dossier /DATA du docker.
+L'option -v permet de monter un volume entre le docker et le système hôte. Ici, on monte le dossier /home/mazoyer/Documents/data/TBAY/ dans le dossier /DATA du docker.
 L'option -t permet de lancer un terminal bash.
 
 
+# 4. Dockers que je mets à disposition au MIO
+
+## 4.1 Pyferret
+
+## 4.2 OceanParcels
+
+```bash
+docker build . -t oceanparcels:3.1.0
+```

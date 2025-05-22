@@ -52,7 +52,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## Docker
 
--  [Création et utilisation d'un docker (exemple pour pyferret)](sheets/docker.html)
+-  [Installation de Docker Engine, création et utilisation d'un docker simple ](sheets/docker.html)
 
 -  [Créer et partager une image docker](sheets/create_docker.html)
 

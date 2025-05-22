@@ -11,7 +11,7 @@
     "href": "index.html#docker",
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "Docker",
-    "text": "Docker\n\nCréation et utilisation d’un docker (exemple pour pyferret)\nCréer et partager une image docker"
+    "text": "Docker\n\nInstallation de Docker Engine, création et utilisation d’un docker simple\nCréer et partager une image docker"
   },
   {
     "objectID": "index.html#git",
@@ -28,11 +28,11 @@
     "text": "Anaconda\n\nInstallation de pyferret avec Anaconda\nInstallation d’un environnement Anaconda pour l’océanographie\nPartager un environnement Anaconda entre deux utilisateurs d’une même machine"
   },
   {
-    "objectID": "index.html#ferret",
-    "href": "index.html#ferret",
+    "objectID": "index.html#pyferret-ferret",
+    "href": "index.html#pyferret-ferret",
     "title": "Calcul scientifique au laboratoire MIO",
-    "section": "Ferret",
-    "text": "Ferret\n\nPremiers pas en ferret - EN CONSTRUCTION -"
+    "section": "pyFerret / Ferret",
+    "text": "pyFerret / Ferret\n\nInstallation de pyferret avec Anaconda\nPremiers pas en ferret\nAstuces pour Ferret"
   },
   {
     "objectID": "index.html#fortran",
@@ -336,6 +336,27 @@
     "text": "utilisation\nA chaque fois qu’on veut se connecter à respore:\nhtunnelrespore  (pour home by tunnelrespore)\nPour échanger des fichiers entre son ordi et respore:\nsftprespore\npuis pour envoyer un fichier vers le répertoire repertoire_sur_respore de Respore:\nput monfichier repertoire_sur_respore/.\npour récupérer un fichier de repertoire_sur_respore vers mon ordi:\nget repertoire_sur_respore/monfichier .\nSi le tunnel ne fonctionne plus, il faut le détruire puis le recréer. La commande killtunnelrespore gère la destruction de manière automatique:\nkilltunnelrespore\ntunnelrespore"
   },
   {
+    "objectID": "sheets/vim.html",
+    "href": "sheets/vim.html",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "",
+    "text": "Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM :"
+  },
+  {
+    "objectID": "sheets/vim.html#couleur-du-thème",
+    "href": "sheets/vim.html#couleur-du-thème",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "2.1 Couleur du thème:",
+    "text": "2.1 Couleur du thème:\nPour changer de couleur de theme et avoir quelque chose de plus visible, créer ou ouvrir s’il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):\ncolorscheme darkblue"
+  },
+  {
+    "objectID": "sheets/vim.html#un-thème-adapté-au-vimdiff",
+    "href": "sheets/vim.html#un-thème-adapté-au-vimdiff",
+    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "section": "2.2 Un thème adapté au vimdiff",
+    "text": "2.2 Un thème adapté au vimdiff\nVoir Post stackoverflow:\n (image issue de l’url de statckoverflow ci-dessus)\nDans un terminal:\ncurl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim\npuis dans vim, en mode édition:\n:colorscheme github"
+  },
+  {
     "objectID": "sheets/partager_env_anaconda.html",
     "href": "sheets/partager_env_anaconda.html",
     "title": "Partager un environnement Anaconda entre deux utilisateurs d’une même machine",
@@ -413,25 +434,60 @@
     "text": "Via un tunnel SSH\nVoir la documentation: Connexion à un ordinateur via un tunnel\n\n\nVia le VPN de l’OSU pytheas\nSe référer à la Documentation du VPN. Une fois le VPN lancé, il suffit de se connecter à tools.osupytheas.fr en ssh par ex, ou avec putty pour windows.\n\n\nVia Rdesktop (pas fonctionnel ou fonctionnel?)\nInstallation sous ubuntu via:\napt-get install rdesktop\nUtilisation\nrdesktop -u votrelogin 172.20.9.140\n\n\nVia x2go\nSolution possible. A compléter."
   },
   {
-    "objectID": "sheets/vim.html",
-    "href": "sheets/vim.html",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
+    "objectID": "sheets/ferret.html",
+    "href": "sheets/ferret.html",
+    "title": "Astuces Ferret",
     "section": "",
-    "text": "Pour avoir un bon résumé des commandes sous VI, vous pouvez télécharger une page pdf du style de ces CheatSheet VIM :"
+    "text": "Les infos sont issues du site de Ferret File descriptor website NOAA, voir 10.4.1 Tools for making descriptor files.\nUn fichier perl permet de créer le fichier des. Il est disponible ici: fichier make_des à télécharger.\nPour utiliser le fichier .des en sortie de make_des, il suffit d’utiliser la commande “use”:\nuse \"GLAZUR.des\"\n\n\n\nLe script aggregate.jnl ci-dessous permet de créer dataset à partir de plusieurs fichiers netcdf.\n  \\cancel mode verify\n  ! aggregate.jnl\n  ! Description: Generate a time aggregation and open the files\n\n  ! Usage:         arg1\n  ! GO aggregate file name\n\n  ! arg 1 - file list defined by wildcards\n  ! arg 2 - name of the file\n\n  ! Example:\n  ! go aggregate RUN*/ocean_day.nc4 fileU\n  !\n  let file_list = SPAWN(\"ls -1 $1\")\n  DEFINE DATA/AGGREGATE /T $2=file_list\n  say \"Defining data set AggData\"\n  set mode/last verify\nL’utilisation de ce script est la suivante. Pour l’exemple, si l’on souhaite aggréger tous les fichiers netcdf qui commencent par TBAY et qui se terminent par _U.nc, il faut faire:\n  go aggregate /home/monrep/TBAY*_U.nc fileu\n  shade/d=`fileu`/k=75/l=10 temp\nLe script va créer alors créér un aggrégat d=fileu et qui contient toutes les variables des fichiers d’entrée. Dans l’exemple, on peut voir comment on peut afficher la température à la profondeur k=75, au temps l=10."
   },
   {
-    "objectID": "sheets/vim.html#couleur-du-thème",
-    "href": "sheets/vim.html#couleur-du-thème",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "2.1 Couleur du thème:",
-    "text": "2.1 Couleur du thème:\nPour changer de couleur de theme et avoir quelque chose de plus visible, créer ou ouvrir s’il existe déjà le fichier $HOME/.vimrc et ajouter le choix de la couleur (ici darkblue):\ncolorscheme darkblue"
+    "objectID": "sheets/ferret.html#via-un-fichier-descripteur-.des",
+    "href": "sheets/ferret.html#via-un-fichier-descripteur-.des",
+    "title": "Astuces Ferret",
+    "section": "",
+    "text": "Les infos sont issues du site de Ferret File descriptor website NOAA, voir 10.4.1 Tools for making descriptor files.\nUn fichier perl permet de créer le fichier des. Il est disponible ici: fichier make_des à télécharger.\nPour utiliser le fichier .des en sortie de make_des, il suffit d’utiliser la commande “use”:\nuse \"GLAZUR.des\""
   },
   {
-    "objectID": "sheets/vim.html#un-thème-adapté-au-vimdiff",
-    "href": "sheets/vim.html#un-thème-adapté-au-vimdiff",
-    "title": "Mémos, raccourcis et améliorations de VIM/GVIM",
-    "section": "2.2 Un thème adapté au vimdiff",
-    "text": "2.2 Un thème adapté au vimdiff\nVoir Post stackoverflow:\n (image issue de l’url de statckoverflow ci-dessus)\nDans un terminal:\ncurl -fLo ~/.vim/colors/github.vim --create-dirs https://raw.githubusercontent.com/endel/vim-github-colorscheme/master/colors/github.vim\npuis dans vim, en mode édition:\n:colorscheme github"
+    "objectID": "sheets/ferret.html#via-lappel-à-un-script-ferret-aggregate.jnl",
+    "href": "sheets/ferret.html#via-lappel-à-un-script-ferret-aggregate.jnl",
+    "title": "Astuces Ferret",
+    "section": "",
+    "text": "Le script aggregate.jnl ci-dessous permet de créer dataset à partir de plusieurs fichiers netcdf.\n  \\cancel mode verify\n  ! aggregate.jnl\n  ! Description: Generate a time aggregation and open the files\n\n  ! Usage:         arg1\n  ! GO aggregate file name\n\n  ! arg 1 - file list defined by wildcards\n  ! arg 2 - name of the file\n\n  ! Example:\n  ! go aggregate RUN*/ocean_day.nc4 fileU\n  !\n  let file_list = SPAWN(\"ls -1 $1\")\n  DEFINE DATA/AGGREGATE /T $2=file_list\n  say \"Defining data set AggData\"\n  set mode/last verify\nL’utilisation de ce script est la suivante. Pour l’exemple, si l’on souhaite aggréger tous les fichiers netcdf qui commencent par TBAY et qui se terminent par _U.nc, il faut faire:\n  go aggregate /home/monrep/TBAY*_U.nc fileu\n  shade/d=`fileu`/k=75/l=10 temp\nLe script va créer alors créér un aggrégat d=fileu et qui contient toutes les variables des fichiers d’entrée. Dans l’exemple, on peut voir comment on peut afficher la température à la profondeur k=75, au temps l=10."
+  },
+  {
+    "objectID": "sheets/docker copy.html",
+    "href": "sheets/docker copy.html",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "",
+    "text": "Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un serveur mandataire dans les paramètres réseaux .\nQuelques docs à lire : - https://medium.com/@anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11 - https://leimao.github.io/blog/Docker-Container-GUI-Display/ -"
+  },
+  {
+    "objectID": "sheets/docker copy.html#ubuntu",
+    "href": "sheets/docker copy.html#ubuntu",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "1.1 Ubuntu",
+    "text": "1.1 Ubuntu\nSe référer à la page web pour ubuntu\n\nVia un proxy par authentification (cas de Toulon)\nOn installe les paquets nécessaires, en remplacant yourlogin par votre login:\nsudo apt update\nsudo apt install apt-transport-https ca-certificates curl software-properties-common\ncurl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\n\n\nde manière standard\nOn installe les paquets nécessaires:\nsudo apt update\nsudo apt install apt-transport-https ca-certificates curl software-properties-common\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\n\n\nsuite de l’installation (avec ou sans proxy)\necho \"deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list\nsudo apt update\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin\nEn suivant les explications du site Docker, on ajoute son utilisateur au groupe docker:\nsudo groupadd docker\n sudo usermod -aG docker $USER"
+  },
+  {
+    "objectID": "sheets/docker copy.html#mac",
+    "href": "sheets/docker copy.html#mac",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "1.2 Mac",
+    "text": "1.2 Mac\nSe référer à la page web [pour mac] (https://docs.docker.com/desktop/setup/install/mac-install/)"
+  },
+  {
+    "objectID": "sheets/docker copy.html#pyferret",
+    "href": "sheets/docker copy.html#pyferret",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "4.1 Pyferret",
+    "text": "4.1 Pyferret"
+  },
+  {
+    "objectID": "sheets/docker copy.html#oceanparcels",
+    "href": "sheets/docker copy.html#oceanparcels",
+    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "section": "4.2 OceanParcels",
+    "text": "4.2 OceanParcels\ndocker build . -t oceanparcels:3.1.0"
   },
   {
     "objectID": "sheets/bonnes_pratiques_travail.html",
@@ -513,37 +569,23 @@
   {
     "objectID": "sheets/docker.html",
     "href": "sheets/docker.html",
-    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "title": "installation de docker, création et utilisation d’un docker simple",
     "section": "",
     "text": "Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un serveur mandataire dans les paramètres réseaux .\nQuelques docs à lire : - https://medium.com/@anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11 - https://leimao.github.io/blog/Docker-Container-GUI-Display/ -"
   },
   {
     "objectID": "sheets/docker.html#ubuntu",
     "href": "sheets/docker.html#ubuntu",
-    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "title": "installation de docker, création et utilisation d’un docker simple",
     "section": "1.1 Ubuntu",
     "text": "1.1 Ubuntu\nSe référer à la page web pour ubuntu\n\nVia un proxy par authentification (cas de Toulon)\nOn installe les paquets nécessaires, en remplacant yourlogin par votre login:\nsudo apt update\nsudo apt install apt-transport-https ca-certificates curl software-properties-common\ncurl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\n\n\nde manière standard\nOn installe les paquets nécessaires:\nsudo apt update\nsudo apt install apt-transport-https ca-certificates curl software-properties-common\ncurl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -\n\n\nsuite de l’installation (avec ou sans proxy)\necho \"deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list\nsudo apt update\nsudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin\nEn suivant les explications du site Docker, on ajoute son utilisateur au groupe docker:\nsudo groupadd docker\n sudo usermod -aG docker $USER"
   },
   {
     "objectID": "sheets/docker.html#mac",
     "href": "sheets/docker.html#mac",
-    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
+    "title": "installation de docker, création et utilisation d’un docker simple",
     "section": "1.2 Mac",
-    "text": "1.2 Mac\nSe référer à la page web [pour mac] (https://docs.docker.com/desktop/setup/install/mac-install/)"
-  },
-  {
-    "objectID": "sheets/docker.html#pyferret",
-    "href": "sheets/docker.html#pyferret",
-    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
-    "section": "4.1 Pyferret",
-    "text": "4.1 Pyferret"
-  },
-  {
-    "objectID": "sheets/docker.html#oceanparcels",
-    "href": "sheets/docker.html#oceanparcels",
-    "title": "Creation et utilisation d’un docker (exemple pour pyferret)",
-    "section": "4.2 OceanParcels",
-    "text": "4.2 OceanParcels\ndocker build . -t oceanparcels:3.1.0"
+    "text": "1.2 Mac\nSe référer à la page web pour mac"
   },
   {
     "objectID": "sheets/respore.html",
@@ -649,33 +691,5 @@
     "title": "Créer un exécutable Matlab",
     "section": "",
     "text": "But: pouvoir utiliser son script matlab sur une machine qui n’a pas de licence matlab\nInconvénients: il faut créer l’éxécutable sur la même architecture que l’architecture cible (ex: linux pour linux, …)\n\n1. Suivre la doc du SIP\nhttps://calcul.osupytheas.fr/?p=478\n\n\n2. Etape 1: création de l’exécutable, choix des arguments\nOn peut choisir des arguments de notre code matlab flottants et non de type chaine de charactere: Avant la phrase du SIP ” Une fois vos codes et modules ajoutés, vous devez créer le package en cliquant sur Package.”, c’est important de dire que les arguments donnés au code peuvent être indiqués en chaines de caractères (par défault) ou en flottants (ce dont moi j’avais besoin). Il y a une case à cocher. Tous les arguments doivent être du même type (flottant ou string)\n\n\n3. Lancement du code via slurm\nPour la Deuxième étape indiquée sur calcul.osupytheas.fr, je propose une autre solution que je trouve plus lisible quand on a des arguments. Mais c’est à vous de voir si vous préférez le tutorial du SIP ou cette possibilité: - 1. Copier le script run_xxx.sh contenu dans le répertoire for_testing vers notre répertoire de travail et modifier la ligne pointant vers l’exécutable, si besoin : bash     exe_dir=/home/mazoyer/matlab_to_exe/rep_exe - 2. Créer un fichier run.slurm de lancement batch comme suit, si l’on a un script matlab avec 3 arguments qui seront ici arg1, arg2, arg3 (à remplacer dans votre cas). Le répertoire Matlab /usr/local/MATLAB/MATLAB_Runtime/v910 est le répertoire racine de Matlab contenant par exemple le répertoire runtime/glnxa64.\n    #!/bin/sh\n    # script pour l'exécution des codes Matlab packages.\n    #\n    #Environnement MATLAB Runtime\n\n    #SBATCH --job-name=matlab_MCR\n    #SBATCH --time=240:00:00\n    #SBATCH --mail-user=xxx.yyy@ird.fr\n    #SBATCH --partition=seq\n    #SBATCH --output=resultslumr.log\n\n    echo 'start matlab'\n    time sh run_xxx.sh /usr/local/MATLAB/MATLAB_Runtime/v910 arg1 arg2 arg3\n    echo 'end matlab'\n\n\nPour lancer ensuite l’exécutable, taper la commande:\n\n\n    sbatch run.slurm\nAttention! le run batch ne s’arrête pas une fois la fin de l’éxécution matlab, il faut penser à killer le job evéntuellement."
-  },
-  {
-    "objectID": "index.html#pyferret-ferret",
-    "href": "index.html#pyferret-ferret",
-    "title": "Calcul scientifique au laboratoire MIO",
-    "section": "pyFerret / Ferret",
-    "text": "pyFerret / Ferret\n\nInstallation de pyferret avec Anaconda\nPremiers pas en ferret\nAstuces pour Ferret"
-  },
-  {
-    "objectID": "sheets/ferret.html",
-    "href": "sheets/ferret.html",
-    "title": "Astuces Ferret",
-    "section": "",
-    "text": "Les infos sont issues du site de Ferret File descriptor website NOAA, voir 10.4.1 Tools for making descriptor files.\nUn fichier perl permet de créer le fichier des. Il est disponible ici: fichier make_des à télécharger.\nPour utiliser le fichier .des en sortie de make_des, il suffit d’utiliser la commande “use”:\nuse \"GLAZUR.des\"\n\n\n\nLe script aggregate.jnl ci-dessous permet de créer dataset à partir de plusieurs fichiers netcdf.\n  \\cancel mode verify\n  ! aggregate.jnl\n  ! Description: Generate a time aggregation and open the files\n\n  ! Usage:         arg1\n  ! GO aggregate file name\n\n  ! arg 1 - file list defined by wildcards\n  ! arg 2 - name of the file\n\n  ! Example:\n  ! go aggregate RUN*/ocean_day.nc4 fileU\n  !\n  let file_list = SPAWN(\"ls -1 $1\")\n  DEFINE DATA/AGGREGATE /T $2=file_list\n  say \"Defining data set AggData\"\n  set mode/last verify\nL’utilisation de ce script est la suivante. Pour l’exemple, si l’on souhaite aggréger tous les fichiers netcdf qui commencent par TBAY et qui se terminent par _U.nc, il faut faire:\n  go aggregate /home/monrep/TBAY*_U.nc fileu\n  shade/d=`fileu`/k=75/l=10 temp\nLe script va créer alors créér un aggrégat d=fileu et qui contient toutes les variables des fichiers d’entrée. Dans l’exemple, on peut voir comment on peut afficher la température à la profondeur k=75, au temps l=10."
-  },
-  {
-    "objectID": "sheets/ferret.html#via-un-fichier-descripteur-.des",
-    "href": "sheets/ferret.html#via-un-fichier-descripteur-.des",
-    "title": "Astuces Ferret",
-    "section": "",
-    "text": "Les infos sont issues du site de Ferret File descriptor website NOAA, voir 10.4.1 Tools for making descriptor files.\nUn fichier perl permet de créer le fichier des. Il est disponible ici: fichier make_des à télécharger.\nPour utiliser le fichier .des en sortie de make_des, il suffit d’utiliser la commande “use”:\nuse \"GLAZUR.des\""
-  },
-  {
-    "objectID": "sheets/ferret.html#via-lappel-à-un-script-ferret-aggregate.jnl",
-    "href": "sheets/ferret.html#via-lappel-à-un-script-ferret-aggregate.jnl",
-    "title": "Astuces Ferret",
-    "section": "",
-    "text": "Le script aggregate.jnl ci-dessous permet de créer dataset à partir de plusieurs fichiers netcdf.\n  \\cancel mode verify\n  ! aggregate.jnl\n  ! Description: Generate a time aggregation and open the files\n\n  ! Usage:         arg1\n  ! GO aggregate file name\n\n  ! arg 1 - file list defined by wildcards\n  ! arg 2 - name of the file\n\n  ! Example:\n  ! go aggregate RUN*/ocean_day.nc4 fileU\n  !\n  let file_list = SPAWN(\"ls -1 $1\")\n  DEFINE DATA/AGGREGATE /T $2=file_list\n  say \"Defining data set AggData\"\n  set mode/last verify\nL’utilisation de ce script est la suivante. Pour l’exemple, si l’on souhaite aggréger tous les fichiers netcdf qui commencent par TBAY et qui se terminent par _U.nc, il faut faire:\n  go aggregate /home/monrep/TBAY*_U.nc fileu\n  shade/d=`fileu`/k=75/l=10 temp\nLe script va créer alors créér un aggrégat d=fileu et qui contient toutes les variables des fichiers d’entrée. Dans l’exemple, on peut voir comment on peut afficher la température à la profondeur k=75, au temps l=10."
   }
 ]
