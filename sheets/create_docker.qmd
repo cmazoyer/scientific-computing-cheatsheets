@@ -1,15 +1,60 @@
 ---
-title: Créer et partager une image docker 
+title: Créer et partager une image docker (exemple avec OceanParcels)
 ---
 
 **But: pouvoir partager un logiciel avec d'autres utilisateurs, ou sur d'autres ordinateurs, de manière simple, sans avoir à l'installer.**
 
 Nous allons prendre l'exemple de la création d'une image docker pour OceanParcels.
 
+Il est nécessaire d'avoir installé Docker sur son ordinateur. Pour cela, se référer à la page [Installation de Docker Engine, création et utilisation d'un docker simple](sheet/docker.html).
+
 # 1. Création de l'image docker
-En local, créer une image docker oceanparcels avec le fichier Dockerfile. 
+En local, créer le fichier Dockerfile suivant: 
+
+```dockerfile
+# latest release of ocean parcels (eg in dec 2024: 3.1.0)
+# python 3  (eg in december 2024: 3.13.0)
+
+# anaconda image
+FROM continuumio/anaconda3
+
+# work directory
+WORKDIR /work
+
+# update ubuntu
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN conda create -n parcels_env -y
+
+# activate env anaconda
+RUN echo "source activate parcels_env" >> ~/.bashrc
+
+# packages
+RUN conda install -n parcels_env -y -c conda-forge parcels xgcm hdf5storage
+RUN conda install -n parcels_env -y ipython jupyter cartopy ipykernel cloudpickle
+
+# copy scripts needed
+COPY . /work
+
+# bash au lancement
+CMD ["bash"]
+```
+
+Puis on construit le docker avec la commande suivante. Cette commande se fait une seule fois, et permet de créer l'image docker. Il faut se placer dans le répertoire où se trouve le fichier Dockerfile:
+
+```bash
+docker build  -t oceanparcels:3.1.0 -f Dockerfile .
+```
+On peut vérifier que l'image a bien été créée avec la commande:
+```bash
+docker images
+```
 
 # 2. Partage de l'image docker
+
+Si on souhaite transmettre l'image docker à un autre utilisateur, il existe plusieurs solutions. On peut soit partager l'image via Docker Hub, soit partager le fichier Dockerfile.
 
 ## 2.1 Partage via Docker Hub
 
@@ -20,7 +65,7 @@ Pour utiliser Docker Hub, il est nécessaire de s'y créer un compte (on peut ut
 L'avantage de ce site est la simplicité de partage. L'utilisateur ne manipule pas de fichier Dockerfile, et n'a pas à recréer l'image. Elle est directement téléchargeable. 
 
 
-Taguer l'image en indiquant sa version (ex: 3.1.0) pour Docker Hub et la pousser sur Docker Hub:
+Taguer l'image que nous avons créé précédemment en indiquant sa version (ex: 3.1.0) pour Docker Hub et la pousser sur Docker Hub:
 
 ```bash
 docker tag oceanparcels:3.1.0 cmazoyer/oceanparcels:3.1.0
@@ -30,7 +75,7 @@ docker push cmazoyer/oceanparcels:3.1.0
 
 On peut ensuite vérifier dans son compte Docker Hub que l'image a bien été poussée.
 
-Un utilisateur peut ensuite télécharger l'image déjà faite sur n'importe quel ordinateur, il lui suffit de faire:
+N'importe quel utilisateur peut ensuite télécharger l'image présente sur le docker hub vers l'ordinateur de son choix, il lui suffit de faire:
 
 ```bash
 docker pull cmazoyer/oceanparcels:3.1.0
@@ -38,15 +83,16 @@ docker pull cmazoyer/oceanparcels:3.1.0
 
 Il peut ensuite l'utiliser comme n'importe quelle image docker (docker run ...)
 
-Par exemple, pour lancer un conteneur avec l'image oceanparcels:3.1.0, avec le répertoire physique /home/monlogin/work équivalent au répertoire dans le docker /work, on peut faire:
+Par exemple, pour lancer un conteneur avec l'image oceanparcels:3.1.0, on peut taper la commande suivante:
 ```bash
 docker run -i -v /home/monlogin/work:/work -t cmazoyer/oceanparcels:3.1.0
 ```
+Ici, on a choisi de lier le répertoire physique de l'utilisateur (ici /home/monlogin/work) au répertoire dans le docker (/work). Cela permet de partager des fichiers entre le docker et l'utilisateur.
 
 ## 2.2 Partage via un fichier Dockerfile
-En téléchargeant le fichier Dockerfile, l'utilisateur peut recréer l'image docker sur son ordinateur, avec la commande build.
+L'autre méthode de partage est de partager le fichier Dockerfile. 
+En récupérant le fichier Dockerfile, n'importe quel utilisateur peut recréer l'image docker sur son ordinateur, avec la commande build (voir plus haut)
 
-Il peut ensuite utiliser la commande run pour lancer un conteneur avec l'image créée.
-
+Il peut ensuite utiliser la commande run pour lancer un conteneur avec l'image créée (voir plus haut)
 
 Nous avons donc partagé notre image docker de Ocean Parcels de deux façons possibles.
