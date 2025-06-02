@@ -13,7 +13,7 @@ Se réferer à la page [Configurer son ordi Ubuntu pour le calcul scientifique](
 conda create --name oceano
 conda activate oceano
 conda install pandas numpy xarray netcdf4 dask scipy ipython jupyter cartopy numba
-conda install matplotlib ipykernel cloudpickle
+conda install matplotlib ipykernel cloudpickle tqdm
 conda install -c conda-forge xgcm hdf5storage
 ```
 

@@ -247,7 +247,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> conda update conda</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> conda config <span class="at">--add</span> channels conda-forge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Puis, on construit le docker avec la commande suivante. Cette commande se fait une seule fois, et permet de créer une image docker. Il faut se placer dans le répertoire où se trouve le fichier <code>dockerFile_ubuntu22-04_anaconda3</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build  <span class="at">-t</span> test <span class="at">-f</span> dockerFile_ubuntu22-04_anaconda3 .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build  <span class="at">-t</span> ubuntu22.4_anaconda <span class="at">-f</span> dockerFile_ubuntu22-04_anaconda3 .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="lancement-du-docker" class="level1">
 <h1>3. lancement du docker</h1>
