@@ -86,7 +86,7 @@ RUN conda config --add channels conda-forge
 Puis, on construit le docker avec la commande suivante. Cette commande se fait une seule fois, et permet de créer une image docker. Il faut se placer dans le répertoire où se trouve le fichier `dockerFile_ubuntu22-04_anaconda3`:
 
 ```bash
-docker build  -t test -f dockerFile_ubuntu22-04_anaconda3 .
+docker build  -t ubuntu22.4_anaconda -f dockerFile_ubuntu22-04_anaconda3 .
 ```
 
 # 3. lancement du docker 
