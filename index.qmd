@@ -31,7 +31,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 -   [Connexion à distance à Tools](sheets/connexion_distance_tools.html)
 
 
-# Fiches logiciels
+# Fiches logiciels divers
 
 -   [Mémos, raccourcis et améliorations de VIM/GVIM](sheets/vim.html)
 
@@ -47,6 +47,10 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
     -   [Copernicusmarine](sheets/copernicusmarine.html)
 
 -   [Utilisation de Zenodo et Github pour mettre son code sous DOI](sheets/zenodo_github.html)
+
+## CROCO
+
+-   [Installation et compilation de CROCO](sheets/croco_installation.html)
 
 ## Git
 

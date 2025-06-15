@@ -1,0 +1,82 @@
+---
+title: Installation et compilation du code CROCO
+---
+
+Le site officiel de CROCO contient de nombreuses informations et est accessible ici: [https://www.croco-ocean.org/](https://www.croco-ocean.org/). il contient notamment un onglet [Documentation/](https://www.croco-ocean.org/documentation/).
+
+# Librairies nécessaires
+
+## Sous Ubuntu
+
+Dans un terminal, lancer les commandes!
+```bash
+sudo apt-get install aptitude
+sudo aptitude install git gfortran libnetcdff-dev
+sudo aptitude install libopenmpi-dev openmpi-bin
+```
+
+
+## Sous MAC 
+
+pas de documentation forcément nécessaire. Le plus simple est de compiler CROCO sur un calculateur, une station avec linux. 
+
+Mais si besoin, je conseillerai:
+
+* une installation via HomeBrew
+  
+* création d'un docker ubuntu dans lequel on réalise une installation croco
+
+
+# Téléchargement de CROCO et des CROCOTOOLS
+
+La [page officielle de téléchargement](https://www.croco-ocean.org/download/) propose de récupérer le code via des répertoires compressés tar.gz ou via git:  
+
+```bash
+git clone --branch v2.1.0 https://gitlab.inria.fr/croco-ocean/croco.git croco
+git clone --branch v2.1.0 https://gitlab.inria.fr/croco-ocean/croco_tools.git croco_tools
+```
+
+# Création d'une configuration et compilation
+
+## Création d'une configuration
+
+Il est conseillé de créer un répertoire qui contiendra toutes vos configurations `CONFIGS`, au même niveau que là où vous avez vos répertoires `croco` et `croco_tools`. Le script `create_config.bash` dans le répertoire `croco` permettra de créer des répertoires de configurations de CROCO automatiquement. Il est possible de modifier le chemin des crocotools, de croco, le nom de la config (Run par défault). Pour commencer, vous pouvez laisser les propositions telles quelles. 
+
+```bash
+mkdir CONFIGS
+cd CONFIGS
+cp ../croco/create_config.bash .
+bash create_config.bash
+```
+Vous avez alors un répertoire `Run` créé dans votre répertoire `CONFIGS`.
+
+## Compilation
+
+Aller dans le répertoire Run: 
+```bash
+cd Run
+```
+
+Le script de compilation a évolué à partir de cette version de croco pour qu'il ne soit plus nécessaire de le modifier directement. Le choix du compilateur, des librairies netcdf, ... se fait en arguments dans le cas où nous ne sommes pas dans une configuration standard de style ubuntu. 
+
+```bash
+./jobcomp --help
+```
+
+Si vous n'êtes pas dans un cas standard, vous pouvez indiquer des arguments. Dans ce cas, il est plus simple de sauvegarder la ligne de commande dans un fichier nommé compil.sh par ex (toujours dans `Run`), que nous lancerons ensuite. 
+
+Dans notre arborescence (`CONFIGS/Run`), avec les librairies netcdf système, et le compilateur gfortran, le fichier compil.sh sera ainsi:
+```bash
+#!/bin/bash
+./jobcomp --src ../../croco/OCEAN
+```
+
+on peut donner les droits d'exécution au fichier compil.sh en lançant une fois cette ligne de commande:
+```bash
+chmod +x compil.sh 
+```
+
+Puis la compilation se fait avec:
+```bash
+./compil.sh 
+```

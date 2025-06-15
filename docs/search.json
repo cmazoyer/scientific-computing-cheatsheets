@@ -404,5 +404,82 @@
     "title": "Configurer son ordi Ubuntu pour le calcul scientifique",
     "section": "",
     "text": "Installations via apt_get / aptitude:\nsudo apt-get install aptitude\nsudo aptitude install vim-gtk3\nsudo aptitude install stow git gfortran libnetcdff-dev\nsudo aptitude install libopenmpi-dev openmpi-bin\n\n\nInstallation de Anaconda\n\n\nInstallation d’un environnement Anaconda pour PyFerret:\nInstallation de pyferret (doc à faire)\n\n\nMatlab\n\nTéléchargement de matlab via le site officiel en créant un compte avec votre email univ-tln.fr. L’installation doit se faire via le wifi ou de chez soi à cause du proxy.\nPour Luminy, voir matlab à Luminy\n\n\n\nPenser aussi à:\ncréer une clef SSH et la diffuser sur d’autres ordinateurs pour éviter de taper son mot de passe (voir doc Générer une clef ssh )"
+  },
+  {
+    "objectID": "index.html#croco",
+    "href": "index.html#croco",
+    "title": "Scientific computing cheatsheets at the laboratory MIO in oceanography",
+    "section": "CROCO",
+    "text": "CROCO\n\nInstallation et compilation de CROCO"
+  },
+  {
+    "objectID": "sheets/croco_compilation.html",
+    "href": "sheets/croco_compilation.html",
+    "title": "Compilation du code CROCO",
+    "section": "",
+    "text": "Le site officiel de CROCO contient de nombreuses informations et est accessible ici: https://www.croco-ocean.org/. il contient notamment un onglet Documentation/."
+  },
+  {
+    "objectID": "sheets/croco_compilation.html#librairies-nécessaires",
+    "href": "sheets/croco_compilation.html#librairies-nécessaires",
+    "title": "Compilation du code CROCO",
+    "section": "Librairies nécessaires",
+    "text": "Librairies nécessaires\nDans un terminal, lancer les commandes!\nsudo apt-get install aptitude\nsudo aptitude install git gfortran libnetcdff-dev\nsudo aptitude install libopenmpi-dev openmpi-bin"
+  },
+  {
+    "objectID": "sheets/croco_compilation.html#téléchargement-de-croco",
+    "href": "sheets/croco_compilation.html#téléchargement-de-croco",
+    "title": "Compilation du code CROCO",
+    "section": "Téléchargement de CROCO",
+    "text": "Téléchargement de CROCO\nLa page officielle de téléchargement propose de récupérer le code via des répertoires compressés tar.gz ou via git:\ngit clone --branch v2.1.0 https://gitlab.inria.fr/croco-ocean/croco.git croco-v2.1.0"
+  },
+  {
+    "objectID": "sheets/croco_installation.html",
+    "href": "sheets/croco_installation.html",
+    "title": "Installation et compilation du code CROCO",
+    "section": "",
+    "text": "Le site officiel de CROCO contient de nombreuses informations et est accessible ici: https://www.croco-ocean.org/. il contient notamment un onglet Documentation/."
+  },
+  {
+    "objectID": "sheets/croco_installation.html#librairies-nécessaires",
+    "href": "sheets/croco_installation.html#librairies-nécessaires",
+    "title": "Compilation du code CROCO",
+    "section": "Librairies nécessaires",
+    "text": "Librairies nécessaires\nDans un terminal, lancer les commandes!\nsudo apt-get install aptitude\nsudo aptitude install git gfortran libnetcdff-dev\nsudo aptitude install libopenmpi-dev openmpi-bin"
+  },
+  {
+    "objectID": "sheets/croco_installation.html#téléchargement-de-croco",
+    "href": "sheets/croco_installation.html#téléchargement-de-croco",
+    "title": "Compilation du code CROCO",
+    "section": "Téléchargement de CROCO",
+    "text": "Téléchargement de CROCO\nLa page officielle de téléchargement propose de récupérer le code via des répertoires compressés tar.gz ou via git:\ngit clone --branch v2.1.0 https://gitlab.inria.fr/croco-ocean/croco.git croco-v2.1.0"
+  },
+  {
+    "objectID": "sheets/croco_installation.html#sous-ubuntu",
+    "href": "sheets/croco_installation.html#sous-ubuntu",
+    "title": "Installation et compilation du code CROCO",
+    "section": "Sous Ubuntu",
+    "text": "Sous Ubuntu\nDans un terminal, lancer les commandes!\nsudo apt-get install aptitude\nsudo aptitude install git gfortran libnetcdff-dev\nsudo aptitude install libopenmpi-dev openmpi-bin"
+  },
+  {
+    "objectID": "sheets/croco_installation.html#sous-mac",
+    "href": "sheets/croco_installation.html#sous-mac",
+    "title": "Installation et compilation du code CROCO",
+    "section": "Sous MAC",
+    "text": "Sous MAC\npas de documentation forcément nécessaire. Le plus simple est de compiler CROCO sur un calculateur, une station avec linux.\nMais si besoin, je conseillerai:\n\nune installation via HomeBrew\ncréation d’un docker ubuntu dans lequel on réalise une installation croco"
+  },
+  {
+    "objectID": "sheets/croco_installation.html#création-dune-configuration",
+    "href": "sheets/croco_installation.html#création-dune-configuration",
+    "title": "Installation et compilation du code CROCO",
+    "section": "Création d’une configuration",
+    "text": "Création d’une configuration\nIl est conseillé de créer un répertoire qui contiendra toutes vos configurations CONFIGS, au même niveau que là où vous avez vos répertoires croco et croco_tools. Le script create_config.bash dans le répertoire croco permettra de créer des répertoires de configurations de CROCO automatiquement. Il est possible de modifier le chemin des crocotools, de croco, le nom de la config (Run par défault). Pour commencer, vous pouvez laisser les propositions telles quelles.\nmkdir CONFIGS\ncd CONFIGS\ncp ../croco/create_config.bash .\nbash create_config.bash\nVous avez alors un répertoire Run créé dans votre répertoire CONFIGS."
+  },
+  {
+    "objectID": "sheets/croco_installation.html#compilation",
+    "href": "sheets/croco_installation.html#compilation",
+    "title": "Installation et compilation du code CROCO",
+    "section": "Compilation",
+    "text": "Compilation\nAller dans le répertoire Run:\ncd Run\nLe script de compilation a évolué à partir de cette version de croco pour qu’il ne soit plus nécessaire de le modifier directement. Le choix du compilateur, des librairies netcdf, … se fait en arguments dans le cas où nous ne sommes pas dans une configuration standard de style ubuntu.\n./jobcomp --help\nSi vous n’êtes pas dans un cas standard, vous pouvez indiquer des arguments. Dans ce cas, il est plus simple de sauvegarder la ligne de commande dans un fichier nommé compil.sh par ex (toujours dans Run), que nous lancerons ensuite.\nDans notre arborescence (CONFIGS/Run), avec les librairies netcdf système, et le compilateur gfortran, le fichier compil.sh sera ainsi:\n#!/bin/bash\n./jobcomp --src ../../croco/OCEAN\non peut donner les droits d’exécution au fichier compil.sh en lançant une fois cette ligne de commande:\nchmod +x compil.sh \nPuis la compilation se fait avec:\n./compil.sh"
   }
 ]
