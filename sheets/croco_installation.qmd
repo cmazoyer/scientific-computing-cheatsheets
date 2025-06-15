@@ -75,7 +75,13 @@ Si on veut choisir quelles librairies netcdf utiliser, on peut forcer leur utili
 
 ```bash
 #!/bin/bash
-./jobcomp --src ../../croco/OCEAN --netcdf-inc "/usr/include" --netcdf-lib "-L/usr/lib/x86_64-linux-gnu -lnetcdff -lnetcdf"
+./jobcomp --src ../../croco/OCEAN --netcdf-inc "-I/usr/include" --netcdf-lib "-L/usr/lib/x86_64-linux-gnu -lnetcdff -lnetcdf"
+```
+
+Sur le cluster de l'OSU, le fichier compil.sh sera : 
+```bash
+#!/bin/bash
+./jobcomp --fc ifort --mpif90 mpiifort --netcdf-lib "-L/libraries/libcalcul/netcdf/netcdf_parallel/lib/ -lnetcdf -lnetcdff" --netcdf-inc "-I/libraries/libcalcul/netcdf/netcdf_parallel/include"
 ```
 
 
