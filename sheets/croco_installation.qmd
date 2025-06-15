@@ -71,6 +71,14 @@ Dans notre arborescence (`CONFIGS/Run`), avec les librairies netcdf système, et
 ./jobcomp --src ../../croco/OCEAN
 ```
 
+Si on veut choisir quelles librairies netcdf utiliser, on peut forcer leur utilisation en indiquant leur chemin. Le chemin de `netcdf-inc` est le répertoire contenant le fichier `netcdf.inc`, et le chemin de netcdf est le répertoire contenant `libnetcdff.so` par ex ( à identifier avec `locate`): 
+
+```bash
+#!/bin/bash
+./jobcomp --src ../../croco/OCEAN --netcdf-inc "/usr/include" --netcdf-lib "-L/usr/lib/x86_64-linux-gnu -lnetcdff -lnetcdf"
+```
+
+
 on peut donner les droits d'exécution au fichier compil.sh en lançant une fois cette ligne de commande:
 ```bash
 chmod +x compil.sh 
