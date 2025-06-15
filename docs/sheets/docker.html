@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.6.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Camille Mazoyer - Creation et utilisation d’un docker (exemple pour pyferret)</title>
+<title>installation de docker, création et utilisation d’un docker simple – Camille Mazoyer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -35,10 +69,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-8bda806db8b623a4dafb352339cca83f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,6 +100,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-F9MPYZJZ47"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
+</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -83,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -94,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -108,8 +151,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#création-du-docker" id="toc-création-du-docker" class="nav-link active" data-scroll-target="#création-du-docker">1. Création du docker</a></li>
-  <li><a href="#lancement-du-docker" id="toc-lancement-du-docker" class="nav-link" data-scroll-target="#lancement-du-docker">2. lancement du docker</a></li>
+  <li><a href="#installation-de-docker-de-manière-simple-via-un-script-officiel" id="toc-installation-de-docker-de-manière-simple-via-un-script-officiel" class="nav-link active" data-scroll-target="#installation-de-docker-de-manière-simple-via-un-script-officiel">1. Installation de Docker de manière simple, via un script officiel</a></li>
+  <li><a href="#installation-de-docker-mode-avancé" id="toc-installation-de-docker-mode-avancé" class="nav-link" data-scroll-target="#installation-de-docker-mode-avancé">2. Installation de Docker mode avancé</a>
+  <ul class="collapse">
+  <li><a href="#ubuntu" id="toc-ubuntu" class="nav-link" data-scroll-target="#ubuntu">1.1 Ubuntu</a>
+  <ul class="collapse">
+  <li><a href="#via-un-proxy-par-authentification-cas-de-toulon" id="toc-via-un-proxy-par-authentification-cas-de-toulon" class="nav-link" data-scroll-target="#via-un-proxy-par-authentification-cas-de-toulon">Via un proxy par authentification (cas de Toulon)</a></li>
+  <li><a href="#de-manière-standard" id="toc-de-manière-standard" class="nav-link" data-scroll-target="#de-manière-standard">de manière standard</a></li>
+  <li><a href="#suite-de-linstallation-avec-ou-sans-proxy" id="toc-suite-de-linstallation-avec-ou-sans-proxy" class="nav-link" data-scroll-target="#suite-de-linstallation-avec-ou-sans-proxy">suite de l’installation (avec ou sans proxy)</a></li>
+  </ul></li>
+  <li><a href="#mac" id="toc-mac" class="nav-link" data-scroll-target="#mac">1.2 Mac</a></li>
+  </ul></li>
+  <li><a href="#création-du-docker" id="toc-création-du-docker" class="nav-link" data-scroll-target="#création-du-docker">2. Création du docker</a></li>
+  <li><a href="#lancement-du-docker" id="toc-lancement-du-docker" class="nav-link" data-scroll-target="#lancement-du-docker">3. lancement du docker</a></li>
   </ul>
 </nav>
     </div>
@@ -118,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Creation et utilisation d’un docker (exemple pour pyferret)</h1>
+<h1 class="title">installation de docker, création et utilisation d’un docker simple</h1>
 </div>
 
 
@@ -137,16 +191,69 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un <a href="https://phoenixnap.com/kb/ubuntu-proxy-settings">serveur mandataire dans les paramètres réseaux</a> .</p>
 <p>Quelques docs à lire : - https://medium.com/<span class="citation" data-cites="anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11">@anshita.bhasin/a-step-by-step-guide-to-create-dockerfile-9e3744d38d11</span> - https://leimao.github.io/blog/Docker-Container-GUI-Display/ -</p>
+<section id="installation-de-docker-de-manière-simple-via-un-script-officiel" class="level1">
+<h1>1. Installation de Docker de manière simple, via un script officiel</h1>
+<p>Dans un terminal, lancer la commande suivante:`</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://get.docker.com <span class="kw">|</span> <span class="fu">sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>C’est un script tout-en-un fourni par Docker, qui : * détecte la distribution; * installe Docker; * configure les services.</p>
+<p>Il est possible qu’il ne fonctionne pas avec le proxy de l’université de Toulon. Dans ce cas, il faut suivre la méthode suivante.</p>
+</section>
+<section id="installation-de-docker-mode-avancé" class="level1">
+<h1>2. Installation de Docker mode avancé</h1>
+<p>Pour installer Docker pas à pas, il faut suivre les instructions du site officiel: <a href="https://docs.docker.com/get-docker/">Docker</a>:</p>
+<section id="ubuntu" class="level2">
+<h2 class="anchored" data-anchor-id="ubuntu">1.1 Ubuntu</h2>
+<p>Se référer à la page web <a href="https://docs.docker.com/engine/install/ubuntu/">pour ubuntu</a></p>
+<section id="via-un-proxy-par-authentification-cas-de-toulon" class="level3">
+<h3 class="anchored" data-anchor-id="via-un-proxy-par-authentification-cas-de-toulon">Via un proxy par authentification (cas de Toulon)</h3>
+<p>On installe les paquets nécessaires, en remplacant yourlogin par votre login:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install apt-transport-https ca-certificates curl software-properties-common</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">--proxy</span> http://cache.univ-tln.fr:3128 <span class="at">--proxy-user</span> yourlogin <span class="at">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg <span class="kw">|</span> <span class="fu">sudo</span> apt-key add <span class="at">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="de-manière-standard" class="level3">
+<h3 class="anchored" data-anchor-id="de-manière-standard">de manière standard</h3>
+<p>On installe les paquets nécessaires:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install apt-transport-https ca-certificates curl software-properties-common</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fsSL</span> https://download.docker.com/linux/ubuntu/gpg <span class="kw">|</span> <span class="fu">sudo</span> apt-key add <span class="at">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="suite-de-linstallation-avec-ou-sans-proxy" class="level3">
+<h3 class="anchored" data-anchor-id="suite-de-linstallation-avec-ou-sans-proxy">suite de l’installation (avec ou sans proxy)</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"deb [arch=</span><span class="va">$(</span><span class="ex">dpkg</span> <span class="at">--print-architecture</span><span class="va">)</span><span class="st">] https://download.docker.com/linux/ubuntu </span><span class="va">$(</span><span class="ex">lsb_release</span> <span class="at">-cs</span><span class="va">)</span><span class="st"> stable"</span> <span class="kw">|</span> <span class="fu">sudo</span> tee /etc/apt/sources.list.d/docker.list</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En suivant les <a href="https://docs.docker.com/engine/install/linux-postinstall/">explications du site Docker</a>, on ajoute son utilisateur au groupe docker:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> groupadd docker</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">sudo</span> usermod <span class="at">-aG</span> docker <span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="mac" class="level2">
+<h2 class="anchored" data-anchor-id="mac">1.2 Mac</h2>
+<p>Se référer à la page web <a href="https://docs.docker.com/desktop/setup/install/mac-install/">pour mac</a></p>
+</section>
+</section>
 <section id="création-du-docker" class="level1">
-<h1>1. Création du docker</h1>
-<p>Le fichier est le suivant: dockerFile_ubuntu22-04_anaconda3 FROM ubuntu:22.04 WORKDIR /usr/src/app USER root RUN apt-get update &amp;&amp; apt-get install -y vim libpq-dev wget RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &amp;&amp;<br>
-sh Miniconda3-latest-Linux-x86_64.sh -b -p /opt/miniconda3 &amp;&amp;<br>
-rm -r Miniconda3-latest-Linux-x86_64.sh ENV PATH /opt/miniconda3/bin:$PATH RUN conda update conda #RUN conda install python=3.9 RUN conda config –add channels conda-forge #RUN conda config –set channel_priority strict</p>
-<p>docker build -t test -f dockerFile_ubuntu22-04_anaconda3 .</p>
+<h1>2. Création du docker</h1>
+<p>Pour notre exemple, on va créer un docker qui contiendra une distribution ubuntu 22.04 avec anaconda. Le fichier à créer se nommera <code>dockerFile_ubuntu22-04_anaconda3</code>, et contiendra les lignes suivantes:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">FROM</span> ubuntu:22.04</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">WORKDIR</span> /usr/src/app</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">USER</span> root</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> apt-get update <span class="kw">&amp;&amp;</span> <span class="ex">apt-get</span> install <span class="at">-y</span> vim libpq-dev wget</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sh</span> Miniconda3-latest-Linux-x86_64.sh <span class="at">-b</span> <span class="at">-p</span> /opt/miniconda3 <span class="kw">&amp;&amp;</span> <span class="dt">\</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rm</span> <span class="at">-r</span> Miniconda3-latest-Linux-x86_64.sh</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">ENV</span> PATH /opt/miniconda3/bin:<span class="va">$PATH</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> conda update conda</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> conda config <span class="at">--add</span> channels conda-forge</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puis, on construit le docker avec la commande suivante. Cette commande se fait une seule fois, et permet de créer une image docker. Il faut se placer dans le répertoire où se trouve le fichier <code>dockerFile_ubuntu22-04_anaconda3</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build  <span class="at">-t</span> ubuntu22.4_anaconda <span class="at">-f</span> dockerFile_ubuntu22-04_anaconda3 .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="lancement-du-docker" class="level1">
-<h1>2. lancement du docker</h1>
-<p>docker run -i -v /home/mazoyer/Documents/data/TBAY/:/DATA -t ubuntu22.4-pyferret bash</p>
+<h1>3. lancement du docker</h1>
+<p>On lance le docker avec la commande suivante:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">-i</span> <span class="at">-v</span> /home/mazoyer/Documents/data/:/DATA <span class="at">-t</span> ubuntu22.4_anaconda bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>L’option -v permet de monter un volume entre le docker et le système hôte. Ici, on monte le dossier /home/mazoyer/Documents/data/ dans le dossier /DATA du docker. L’option -t permet de lancer un terminal bash.</p>
 
 
 </section>
@@ -187,18 +294,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -230,7 +326,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -238,7 +356,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

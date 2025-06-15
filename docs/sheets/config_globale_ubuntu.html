@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.6.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Camille Mazoyer - Configurer son ordi Ubuntu pour le calcul scientifique</title>
+<title>Configurer son ordi Ubuntu pour le calcul scientifique – Camille Mazoyer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -35,10 +69,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-8bda806db8b623a4dafb352339cca83f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,6 +100,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-F9MPYZJZ47"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
+</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -83,7 +126,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -94,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -109,10 +152,15 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#installations-via-apt_get-aptitude" id="toc-installations-via-apt_get-aptitude" class="nav-link active" data-scroll-target="#installations-via-apt_get-aptitude">Installations via apt_get / aptitude:</a></li>
-  <li><a href="#installation-de-anaconda" id="toc-installation-de-anaconda" class="nav-link" data-scroll-target="#installation-de-anaconda">Installation de Anaconda</a></li>
-  <li><a href="#installation-dun-environnement-anaconda-pour-pyferret" id="toc-installation-dun-environnement-anaconda-pour-pyferret" class="nav-link" data-scroll-target="#installation-dun-environnement-anaconda-pour-pyferret">Installation d’un environnement Anaconda pour PyFerret:</a></li>
+  <li><a href="#installation-de-anaconda" id="toc-installation-de-anaconda" class="nav-link" data-scroll-target="#installation-de-anaconda">Installation de Anaconda</a>
+  <ul class="collapse">
+  <li><a href="#installation-via-miniconda" id="toc-installation-via-miniconda" class="nav-link" data-scroll-target="#installation-via-miniconda">1) installation via miniconda</a></li>
+  <li><a href="#installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun" id="toc-installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun" class="nav-link" data-scroll-target="#installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun">2) installation dans le .bashrc (a installer dans les home de chacun)</a></li>
+  <li><a href="#création-dun-environnement-pour-locéanographie" id="toc-création-dun-environnement-pour-locéanographie" class="nav-link" data-scroll-target="#création-dun-environnement-pour-locéanographie">3) Création d’un environnement pour l’océanographie</a></li>
+  </ul></li>
   <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
   <li><a href="#penser-aussi-à" id="toc-penser-aussi-à" class="nav-link" data-scroll-target="#penser-aussi-à">Penser aussi à:</a></li>
+  <li><a href="#script-complet" id="toc-script-complet" class="nav-link" data-scroll-target="#script-complet">script complet :</a></li>
   </ul>
 </nav>
     </div>
@@ -140,17 +188,34 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="installations-via-apt_get-aptitude" class="level1">
 <h1>Installations via apt_get / aptitude:</h1>
-<pre><code>sudo apt-get install aptitude
-sudo aptitude install vim-gtk3
-sudo aptitude install stow git gfortran libnetcdff-dev
-sudo aptitude install libopenmpi-dev openmpi-bin</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install aptitude</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> aptitude install vim-gtk3</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> aptitude install stow git gfortran libnetcdff-dev</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> aptitude install libopenmpi-dev openmpi-bin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="installation-de-anaconda" class="level1">
 <h1>Installation de Anaconda</h1>
+<p>L’installation se fait via le site officiel d’Anaconda: <a href="https://www.anaconda.com/products/individual">Anaconda</a>.</p>
+<section id="installation-via-miniconda" class="level2">
+<h2 class="anchored" data-anchor-id="installation-via-miniconda">1) installation via miniconda</h2>
+<p>Le script ci-dessous est à adapter suivant la <a href="https://docs.conda.io/en/latest/miniconda.html">page web de miniconda</a> si vous souhaitez plus d’infos :</p>
+<p>Si possible, une installation en root est à privilégier pour que l’ensemble des utilisateurs puissent en bénéficier. Si on n’a pas d’accès root, on peut installer miniconda dans le répertoire /home/votrelogin/anaconda/miniconda3 par exemple.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install miniconda to /miniconda</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">--proxy-user</span><span class="op">=</span><span class="st">"tonlogin"</span> <span class="at">--proxy-password</span><span class="op">=</span><span class="st">"tonmotdepasse"</span> «&nbsp;https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh&nbsp;»</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniconda3-latest-Linux-x86_64.sh <span class="at">-p</span>  /opt/miniconda3  <span class="at">-b</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> Miniconda3-latest-Linux-x86_64.sh</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update <span class="at">-n</span> base <span class="at">-c</span> defaults conda</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="installation-dun-environnement-anaconda-pour-pyferret" class="level1">
-<h1>Installation d’un environnement Anaconda pour PyFerret:</h1>
-<p>Installation de pyferret (doc à faire)</p>
+<section id="installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun" class="level2">
+<h2 class="anchored" data-anchor-id="installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun">2) installation dans le .bashrc (a installer dans les home de chacun)</h2>
+<p>A la fin de l’installation, l’installateur propose de rajouter le chemin de miniconda dans le .bashrc, via la commande conda init. Si on accepte, les commandes ci-dessous sont ajoutées dans le .bashrc automatiquement. Si ce n’est pas le cas, vous pouvez toujours ajouter manuellement les lignes suivantes:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">/opt/miniconda3/condabin/conda</span> init </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Relancer ensuite un terminal pour que les modifications soient prises en compte.</p>
+</section>
+<section id="création-dun-environnement-pour-locéanographie" class="level2">
+<h2 class="anchored" data-anchor-id="création-dun-environnement-pour-locéanographie">3) Création d’un environnement pour l’océanographie</h2>
+<p>Vous pouvez ensuite vous référer à la page <a href="anaconda_oceanographie.html">Anaconda pour l’oceanographie</a> pour la création d’environnements conda adaptés à l’océanographie.</p>
+</section>
 </section>
 <section id="matlab" class="level1">
 <h1>Matlab</h1>
@@ -161,7 +226,42 @@ sudo aptitude install libopenmpi-dev openmpi-bin</code></pre>
 </section>
 <section id="penser-aussi-à" class="level1">
 <h1>Penser aussi à:</h1>
-<p>créer une clef SSH et la diffuser sur d’autres ordinateurs pour éviter de taper son mot de passe (voir doc Générer une clef ssh )</p>
+<p>créer une clef SSH et la diffuser sur d’autres ordinateurs pour éviter de taper son mot de passe (voir doc <a href="clef_ssh.html">Générer une clef ssh</a> )</p>
+</section>
+<section id="script-complet" class="level1">
+<h1>script complet :</h1>
+<p>En fonction de toutes les commandes ci-dessus, <strong>le script complet</strong> est le suivant, via le proxy de l’université de Toulon:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># variable proxy_tln (mettre à true si le proxy de la fac de toulon doit être utilisé, sinon false)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">proxy_tln</span><span class="op">=</span>true</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Installation des paquets nécessaires</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install aptitude <span class="at">-y</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> aptitude install vim-gtk3 <span class="at">-y</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> aptitude install stow git gfortran libnetcdff-dev <span class="at">-y</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> aptitude install libopenmpi-dev openmpi-bin <span class="at">-y</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#### installation de miniconda ####</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="st">"</span><span class="va">$proxy_tln</span><span class="st">"</span> <span class="ot">=</span> true <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">export</span> <span class="va">http_proxy</span><span class="op">=</span>cache.univ-tln.fr:3128</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">export</span> <span class="va">https_proxy</span><span class="op">=</span>cache.univ-tln.fr:3128</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wget</span> <span class="at">--proxy-user</span><span class="op">=</span><span class="st">"tonlogin"</span> <span class="at">--proxy-password</span><span class="op">=</span><span class="st">"tonmotdepasse"</span> <span class="st">"https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">wget</span> <span class="st">"https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniconda3-latest-Linux-x86_64.sh <span class="at">-p</span>  /opt/miniconda3  <span class="at">-b</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co"># mise a jour</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update <span class="at">-n</span> base <span class="at">-c</span> defaults conda</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#### FERRET: #### </span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> FERRET <span class="at">-c</span> conda-forge pyferret ferret_datasets python=3.9 <span class="at">--yes</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="st">"numpy&lt;2"</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">#### ocean parcels : ####  3.1.2</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> oceanparcels <span class="at">-c</span> conda-forge  parcels </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Puis pour chaque utilisateur, il faut rajouter dans le .bashrc:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">/opt/miniconda3/condabin/conda</span> init</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -202,18 +302,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -245,7 +334,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -253,7 +364,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

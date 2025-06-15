@@ -68,14 +68,30 @@ si cela ne fonctionne pas, chmod 700 -R ~/.ssh
 ssh monlogin@lseet.univ-tln.fr  # par exemple, ou tout autre machine
 ```
 
-# 4.Gitlab, Mesocentre CCAMU, ...
+# 4.Gitlab, Mesocentre CCAMU, Idris ...
 
 Cette passphrase sera à copier coller aussi dans le gitlab de l'osupytheas, ou github par exemple.
 
+# 5. Sous Mac, ne plus avoir à entrer la passphrase à chaque démarrage automatiquement
+
+Ajouter dans le ~/.bash_profile ou le ~/.zshrc :
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+
+Ajouter dans le  ~/.ssh/config :
+```bash
+Host *
+    AddKeysToAgent yes
+    UseKeychain yes
+    IdentityFile ~/.ssh/id_ed25519
+```
 
 # 5.Problèmes éventuels (voir avec un informaticien, Didier, Camille, Céline, ...)
 
-Si on veut faire des rebonds avec des tunnels, il se peut qu'il y ait un souci. Une solution peut être de créer le fichier .ssh/config et écrire dedans
+Si on veut faire des rebonds avec des tunnels, il se peut qu'il y ait un souci. Une solution peut être de créer le fichier .ssh/config et écrire dedans (ou rajouter les infos suivantees pour host *): 
 
 ```bash
 host *

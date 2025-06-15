@@ -4,7 +4,7 @@ title: "Configurer son ordi Ubuntu pour le calcul scientifique"
 
 # Installations via apt_get / aptitude:
 
-```
+```bash
 sudo apt-get install aptitude
 sudo aptitude install vim-gtk3
 sudo aptitude install stow git gfortran libnetcdff-dev
@@ -13,9 +13,37 @@ sudo aptitude install libopenmpi-dev openmpi-bin
 
 # Installation de Anaconda
 
-# Installation d'un environnement Anaconda pour PyFerret:
+L'installation se fait via le site officiel d'Anaconda: [Anaconda](https://www.anaconda.com/products/individual).    
 
-Installation de pyferret (doc à faire)
+## 1) installation via miniconda
+
+Le script ci-dessous est à adapter suivant la [page web de miniconda](https://docs.conda.io/en/latest/miniconda.html) si vous souhaitez plus d'infos :
+
+Si possible, une installation en root est à privilégier pour que l'ensemble des utilisateurs puissent en bénéficier. 
+Si on n'a pas d'accès root, on peut installer miniconda dans le répertoire /home/votrelogin/anaconda/miniconda3 par exemple.
+
+```bash
+# Install miniconda to /miniconda
+wget --proxy-user="tonlogin" --proxy-password="tonmotdepasse" « https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh »
+bash Miniconda3-latest-Linux-x86_64.sh -p  /opt/miniconda3  -b
+rm Miniconda3-latest-Linux-x86_64.sh
+conda update -n base -c defaults conda
+```
+
+
+## 2) installation dans le .bashrc  (a installer dans les home de chacun)
+
+A la fin de l'installation, l'installateur propose de rajouter le chemin de miniconda dans le .bashrc, via la commande conda init. Si on accepte, les commandes ci-dessous sont ajoutées dans le .bashrc automatiquement. Si ce n'est pas le cas, vous pouvez toujours ajouter manuellement les lignes suivantes:
+
+```bash
+ /opt/miniconda3/condabin/conda init 
+```
+
+Relancer ensuite un terminal pour que les modifications soient prises en compte.
+
+## 3) Création d'un environnement pour l'océanographie
+
+Vous pouvez ensuite vous référer à la page [Anaconda pour l'oceanographie](anaconda_oceanographie.html) pour la création d'environnements conda adaptés à l'océanographie.
 
 # Matlab
 
@@ -26,4 +54,44 @@ Installation de pyferret (doc à faire)
 
 # Penser aussi à:
 
-créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc Générer une clef ssh )
+créer une clef SSH et la diffuser sur d'autres ordinateurs pour éviter de taper son mot de passe (voir doc [Générer une clef ssh](clef_ssh.html) )
+
+
+# script complet : 
+En fonction de toutes les commandes ci-dessus, **le script complet** est le suivant, via le proxy de l'université de Toulon:
+```bash
+#!/bin/bash
+
+# variable proxy_tln (mettre à true si le proxy de la fac de toulon doit être utilisé, sinon false)
+proxy_tln=true
+
+# Installation des paquets nécessaires
+sudo apt-get install aptitude -y
+sudo aptitude install vim-gtk3 -y
+sudo aptitude install stow git gfortran libnetcdff-dev -y
+sudo aptitude install libopenmpi-dev openmpi-bin -y
+#### installation de miniconda ####
+if [ "$proxy_tln" = true ]; then
+    export http_proxy=cache.univ-tln.fr:3128
+    export https_proxy=cache.univ-tln.fr:3128
+    wget --proxy-user="tonlogin" --proxy-password="tonmotdepasse" "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+else
+    wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+fi
+bash Miniconda3-latest-Linux-x86_64.sh -p  /opt/miniconda3  -b
+
+# mise a jour
+conda update -n base -c defaults conda
+
+#### FERRET: #### 
+conda create -n FERRET -c conda-forge pyferret ferret_datasets python=3.9 --yes
+conda install "numpy<2"
+
+#### ocean parcels : ####  3.1.2
+conda create -n oceanparcels -c conda-forge  parcels 
+```
+
+Puis pour chaque utilisateur, il faut rajouter dans le .bashrc:
+```bash
+/opt/miniconda3/condabin/conda init
+```

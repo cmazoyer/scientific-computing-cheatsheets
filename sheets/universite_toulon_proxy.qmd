@@ -35,7 +35,15 @@ puis en ligne de commande, suivant ce qu'on veut télécharger:
 wget --proxy-user="tonlogin" --proxy-password="tonmotdepasse" "https://xxxx.tar.gz"
 ```
 
-# 3. configurer anaconda pour les proxy (ne fonctionne pas, pourquoi ...)
+# 3. Anaconda
+
+## Pas de modifications
+
+A priori, la DSIUN a ouvert le proxy pour laisser passer les connexions vers les serveurs de Anaconda.
+
+## Cependant
+
+Si cela ne fonctionne pas, vous pouvez essayer de forcer le proxy dans le fichier ~/.condarc.
 
 Créer le fichier .condarc dans votre home avec les infos suivantes sur le proxy de la fac de Toulon (pas nécessaire à Luminy). user étant votre login, et pass votre mot de passe. Voir la [doc de Anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html#config-proxy).
 
@@ -46,3 +54,80 @@ proxy_servers:
     http: http://user:pass@cache.univ-tln.fr:3128
     https: https://user:pass@cache.univ-tln.fr:3128
 ```
+
+# 4. Curl
+```bash
+curl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin ...
+```
+
+# 5. Pip
+
+Créer le fichier ~/.pip/pip.conf ou le fichier ~/.config/pip/pip.conf (faire un lien symbolique entre les deux), et ajouter les lignes suivantes:
+
+```bash
+[global]
+proxy = http://username:password@cache.univ-tln.fr:3128/
+```
+
+
+# 6. Docker
+
+## Daemon Docker
+
+Ecrire dans le fichier /etc/systemd/system/docker.service.d/http-proxy.conf :
+
+```bash
+[Service]
+Environment="HTTP_PROXY=http://username:password@proxy.server.com:port/"
+Environment="HTTPS_PROXY=http://username:password@proxy.server.com:port/"
+Environment="NO_PROXY=localhost,127.0.0.1"
+```
+Attention, si votre mot de passe contient des caractères spéciaux. Si c'est le cas, vous pouvez le remplacer par son équivalent en URL encoding. Par exemple, si votre mot de passe est "p@ssw0rd", vous pouvez le remplacer par "p%40ssw0rd". Vous pouvez tester votre mot de passe via le script python:
+```bash
+python3 -c "import urllib.parse; print(urllib.parse.quote('votre_mot_de_passe'))"
+```
+
+Puis recharger le daemon et redémarrer le service docker :
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+## Client Docker
+
+côté client, ajouter les variables d'environnement suivantes dans le fichier ~/.bashrc :
+```bash
+export http_proxy="http://username:password@proxy:port/"
+export https_proxy="http://username:password@proxy:port/"
+export no_proxy="localhost,127.0.0.1"
+```
+
+et recharger le fichier :
+
+```bash
+source ~/.bashrc
+```
+
+# Prise en compte du proxy sous python
+
+```python
+  import urllib.request
+  # Replace with your actual proxy details
+  proxy_username = ‘xxx'
+  proxy_password = ‘xxx'
+  proxy_server = 'cache.univ-tln.fr'
+  proxy_port = '3128'
+
+  # Construct the proxy URL with authentication
+  proxy_url = f'http://{proxy_username}:{proxy_password}@{proxy_server}:{proxy_port}'
+
+  # Set up the proxy handler
+  proxy_support = urllib.request.ProxyHandler({
+      'http': proxy_url,
+      'https': proxy_url
+  })
+  opener = urllib.request.build_opener(proxy_support)
+  urllib.request.install_opener(opener)
+```
+
+

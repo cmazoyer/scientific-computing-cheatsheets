@@ -9,11 +9,9 @@ website:
     left:
       - href: index.qmd
         text: Home
+  google-analytics: "G-F9MPYZJZ47"
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-
-
-

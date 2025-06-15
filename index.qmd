@@ -1,10 +1,12 @@
 ---
-title: "Scientific computing cheatsheets at the laboratory MIO in oceanography"
+title: "Calcul scientifique au laboratoire MIO"
 ---
 
 auteur: Camille Mazoyer, camille.mazoyer\@ird.fr
 
-maj: janvier 2024
+maj: fev 2025
+
+I'll translate my notes into English as I go along. 
 
 Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour que j'améliore la documentation.
 
@@ -12,7 +14,9 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [Configurer son ordi Ubuntu pour le calcul scientifique](sheets/config_globale_ubuntu.html)
 
--   Configurer son ordi Mac pour le calcul scientifique (à faire)
+-   [Configurer son ordi Mac pour le calcul scientifique](sheets/config_globale_mac.html)
+
+-   [Bonnes pratiques de travail (mots de passes, nuage, git ...)](sheets/bonnes_pratiques_travail.html)
 
 -   [Travailler à l'université de Toulon sous proxy](sheets/universite_toulon_proxy.html)
 
@@ -35,18 +39,22 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [Mémos, raccourcis et améliorations de VIM/GVIM](sheets/vim.html)
 
--   Utilisation de GDB avec exemple de CROCO sur le cluster de l'OSU
+-   Utilisation de GDB avec exemple de CROCO sur le cluster de l'OSU - EN CONSTRUCTION -
 
 -   [Utilisation de Visual Studio Code, éditeur de code](sheets/visual_studio_code.html)
 
--   Installation et configuration de x2go
+-   Installation et configuration de x2go - EN CONSTRUCTION -
 
--   Récupération de fichiers netcdf via Copernicus
-
-    -   Motuclient (deprecated?)
-    -   [Copernicusmarine](sheets/copernicusmarine.html)
+-   Récupération de fichiers netcdf via Copernicus avec [Copernicusmarine](sheets/copernicusmarine.html)
 
 -   [Utilisation de Zenodo et Github pour mettre son code sous DOI](sheets/zenodo_github.html)
+  
+
+## Docker
+
+-  [Installation de Docker Engine, création et utilisation d'un docker simple ](sheets/docker.html)
+
+-  [Créer et partager une image docker](sheets/create_docker.html)
 
 ## CROCO
 
@@ -54,11 +62,15 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## Git
 
--   [Mémos, raccourcis et améliorations de GIT](sheets/git.html)
+- [Mémos, raccourcis et améliorations de GIT](sheets/git.html)
 
 - [Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas](sheets/create_mkdocs_documentation.qmd)
   
-- [Utilisation de Github Copilot dans Visual Studio Code](sheets/githubcopilot.qmd)
+- Creer un site web de documentation avec sphinx et le gitlab de l’OSU Pytheas : en construction 
+
+- [Utilisation de Quarto pour créer un site web, avec github](sheets/site_quarto.html)
+  
+- [Utilisation de Github Copilot dans Visual Studio Code](sheets/githubcopilot.html)
 
 ## Anaconda
 
@@ -68,17 +80,22 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 -   [Partager un environnement Anaconda entre deux utilisateurs d'une même machine](sheets/partager_env_anaconda.html)
 
-## Ferret
+## pyFerret / Ferret
 
--   Premiers pas en ferret ( à faire)
+-   [Installation de pyferret avec Anaconda](sheets/installation_pyferret.html)
+  
+-   [Premiers pas en ferret](files/tutoriel_linux_ferret_nco.pdf) 
+
+-   [Astuces pour Ferret](sheets/ferret.html)   
+
 
 ## Fortran
 
--   Options de compilation pour debugger en Fortran
+-   Options de compilation pour debugger en Fortran - EN CONSTRUCTION -
 
--   utilisation du debugger gdb avec croco (sur le cluster OSU)
+-   utilisation du debugger gdb avec croco (sur le cluster OSU) - EN CONSTRUCTION -
 
--   Listing des erreurs de compilations rencontrées lors d'installations de CROCO ou ROMS sur les machines de TP ou laptop
+-   Listing des erreurs de compilations rencontrées lors d'installations de CROCO ou ROMS sur les machines de TP ou laptop - EN CONSTRUCTION -
 
 ## Matlab
 
@@ -86,36 +103,38 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 
 ## Python
 
--   Utilisation de google collab pour des jupyter notebook python
+- [Forcing unbuffered writing in a Python file](sheets/python_buffer.html)
 
--   CROCO avec Python .
+-  [Utilisation de google collab pour des jupyter notebook python](sheets/google_colab.html) 
 
--   la bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html
+-   Toolbox pycroco (toolbox officielle de CROCO): [sources](https://gitlab.inria.fr/croco-ocean/croco_pytools/-/releases) et [documentation](https://www.croco-ocean.org/documentation/) 
 
--   la bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n'est plus à jour)
+-   la [bibliothèque XOA](https://xoa.readthedocs.io/en/latest/index.html) gère les sorties CROCO 
 
--   How to Make Python Code Run Incredibly Fast
-
--   Utilisation de xarray conseillée (à faire)
+-   Utilisation de gros jeux de données netcdf via xarray: [documentation](https://docs.xarray.dev/en/stable/) et [tutoriels](https://tutorial.xarray.dev/intro.html#)
 
 # Utilisation de clusters locaux, régionaux, nationaux
 
+## Respore au MIO Toulon
+
+-   [Machine respore au MIO Toulon](sheets/respore.html)
+
 ## Cluster de l'OSU Pytheas
 
--   cluster de l'osupytheas :https://calcul.osupytheas.fr/
+-   [ le site web du cluster de l'osupytheas](https://calcul.osupytheas.fr/)
 
--   Documentation pour une Connexion à distance à Tools
+-   Documentation pour une Connexion à distance à Tools - EN CONSTRUCTION -
 
 ## Cluster régional CCAMU Marseille
 
 -   [Mes docs sur l'utilisation du Mésocentre CCAMU de Marseille](sheets/ccamu.html)
 
--   tutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/
+-   [Tutoriaux officiels](https://mesocentre.univ-amu.fr/les-tutoriaux/)
 
 ## IDRIS
 
--   http://www.idris.fr
+-   [Site web de l'IDRIS](http://www.idris.fr)
 
--   cheat sheet ici=\> http://www.idris.fr/media/su/idrismemento1.pdf
+-   [cheat sheet sur l'utilisation du calculateur de l'IDRIS](http://www.idris.fr/media/su/idrismemento1.pdf)
 
--   Utilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html
+-   [Utilisation des jupyter notebook sur Jean Zay](https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md)

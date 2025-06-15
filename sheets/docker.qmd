@@ -1,5 +1,5 @@
 ---
-title : Creation et utilisation d'un docker (exemple pour pyferret)
+title : installation de docker, création et utilisation d'un docker simple
 ---
 
 Si vous êtes à la fac de Toulon, pour passer le proxy, il faut utiliser le wifi univtoulon et indiquer un [serveur mandataire dans les paramètres réseaux](https://phoenixnap.com/kb/ubuntu-proxy-settings) .
@@ -9,9 +9,68 @@ Quelques docs à lire :
 - https://leimao.github.io/blog/Docker-Container-GUI-Display/
 - 
 
-# 1. Création du docker
+# 1. Installation de Docker de manière simple, via un script officiel
 
-Le fichier est le suivant: dockerFile_ubuntu22-04_anaconda3
+Dans un terminal, lancer la commande suivante:`
+```bash
+curl -fsSL https://get.docker.com | sh
+```
+
+C’est un script tout-en-un fourni par Docker, qui :
+	*	détecte la distribution;
+	*	installe Docker;
+	*	configure les services.
+
+Il est possible qu'il ne fonctionne pas avec le proxy de l'université de Toulon. Dans ce cas, il faut suivre la méthode suivante.
+
+# 2. Installation de Docker mode avancé
+
+Pour installer Docker pas à pas, il faut suivre les instructions du site officiel: [Docker](https://docs.docker.com/get-docker/):
+
+## 1.1 Ubuntu
+Se référer à la page web [pour ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+
+### Via un proxy par authentification (cas de Toulon) 
+
+On installe les paquets nécessaires, en remplacant yourlogin par votre login:
+```bash
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl --proxy http://cache.univ-tln.fr:3128 --proxy-user yourlogin -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+### de manière standard
+
+On installe les paquets nécessaires:
+```bash
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+
+### suite de l'installation (avec ou sans proxy) 
+
+```bash
+echo "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
+sudo apt update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+En suivant les [explications du site Docker](https://docs.docker.com/engine/install/linux-postinstall/), on ajoute son utilisateur au groupe docker:
+
+```bash
+sudo groupadd docker
+ sudo usermod -aG docker $USER
+```
+
+
+## 1.2 Mac
+Se référer à la page web [pour mac](https://docs.docker.com/desktop/setup/install/mac-install/)
+
+# 2. Création du docker
+
+Pour notre exemple, on va créer un docker qui contiendra une distribution ubuntu 22.04 avec anaconda. Le fichier à créer se nommera `dockerFile_ubuntu22-04_anaconda3`, et contiendra les lignes suivantes:
+
+```bash
 FROM ubuntu:22.04
 WORKDIR /usr/src/app
 USER root
@@ -21,13 +80,21 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &
     rm -r Miniconda3-latest-Linux-x86_64.sh
 ENV PATH /opt/miniconda3/bin:$PATH
 RUN conda update conda
-#RUN conda install python=3.9
 RUN conda config --add channels conda-forge
-#RUN conda config --set channel_priority strict
+```
+
+Puis, on construit le docker avec la commande suivante. Cette commande se fait une seule fois, et permet de créer une image docker. Il faut se placer dans le répertoire où se trouve le fichier `dockerFile_ubuntu22-04_anaconda3`:
+
+```bash
+docker build  -t ubuntu22.4_anaconda -f dockerFile_ubuntu22-04_anaconda3 .
+```
+
+# 3. lancement du docker 
+On lance le docker avec la commande suivante:
+```bash
+docker run -i -v /home/mazoyer/Documents/data/:/DATA -t ubuntu22.4_anaconda bash
+```
+L'option -v permet de monter un volume entre le docker et le système hôte. Ici, on monte le dossier /home/mazoyer/Documents/data/ dans le dossier /DATA du docker.
+L'option -t permet de lancer un terminal bash.
 
 
-docker build  -t test -f dockerFile_ubuntu22-04_anaconda3 .
-
-
-# 2. lancement du docker 
-docker run -i -v /home/mazoyer/Documents/data/TBAY/:/DATA -t ubuntu22.4-pyferret bash

@@ -1,0 +1,23 @@
+---
+title : Création d'un site en quarto
+---
+
+# Création d'un site en quarto sous github
+
+## Installation de quarto
+
+On peut installer quarto via conda:
+```bash
+conda install -c conda-forge quarto
+```
+
+## Création du dépôt github 
+
+Créer le dépôt sur github et le cloner sur son ordinateur. Dans le terminal, se placer dans le dossier du dépôt cloné.
+Et créer le site, en tapant la commande suivante:
+```bash
+quarto init
+```
+
+## En construction
+Suite en construction  ...

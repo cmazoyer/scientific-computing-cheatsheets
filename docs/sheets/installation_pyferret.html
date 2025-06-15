@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.6.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Camille Mazoyer - Installation de pyferret avec Anaconda</title>
+<title>Installation de pyferret avec Anaconda – Camille Mazoyer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-8bda806db8b623a4dafb352339cca83f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -100,6 +100,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-F9MPYZJZ47"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
+</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -117,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -128,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -142,17 +151,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#installation-via-miniconda" id="toc-installation-via-miniconda" class="nav-link active" data-scroll-target="#installation-via-miniconda">1) installation via miniconda</a></li>
-  <li><a href="#installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun" id="toc-installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun" class="nav-link" data-scroll-target="#installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun">2) installation dans le .bashrc (a installer dans les home de chacun)</a></li>
-  <li><a href="#installation-de-lenvironnement-ferret" id="toc-installation-de-lenvironnement-ferret" class="nav-link" data-scroll-target="#installation-de-lenvironnement-ferret">3) Installation de l’environnement FERRET</a>
+  <li><a href="#prérequis" id="toc-prérequis" class="nav-link active" data-scroll-target="#prérequis">1) Prérequis</a></li>
+  <li><a href="#installation-de-lenvironnement-ferret" id="toc-installation-de-lenvironnement-ferret" class="nav-link" data-scroll-target="#installation-de-lenvironnement-ferret">2) Installation de l’environnement FERRET</a>
   <ul class="collapse">
   <li><a href="#dernière-version-de-pyferret-pour-ubuntu-20.04" id="toc-dernière-version-de-pyferret-pour-ubuntu-20.04" class="nav-link" data-scroll-target="#dernière-version-de-pyferret-pour-ubuntu-20.04">Dernière version de Pyferret pour ubuntu &gt; 20.04</a></li>
   <li><a href="#pyferret-pour-ubuntu-20.04" id="toc-pyferret-pour-ubuntu-20.04" class="nav-link" data-scroll-target="#pyferret-pour-ubuntu-20.04">Pyferret pour ubuntu 20.04</a></li>
   <li><a href="#usage-de-python-3.9-au-lieu-de-3.10" id="toc-usage-de-python-3.9-au-lieu-de-3.10" class="nav-link" data-scroll-target="#usage-de-python-3.9-au-lieu-de-3.10">Usage de python 3.9 au lieu de 3.10</a></li>
   </ul></li>
-  <li><a href="#utilisation-de-pyferret" id="toc-utilisation-de-pyferret" class="nav-link" data-scroll-target="#utilisation-de-pyferret">4) Utilisation de pyferret</a></li>
-  <li><a href="#utilisation-dun-script-pour-faciliter-le-lancement-de-pyferret" id="toc-utilisation-dun-script-pour-faciliter-le-lancement-de-pyferret" class="nav-link" data-scroll-target="#utilisation-dun-script-pour-faciliter-le-lancement-de-pyferret">5) Utilisation d’un script pour faciliter le lancement de pyferret</a></li>
-  <li><a href="#commandes-de-test-pour-vérifier-votre-installation-pyferret" id="toc-commandes-de-test-pour-vérifier-votre-installation-pyferret" class="nav-link" data-scroll-target="#commandes-de-test-pour-vérifier-votre-installation-pyferret">6) Commandes de test pour vérifier votre installation pyferret</a></li>
+  <li><a href="#utilisation-de-pyferret" id="toc-utilisation-de-pyferret" class="nav-link" data-scroll-target="#utilisation-de-pyferret">3) Utilisation de pyferret</a></li>
+  <li><a href="#utilisation-dun-script-pour-faciliter-le-lancement-de-pyferret" id="toc-utilisation-dun-script-pour-faciliter-le-lancement-de-pyferret" class="nav-link" data-scroll-target="#utilisation-dun-script-pour-faciliter-le-lancement-de-pyferret">4) Utilisation d’un script pour faciliter le lancement de pyferret</a></li>
+  <li><a href="#commandes-de-test-pour-vérifier-votre-installation-pyferret" id="toc-commandes-de-test-pour-vérifier-votre-installation-pyferret" class="nav-link" data-scroll-target="#commandes-de-test-pour-vérifier-votre-installation-pyferret">5) Commandes de test pour vérifier votre installation pyferret</a></li>
   </ul>
 </nav>
     </div>
@@ -179,85 +187,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Suivre les explications du README de pyferret: https://github.com/NOAA-PMEL/PyFerret/blob/master/README.md</p>
-<section id="installation-via-miniconda" class="level1">
-<h1>1) installation via miniconda</h1>
-<p>https://docs.conda.io/en/latest/miniconda.html</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh <span class="er">(</span><span class="ex">script</span> .sh à adapter suivant la page html ci dessu<span class="kw">)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> Miniconda<span class="pp">*</span>.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>ou pour installer rapidement anaconda:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install miniconda to /miniconda</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-LO</span> http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniconda3-latest-Linux-x86_64.sh <span class="at">-p</span> /miniconda <span class="at">-b</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> Miniconda3-latest-Linux-x86_64.sh</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">ENV</span> PATH=/miniconda/bin:<span class="va">${PATH}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>installation dans /home/votrelogin/anaconda/miniconda3 par exemple</p>
-<p>demander a installer l’initialisation, ce qui equivaut au code ci dessous de l’item 2.</p>
-</section>
-<section id="installation-dans-le-.bashrc-a-installer-dans-les-home-de-chacun" class="level1">
-<h1>2) installation dans le .bashrc (a installer dans les home de chacun)</h1>
-<p>Dans son home dir, recopier le code ci dessous dans le .bashrc:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># !! Contents within this block are managed by 'conda init' !!</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">__conda_setup</span><span class="op">=</span><span class="st">"</span><span class="va">$(</span><span class="st">'/usr/local/anaconda/miniconda3/bin/conda'</span> <span class="st">'shell.bash'</span> <span class="st">'hook'</span> <span class="dv">2</span><span class="op">&gt;</span> /dev/null<span class="va">)</span><span class="st">"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="va">$?</span> <span class="ot">-eq</span> 0 <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">eval</span> <span class="st">"</span><span class="va">$__conda_setup</span><span class="st">"</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">[</span> <span class="ot">-f</span> <span class="st">"/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">.</span> <span class="st">"/usr/local/anaconda/miniconda3/etc/profile.d/conda.sh"</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">export</span> <span class="va">PATH</span><span class="op">=</span><span class="st">"/usr/local/anaconda/miniconda3/bin:</span><span class="va">$PATH</span><span class="st">"</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="bu">unset</span> <span class="va">__conda_setup</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Relancer ensuite un terminal</p>
+<section id="prérequis" class="level1">
+<h1>1) Prérequis</h1>
+<p>Installer Anaconda (se réferer à la page <a href="config_globale_ubuntu.html">Configurer son ordi Ubuntu pour le calcul scientifique</a> pour plus de détails).</p>
+<p>Pour Mac Os X, il est nécessaire de suivre la procédure d’installation de Rosetta et de forcer conda à créer un environnement x86_64. Voir la page <a href="config_globale_mac.html">Configurer son ordi Mac pour le calcul scientifique</a> pour plus de détails.</p>
 </section>
 <section id="installation-de-lenvironnement-ferret" class="level1">
-<h1>3) Installation de l’environnement FERRET</h1>
-<p>Si vous êtes derrière le proxy de la fac de Toulon, avant toute commande, taper:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">HTTP_PROXY</span><span class="op">=</span>cache.univ-tln.fr:3128</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">HTTPS_PROXY</span><span class="op">=</span>cache.univ-tln.fr:3128</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h1>2) Installation de l’environnement FERRET</h1>
 <section id="dernière-version-de-pyferret-pour-ubuntu-20.04" class="level2">
 <h2 class="anchored" data-anchor-id="dernière-version-de-pyferret-pour-ubuntu-20.04">Dernière version de Pyferret pour ubuntu &gt; 20.04</h2>
 <p>Pour avoir la dernière version de PyFerret:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> FERRET <span class="at">-c</span> conda-forge pyferret ferret_datasets python=3.9 <span class="at">--yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> FERRET <span class="at">-c</span> conda-forge pyferret ferret_datasets python=3.9 <span class="at">--yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Avec cette installation, on peut rencontrer l’erreur suivante lors de l’utilisation de pyferret: “A module that was compiled using NumPy 1.x cannot be run in NumPy 2.0.2 as it may crash.”</p>
+<p>Pour résoudre ce problème, il faut installer une version de numpy plus ancienne (même après l’installation de pyferret):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="st">"numpy&lt;2"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Cela devrait résoudre le problème.</p>
 </section>
 <section id="pyferret-pour-ubuntu-20.04" class="level2">
 <h2 class="anchored" data-anchor-id="pyferret-pour-ubuntu-20.04">Pyferret pour ubuntu 20.04</h2>
 <p>Attention! Pour installer PyFerret avec Ubuntu 20.04 TLS, choisir une version de 2020 (https://www.pmel.noaa.gov/maillists/tmap/ferret_users/fu_2019/msg01061.html)</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> FERRET <span class="at">-c</span> conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 <span class="at">--yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> FERRET <span class="at">-c</span> conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 <span class="at">--yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="usage-de-python-3.9-au-lieu-de-3.10" class="level2">
 <h2 class="anchored" data-anchor-id="usage-de-python-3.9-au-lieu-de-3.10">Usage de python 3.9 au lieu de 3.10</h2>
 <p>Pyferret peut ne pas fonctionner avec python 3.10 (erreur: https://github.com/conda-forge/pyferret-feedstock/issues/94 ). Si c’est le cas, spécifier la version de python:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> FERRET <span class="at">-c</span> conda-forge pyferret ferret_datasets python=3.9 <span class="at">--yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> FERRET <span class="at">-c</span> conda-forge pyferret ferret_datasets python=3.9 <span class="at">--yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>ou</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> FERRET <span class="at">-c</span> conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 <span class="at">--yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> FERRET <span class="at">-c</span> conda-forge/label/cf202003 pyferret ferret_datasets python=3.9 <span class="at">--yes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="utilisation-de-pyferret" class="level1">
-<h1>4) Utilisation de pyferret</h1>
+<h1>3) Utilisation de pyferret</h1>
 <p>A chaque utilisation de pyferret:</p>
 <p>activer l’environnement</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate FERRET</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate FERRET</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>lancer pyferret</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pyferret</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pyferret</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Désactiver l’environnement une fois l’usage fini</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> deactivate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> deactivate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="utilisation-dun-script-pour-faciliter-le-lancement-de-pyferret" class="level1">
-<h1>5) Utilisation d’un script pour faciliter le lancement de pyferret</h1>
+<h1>4) Utilisation d’un script pour faciliter le lancement de pyferret</h1>
 <p>Ces deux commandes activate + pyferret peuvent être remplacées par un alias à insérer dans votre .bashrc:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> mypyferret=<span class="st">'source activate FERRET &amp;&amp; pyferret'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">alias</span> mypyferret=<span class="st">'source activate FERRET &amp;&amp; pyferret'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ou alors, vous pouvez aller voir le script pyferret.sh dans la doc https://github.com/NOAA-PMEL/PyFerret/blob/master/README.md</p>
 </section>
 <section id="commandes-de-test-pour-vérifier-votre-installation-pyferret" class="level1">
-<h1>6) Commandes de test pour vérifier votre installation pyferret</h1>
+<h1>5) Commandes de test pour vérifier votre installation pyferret</h1>
 <p>Lancer pyferret et utiliser un netcdf (ici file.nc). Avec une variable 3D température nommée TEMP</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pyferret</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">use</span> file.nc</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> d</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="ex">shade</span> TEMP<span class="pp">[</span><span class="ss">l=1</span><span class="pp">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pyferret</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">use</span> file.nc</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sh</span> d</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">shade</span> TEMP<span class="pp">[</span><span class="ss">l=1</span><span class="pp">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -298,18 +279,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -341,7 +311,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -349,7 +341,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

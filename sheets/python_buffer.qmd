@@ -1,0 +1,26 @@
+---
+title: Forcing unbuffered writing in a Python file
+---
+
+Sometimes writing (to text files and on screen) is not done on the fly, but at the end of the script. In this case, you need to force writing by flushing the memory buffer. So we'll use the print method defined here:
+
+
+```python
+import os,sys,builtins
+
+
+def print(text):
+        builtins.print(text)
+        os.fsync(sys.stdout)
+
+def print2(text1,text2):
+        builtins.print(text1, text2)
+        os.fsync(sys.stdout)
+
+sys.stdout=open("readgrib.txt","a",buffering=1)
+
+# script avec des calculs et des print
+print('read grdfile') # avec un argument
+print2('read grdfile', gridname) # avec deux arguments
+# et autre print.... 
+```

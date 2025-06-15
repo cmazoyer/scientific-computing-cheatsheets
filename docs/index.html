@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.6.33">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Camille Mazoyer - Scientific computing cheatsheets at the laboratory MIO in oceanography</title>
+<title>Calcul scientifique au laboratoire MIO – Camille Mazoyer</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -35,10 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-8bda806db8b623a4dafb352339cca83f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,6 +66,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-F9MPYZJZ47"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
+</script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -83,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -94,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -115,13 +124,14 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#croco" id="toc-croco" class="nav-link" data-scroll-target="#croco">CROCO</a></li>
   <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git">Git</a></li>
   <li><a href="#anaconda" id="toc-anaconda" class="nav-link" data-scroll-target="#anaconda">Anaconda</a></li>
-  <li><a href="#ferret" id="toc-ferret" class="nav-link" data-scroll-target="#ferret">Ferret</a></li>
+  <li><a href="#pyferret-ferret" id="toc-pyferret-ferret" class="nav-link" data-scroll-target="#pyferret-ferret">pyFerret / Ferret</a></li>
   <li><a href="#fortran" id="toc-fortran" class="nav-link" data-scroll-target="#fortran">Fortran</a></li>
   <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
   <li><a href="#python" id="toc-python" class="nav-link" data-scroll-target="#python">Python</a></li>
   </ul></li>
   <li><a href="#utilisation-de-clusters-locaux-régionaux-nationaux" id="toc-utilisation-de-clusters-locaux-régionaux-nationaux" class="nav-link" data-scroll-target="#utilisation-de-clusters-locaux-régionaux-nationaux">Utilisation de clusters locaux, régionaux, nationaux</a>
   <ul class="collapse">
+  <li><a href="#respore-au-mio-toulon" id="toc-respore-au-mio-toulon" class="nav-link" data-scroll-target="#respore-au-mio-toulon">Respore au MIO Toulon</a></li>
   <li><a href="#cluster-de-losu-pytheas" id="toc-cluster-de-losu-pytheas" class="nav-link" data-scroll-target="#cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</a></li>
   <li><a href="#cluster-régional-ccamu-marseille" id="toc-cluster-régional-ccamu-marseille" class="nav-link" data-scroll-target="#cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</a></li>
   <li><a href="#idris" id="toc-idris" class="nav-link" data-scroll-target="#idris">IDRIS</a></li>
@@ -134,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Scientific computing cheatsheets at the laboratory MIO in oceanography</h1>
+<h1 class="title">Calcul scientifique au laboratoire MIO</h1>
 </div>
 
 
@@ -152,13 +162,15 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>auteur: Camille Mazoyer, camille.mazoyer@ird.fr</p>
-<p>maj: janvier 2024</p>
+<p>maj: fev 2025</p>
+<p>I’ll translate my notes into English as I go along.</p>
 <p>Merci de m’envoyer un email si une des infos ci-dessous n’est plus à jour, pour que j’améliore la documentation.</p>
 <section id="configuration-globale" class="level1">
 <h1>Configuration globale</h1>
 <ul>
 <li><p><a href="sheets/config_globale_ubuntu.html">Configurer son ordi Ubuntu pour le calcul scientifique</a></p></li>
-<li><p>Configurer son ordi Mac pour le calcul scientifique (à faire)</p></li>
+<li><p><a href="sheets/config_globale_mac.html">Configurer son ordi Mac pour le calcul scientifique</a></p></li>
+<li><p><a href="sheets/bonnes_pratiques_travail.html">Bonnes pratiques de travail (mots de passes, nuage, git …)</a></p></li>
 <li><p><a href="sheets/universite_toulon_proxy.html">Travailler à l’université de Toulon sous proxy</a></p></li>
 </ul>
 </section>
@@ -177,14 +189,10 @@ ul.task-list li input[type="checkbox"] {
 <h1>Fiches logiciels divers</h1>
 <ul>
 <li><p><a href="sheets/vim.html">Mémos, raccourcis et améliorations de VIM/GVIM</a></p></li>
-<li><p>Utilisation de GDB avec exemple de CROCO sur le cluster de l’OSU</p></li>
+<li><p>Utilisation de GDB avec exemple de CROCO sur le cluster de l’OSU - EN CONSTRUCTION -</p></li>
 <li><p><a href="sheets/visual_studio_code.html">Utilisation de Visual Studio Code, éditeur de code</a></p></li>
-<li><p>Installation et configuration de x2go</p></li>
-<li><p>Récupération de fichiers netcdf via Copernicus</p>
-<ul>
-<li>Motuclient (deprecated?)</li>
-<li><a href="sheets/copernicusmarine.html">Copernicusmarine</a></li>
-</ul></li>
+<li><p>Installation et configuration de x2go - EN CONSTRUCTION -</p></li>
+<li><p>Récupération de fichiers netcdf via Copernicus avec <a href="sheets/copernicusmarine.html">Copernicusmarine</a></p></li>
 <li><p><a href="sheets/zenodo_github.html">Utilisation de Zenodo et Github pour mettre son code sous DOI</a></p></li>
 </ul>
 <section id="croco" class="level2">
@@ -193,12 +201,21 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="sheets/croco_installation.html">Installation et compilation de CROCO</a></li>
 </ul>
 </section>
+<section id="docker" class="level2">
+<h2 class="anchored" data-anchor-id="docker">Docker</h2>
+<ul>
+<li><p><a href="sheets/docker.html">Installation de Docker Engine, création et utilisation d’un docker simple</a></p></li>
+<li><p><a href="sheets/create_docker.html">Créer et partager une image docker</a></p></li>
+</ul>
+</section>
 <section id="git" class="level2">
 <h2 class="anchored" data-anchor-id="git">Git</h2>
 <ul>
 <li><p><a href="sheets/git.html">Mémos, raccourcis et améliorations de GIT</a></p></li>
 <li><p><a href="./sheets/create_mkdocs_documentation.html">Creer un site web de documentation avec mkdocs et le gitlab de l’OSU Pytheas</a></p></li>
-<li><p><a href="./sheets/githubcopilot.html">Utilisation de Github Copilot dans Visual Studio Code</a></p></li>
+<li><p>Creer un site web de documentation avec sphinx et le gitlab de l’OSU Pytheas : en construction</p></li>
+<li><p><a href="sheets/site_quarto.html">Utilisation de Quarto pour créer un site web, avec github</a></p></li>
+<li><p><a href="sheets/githubcopilot.html">Utilisation de Github Copilot dans Visual Studio Code</a></p></li>
 </ul>
 </section>
 <section id="anaconda" class="level2">
@@ -209,18 +226,20 @@ ul.task-list li input[type="checkbox"] {
 <li><p><a href="sheets/partager_env_anaconda.html">Partager un environnement Anaconda entre deux utilisateurs d’une même machine</a></p></li>
 </ul>
 </section>
-<section id="ferret" class="level2">
-<h2 class="anchored" data-anchor-id="ferret">Ferret</h2>
+<section id="pyferret-ferret" class="level2">
+<h2 class="anchored" data-anchor-id="pyferret-ferret">pyFerret / Ferret</h2>
 <ul>
-<li>Premiers pas en ferret ( à faire)</li>
+<li><p><a href="sheets/installation_pyferret.html">Installation de pyferret avec Anaconda</a></p></li>
+<li><p><a href="files/tutoriel_linux_ferret_nco.pdf">Premiers pas en ferret</a></p></li>
+<li><p><a href="sheets/ferret.html">Astuces pour Ferret</a></p></li>
 </ul>
 </section>
 <section id="fortran" class="level2">
 <h2 class="anchored" data-anchor-id="fortran">Fortran</h2>
 <ul>
-<li><p>Options de compilation pour debugger en Fortran</p></li>
-<li><p>utilisation du debugger gdb avec croco (sur le cluster OSU)</p></li>
-<li><p>Listing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop</p></li>
+<li><p>Options de compilation pour debugger en Fortran - EN CONSTRUCTION -</p></li>
+<li><p>utilisation du debugger gdb avec croco (sur le cluster OSU) - EN CONSTRUCTION -</p></li>
+<li><p>Listing des erreurs de compilations rencontrées lors d’installations de CROCO ou ROMS sur les machines de TP ou laptop - EN CONSTRUCTION -</p></li>
 </ul>
 </section>
 <section id="matlab" class="level2">
@@ -232,37 +251,42 @@ ul.task-list li input[type="checkbox"] {
 <section id="python" class="level2">
 <h2 class="anchored" data-anchor-id="python">Python</h2>
 <ul>
-<li><p>Utilisation de google collab pour des jupyter notebook python</p></li>
-<li><p>CROCO avec Python .</p></li>
-<li><p>la bibliothèque XOA gère les sorties CROCO et est documentée ici: https://xoa.readthedocs.io/en/latest/index.html</p></li>
-<li><p>la bibliothèque Vacuum est disponible ici : https://github.com/VACUMM/vacumm (mais elle n’est plus à jour)</p></li>
-<li><p>How to Make Python Code Run Incredibly Fast</p></li>
-<li><p>Utilisation de xarray conseillée (à faire)</p></li>
+<li><p><a href="sheets/python_buffer.html">Forcing unbuffered writing in a Python file</a></p></li>
+<li><p><a href="sheets/google_colab.html">Utilisation de google collab pour des jupyter notebook python</a></p></li>
+<li><p>Toolbox pycroco (toolbox officielle de CROCO): <a href="https://gitlab.inria.fr/croco-ocean/croco_pytools/-/releases">sources</a> et <a href="https://www.croco-ocean.org/documentation/">documentation</a></p></li>
+<li><p>la <a href="https://xoa.readthedocs.io/en/latest/index.html">bibliothèque XOA</a> gère les sorties CROCO</p></li>
+<li><p>Utilisation de gros jeux de données netcdf via xarray: <a href="https://docs.xarray.dev/en/stable/">documentation</a> et <a href="https://tutorial.xarray.dev/intro.html#">tutoriels</a></p></li>
 </ul>
 </section>
 </section>
 <section id="utilisation-de-clusters-locaux-régionaux-nationaux" class="level1">
 <h1>Utilisation de clusters locaux, régionaux, nationaux</h1>
+<section id="respore-au-mio-toulon" class="level2">
+<h2 class="anchored" data-anchor-id="respore-au-mio-toulon">Respore au MIO Toulon</h2>
+<ul>
+<li><a href="sheets/respore.html">Machine respore au MIO Toulon</a></li>
+</ul>
+</section>
 <section id="cluster-de-losu-pytheas" class="level2">
 <h2 class="anchored" data-anchor-id="cluster-de-losu-pytheas">Cluster de l’OSU Pytheas</h2>
 <ul>
-<li><p>cluster de l’osupytheas :https://calcul.osupytheas.fr/</p></li>
-<li><p>Documentation pour une Connexion à distance à Tools</p></li>
+<li><p><a href="https://calcul.osupytheas.fr/">le site web du cluster de l’osupytheas</a></p></li>
+<li><p>Documentation pour une Connexion à distance à Tools - EN CONSTRUCTION -</p></li>
 </ul>
 </section>
 <section id="cluster-régional-ccamu-marseille" class="level2">
 <h2 class="anchored" data-anchor-id="cluster-régional-ccamu-marseille">Cluster régional CCAMU Marseille</h2>
 <ul>
 <li><p><a href="sheets/ccamu.html">Mes docs sur l’utilisation du Mésocentre CCAMU de Marseille</a></p></li>
-<li><p>tutoriaux: https://mesocentre.univ-amu.fr/les-tutoriaux/</p></li>
+<li><p><a href="https://mesocentre.univ-amu.fr/les-tutoriaux/">Tutoriaux officiels</a></p></li>
 </ul>
 </section>
 <section id="idris" class="level2">
 <h2 class="anchored" data-anchor-id="idris">IDRIS</h2>
 <ul>
-<li><p>http://www.idris.fr</p></li>
-<li><p>cheat sheet ici=&gt; http://www.idris.fr/media/su/idrismemento1.pdf</p></li>
-<li><p>Utilisation des jupyter notebook sur Jean Zay: https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md et http://www.idris.fr/jean-zay/pre-post/jean-zay-jupyter-notebook.html</p></li>
+<li><p><a href="http://www.idris.fr">Site web de l’IDRIS</a></p></li>
+<li><p><a href="http://www.idris.fr/media/su/idrismemento1.pdf">cheat sheet sur l’utilisation du calculateur de l’IDRIS</a></p></li>
+<li><p><a href="https://github.com/meom-group/tutos/blob/master/jean-zay/jupyter-notebook-on-jean-zay.md">Utilisation des jupyter notebook sur Jean Zay</a></p></li>
 </ul>
 
 
@@ -305,18 +329,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -348,7 +361,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -356,7 +391,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
