@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.33">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Connexion à un ordinateur via un tunnel – Camille Mazoyer</title>
+<title>Camille Mazoyer - Connexion à un ordinateur via un tunnel</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -69,10 +69,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-07ba0ad10f5680c660e360ac31d2f3b6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-8bda806db8b623a4dafb352339cca83f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -126,7 +126,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -137,7 +137,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -196,7 +196,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
 <h1>Example 1: son laptop vers respore (via lseet.univ-tln.fr)</h1>
 <section id="mise-en-place-des-scripts" class="level2">
 <h2 class="anchored" data-anchor-id="mise-en-place-des-scripts">Mise en place des scripts</h2>
-<p>à écrire dans .bash_aliases :</p>
+<p>à écrire dans .bashrc :</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>        <span class="bu">alias</span> hrespore=<span class="st">"ssh mazoyer@respore"</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">alias</span> tunnelrespore=<span class="st">'ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5533:respore:22'</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">alias</span> htunnelrespore=<span class="st">'ssh -X -p 5533 mazoyer@localhost'</span></span>
@@ -230,7 +230,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
 </section>
 <section id="example-2-son-laptop-vers-jean-zay-à-lidris-via-lseet.univ-tln.fr" class="level1">
 <h1>Example 2: son laptop vers jean-zay à l’IDRIS (via lseet.univ-tln.fr)</h1>
-<p>à écrire dans .bash_aliases :</p>
+<p>à écrire dans .bashrc :</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tunnel idris JEAN ZAY</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">alias</span> tunneljeanzay=<span class="st">'ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5129:jean-zay.idris.fr:22'</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">alias</span> htunneljeanzay=<span class="st">'ssh -X -p 5129 rutv918@localhost'</span></span>
@@ -245,7 +245,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
 </section>
 <section id="example-3-son-laptop-vers-le-cluster-de-losu-cluster.osupytheas.fr-via-ssh.osupytheas.fr" class="level1">
 <h1>Example 3: son laptop vers le cluster de l’OSU (cluster.osupytheas.fr) (via ssh.osupytheas.fr)</h1>
-<p>à écrire dans .bash_aliases :</p>
+<p>à écrire dans .bashrc :</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>        <span class="bu">alias</span> tunnelcluster=<span class="st">'ssh -X -N -f mazoyer@ssh.osupytheas.fr -L5530:cluster.osupytheas.fr:22'</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">alias</span> htunnelcluster=<span class="st">'ssh -X -p 5530 mazoyer@localhost'</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">alias</span> sftpcluster=<span class="st">'sftp -P 5530 mazoyer@localhost'</span></span>
@@ -258,7 +258,7 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
 </section>
 <section id="example-4-son-laptop-vers-la-machine-tools-de-losu-via-ssh.osupytheas.fr" class="level1">
 <h1>Example 4: son laptop vers la machine tools de l’OSU (via ssh.osupytheas.fr)</h1>
-<p>à écrire dans .bash_aliases :</p>
+<p>à écrire dans .bashrc :</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>        <span class="bu">alias</span> tunneltools=<span class="st">'ssh -X -N -f mazoyer@ssh.osupytheas.fr -L5531:tools.osupytheas.fr:22'</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>        <span class="bu">alias</span> htunneltools=<span class="st">'ssh -X -p 5531 mazoyer@localhost'</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">alias</span> sftptools=<span class="st">'sftp -P 5531 mazoyer@localhost'</span></span>
@@ -316,7 +316,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -348,29 +359,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -378,7 +367,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

@@ -15,7 +15,7 @@ title: Connexion à un ordinateur via un tunnel
 
 ## Mise en place des scripts 
 
-à écrire dans .bash_aliases :
+à écrire dans .bashrc :
 ```bash
         alias hrespore="ssh mazoyer@respore"
         alias tunnelrespore='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5533:respore:22'
@@ -66,7 +66,7 @@ tunnelrespore
 
 # Example 2: son laptop vers jean-zay à l'IDRIS (via lseet.univ-tln.fr)
 
-à écrire dans .bash_aliases :
+à écrire dans .bashrc :
 ```bash
 # tunnel idris JEAN ZAY
         alias tunneljeanzay='ssh -X -N -f mazoyer@lseet.univ-tln.fr -L5129:jean-zay.idris.fr:22'
@@ -84,7 +84,7 @@ idem pour les explications que le 1.
 
 # Example 3: son laptop vers le cluster de l'OSU (cluster.osupytheas.fr) (via ssh.osupytheas.fr)
 
-à écrire dans .bash_aliases :
+à écrire dans .bashrc :
 ```bash
         alias tunnelcluster='ssh -X -N -f mazoyer@ssh.osupytheas.fr -L5530:cluster.osupytheas.fr:22'
         alias htunnelcluster='ssh -X -p 5530 mazoyer@localhost'
@@ -99,7 +99,7 @@ idem pour les explications que le 1.
 
 # Example 4: son laptop vers la machine tools de l'OSU (via ssh.osupytheas.fr)
 
-à écrire dans .bash_aliases :
+à écrire dans .bashrc :
 ```bash
         alias tunneltools='ssh -X -N -f mazoyer@ssh.osupytheas.fr -L5531:tools.osupytheas.fr:22'
         alias htunneltools='ssh -X -p 5531 mazoyer@localhost'
