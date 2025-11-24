@@ -63,3 +63,14 @@ cm.subset(
   maximum_depth=0,
 )
 ```
+
+# Utilisation derriere le proxy de Toulon
+
+Il est possible d'indiquer dans le code python le proxy, mais le plus simple est de taper ces commandes dans le terminal, avant de lancer un script d'appel 
+à Copernicus Marine, que ce soit pour `copernicusmarine login` ou un script pour télécharger des données. 
+
+```python
+export HTTP_PROXY="http://tonlogin:tonmodtdepasse@cache.univ-tln.fr:3128"
+export HTTPS_PROXY="http://tonlogin:tonmodtdepasse@cache.univ-tln.fr:3128"
+```
+
