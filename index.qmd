@@ -35,7 +35,7 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 -   [Connexion à distance à Tools](sheets/connexion_distance_tools.html)
 
 
-# Fiches logiciels
+# Fiches logiciels divers
 
 -   [Mémos, raccourcis et améliorations de VIM/GVIM](sheets/vim.html)
 
@@ -55,6 +55,10 @@ Merci de m'envoyer un email si une des infos ci-dessous n'est plus à jour, pour
 -  [Installation de Docker Engine, création et utilisation d'un docker simple ](sheets/docker.html)
 
 -  [Créer et partager une image docker](sheets/create_docker.html)
+
+## CROCO
+
+-   [Installation et compilation de CROCO](sheets/croco_installation.html)
 
 ## Git
 
