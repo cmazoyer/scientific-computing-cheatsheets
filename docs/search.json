@@ -733,5 +733,40 @@
     "title": "Configurer son ordi Ubuntu pour le calcul scientifique",
     "section": "3) Création d’un environnement pour l’océanographie",
     "text": "3) Création d’un environnement pour l’océanographie\nVous pouvez ensuite vous référer à la page Anaconda pour l’oceanographie pour la création d’environnements conda adaptés à l’océanographie."
+  },
+  {
+    "objectID": "sheets_unused/zenodo_github.html",
+    "href": "sheets_unused/zenodo_github.html",
+    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
+    "section": "",
+    "text": "se créer un compte sur github\nsi vous travaillez à plusieurs et que le logiciel a vocation à être diffuser, je vous conseille de créer une organisation sous Github (gestion de projet à plusieurs). Sinon, vous pouvez juste créer un projet sous votre compte. voir creating-a-new-organization-from-scratch\nChoisir une organisation “plan Free” et remplir les informations de créer de l’organisation.\nSi le nom choisi est Tao-Soft par ex, l’url est alors https://github.com/TAO-Soft .\n\n\n\n\n\nCréer un dépot (repository) à l’intérieur de cette organisation. Il pourra y en avoir plusieurs pour les différents outils (pré, post processing, le software, …). Dans notre exemple, cela donne: https://github.com/orgs/TAO-Soft/repositories\nChoisir un dépôt public et indiquer la licence GNU General Public Licence V3.0 par ex"
+  },
+  {
+    "objectID": "sheets_unused/zenodo_github.html#création-dune-organisation",
+    "href": "sheets_unused/zenodo_github.html#création-dune-organisation",
+    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
+    "section": "",
+    "text": "se créer un compte sur github\nsi vous travaillez à plusieurs et que le logiciel a vocation à être diffuser, je vous conseille de créer une organisation sous Github (gestion de projet à plusieurs). Sinon, vous pouvez juste créer un projet sous votre compte. voir creating-a-new-organization-from-scratch\nChoisir une organisation “plan Free” et remplir les informations de créer de l’organisation.\nSi le nom choisi est Tao-Soft par ex, l’url est alors https://github.com/TAO-Soft ."
+  },
+  {
+    "objectID": "sheets_unused/zenodo_github.html#création-dun-dépôt",
+    "href": "sheets_unused/zenodo_github.html#création-dun-dépôt",
+    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
+    "section": "",
+    "text": "Créer un dépot (repository) à l’intérieur de cette organisation. Il pourra y en avoir plusieurs pour les différents outils (pré, post processing, le software, …). Dans notre exemple, cela donne: https://github.com/orgs/TAO-Soft/repositories\nChoisir un dépôt public et indiquer la licence GNU General Public Licence V3.0 par ex"
+  },
+  {
+    "objectID": "sheets_unused/zenodo_github.html#autoriser-zenodo-à-accéder-à-votre-organisation",
+    "href": "sheets_unused/zenodo_github.html#autoriser-zenodo-à-accéder-à-votre-organisation",
+    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
+    "section": "3.1 Autoriser Zenodo à accéder à votre organisation",
+    "text": "3.1 Autoriser Zenodo à accéder à votre organisation\n\nAccéder au lien url de votre organisation, ici pour mon exemple: https://github.com/TAO-Soft (attention pas le lien de votre dépôt).\nCliquer sur “Settings”\nPuis dans le panel de gauche, cliquer sur “OAuth Application Policy”\nPuis “Remove restrictions”. Cela permettra que depuis votre compte zenodo personel, vous ayez accès aux dépôts de votre organisation. Vous vous callez sur les restrictions liées à votre compte personnel sans ajouter de blocage aussi via l’organisation."
+  },
+  {
+    "objectID": "sheets_unused/zenodo_github.html#sur-zenodo",
+    "href": "sheets_unused/zenodo_github.html#sur-zenodo",
+    "title": "Utilisation de Zenodo et Github pour mettre son code sous DOI",
+    "section": "3.2 Sur Zenodo",
+    "text": "3.2 Sur Zenodo\nSe référer à la documentation github sur Zenodo.\n\nSe rendre sur Zenodo et se connecter à Zenodo avec son compte Github, le lien sera ainsi fait entre les deux sites web.\nDans la page settings, https://zenodo.org/account/settings/github/, cliquer sur “Sync Now”\nRafraichir la page avec F5\nPositionner le bouton sur “ON” sur le dépôt de votre organisation (ici TAO-Soft/Tao-Soft)\nRafraichir la page avec F5\nDans la section “Enabled Repositories”, le nouveau dépôt devrait apparaitre. Cliquer dessus.\nOn est alors sur la page https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft, dans mon exemple.\nCliquer sur “Create release”, on se déplace alors sur une page du dépôt TAO-Soft du site Github\nDans “Choose a tag”, sélectioner le tag qui nous intéresse, par ex: v0.1.0.\nIndiquer le titre de la release. Par exemple: “Initial release v0.1.0”\nIl est conseiller de décrire la release (amélioration, bug fixed, …)\nCliquer sur le bouton vert “Publish release”\nCette release ayant été faite à partir de Zenodo, elle sera visible sur celui-ci. Rafraichir la page du dépôt sur Zenodo https://zenodo.org/account/settings/github/repository/TAO-Soft/TAO-Soft\nToutes les informations apparaissent, dont le DOI"
   }
 ]
