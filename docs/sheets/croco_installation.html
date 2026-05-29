@@ -209,25 +209,29 @@ gtag('config', 'G-F9MPYZJZ47', { 'anonymize_ip': true});
 </section>
 <section id="téléchargement-de-croco-et-des-crocotools" class="level1">
 <h1>Téléchargement de CROCO et des CROCOTOOLS</h1>
+<p>Il est conseillé de créer un répertoire qui contiendra vos sources <code>croco</code> et <code>croco_tools</code> et toutes vos configurations <code>CONFIGS</code>, par exemple à la racine de votre home: <code>/home/votrelogin/CROCO/</code>.</p>
 <p>La <a href="https://www.croco-ocean.org/download/">page officielle de téléchargement</a> propose de récupérer le code via des répertoires compressés tar.gz ou via git:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--branch</span> v2.1.0 https://gitlab.inria.fr/croco-ocean/croco.git croco</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--branch</span> v2.1.0 https://gitlab.inria.fr/croco-ocean/croco_tools.git croco_tools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/votrelogin/</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> CROCO</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> CROCO</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--branch</span> v2.1.0 https://gitlab.inria.fr/croco-ocean/croco.git croco</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--branch</span> v2.1.0 https://gitlab.inria.fr/croco-ocean/croco_tools.git croco_tools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="création-dune-configuration-et-compilation" class="level1">
 <h1>Création d’une configuration et compilation</h1>
 <section id="création-dune-configuration" class="level2">
 <h2 class="anchored" data-anchor-id="création-dune-configuration">Création d’une configuration</h2>
-<p>Il est conseillé de créer un répertoire qui contiendra toutes vos configurations <code>CONFIGS</code>, au même niveau que là où vous avez vos répertoires <code>croco</code> et <code>croco_tools</code>. Le script <code>create_config.bash</code> dans le répertoire <code>croco</code> permettra de créer des répertoires de configurations de CROCO automatiquement. Il est possible de modifier le chemin des crocotools, de croco, le nom de la config (Run par défault). Pour commencer, vous pouvez laisser les propositions telles quelles.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> CONFIGS</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> CONFIGS</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../croco/create_config.bash .</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> create_config.bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Le script <code>create_config.bash</code> dans le répertoire <code>croco</code> permettra de créer des répertoires de configurations de CROCO automatiquement. Il est possible de modifier le chemin des crocotools, de croco, le nom de la config (Run par défault). Pour commencer, vous pouvez laisser les propositions telles quelles.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/votrelogin/CROCO</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> CONFIGS</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> croco</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> create_config.bash <span class="at">-d</span> /home/votre login/CROCO/CONFIGS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Vous avez alors un répertoire <code>Run</code> créé dans votre répertoire <code>CONFIGS</code>.</p>
 </section>
 <section id="compilation" class="level2">
 <h2 class="anchored" data-anchor-id="compilation">Compilation</h2>
 <p>Aller dans le répertoire Run:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Run</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../CONFIGS/Run</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Le script de compilation a évolué à partir de cette version de croco pour qu’il ne soit plus nécessaire de le modifier directement. Le choix du compilateur, des librairies netcdf, … se fait en arguments dans le cas où nous ne sommes pas dans une configuration standard de style ubuntu.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./jobcomp</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Si vous n’êtes pas dans un cas standard, vous pouvez indiquer des arguments. Dans ce cas, il est plus simple de sauvegarder la ligne de commande dans un fichier nommé compil.sh par ex (toujours dans <code>Run</code>), que nous lancerons ensuite.</p>

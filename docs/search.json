@@ -89,5 +89,40 @@
     "title": "Calcul scientifique au laboratoire MIO",
     "section": "IDRIS",
     "text": "IDRIS\n\nSite web de l’IDRIS\ncheat sheet sur l’utilisation du calculateur de l’IDRIS\nUtilisation des jupyter notebook sur Jean Zay"
+  },
+  {
+    "objectID": "sheets/croco_installation.html",
+    "href": "sheets/croco_installation.html",
+    "title": "Installation et compilation du code CROCO",
+    "section": "",
+    "text": "Le site officiel de CROCO contient de nombreuses informations et est accessible ici: https://www.croco-ocean.org/. il contient notamment un onglet Documentation/."
+  },
+  {
+    "objectID": "sheets/croco_installation.html#sous-ubuntu",
+    "href": "sheets/croco_installation.html#sous-ubuntu",
+    "title": "Installation et compilation du code CROCO",
+    "section": "Sous Ubuntu",
+    "text": "Sous Ubuntu\nDans un terminal, lancer les commandes!\nsudo apt-get install aptitude\nsudo aptitude install git gfortran libnetcdff-dev\nsudo aptitude install libopenmpi-dev openmpi-bin"
+  },
+  {
+    "objectID": "sheets/croco_installation.html#sous-mac",
+    "href": "sheets/croco_installation.html#sous-mac",
+    "title": "Installation et compilation du code CROCO",
+    "section": "Sous MAC",
+    "text": "Sous MAC\npas de documentation forcément nécessaire. Le plus simple est de compiler CROCO sur un calculateur, une station avec linux.\nMais si besoin, je conseillerai:\n\nune installation via HomeBrew\ncréation d’un docker ubuntu dans lequel on réalise une installation croco"
+  },
+  {
+    "objectID": "sheets/croco_installation.html#création-dune-configuration",
+    "href": "sheets/croco_installation.html#création-dune-configuration",
+    "title": "Installation et compilation du code CROCO",
+    "section": "Création d’une configuration",
+    "text": "Création d’une configuration\nLe script create_config.bash dans le répertoire croco permettra de créer des répertoires de configurations de CROCO automatiquement. Il est possible de modifier le chemin des crocotools, de croco, le nom de la config (Run par défault). Pour commencer, vous pouvez laisser les propositions telles quelles.\ncd /home/votrelogin/CROCO\nmkdir CONFIGS\ncd croco\nbash create_config.bash -d /home/votre login/CROCO/CONFIGS\nVous avez alors un répertoire Run créé dans votre répertoire CONFIGS."
+  },
+  {
+    "objectID": "sheets/croco_installation.html#compilation",
+    "href": "sheets/croco_installation.html#compilation",
+    "title": "Installation et compilation du code CROCO",
+    "section": "Compilation",
+    "text": "Compilation\nAller dans le répertoire Run:\ncd ../CONFIGS/Run\nLe script de compilation a évolué à partir de cette version de croco pour qu’il ne soit plus nécessaire de le modifier directement. Le choix du compilateur, des librairies netcdf, … se fait en arguments dans le cas où nous ne sommes pas dans une configuration standard de style ubuntu.\n./jobcomp --help\nSi vous n’êtes pas dans un cas standard, vous pouvez indiquer des arguments. Dans ce cas, il est plus simple de sauvegarder la ligne de commande dans un fichier nommé compil.sh par ex (toujours dans Run), que nous lancerons ensuite.\nDans notre arborescence (CONFIGS/Run), avec les librairies netcdf système, et le compilateur gfortran, le fichier compil.sh sera ainsi:\n#!/bin/bash\n./jobcomp --src ../../croco/OCEAN\nSi on veut choisir quelles librairies netcdf utiliser, on peut forcer leur utilisation en indiquant leur chemin. Le chemin de netcdf-inc est le répertoire contenant le fichier netcdf.inc, et le chemin de netcdf est le répertoire contenant libnetcdff.so par ex ( à identifier avec locate):\n#!/bin/bash\n./jobcomp --src ../../croco/OCEAN --netcdf-inc \"-I/usr/include\" --netcdf-lib \"-L/usr/lib/x86_64-linux-gnu -lnetcdff -lnetcdf\"\nSur le cluster de l’OSU, le fichier compil.sh sera :\n#!/bin/bash\n./jobcomp --fc ifort --mpif90 mpiifort --netcdf-lib \"-L/libraries/libcalcul/netcdf/netcdf_parallel/lib/ -lnetcdf -lnetcdff\" --netcdf-inc \"-I/libraries/libcalcul/netcdf/netcdf_parallel/include\"\non peut donner les droits d’exécution au fichier compil.sh en lançant une fois cette ligne de commande:\nchmod +x compil.sh \nPuis la compilation se fait avec:\n./compil.sh"
   }
 ]

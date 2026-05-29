@@ -29,9 +29,15 @@ Mais si besoin, je conseillerai:
 
 # Téléchargement de CROCO et des CROCOTOOLS
 
+Il est conseillé de créer un répertoire qui contiendra vos sources  `croco` et `croco_tools` et toutes vos configurations `CONFIGS`, par exemple à la racine de votre home: `/home/votrelogin/CROCO/`.
+
+
 La [page officielle de téléchargement](https://www.croco-ocean.org/download/) propose de récupérer le code via des répertoires compressés tar.gz ou via git:  
 
 ```bash
+cd /home/votrelogin/
+mkdir CROCO
+cd CROCO
 git clone --branch v2.1.0 https://gitlab.inria.fr/croco-ocean/croco.git croco
 git clone --branch v2.1.0 https://gitlab.inria.fr/croco-ocean/croco_tools.git croco_tools
 ```
@@ -40,21 +46,23 @@ git clone --branch v2.1.0 https://gitlab.inria.fr/croco-ocean/croco_tools.git cr
 
 ## Création d'une configuration
 
-Il est conseillé de créer un répertoire qui contiendra toutes vos configurations `CONFIGS`, au même niveau que là où vous avez vos répertoires `croco` et `croco_tools`. Le script `create_config.bash` dans le répertoire `croco` permettra de créer des répertoires de configurations de CROCO automatiquement. Il est possible de modifier le chemin des crocotools, de croco, le nom de la config (Run par défault). Pour commencer, vous pouvez laisser les propositions telles quelles. 
+
+Le script `create_config.bash` dans le répertoire `croco` permettra de créer des répertoires de configurations de CROCO automatiquement. Il est possible de modifier le chemin des crocotools, de croco, le nom de la config (Run par défault). Pour commencer, vous pouvez laisser les propositions telles quelles. 
 
 ```bash
+cd /home/votrelogin/CROCO
 mkdir CONFIGS
-cd CONFIGS
-cp ../croco/create_config.bash .
-bash create_config.bash
+cd croco
+bash create_config.bash -d /home/votre login/CROCO/CONFIGS
 ```
+
 Vous avez alors un répertoire `Run` créé dans votre répertoire `CONFIGS`.
 
 ## Compilation
 
 Aller dans le répertoire Run: 
 ```bash
-cd Run
+cd ../CONFIGS/Run
 ```
 
 Le script de compilation a évolué à partir de cette version de croco pour qu'il ne soit plus nécessaire de le modifier directement. Le choix du compilateur, des librairies netcdf, ... se fait en arguments dans le cas où nous ne sommes pas dans une configuration standard de style ubuntu. 
