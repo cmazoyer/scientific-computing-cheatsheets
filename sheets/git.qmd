@@ -8,6 +8,10 @@ title: Mémos, raccourcis et améliorations de GIT
 
 [Télécharger le mémo du workflow Git (PDF)](../files/Github_workflow_floriane.pdf)
 
+[Présentation PDF Git et Sphinx](https://nuage.osupytheas.fr/s/oNMfnxET2wZrd7z)
+
+[Présentation PDF commandes principales](https://nuage.osupytheas.fr/s/4W3ateGetj4kxE8)
+
 Formations sur git :
 
 [Formation ISI - Git](https://isi.pages.ird.fr/formations/isi-formation-git/)
