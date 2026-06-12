@@ -4,7 +4,13 @@ title: Mémos, raccourcis et améliorations de GIT
 
 # 1.Commandes de base, informations sur Git
 
-mettre le pdf en téléchargement
+[Télécharger le mémo des commandes Git (ODT)](../files/memo_git.odt)
+
+[Télécharger le mémo du workflow Git (PDF)](../files/Github_workflow_floriane.pdf)
+
+Formations sur git :
+
+[Formation ISI - Git](https://isi.pages.ird.fr/formations/isi-formation-git/)
 
 # 2.Git à travers le proxy de la fac de Toulon
 

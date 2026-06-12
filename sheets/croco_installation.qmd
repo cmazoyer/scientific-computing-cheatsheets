@@ -53,7 +53,7 @@ Le script `create_config.bash` dans le répertoire `croco` permettra de créer d
 cd /home/votrelogin/CROCO
 mkdir CONFIGS
 cd croco
-bash create_config.bash -d /home/votre login/CROCO/CONFIGS
+bash create_config.bash -d /home/votrelogin/CROCO/CONFIGS
 ```
 
 Vous avez alors un répertoire `Run` créé dans votre répertoire `CONFIGS`.

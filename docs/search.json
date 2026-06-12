@@ -116,7 +116,7 @@
     "href": "sheets/croco_installation.html#création-dune-configuration",
     "title": "Installation et compilation du code CROCO",
     "section": "Création d’une configuration",
-    "text": "Création d’une configuration\nLe script create_config.bash dans le répertoire croco permettra de créer des répertoires de configurations de CROCO automatiquement. Il est possible de modifier le chemin des crocotools, de croco, le nom de la config (Run par défault). Pour commencer, vous pouvez laisser les propositions telles quelles.\ncd /home/votrelogin/CROCO\nmkdir CONFIGS\ncd croco\nbash create_config.bash -d /home/votre login/CROCO/CONFIGS\nVous avez alors un répertoire Run créé dans votre répertoire CONFIGS."
+    "text": "Création d’une configuration\nLe script create_config.bash dans le répertoire croco permettra de créer des répertoires de configurations de CROCO automatiquement. Il est possible de modifier le chemin des crocotools, de croco, le nom de la config (Run par défault). Pour commencer, vous pouvez laisser les propositions telles quelles.\ncd /home/votrelogin/CROCO\nmkdir CONFIGS\ncd croco\nbash create_config.bash -d /home/votrelogin/CROCO/CONFIGS\nVous avez alors un répertoire Run créé dans votre répertoire CONFIGS."
   },
   {
     "objectID": "sheets/croco_installation.html#compilation",
@@ -124,5 +124,61 @@
     "title": "Installation et compilation du code CROCO",
     "section": "Compilation",
     "text": "Compilation\nAller dans le répertoire Run:\ncd ../CONFIGS/Run\nLe script de compilation a évolué à partir de cette version de croco pour qu’il ne soit plus nécessaire de le modifier directement. Le choix du compilateur, des librairies netcdf, … se fait en arguments dans le cas où nous ne sommes pas dans une configuration standard de style ubuntu.\n./jobcomp --help\nSi vous n’êtes pas dans un cas standard, vous pouvez indiquer des arguments. Dans ce cas, il est plus simple de sauvegarder la ligne de commande dans un fichier nommé compil.sh par ex (toujours dans Run), que nous lancerons ensuite.\nDans notre arborescence (CONFIGS/Run), avec les librairies netcdf système, et le compilateur gfortran, le fichier compil.sh sera ainsi:\n#!/bin/bash\n./jobcomp --src ../../croco/OCEAN\nSi on veut choisir quelles librairies netcdf utiliser, on peut forcer leur utilisation en indiquant leur chemin. Le chemin de netcdf-inc est le répertoire contenant le fichier netcdf.inc, et le chemin de netcdf est le répertoire contenant libnetcdff.so par ex ( à identifier avec locate):\n#!/bin/bash\n./jobcomp --src ../../croco/OCEAN --netcdf-inc \"-I/usr/include\" --netcdf-lib \"-L/usr/lib/x86_64-linux-gnu -lnetcdff -lnetcdf\"\nSur le cluster de l’OSU, le fichier compil.sh sera :\n#!/bin/bash\n./jobcomp --fc ifort --mpif90 mpiifort --netcdf-lib \"-L/libraries/libcalcul/netcdf/netcdf_parallel/lib/ -lnetcdf -lnetcdff\" --netcdf-inc \"-I/libraries/libcalcul/netcdf/netcdf_parallel/include\"\non peut donner les droits d’exécution au fichier compil.sh en lançant une fois cette ligne de commande:\nchmod +x compil.sh \nPuis la compilation se fait avec:\n./compil.sh"
+  },
+  {
+    "objectID": "sheets/git.html",
+    "href": "sheets/git.html",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "",
+    "text": "Télécharger le mémo des commandes Git (ODT)\nTélécharger le mémo du workflow Git (PDF)\nFormations sur git :\nFormation ISI - Git"
+  },
+  {
+    "objectID": "sheets/git.html#gestion-du-proxy",
+    "href": "sheets/git.html#gestion-du-proxy",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "2.1 Gestion du proxy",
+    "text": "2.1 Gestion du proxy\nPrivilégier l’accès à des dépôts git via https pour éviter des soucis avec le proxy.\nCependant, si on a l’erreur suivante lors d’un git clone, ou git push par exemple:\nfatal: unable to access 'https://gitlab.osupytheas.fr/mazoyer/medoc/': Received HTTP code 407 from proxy after CONNECT\nIl faut alors passer en ssh sur son projet (que l’on nommera ici myproject). Attention, penser à changer mylogin en votre propre login:\ngit remote -v\ngit remote set-url origin git@gitlab.osupytheas.fr:mylogin/myproject.git\nSi les deux solutions ne sont pas satisfaisantes, nous sommes preneurs de votre retour (camille.mazoyer@ird.fr)"
+  },
+  {
+    "objectID": "sheets/git.html#faire-référence-à-des-bug-dans-un-commentaire-git",
+    "href": "sheets/git.html#faire-référence-à-des-bug-dans-un-commentaire-git",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.1 Faire référence à des bug dans un commentaire git",
+    "text": "3.1 Faire référence à des bug dans un commentaire git\nOn peut lister et noter les bugs dans un bug tracker dans le projet git de gitlab (rubrique Issues de votre gitlab). Ensuite, dans un commentaire de git commit (voir link-to-the-issue-number-on-github-within-a-commit-message), on y fait référence avec les mots clefs suivants (pour le bug numéro 5 par ex):\n[debug] Résolution du bug empechant la fermeture des fichiers"
+  },
+  {
+    "objectID": "sheets/git.html#différences-plus-visuels-avec-git--d-file",
+    "href": "sheets/git.html#différences-plus-visuels-avec-git--d-file",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.2 Différences plus visuels avec git -d file",
+    "text": "3.2 Différences plus visuels avec git -d file\nPour voir les git diff a travers vimdiff, beaucoup plus visuel. Ensuite, on peut taper git d fichier.F90 pour voir la différence entre la version pushée et les modif locales.\ngit config --global diff.tool vimdiff\ngit config --global difftool.prompt false\ngit config --global alias.d difftool\ngit d --color-words  file.F"
+  },
+  {
+    "objectID": "sheets/git.html#outil-pour-faciliter-la-fusion-de-modifications-le-merge",
+    "href": "sheets/git.html#outil-pour-faciliter-la-fusion-de-modifications-le-merge",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.3 Outil pour faciliter la fusion de modifications, le “merge”",
+    "text": "3.3 Outil pour faciliter la fusion de modifications, le “merge”\nVoir how-to-resolve-merge-conflicts-in-git-repository :\ngit config merge.tool vimdiff\ngit config merge.conflictstyle diff3\ngit config mergetool.prompt false"
+  },
+  {
+    "objectID": "sheets/git.html#comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers",
+    "href": "sheets/git.html#comment-ne-pas-tenir-compte-des-changements-de-permissions-sur-les-fichiers",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.4 Comment ne pas tenir compte des changements de permissions sur les fichiers",
+    "text": "3.4 Comment ne pas tenir compte des changements de permissions sur les fichiers\nCela peut être utile si on utilise notre dépôt Git sur plusieurs machines et que tous les comptes n’ont pas les mêmes permissions. Je recommande de taper cette commande (une seule fois ) dans chacun de vos projets (voir git-comment-faire-pour-ignorer-les-changements-de-mode-de-fichier-chmod).\ngit config core.fileMode false"
+  },
+  {
+    "objectID": "sheets/git.html#commande-log-plus-visuelle",
+    "href": "sheets/git.html#commande-log-plus-visuelle",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.5 Commande “log” plus visuelle",
+    "text": "3.5 Commande “log” plus visuelle\nVoir pretty-git-branch-graphs.\nTaper (une seule fois) la commande suivante dans un terminal\ngit config --global alias.adog \"log --all --decorate --oneline --graph\"\nPuis vous pouvez l’utiliser quand nécessaire via:\ngit log --graph --abbrev-commit --decorate --date=relative --all"
+  },
+  {
+    "objectID": "sheets/git.html#commande-hist",
+    "href": "sheets/git.html#commande-hist",
+    "title": "Mémos, raccourcis et améliorations de GIT",
+    "section": "3.6 Commande “hist”",
+    "text": "3.6 Commande “hist”\nTaper (une seule fois) la commande suivante dans un terminal\ngit config --global alias.hist \"log --graph --date-order --date=short \\\n--pretty=format:'%C(auto)%h%d %C(reset)%s %C(bold blue)%ce %C(reset)%C(green)%cr (%cd)'\"\nL’utilisation se fait de la manière suivante:\ngit hist # Show the history of current branch\ngit hist --all # Show the graph of all branches (including remotes)\ngit hist master devel # Show the relationship between two or more branches\ngit hist --branches # Show all local branches\n#Add --topo-order to sort commits topologically, instead of by date (default in this alias)\nPar exemple:  Les avantages de cette commande sont les suivants:\n\nressemble à “plain –decorate” avec des couleurs différentes pour chaque branche\najout de l’email de la personne qui commit\najout des dates\ntri des commits par dates"
   }
 ]
